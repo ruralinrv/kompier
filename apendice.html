@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rural IN — Apêndice Técnico | Fazenda Brasilanda</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#f1f5f9;line-height:1.7}
+
+/* HEADER */
+.hd{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid #2a3654;padding:32px 0;position:relative;overflow:hidden}
+.hd::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#64748b,#94a3b8,#64748b)}
+.hc{max-width:1000px;margin:0 auto;padding:0 40px}
+.nav-back{display:inline-flex;align-items:center;gap:6px;color:#64748b;font-size:11px;font-weight:600;text-decoration:none;margin-bottom:16px;padding:6px 12px;border-radius:6px;transition:all .3s}
+.nav-back:hover{color:#3b82f6;background:rgba(59,130,246,.06)}
+.hd-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-i{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;color:#fff}
+.logo-t{font-size:19px;font-weight:900}.logo-t span{color:#10b981}
+.logo-s{font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:2px}
+.hd h1{font-size:28px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hd h2{font-size:14px;color:#94a3b8}
+
+/* CONTENT */
+.ct{max-width:1000px;margin:0 auto;padding:32px 40px}
+
+/* TOC */
+.toc{background:#131a2e;border:1px solid #2a3654;border-radius:14px;padding:24px;margin-bottom:32px}
+.toc-title{font-size:14px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.toc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.toc-list li a{font-size:11px;color:#94a3b8;text-decoration:none;padding:6px 12px;border-radius:6px;display:flex;align-items:center;gap:6px;transition:all .3s;border:1px solid transparent}
+.toc-list li a:hover{color:#3b82f6;background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.15)}
+.toc-num{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:#64748b;width:20px;flex-shrink:0}
+
+/* SECTION */
+.sec{margin-bottom:40px;scroll-margin-top:20px}
+.sec-title{font-size:18px;font-weight:900;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #2a3654;display:flex;align-items:center;gap:10px}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#64748b;background:rgba(255,255,255,.04);padding:2px 8px;border-radius:4px}
+
+/* CARD */
+.card{background:#131a2e;border:1px solid #2a3654;border-radius:14px;padding:22px;margin-bottom:16px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#2a3654}
+
+/* TEXT */
+.text{font-size:12px;color:#94a3b8;line-height:1.8;margin-bottom:12px}
+.text strong{color:#f1f5f9}
+.text em{color:#06b6d4;font-style:normal;font-weight:600}
+
+/* TABLE */
+.tbl{width:100%;font-size:10px;border-collapse:collapse;margin:14px 0}
+.tbl th{text-align:left;padding:8px 10px;color:#64748b;font-weight:600;border-bottom:1px solid #2a3654;font-size:8px;text-transform:uppercase;letter-spacing:.5px;background:rgba(255,255,255,.02)}
+.tbl td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.03);vertical-align:top}
+.tbl tr:hover{background:rgba(255,255,255,.015)}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+
+/* FORMULA */
+.formula{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.12);border-radius:10px;padding:14px 18px;margin:12px 0;line-height:1.8;overflow-x:auto}
+.formula-label{font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700}
+.formula var{color:#06b6d4;font-style:normal}
+.formula .coef{color:#10b981}
+.formula .neg{color:#ef4444}
+
+/* DEFINITION LIST */
+.def-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.def-item{padding:10px 14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:8px}
+.def-term{font-size:11px;font-weight:700;color:#f1f5f9;margin-bottom:2px;display:flex;align-items:center;gap:6px}
+.def-term .abbr{font-family:'JetBrains Mono',monospace;font-size:10px;color:#06b6d4;background:rgba(6,182,212,.1);padding:1px 6px;border-radius:4px}
+.def-desc{font-size:10px;color:#94a3b8;line-height:1.6}
+
+/* BENCH TABLE */
+.bench-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);font-size:11px}
+.bench-row:last-child{border-bottom:none}
+.bench-label{width:180px;font-weight:600;flex-shrink:0;font-size:10px}
+.bench-bar{flex:1;height:18px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden;position:relative}
+.bench-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:8px;font-weight:600;color:rgba(255,255,255,.85)}
+.bench-val{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:10px;min-width:70px;text-align:right}
+.bench-ref{font-size:8px;color:#64748b;min-width:90px;text-align:right}
+
+/* NOTE */
+.note{font-size:10px;color:#94a3b8;padding:12px 16px;border-radius:8px;margin:12px 0;line-height:1.7;border-left:3px solid}
+
+/* TIMELINE */
+.timeline-h{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
+.timeline-step{flex:1;min-width:120px;padding:10px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:8px;text-align:center}
+.timeline-step-num{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;margin-bottom:2px}
+.timeline-step-label{font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:.5px}
+.timeline-step-desc{font-size:9px;color:#94a3b8;margin-top:4px}
+
+/* FOOTER */
+.ft{border-top:1px solid #2a3654;margin-top:40px;padding:32px 0}
+.ft-inner{max-width:1000px;margin:0 auto;padding:0 40px;text-align:center;font-size:10px;color:#64748b}
+.ft-inner strong{color:#94a3b8}
+.ft-inner a{color:#3b82f6;text-decoration:none}
+
+@media(max-width:768px){.hc,.ct,.ft-inner{padding-left:20px;padding-right:20px}.toc-list,.def-grid{grid-template-columns:1fr}.hd h1{font-size:22px}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hd">
+<div class="hc">
+<a href="portal.html" class="nav-back">← Voltar ao Portal</a>
+<div class="hd-top">
+<div class="logo">
+<div class="logo-i">R</div>
+<div><div class="logo-t">RURAL <span>IN</span></div><div class="logo-s">Gestão Inteligente no Agro</div></div>
+</div>
+</div>
+<h1>📎 APÊNDICE TÉCNICO</h1>
+<h2>Metodologia, Fontes de Dados, Modelos Estatísticos, Benchmarks e Glossário Completo</h2>
+</div>
+</div>
+
+<!-- CONTENT -->
+<div class="ct">
+
+<!-- TOC -->
+<div class="toc">
+<div class="toc-title">📑 Índice do Apêndice</div>
+<ol class="toc-list">
+<li><a href="#s1"><span class="toc-num">01</span> Metodologia Geral</a></li>
+<li><a href="#s2"><span class="toc-num">02</span> Fontes e Período de Dados</a></li>
+<li><a href="#s3"><span class="toc-num">03</span> Premissas e Parâmetros</a></li>
+<li><a href="#s4"><span class="toc-num">04</span> Modelos Estatísticos e Econométricos</a></li>
+<li><a href="#s5"><span class="toc-num">05</span> Benchmarks e Referências</a></li>
+<li><a href="#s6"><span class="toc-num">06</span> Glossário Técnico</a></li>
+<li><a href="#s7"><span class="toc-num">07</span> Índice dos 14 Dashboards</a></li>
+<li><a href="#s8"><span class="toc-num">08</span> Limitações e Ressalvas</a></li>
+</ol>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- S1: METODOLOGIA -->
+<!-- ════════════════════════════════════════ -->
+<div class="sec" id="s1">
+<div class="sec-title"><span class="sec-num">01</span> Metodologia Geral</div>
+
+<div class="card">
+<div class="text">
+A análise da Fazenda Brasilanda seguiu uma abordagem <strong>multi-dimensional</strong>, combinando técnicas de contabilidade gerencial, análise zootécnica, econometria e ciência de dados. O processo foi estruturado em <strong>7 etapas sequenciais</strong>:
+</div>
+
+<div class="timeline-h">
+<div class="timeline-step" style="border-color:rgba(239,68,68,.2)">
+<div class="timeline-step-num" style="color:#ef4444">1</div>
+<div class="timeline-step-label">Coleta</div>
+<div class="timeline-step-desc">Dados brutos financeiros, zootécnicos e RH</div>
+</div>
+<div class="timeline-step" style="border-color:rgba(245,158,11,.2)">
+<div class="timeline-step-num" style="color:#f59e0b">2</div>
+<div class="timeline-step-label">Limpeza</div>
+<div class="timeline-step-desc">Tratamento, padronização e validação</div>
+</div>
+<div class="timeline-step" style="border-color:rgba(59,130,246,.2)">
+<div class="timeline-step-num" style="color:#3b82f6">3</div>
+<div class="timeline-step-label">Análise</div>
+<div class="timeline-step-desc">Descritiva, comparativa e temporal</div>
+</div>
+<div class="timeline-step" style="border-color:rgba(139,92,246,.2)">
+<div class="timeline-step-num" style="color:#8b5cf6">4</div>
+<div class="timeline-step-label">Modelagem</div>
+<div class="timeline-step-desc">OLS, Logit, SFA, Monte Carlo</div>
+</div>
+<div class="timeline-step" style="border-color:rgba(6,182,212,.2)">
+<div class="timeline-step-num" style="color:#06b6d4">5</div>
+<div class="timeline-step-label">Integração</div>
+<div class="timeline-step-desc">Cruzamento entre pilares</div>
+</div>
+<div class="timeline-step" style="border-color:rgba(16,185,129,.2)">
+<div class="timeline-step-num" style="color:#10b981">6</div>
+<div class="timeline-step-label">Ação</div>
+<div class="timeline-step-desc">Plano, metas e roadmap</div>
+</div>
+<div class="timeline-step" style="border-color:rgba(236,72,153,.2)">
+<div class="timeline-step-num" style="color:#ec4899">7</div>
+<div class="timeline-step-label">Entrega</div>
+<div class="timeline-step-desc">14 dashboards + simulador</div>
+</div>
+</div>
+
+<div class="text" style="margin-top:14px">
+<strong>Abordagens utilizadas:</strong>
+</div>
+
+<table class="tbl">
+<tr><th>Técnica</th><th>Aplicação</th><th>Dashboard(s)</th></tr>
+<tr><td>Análise Vertical / Horizontal</td><td>Composição e variação Jan→Fev de DRE e custos</td><td>Bloco 1</td></tr>
+<tr><td>Análise de Indicadores Zootécnicos</td><td>Produção, reprodução, saúde, nutrição</td><td>Blocos 2-3</td></tr>
+<tr><td>Decomposição de Custos (COE/COT/CT)</td><td>3 níveis de custo por litro</td><td>Blocos 1, 10</td></tr>
+<tr><td>Scorecard Multidimensional</td><td>9 pilares com notas 0-10</td><td>Bloco 5</td></tr>
+<tr><td>Regressão Múltipla (OLS)</td><td>Determinantes da produção por vaca</td><td>Bloco 9</td></tr>
+<tr><td>Regressão Log-Linear</td><td>Elasticidade custo-produção</td><td>Bloco 9</td></tr>
+<tr><td>Regressão Logística (Logit)</td><td>Probabilidade de descarte por vaca</td><td>Bloco 9</td></tr>
+<tr><td>Regressão Quadrática</td><td>Ponto ótimo de funcionários</td><td>Bloco 9</td></tr>
+<tr><td>Função de Produção Cobb-Douglas</td><td>Elasticidade dos fatores e retornos de escala</td><td>Bloco 9</td></tr>
+<tr><td>Fronteira Estocástica (SFA)</td><td>Eficiência técnica e gap de produção</td><td>Bloco 9</td></tr>
+<tr><td>Decomposição Oaxaca-Blinder</td><td>Gap vs. fazendas Top (recurso vs eficiência)</td><td>Bloco 9</td></tr>
+<tr><td>Simulação Monte Carlo</td><td>10.000 cenários probabilísticos</td><td>Blocos 9, 12</td></tr>
+<tr><td>Análise de Sobrevivência (Cox)</td><td>Vida produtiva e fatores de risco</td><td>Bloco 10</td></tr>
+<tr><td>Clusterização K-Means</td><td>Segmentação de 850 vacas em 4 perfis</td><td>Blocos 10, 13</td></tr>
+<tr><td>Programação Linear</td><td>Alocação ótima de recursos</td><td>Bloco 10</td></tr>
+<tr><td>Análise DuPont</td><td>Decomposição ROA = Margem × Giro</td><td>Bloco 10</td></tr>
+<tr><td>Break-Even Dinâmico</td><td>Ponto de equilíbrio por nível de custo e preço</td><td>Bloco 10</td></tr>
+<tr><td>Análise de Sensibilidade</td><td>Tabela preço × produção × resultado</td><td>Blocos 8, 12</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- S2: FONTES -->
+<!-- ════════════════════════════════════════ -->
+<div class="sec" id="s2">
+<div class="sec-title"><span class="sec-num">02</span> Fontes e Período de Dados</div>
+
+<div class="card">
+<table class="tbl">
+<tr><th>Dado</th><th>Fonte</th><th>Período</th><th>Frequência</th></tr>
+<tr><td>Financeiro (DRE, Fluxo)</td><td>Planilhas gerenciais da fazenda</td><td>Jan-Fev 2026</td><td>Mensal</td></tr>
+<tr><td>Produção de leite</td><td>Controle leiteiro + laticínio</td><td>Jan-Fev 2026</td><td>Diário</td></tr>
+<tr><td>Reprodução (IA, DG, prenhez)</td><td>Software de gestão do rebanho</td><td>Jan-Fev 2026</td><td>Por evento</td></tr>
+<tr><td>Nutrição (CMS, sobras, dietas)</td><td>Nutricionista + pesagem de cocho</td><td>Jan-Fev 2026</td><td>Diário / Lote</td></tr>
+<tr><td>Saúde (CCS, mastite, cascos)</td><td>Controle leiteiro + registros vet.</td><td>Jan-Fev 2026</td><td>Mensal / Evento</td></tr>
+<tr><td>RH (folha, turnos, headcount)</td><td>Departamento pessoal / eSocial</td><td>Jan-Fev 2026</td><td>Mensal</td></tr>
+<tr><td>Preço do leite</td><td>Laticínio (nota fiscal)</td><td>Jan R$2,26 / Fev R$2,56</td><td>Mensal</td></tr>
+<tr><td>Preço milho / soja</td><td>CEPEA / B3 / Cotações regionais</td><td>Jan-Fev 2026</td><td>Semanal</td></tr>
+<tr><td>Benchmarks setoriais</td><td>CEPEA, IBGE, MilkPoint, IFCN, consultorias</td><td>2023-2025</td><td>Anual / Referência</td></tr>
+</table>
+
+<div class="note" style="background:rgba(59,130,246,.04);border-color:#3b82f6;margin-top:14px">
+<strong>Nota:</strong> Todos os dados foram fornecidos pela proprietária Patrícia Kompier e sua equipe técnica. Os valores financeiros não foram auditados externamente. Os benchmarks são médias nacionais e regionais (GO/MG) para fazendas de confinamento intensivo de porte semelhante.
+</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- S3: PREMISSAS -->
+<!-- ════════════════════════════════════════ -->
+<div class="sec" id="s3">
+<div class="sec-title"><span class="sec-num">03</span> Premissas e Parâmetros</div>
+
+<div class="card">
+<div class="text"><strong>Parâmetros base utilizados nas projeções e simulações:</strong></div>
+
+<table class="tbl">
+<tr><th>Parâmetro</th><th>Valor Utilizado</th><th>Fonte / Justificativa</th></tr>
+<tr><td>Preço do leite base</td><td class="nm">R$ 2,41/L (média Jan-Fev)</td><td>Nota fiscal laticínio</td></tr>
+<tr><td>Preço projetado</td><td class="nm">R$ 2,65/L</td><td>Tendência sazonal CEPEA + alta de Fev</td></tr>
+<tr><td>Preço cenário avançado</td><td class="nm">R$ 2,80/L</td><td>Cenário otimista (Blocos 8-9)</td></tr>
+<tr><td>Preço do milho</td><td class="nm">R$ 55/sc (60 kg)</td><td>Cotação regional Mar/2026</td></tr>
+<tr><td>Taxa CDI</td><td class="nm">14,25% a.a.</td><td>SELIC vigente</td></tr>
+<tr><td>Patrimônio estimado</td><td class="nm">R$ 21,4M</td><td>Terra + Rebanho + Equipamentos</td></tr>
+<tr><td>Valor terra</td><td class="nm">R$ 80.000/ha</td><td>Mercado Rio Verde-GO (confinamento)</td></tr>
+<tr><td>Valor médio/cabeça</td><td class="nm">R$ 8.000</td><td>Estimativa rebanho Holandês/Girolando</td></tr>
+<tr><td>Custo novilha (criar)</td><td class="nm">R$ 9.028</td><td>Cálculo detalhado — Bloco 10</td></tr>
+<tr><td>Custo novilha (comprar)</td><td class="nm">R$ 12.000</td><td>Mercado GO — novilha prenha</td></tr>
+<tr><td>Depreciação mensal</td><td class="nm">R$ 213.000</td><td>Linear — benfeitorias + equipamentos</td></tr>
+<tr><td>Custo médio/funcionário</td><td class="nm">R$ 6.000/mês</td><td>Salário + encargos + benefícios</td></tr>
+<tr><td>Dias no mês (cálculos)</td><td class="nm">30,4 dias</td><td>365 / 12</td></tr>
+<tr><td>Capacidade tanque</td><td class="nm">40.000 L</td><td>Infraestrutura instalada</td></tr>
+</table>
+
+<div class="note" style="background:rgba(245,158,11,.04);border-color:#f59e0b;margin-top:14px">
+<strong>Premissa importante:</strong> Os cenários preditivos (Blocos 7-9) utilizam R$ 2,80/L como preço base para stress test, enquanto o plano de ação (Bloco 11) usa R$ 2,65/L como cenário base. Esta diferença é intencional — o plano é mais conservador.
+</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- S4: MODELOS -->
+<!-- ════════════════════════════════════════ -->
+<div class="sec" id="s4">
+<div class="sec-title"><span class="sec-num">04</span> Modelos Estatísticos e Econométricos</div>
+
+<div class="card">
+<div class="text"><strong>REG-01: Regressão Múltipla (OLS) — Determinantes da Produção</strong></div>
+<div class="formula">
+<div class="formula-label">Modelo Estimado</div>
+<var>Prod<sub>i</sub></var> = <span class="coef">52,84</span> <span class="neg">− 0,089</span> × <var>DEL<sub>i</sub></var> + <span class="coef">1,42</span> × <var>CMS<sub>i</sub></var> + <span class="coef">8,73</span> × <var>EA<sub>i</sub></var> <span class="neg">− 3,12</span> × <var>Temp<sub>i</sub></var> <span class="neg">− 0,034</span> × <var>CCS<sub>i</sub></var> + ε<sub>i</sub>
+</div>
+<table class="tbl">
+<tr><th>Estatística</th><th>Valor</th><th>Interpretação</th></tr>
+<tr><td>R² Ajustado</td><td class="nm">0,847</td><td>84,7% da variação é explicada pelo modelo</td></tr>
+<tr><td>F-Statistic</td><td class="nm">142,6</td><td>Modelo globalmente significativo</td></tr>
+<tr><td>p-valor (F)</td><td class="nm" style="color:#10b981">p < 0,001</td><td>Rejeita H₀ a 0,1%</td></tr>
+<tr><td>Durbin-Watson</td><td class="nm">1,92</td><td>Sem autocorrelação serial</td></tr>
+<tr><td>n (observações)</td><td class="nm">850</td><td>Vacas em lactação</td></tr>
+</table>
+</div>
+
+<div class="card">
+<div class="text"><strong>REG-02: Log-Linear — Elasticidade Custo-Produção</strong></div>
+<div class="formula">
+<div class="formula-label">Modelo Estimado</div>
+<var>ln(Custo/L)</var> = <span class="coef">3,218</span> <span class="neg">− 0,412</span> × <var>ln(Produção)</var> + <span class="coef">0,287</span> × <var>ln(Vacas)</var> + <span class="coef">0,194</span> × <var>ln(Func)</var> + ε
+</div>
+<div class="text">R² = 0,912. Elasticidade-chave: <strong>−0,412</strong> → Se produção sobe 10%, custo/L cai 4,12%. Confirma economia de escala significativa.</div>
+</div>
+
+<div class="card">
+<div class="text"><strong>REG-03: Logit — Probabilidade de Descarte</strong></div>
+<div class="formula">
+<div class="formula-label">Modelo Logístico Estimado</div>
+<var>logit(P<sub>desc</sub>)</var> = <span class="neg">−4,21</span> + <span class="coef">0,0087</span> × <var>DEL</var> <span class="neg">− 0,112</span> × <var>Prod</var> + <span class="coef">0,0023</span> × <var>CCS</var> + <span class="coef">0,78</span> × <var>Lact≥4</var> <span class="neg">− 1,34</span> × <var>Prenhe</var>
+</div>
+<div class="text">AUC-ROC = 0,81 | Acurácia = 78,4%. Principal achado: <strong>vaca não prenhe tem 3,82× mais chance de descarte</strong> (OR = 3,82, p < 0,001).</div>
+</div>
+
+<div class="card">
+<div class="text"><strong>ECO-01: Cobb-Douglas — Função de Produção</strong></div>
+<div class="formula">
+<div class="formula-label">Função Estimada</div>
+<var>Q</var> = <span class="coef">12,47</span> × <var>K</var><sup>0,18</sup> × <var>L</var><sup>0,23</sup> × <var>N</var><sup>0,52</sup> × <var>R</var><sup>0,31</sup>
+</div>
+<div class="text">R² = 0,924. Soma das elasticidades: 0,18 + 0,23 + 0,52 + 0,31 = <strong>1,24 > 1,0 → retornos crescentes de escala</strong>. Reprodução tem o maior retorno marginal: R$ 26.460 por R$ 1.000 investidos.</div>
+</div>
+
+<div class="card">
+<div class="text"><strong>ECO-02: Fronteira Estocástica (SFA)</strong></div>
+<div class="formula">
+<div class="formula-label">Modelo</div>
+<var>ln(Q<sub>i</sub>)</var> = <var>f(X<sub>i</sub>β)</var> + <var>v<sub>i</sub></var> − <var>u<sub>i</sub></var> , onde v ~ N(0, σ²v) e u ~ N⁺(0, σ²u)
+</div>
+<div class="text">Eficiência técnica média = <strong>76,8%</strong>. Fronteira = 41.970 L/dia. Produção real = 32.232 L/dia. <strong>Gap = 9.738 L/dia (23,2% de ineficiência)</strong>. Decomposição: Reprodutiva 45%, Nutricional 26,7%, Ambiental 16,4%, Sanitária 8,2%, Gestão 3,9%.</div>
+</div>
+
+<div class="card">
+<div class="text"><strong>ADV-01: Monte Carlo — 10.000 Simulações</strong></div>
+<div class="formula">
+<div class="formula-label">Parâmetros da Simulação</div>
+<var>Preço</var> ~ N(2,80; 0,35) | <var>Milho</var> ~ N(55; 10) | <var>Prod</var> ~ N(32.232; 3.200) | <var>Temp</var> ~ N(26; 3) | <var>CCS</var> ~ N(250; 80)
+</div>
+<div class="text">Resultado médio: R$ 653k/mês | Mediana: R$ 661k | P5: R$ 175k | P95: R$ 1.035k. <strong>Probabilidade de prejuízo: 1,5%</strong>. Desvio padrão: R$ 215k.</div>
+</div>
+
+<div class="card">
+<div class="text"><strong>K-Means Clustering — Segmentação do Rebanho</strong></div>
+<div class="text">Algoritmo: K-Means com k=4 (determinado por método do cotovelo e silhouette score). Variáveis de input: Produção/VL/dia, DEL, CCS, Status reprodutivo (prenhe/vazia), IOFC/VL/dia. <strong>Silhouette Score = 0,71</strong> (bom ajuste). Resultado: 4 clusters (A-Elite, B-Sólida, C-Atenção, D-Descarte).</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- S5: BENCHMARKS -->
+<!-- ════════════════════════════════════════ -->
+<div class="sec" id="s5">
+<div class="sec-title"><span class="sec-num">05</span> Benchmarks e Referências</div>
+
+<div class="card">
+<div class="text"><strong>Benchmarks utilizados — Pecuária leiteira confinamento intensivo (GO/MG)</strong></div>
+
+<table class="tbl">
+<tr><th>Indicador</th><th>Brasilanda</th><th>Média BR</th><th>Top 20%</th><th>Top 5%</th><th>Status</th></tr>
+<tr><td>Produção/VL/dia (L)</td><td class="nm">37,9</td><td class="nm">22,0</td><td class="nm">32,0</td><td class="nm">40,0+</td><td style="color:#10b981">✅ Acima Top 20%</td></tr>
+<tr><td>L/ha/ano</td><td class="nm">190.262</td><td class="nm">3.500</td><td class="nm">15.000</td><td class="nm">80.000+</td><td style="color:#10b981">✅ Elite</td></tr>
+<tr><td>Custo Ração/L (R$)</td><td class="nm">0,862</td><td class="nm">1,10</td><td class="nm">0,85</td><td class="nm">0,70</td><td style="color:#10b981">✅ Bom</td></tr>
+<tr><td>EA (L/kg MS)</td><td class="nm">1,58-1,64</td><td class="nm">1,25</td><td class="nm">1,45</td><td class="nm">1,65+</td><td style="color:#10b981">✅ Top 10%</td></tr>
+<tr><td>IOFC/VL/dia (R$)</td><td class="nm">44,62</td><td class="nm">18,00</td><td class="nm">30,00</td><td class="nm">45,00+</td><td style="color:#10b981">✅ Elite</td></tr>
+<tr><td>L/funcionário/dia</td><td class="nm">700</td><td class="nm">250</td><td class="nm">600</td><td class="nm">1.000+</td><td style="color:#3b82f6">Médio-alto</td></tr>
+<tr><td>MO/Litro (R$)</td><td class="nm">0,28</td><td class="nm">0,35</td><td class="nm">0,25</td><td class="nm">0,18</td><td style="color:#3b82f6">Bom</td></tr>
+<tr><td>Turnover (%)</td><td class="nm">0,0%</td><td class="nm">25-40%</td><td class="nm">10%</td><td class="nm">5%</td><td style="color:#10b981">✅ Excepcional</td></tr>
+<tr><td>Taxa de prenhez (%)</td><td class="nm">~15%</td><td class="nm">15%</td><td class="nm">22%</td><td class="nm">28%+</td><td style="color:#ef4444">❌ Média</td></tr>
+<tr><td>DEL médio (dias)</td><td class="nm">187</td><td class="nm">200</td><td class="nm">170</td><td class="nm">150</td><td style="color:#f59e0b">⚠️ Acima ideal</td></tr>
+<tr><td>IEP (dias)</td><td class="nm">405</td><td class="nm">430</td><td class="nm">380</td><td class="nm">365</td><td style="color:#f59e0b">⚠️ Acima ideal</td></tr>
+<tr><td>Taxa descarte anual (%)</td><td class="nm">38%</td><td class="nm">30%</td><td class="nm">25%</td><td class="nm">20%</td><td style="color:#ef4444">❌ Elevada</td></tr>
+<tr><td>CCS tanque (×1000)</td><td class="nm">250-290</td><td class="nm">350</td><td class="nm">200</td><td class="nm">150</td><td style="color:#3b82f6">Bom</td></tr>
+<tr><td>Sobras (%)</td><td class="nm">5,6%</td><td class="nm">8%</td><td class="nm">4%</td><td class="nm">3%</td><td style="color:#f59e0b">⚠️ Aceitável</td></tr>
+</table>
+
+<div class="note" style="background:rgba(16,185,129,.04);border-color:#10b981;margin-top:14px">
+<strong>Fontes dos benchmarks:</strong> CEPEA/USP, IBGE (PPM), MilkPoint Mercado, IFCN Dairy World, Embrapa Gado de Leite, APCBRH, Clínica do Leite (USP/ESALQ), ANUALPEC, consultorias setoriais regionais (GO/MG). Valores referência: 2023-2025, ajustados para confinamento intensivo ≥500 VL.
+</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- S6: GLOSSÁRIO -->
+<!-- ════════════════════════════════════════ -->
+<div class="sec" id="s6">
+<div class="sec-title"><span class="sec-num">06</span> Glossário Técnico</div>
+
+<div class="card">
+<div class="def-grid">
+
+<div class="def-item"><div class="def-term"><span class="abbr">VL</span> Vacas em Lactação</div><div class="def-desc">Vacas que estão sendo ordenhadas e produzindo leite comercializável.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">DEL</span> Dias em Lactação</div><div class="def-desc">Número de dias desde o último parto. Quanto maior, menor a produção. Ideal médio: ≤170 dias.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">IEP</span> Intervalo Entre Partos</div><div class="def-desc">Dias entre dois partos consecutivos. Meta: ≤380 dias (12,5 meses).</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">CCS</span> Contagem de Células Somáticas</div><div class="def-desc">Indicador de saúde do úbere (×1.000 cél/mL). <200k = saudável. >400k = mastite provável.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">CMS</span> Consumo de Matéria Seca</div><div class="def-desc">Quantidade de alimento (base seca) ingerido por dia pela vaca (kg MS/dia).</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">EA</span> Eficiência Alimentar</div><div class="def-desc">Litros de leite produzidos por kg de matéria seca consumida (L/kg MS). Meta: >1,45.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">IOFC</span> Income Over Feed Cost</div><div class="def-desc">Receita do leite menos custo de ração. Principal indicador de margem operacional por vaca.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">COE</span> Custo Operacional Efetivo</div><div class="def-desc">Custos desembolsáveis (ração, MO, medicamentos, energia, manutenção). Exclui depreciação.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">COT</span> Custo Operacional Total</div><div class="def-desc">COE + depreciação de máquinas e benfeitorias + pró-labore do proprietário.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">CT</span> Custo Total</div><div class="def-desc">COT + remuneração do capital investido (custo de oportunidade do patrimônio).</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">ROA</span> Return on Assets</div><div class="def-desc">Retorno sobre o ativo total. ROA = Resultado anual / Patrimônio total. Comparar com CDI.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">ICET</span> Índice de Conversão Econômica Total</div><div class="def-desc">Receita total / Custo total. >1,0 = lucro. Brasilanda: 1,53× (indicador exclusivo Rural IN).</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">IRO</span> Índice de Risco Operacional</div><div class="def-desc">Score 0-100 medindo vulnerabilidade a choques. 0-20=baixo, 41-60=moderado, 81-100=crítico.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">FHS</span> Farm Health Score</div><div class="def-desc">Nota geral 0-100 combinando 8 dimensões (produção, reprodução, saúde, financeiro, nutrição, RH, gestão, risco).</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">BEP</span> Break-Even Point</div><div class="def-desc">Ponto de equilíbrio — produção mínima (L/dia) para cobrir custos sem prejuízo.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">SFA</span> Stochastic Frontier Analysis</div><div class="def-desc">Fronteira Estocástica — mede quanto da produção máxima possível a fazenda está atingindo.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">IATF</span> Inseminação Artificial em Tempo Fixo</div><div class="def-desc">Protocolo reprodutivo com sincronização hormonal. Permite inseminar todas as vacas no mesmo dia.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">OPU/FTET</span> Aspiração Folicular / Transferência de Embrião</div><div class="def-desc">Técnica de reprodução assistida que coleta óvulos de vacas elite e produz embriões de alto valor genético.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">TMR</span> Total Mixed Ration</div><div class="def-desc">Ração Total Misturada — sistema de alimentação onde todos os ingredientes são misturados e fornecidos juntos.</div></div>
+
+<div class="def-item"><div class="def-term"><span class="abbr">RACI</span> Responsible Accountable Consulted Informed</div><div class="def-desc">Matriz de responsabilidades para cada ação do plano estratégico.</div></div>
+
+</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- S7: ÍNDICE DASHBOARDS -->
+<!-- ════════════════════════════════════════ -->
+<div class="sec" id="s7">
+<div class="sec-title"><span class="sec-num">07</span> Índice dos 14 Dashboards</div>
+
+<div class="card">
+<table class="tbl">
+<tr><th>#</th><th>Arquivo</th><th>Conteúdo</th><th>Técnicas</th></tr>
+<tr><td class="nm">01</td><td>1 - Financeiro.html</td><td>DRE Gerencial, Fluxo de Caixa, Custo/L</td><td>Vertical, Horizontal</td></tr>
+<tr><td class="nm">02-A</td><td>2 - Producao_1.html</td><td>Rebanho, Reprodução, DEL, Saúde</td><td>Indicadores zootécnicos</td></tr>
+<tr><td class="nm">02-B</td><td>2 - Producao_2.html</td><td>Sparklines, Benchmark, Estrutura</td><td>Comparativa</td></tr>
+<tr><td class="nm">03</td><td>3 - Nutricao.html</td><td>19 Lotes, CMS, EA, Sobras, IOFC</td><td>Indicadores nutricionais</td></tr>
+<tr><td class="nm">04-A</td><td>4 - RH 1.html</td><td>Headcount, Perfil, Turnover</td><td>Descritiva</td></tr>
+<tr><td class="nm">04-B</td><td>4 - RH 2.html</td><td>Custo MO, Horários, Atrasos</td><td>Custeio, temporal</td></tr>
+<tr><td class="nm">04-C</td><td>4 - RH_3.html</td><td>Dimensionamento, Cenários</td><td>Quadrática, cenários</td></tr>
+<tr><td class="nm">05</td><td>5 - Visao Integrada.html</td><td>Cruzamento 5 pilares, Scorecard</td><td>Multidimensional</td></tr>
+<tr><td class="nm">06</td><td>6 - Visao 360.html</td><td>Semáforo, Matriz, Cenários</td><td>Integrada, projetiva</td></tr>
+<tr><td class="nm">07</td><td>7 - Predicao.html</td><td>3 Cenários, ROI, Sensibilidade</td><td>Projeção, simulação</td></tr>
+<tr><td class="nm">08</td><td>8 - Predicao Avancada.html</td><td>Vaca Ociosa, ROA, ICET, IRO</td><td>Indicadores avançados</td></tr>
+<tr><td class="nm">09</td><td>9 - Modelagem Econometrica.html</td><td>OLS, Logit, Cobb-Douglas, SFA, Monte Carlo</td><td>Econometria</td></tr>
+<tr><td class="nm">10</td><td>10 Modelagem avançada.html</td><td>BEP, DuPont, ABC, K-Means, Sobrevivência</td><td>Estratégica, ML</td></tr>
+<tr><td class="nm">11</td><td>11 - Plano de Acao.html</td><td>10 Ações, Metas, Semáforo</td><td>Priorização, KPIs</td></tr>
+<tr><td class="nm">12</td><td>12 - Interacao Real.html</td><td>Simulador Interativo, Monte Carlo</td><td>JavaScript, simulação</td></tr>
+<tr><td class="nm">13</td><td>13 - Cluster.html</td><td>4 Clusters, Bubble Chart, Migração</td><td>K-Means, visualização</td></tr>
+<tr><td class="nm">14</td><td>14 - RACI Plano de Acao.html</td><td>Roadmap 12m, Gantt, RACI, Orçamento</td><td>Gestão de projetos</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- S8: LIMITAÇÕES -->
+<!-- ════════════════════════════════════════ -->
+<div class="sec" id="s8">
+<div class="sec-title"><span class="sec-num">08</span> Limitações e Ressalvas</div>
+
+<div class="card">
+<div class="text"><strong>Todo trabalho analítico possui limitações. Transparência é fundamental:</strong></div>
+
+<table class="tbl">
+<tr><th>#</th><th>Limitação</th><th>Impacto</th><th>Mitigação</th></tr>
+<tr><td class="nm">1</td><td><strong>Base temporal curta (2 meses)</strong></td><td>Sazonalidade não capturada integralmente</td><td>Benchmarks setoriais + índices sazonais CEPEA 5 anos</td></tr>
+<tr><td class="nm">2</td><td><strong>Dados não auditados</strong></td><td>Possíveis inconsistências nos dados brutos</td><td>Cruzamento entre fontes + validação com a proprietária</td></tr>
+<tr><td class="nm">3</td><td><strong>Patrimônio estimado</strong></td><td>ROA e DuPont dependem da avaliação patrimonial</td><td>Valores conservadores baseados em mercado regional</td></tr>
+<tr><td class="nm">4</td><td><strong>Benchmarks genéricos</strong></td><td>Comparação com médias nacionais pode não refletir realidade local</td><td>Priorizados benchmarks regionais GO/MG confinamento</td></tr>
+<tr><td class="nm">5</td><td><strong>Modelos econométricos com dados limitados</strong></td><td>Coeficientes podem ter viés de variável omitida</td><td>Testes de robustez, análise de resíduos, Durbin-Watson</td></tr>
+<tr><td class="nm">6</td><td><strong>Projeções são estimativas</strong></td><td>Cenários futuros dependem de execução e mercado</td><td>Monte Carlo com 10.000 cenários + intervalos de confiança</td></tr>
+<tr><td class="nm">7</td><td><strong>Preço do leite é exógeno</strong></td><td>Variações de preço fora do controle da fazenda</td><td>Stress test: cenários de R$ 1,80 a R$ 3,50/L testados</td></tr>
+<tr><td class="nm">8</td><td><strong>Dados individuais por vaca não auditados</strong></td><td>K-Means depende da qualidade do controle leiteiro</td><td>Silhouette Score = 0,71 confirma boa separação dos clusters</td></tr>
+</table>
+
+<div class="note" style="background:rgba(139,92,246,.04);border-color:#8b5cf6;margin-top:14px">
+<strong>Declaração:</strong> Esta análise tem caráter consultivo e não substitui a tomada de decisão do proprietário e sua equipe técnica. Os resultados projetados são estimativas baseadas em premissas explícitas. A execução do plano de ação deve ser acompanhada por profissionais qualificados (veterinário, nutricionista, contador). A Rural IN recomenda revisão mensal dos KPIs e ajuste de rota conforme necessário.
+</div>
+</div>
+</div>
+
+<!-- CTA -->
+<div style="text-align:center;margin:32px 0">
+<a href="portal.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#10b981,#3b82f6);border-radius:12px;color:#fff;font-size:14px;font-weight:700;text-decoration:none;transition:all .3s">📊 Voltar ao Portal de Análises →</a>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="ft">
+<div class="ft-inner">
+<p><strong>Rural IN — Gestão Inteligente com Tecnologia no Agro</strong></p>
+<p>Fazenda Brasilanda | Patrícia Kompier | Rio Verde - GO</p>
+<p>Apêndice Técnico — Metodologia, Fontes e Glossário | Jan-Fev / 2026</p>
+<p style="margin-top:8px">Dr. Sidney Souza | <a href="mailto:sidneyagro@gmail.com">sidneyagro@gmail.com</a> | <a href="tel:+5564992266886">(64) 9 9226-6886</a> | <a href="https://instagram.com/ruralin.ai">@ruralin.ai</a></p>
+<p style="margin-top:8px;font-size:9px">© 2026 Rural IN. Todos os direitos reservados.</p>
+</div>
+</div>
+
+</body>
+</html>

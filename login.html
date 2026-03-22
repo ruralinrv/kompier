@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rural IN — Acesso Restrito | Fazenda Brasilanda</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#f1f5f9;min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+body::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(16,185,129,.06),transparent 50%),radial-gradient(circle at 70% 60%,rgba(59,130,246,.06),transparent 50%);animation:bgMove 20s ease infinite alternate}
+@keyframes bgMove{0%{transform:translate(0,0)}100%{transform:translate(-3%,-3%)}}
+.login-container{position:relative;z-index:1;width:100%;max-width:440px;padding:20px}
+.login-card{background:linear-gradient(135deg,rgba(17,24,39,.95),rgba(26,34,54,.95));border:1px solid #2a3654;border-radius:24px;padding:48px 40px;position:relative;overflow:hidden;backdrop-filter:blur(20px);box-shadow:0 25px 60px rgba(0,0,0,.5)}
+.login-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#10b981,#3b82f6,#8b5cf6,#ec4899,#f59e0b)}
+.logo-area{text-align:center;margin-bottom:36px}
+.logo-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#10b981,#3b82f6);display:inline-flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#fff;margin-bottom:14px;box-shadow:0 8px 24px rgba(16,185,129,.3)}
+.logo-text{font-size:24px;font-weight:900;letter-spacing:-0.5px}.logo-text span{color:#10b981}
+.logo-sub{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:3px;margin-top:4px}
+.client-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(59,130,246,.08));border:1px solid rgba(16,185,129,.2);padding:10px 20px;border-radius:50px;margin-top:20px;font-size:11px;color:#94a3b8;font-weight:600}
+.client-badge .farm-name{color:#10b981;font-weight:700}
+.divider{height:1px;background:linear-gradient(90deg,transparent,#2a3654,transparent);margin:28px 0}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:8px}
+.form-input{width:100%;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid #2a3654;border-radius:12px;color:#f1f5f9;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;transition:all .3s;outline:none}
+.form-input:focus{border-color:#3b82f6;background:rgba(59,130,246,.06);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.form-input::placeholder{color:#475569}
+.btn-login{width:100%;padding:16px;background:linear-gradient(135deg,#10b981,#3b82f6);border:none;border-radius:12px;color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;letter-spacing:.5px;position:relative;overflow:hidden}
+.btn-login:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(16,185,129,.3)}
+.btn-login:active{transform:translateY(0)}
+.btn-login::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transition:left .5s}
+.btn-login:hover::after{left:100%}
+.error-msg{display:none;text-align:center;margin-top:16px;padding:12px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;color:#ef4444;font-size:12px;font-weight:600}
+.error-msg.show{display:block;animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.footer-info{text-align:center;margin-top:28px;font-size:10px;color:#475569;line-height:1.8}
+.footer-info a{color:#3b82f6;text-decoration:none}
+.footer-info strong{color:#64748b}
+.lock-icon{font-size:16px;margin-right:6px;vertical-align:middle}
+.attempts-warning{display:none;text-align:center;margin-top:10px;font-size:10px;color:#f59e0b}
+</style>
+</head>
+<body>
+
+<div class="login-container">
+<div class="login-card">
+
+<!-- LOGO -->
+<div class="logo-area">
+<div class="logo-icon">R</div>
+<div class="logo-text">RURAL <span>IN</span></div>
+<div class="logo-sub">Gestão Inteligente no Agro</div>
+<div class="client-badge">
+<span>🐄</span>
+<span>Análise Exclusiva —</span>
+<span class="farm-name">Fazenda Brasilanda</span>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FORM -->
+<form id="loginForm" onsubmit="return handleLogin(event)">
+<div class="form-group">
+<label class="form-label"><span class="lock-icon">🔒</span> Senha de Acesso</label>
+<input type="password" id="senha" class="form-input" placeholder="Digite a senha fornecida" autocomplete="off" autofocus>
+</div>
+<button type="submit" class="btn-login" id="btnLogin">ACESSAR PAINEL</button>
+</form>
+
+<div class="error-msg" id="errorMsg">⚠️ Senha incorreta. Tente novamente.</div>
+<div class="attempts-warning" id="attemptsWarning"></div>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<div class="footer-info">
+<p><strong>Patrícia Kompier</strong> — Rio Verde, GO</p>
+<p>Período: Janeiro e Fevereiro / 2026</p>
+<p style="margin-top:8px">Acesso restrito ao proprietário e equipe autorizada</p>
+<p style="margin-top:4px">Dúvidas: <a href="mailto:sidneyagro@gmail.com">sidneyagro@gmail.com</a> | <a href="tel:+5564992266886">(64) 9 9226-6886</a></p>
+</div>
+
+</div>
+</div>
+
+<script>
+const SENHA_CORRETA = 'Kompier2025';
+let tentativas = 0;
+
+function handleLogin(e) {
+    e.preventDefault();
+    const senha = document.getElementById('senha').value;
+    const errorMsg = document.getElementById('errorMsg');
+    const attemptsWarning = document.getElementById('attemptsWarning');
+    const btn = document.getElementById('btnLogin');
+
+    if (senha === SENHA_CORRETA) {
+        errorMsg.classList.remove('show');
+        btn.textContent = '✅ Acesso liberado...';
+        btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+        btn.disabled = true;
+        setTimeout(() => {
+            window.location.href = 'portal.html';
+        }, 800);
+        return false;
+    }
+
+    tentativas++;
+    errorMsg.classList.add('show');
+    document.getElementById('senha').value = '';
+    document.getElementById('senha').focus();
+
+    if (tentativas >= 3) {
+        attemptsWarning.style.display = 'block';
+        attemptsWarning.textContent = '⚠️ ' + tentativas + ' tentativas incorretas. Verifique a senha enviada.';
+    }
+
+    if (tentativas >= 5) {
+        btn.disabled = true;
+        btn.textContent = '🔒 Bloqueado temporariamente';
+        btn.style.background = '#374151';
+        attemptsWarning.textContent = '🔒 Acesso bloqueado. Aguarde 30 segundos.';
+        attemptsWarning.style.color = '#ef4444';
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.textContent = 'ACESSAR PAINEL';
+            btn.style.background = 'linear-gradient(135deg,#10b981,#3b82f6)';
+            tentativas = 3;
+            attemptsWarning.textContent = '';
+            attemptsWarning.style.color = '#f59e0b';
+        }, 30000);
+    }
+
+    return false;
+}
+
+document.getElementById('senha').addEventListener('keyup', function() {
+    document.getElementById('errorMsg').classList.remove('show');
+});
+</script>
+
+</body>
+</html>

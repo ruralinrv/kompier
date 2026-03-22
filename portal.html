@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rural IN — Portal de Análises | Fazenda Brasilanda</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#f1f5f9;min-height:100vh}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid #2a3654;padding:28px 0;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#10b981,#3b82f6,#8b5cf6,#ec4899,#f59e0b)}
+.header-inner{max-width:1400px;margin:0 auto;padding:0 40px}
+.header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff}
+.logo-text{font-size:21px;font-weight:900}.logo-text span{color:#10b981}
+.logo-sub{font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:2px}
+.header-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(59,130,246,.1));border:1px solid rgba(59,130,246,.3);padding:6px 16px;border-radius:50px;font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px}
+.header-title{font-size:32px;font-weight:900;letter-spacing:-1px;margin-bottom:5px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header-subtitle{font-size:15px;font-weight:400;color:#94a3b8;margin-bottom:18px}
+.header-meta{display:flex;gap:20px;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:5px;font-size:12px;color:#64748b}.meta-item span{color:#94a3b8;font-weight:600}
+.btn-logout{padding:8px 18px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;color:#ef4444;font-size:11px;font-weight:700;cursor:pointer;transition:all .3s;text-decoration:none}
+.btn-logout:hover{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4)}
+
+/* KPIs TOPO */
+.kpi-bar{max-width:1400px;margin:0 auto;padding:24px 40px}
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.kpi-card{background:linear-gradient(135deg,rgba(17,24,39,.8),rgba(26,34,54,.8));border:1px solid #2a3654;border-radius:12px;padding:18px;position:relative;overflow:hidden;transition:all .3s}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.3);border-color:rgba(59,130,246,.3)}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0}
+.kpi-label{font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px}
+.kpi-value{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;margin-bottom:3px}
+.kpi-detail{font-size:10px;display:flex;align-items:center;gap:4px;font-weight:600}
+.kpi-sub{font-size:8px;color:#64748b;margin-top:4px}
+
+/* SUMARIO */
+.sumario-link{max-width:1400px;margin:0 auto;padding:0 40px 16px}
+.sumario-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(59,130,246,.08));border:1px solid rgba(139,92,246,.25);border-radius:12px;color:#a78bfa;font-size:13px;font-weight:700;text-decoration:none;transition:all .3s}
+.sumario-btn:hover{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(59,130,246,.15));border-color:rgba(139,92,246,.4);transform:translateY(-1px);box-shadow:0 4px 15px rgba(139,92,246,.15)}
+.sumario-btn .arrow{font-size:18px;transition:transform .3s}.sumario-btn:hover .arrow{transform:translateX(4px)}
+
+/* MAIN CONTENT */
+.main{max-width:1400px;margin:0 auto;padding:0 40px 40px}
+.section-title{font-size:20px;font-weight:900;margin:32px 0 18px;padding-bottom:10px;border-bottom:1px solid #2a3654;display:flex;align-items:center;gap:10px}
+.section-badge{font-size:9px;padding:3px 10px;border-radius:50px;font-weight:700}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.analysis-card{background:linear-gradient(135deg,rgba(17,24,39,.9),rgba(26,34,54,.9));border:1px solid #2a3654;border-radius:16px;overflow:hidden;transition:all .4s;cursor:pointer;text-decoration:none;color:inherit;display:block;position:relative}
+.analysis-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,0,0,.4);border-color:rgba(59,130,246,.3)}
+.analysis-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.card-content{padding:22px}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.card-number{font-size:10px;color:#64748b;font-weight:700;padding:4px 10px;background:rgba(255,255,255,.04);border-radius:6px}
+.card-title{font-size:15px;font-weight:800;margin-bottom:6px;letter-spacing:-.3px}
+.card-desc{font-size:11px;color:#94a3b8;line-height:1.6;margin-bottom:14px}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.card-tag{font-size:8px;padding:3px 8px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,.04)}
+.card-meta{font-size:9px;color:#64748b;font-weight:600}
+.card-arrow{font-size:14px;color:#3b82f6;transition:transform .3s}
+.analysis-card:hover .card-arrow{transform:translateX(4px)}
+
+/* NOVO / DESTAQUE */
+.card-new{position:absolute;top:14px;right:14px;font-size:8px;padding:2px 8px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-radius:4px;font-weight:800;text-transform:uppercase;letter-spacing:1px;z-index:2}
+
+/* APPENDIX SECTION */
+.appendix-section{margin-top:40px;padding-top:32px;border-top:1px solid #2a3654}
+.appendix-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,.03);border:1px solid #2a3654;border-radius:12px;color:#94a3b8;font-size:12px;font-weight:600;text-decoration:none;transition:all .3s}
+.appendix-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#f1f5f9}
+
+/* FOOTER */
+.footer{border-top:1px solid #2a3654;margin-top:40px;padding:40px}
+.footer-inner{max-width:1400px;margin:0 auto;display:flex;gap:28px;align-items:center}
+.footer-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 6px 16px rgba(59,130,246,.25)}
+.footer-info{flex:1}
+.footer-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#10b981;margin-bottom:4px}
+.footer-name{font-size:18px;font-weight:900;margin-bottom:8px}
+.footer-contacts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.footer-contact{display:flex;align-items:center;gap:4px;font-size:11px;color:#94a3b8;background:rgba(255,255,255,.03);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.05)}
+.footer-contact a{color:#3b82f6;text-decoration:none}
+.footer-bio{font-size:10px;color:#64748b;line-height:1.8;border-top:1px solid #2a3654;padding-top:10px;font-style:italic}
+.footer-bottom{text-align:center;margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.03)}
+.footer-bottom p{font-size:10px;color:#64748b}
+.footer-bottom strong{color:#94a3b8}
+
+@media(max-width:1024px){.kpi-grid{grid-template-columns:repeat(3,1fr)}.cards-grid{grid-template-columns:1fr}.header-title{font-size:24px}.main,.kpi-bar,.header-inner,.sumario-link{padding-left:20px;padding-right:20px}.footer-inner{flex-direction:column;text-align:center}.footer-contacts{justify-content:center}}
+@media(max-width:768px){.header-top{flex-direction:column;align-items:flex-start}.kpi-grid{grid-template-columns:repeat(2,1fr)}.header-meta{flex-direction:column;gap:6px}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+<div class="header-inner">
+<div class="header-top">
+<div class="logo">
+<div class="logo-icon">R</div>
+<div>
+<div class="logo-text">RURAL <span>IN</span></div>
+<div class="logo-sub">Gestão Inteligente no Agro</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<div class="header-badge">📊 Portal de Análises — 14 Dashboards</div>
+<a href="login.html" class="btn-logout">🔒 Sair</a>
+</div>
+</div>
+<h1 class="header-title">FAZENDA BRASILANDA — PORTAL DE ANÁLISES</h1>
+<h2 class="header-subtitle">Patrícia Kompier — Análise completa: Financeiro, Produção, Nutrição, RH, Visão Integrada, Predição e Plano de Ação</h2>
+<div class="header-meta">
+<div class="meta-item">📅 Período: <span>Janeiro e Fevereiro / 2026</span></div>
+<div class="meta-item">🥛 Produção: <span>1.902.616 L (bimestre)</span></div>
+<div class="meta-item">💲 Preço Médio: <span>R$ 2,41/L</span></div>
+<div class="meta-item">📍 <span>Rio Verde - GO</span></div>
+<div class="meta-item">🐄 Rebanho: <span>~1.450 cabeças | VL: ~850</span></div>
+<div class="meta-item">👥 Equipe: <span>45 → 47 colaboradores</span></div>
+</div>
+</div>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-bar">
+<div class="kpi-grid">
+<div class="kpi-card" style="border-color:rgba(16,185,129,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#10b981,#34d399);border-radius:12px 12px 0 0"></div>
+<div class="kpi-label">Receita Bimestral</div>
+<div class="kpi-value" style="color:#10b981">R$ 4,9M</div>
+<div class="kpi-detail" style="color:#10b981">▲ +3,97% <span style="color:#64748b">Fev vs Jan</span></div>
+<div class="kpi-sub">Jan: R$ 2,40M | Fev: R$ 2,50M</div>
+</div>
+<div class="kpi-card" style="border-color:rgba(59,130,246,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#3b82f6,#06b6d4);border-radius:12px 12px 0 0"></div>
+<div class="kpi-label">Saldo Caixa Bimestre</div>
+<div class="kpi-value" style="color:#3b82f6">R$ 1,29M</div>
+<div class="kpi-detail" style="color:#10b981">▲ +4,03% <span style="color:#64748b">melhora</span></div>
+<div class="kpi-sub">Jan: R$ 631k | Fev: R$ 656k</div>
+</div>
+<div class="kpi-card" style="border-color:rgba(139,92,246,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#8b5cf6,#a78bfa);border-radius:12px 12px 0 0"></div>
+<div class="kpi-label">Resultado Líquido Bim.</div>
+<div class="kpi-value" style="color:#8b5cf6">R$ 808k</div>
+<div class="kpi-detail" style="color:#10b981">▲ +6,49% <span style="color:#64748b">Fev vs Jan</span></div>
+<div class="kpi-sub">Após depreciação + adm</div>
+</div>
+<div class="kpi-card" style="border-color:rgba(6,182,212,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#06b6d4,#22d3ee);border-radius:12px 12px 0 0"></div>
+<div class="kpi-label">Produção Média/VL/Dia</div>
+<div class="kpi-value" style="color:#06b6d4">31,6 L</div>
+<div class="kpi-detail" style="color:#64748b">Jan: 31,7 | Fev: 31,5</div>
+<div class="kpi-sub">Bench: 30-35 L | Estável ✅</div>
+</div>
+<div class="kpi-card" style="border-color:rgba(245,158,11,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#f59e0b,#fbbf24);border-radius:12px 12px 0 0"></div>
+<div class="kpi-label">Nota Geral (Scorecard)</div>
+<div class="kpi-value" style="color:#f59e0b">7,4 / 10</div>
+<div class="kpi-detail" style="color:#10b981">Potencial c/ ações: <span style="color:#10b981;font-weight:800">8,9</span></div>
+<div class="kpi-sub">9 pilares avaliados</div>
+</div>
+</div>
+</div>
+
+<!-- LINK SUMÁRIO -->
+<div class="sumario-link">
+<a href="sumario-executivo.html" class="sumario-btn">
+📋 <strong>Sumário Executivo — Visão Rápida de Todos os Blocos</strong> <span class="arrow">→</span>
+</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<!-- BLOCO 1: ANÁLISES FUNDAMENTAIS -->
+<div class="section-title">📊 Análises Fundamentais — 4 Pilares <span class="section-badge" style="background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25)">BASE</span></div>
+
+<div class="cards-grid">
+
+<!-- 1 - Financeiro -->
+<a href="1 - Financeiro.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#3b82f6)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(16,185,129,.1)">💰</div>
+<div class="card-number">Bloco 01</div>
+</div>
+<div class="card-title">Análise Financeira Completa</div>
+<div class="card-desc">DRE Gerencial (3 visões), Fluxo de Caixa, Custo por Litro, Endividamento, Solvência e Análise Vertical/Horizontal.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">DRE</span>
+<span class="card-tag" style="background:rgba(59,130,246,.1);color:#3b82f6">CUSTO/L</span>
+<span class="card-tag" style="background:rgba(139,92,246,.1);color:#8b5cf6">DÍVIDA</span>
+<span class="card-tag" style="background:rgba(245,158,11,.1);color:#f59e0b">FLUXO</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Receita: R$ 4,9M | Saldo: R$ 1,29M</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 2 - Produção 1 -->
+<a href="2 - Producao_1.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#06b6d4,#3b82f6)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(6,182,212,.1)">🐄</div>
+<div class="card-number">Bloco 02-A</div>
+</div>
+<div class="card-title">Produção e Reprodução</div>
+<div class="card-desc">Rebanho, produtividade individual, DEL, reprodução (IEP, taxa de prenhez, inseminações), saúde e mortalidade.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(6,182,212,.1);color:#06b6d4">REBANHO</span>
+<span class="card-tag" style="background:rgba(236,72,153,.1);color:#ec4899">REPRODUÇÃO</span>
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">DEL 187</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">1.902.616 L bimestre | VL: 859→841</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 2 - Produção 2 -->
+<a href="2 - Producao_2.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#8b5cf6)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(59,130,246,.1)">📊</div>
+<div class="card-number">Bloco 02-B</div>
+</div>
+<div class="card-title">Produção Complementar</div>
+<div class="card-desc">Sparklines de produção diária, benchmarks de produtividade, taxa de descarte, estrutura do rebanho e projeções.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(59,130,246,.1);color:#3b82f6">SPARKLINE</span>
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">DESCARTE 38%</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">BENCHMARK</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">37,9 L/VL/dia | 190k L/ha/ano</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 3 - Nutrição -->
+<a href="3 - Nutricao.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#06b6d4)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(16,185,129,.1)">🍽️</div>
+<div class="card-number">Bloco 03</div>
+</div>
+<div class="card-title">Nutrição e Alimentação</div>
+<div class="card-desc">19 lotes monitorados, CMS, custo ração/litro, sobras, eficiência alimentar (EA), IOFC e manejo de transição.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">EA 1,58-1,64</span>
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">SOBRAS 5,6%</span>
+<span class="card-tag" style="background:rgba(245,158,11,.1);color:#f59e0b">IOFC R$44,62</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">CMS 24,4 kg | Ração/L: R$ 0,862</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 4 - RH 1 -->
+<a href="4 - RH 1.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#3b82f6)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(139,92,246,.1)">👥</div>
+<div class="card-number">Bloco 04-A</div>
+</div>
+<div class="card-title">Recursos Humanos — Principal</div>
+<div class="card-desc">Quadro de pessoal, hierarquia, custo total MO, perfil demográfico, turnover 0% e produtividade por funcionário.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(139,92,246,.1);color:#8b5cf6">45→47 FUNC</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">TURNOVER 0%</span>
+<span class="card-tag" style="background:rgba(59,130,246,.1);color:#3b82f6">700 L/FUNC</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Folha: R$ 259k | MO/L: R$ 0,28</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 4 - RH 2 -->
+<a href="4 - RH 2.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#ec4899)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(236,72,153,.1)">💰</div>
+<div class="card-number">Bloco 04-B</div>
+</div>
+<div class="card-title">RH — Custo e Horários</div>
+<div class="card-desc">Composição salarial detalhada, custo MO/litro, horário da 1ª alimentação por setor e ranking de atrasos.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(236,72,153,.1);color:#ec4899">CUSTO/FUNC</span>
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">L1-L2 08:40</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">FOLHA -17,5%</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Perda horário: R$ 25-50k/mês</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 4 - RH 3 -->
+<a href="4 - RH_3.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#10b981)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(59,130,246,.1)">⚙️</div>
+<div class="card-number">Bloco 04-C</div>
+</div>
+<div class="card-title">RH — Dimensionamento e Cenários</div>
+<div class="card-desc">Evolução Jan→Fev, cenários de redimensionamento (47→34 func), economia potencial de R$ 930k/ano.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(59,130,246,.1);color:#3b82f6">CENÁRIOS</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">R$ 930k/ANO</span>
+<span class="card-tag" style="background:rgba(245,158,11,.1);color:#f59e0b">34 ÓTIMO</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Cenário 2: -R$ 78k/mês folha</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+</div>
+
+<!-- BLOCO 2: VISÕES INTEGRADAS -->
+<div class="section-title">🔗 Visões Integradas e Cruzamentos <span class="section-badge" style="background:rgba(139,92,246,.12);color:#8b5cf6;border:1px solid rgba(139,92,246,.25)">INTEGRADO</span></div>
+
+<div class="cards-grid">
+
+<!-- 5 - Visão Integrada -->
+<a href="5 - Visao Integrada.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#3b82f6,#10b981,#f59e0b)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(139,92,246,.1)">🔗</div>
+<div class="card-number">Bloco 05</div>
+</div>
+<div class="card-title">Dashboards Integrados — 10 Painéis</div>
+<div class="card-desc">Cruzamento RH × Nutrição × Financeiro × Produção × Reprodução. Scorecard 9 pilares, mapa de oportunidades.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(139,92,246,.1);color:#8b5cf6">10 PAINÉIS</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">R$ 530-712k</span>
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">NOTA 7,4</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Ganho potencial: R$ 530-712k/mês</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 6 - Visão 360 -->
+<a href="6 - Visao 360.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f97316,#f59e0b,#10b981,#06b6d4,#3b82f6,#8b5cf6)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(6,182,212,.1)">🔄</div>
+<div class="card-number">Bloco 06</div>
+</div>
+<div class="card-title">Visão 360° Completa</div>
+<div class="card-desc">Semáforo geral, matriz de cruzamento, interdependências, 3 cenários projetados, timeline e painel executivo.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(6,182,212,.1);color:#06b6d4">360°</span>
+<span class="card-tag" style="background:rgba(245,158,11,.1);color:#f59e0b">STRESS TEST</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">ROADMAP</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Meta 6m: R$ 1,21M/mês resultado</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+</div>
+
+<!-- BLOCO 3: PREDIÇÃO E MODELAGEM -->
+<div class="section-title">🔮 Predição, Modelagem e Simulações <span class="section-badge" style="background:rgba(236,72,153,.12);color:#ec4899;border:1px solid rgba(236,72,153,.25)">AVANÇADO</span></div>
+
+<div class="cards-grid">
+
+<!-- 7 - Predição -->
+<a href="7 - Predicao.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ec4899,#8b5cf6,#3b82f6)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(236,72,153,.1)">📈</div>
+<div class="card-number">Bloco 07</div>
+</div>
+<div class="card-title">Projeções Preditivas — 6 Painéis</div>
+<div class="card-desc">3 cenários de resultado, projeção custo/litro, impacto reprodução, ROI das ações, sensibilidade ao milho.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(236,72,153,.1);color:#ec4899">3 CENÁRIOS</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">R$ 14,8M/ANO</span>
+<span class="card-tag" style="background:rgba(245,158,11,.1);color:#f59e0b">ROI 1.059%</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Horizonte: 12 meses | Payback: 34 dias</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 8 - Predição Avançada -->
+<a href="8 - Predicao Avancada.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ec4899,#8b5cf6,#f59e0b,#ef4444)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(239,68,68,.1)">🔬</div>
+<div class="card-number">Bloco 08</div>
+</div>
+<div class="card-title">Análise Avançada — 8 Painéis</div>
+<div class="card-desc">Custo vaca ociosa, ROA pecuário, ICET, mapa de calor, stress test, patrimônio genético, ponto de inflexão, IRO.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">R$ 344k OCIOSAS</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">ROA 37,1%</span>
+<span class="card-tag" style="background:rgba(245,158,11,.1);color:#f59e0b">IRO 56</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">ICET: 1,53x | Perdas: R$ 656k/mês</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 9 - Modelagem Econométrica -->
+<a href="9 - Modelagem Econometrica.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#3b82f6,#8b5cf6)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(59,130,246,.1)">📐</div>
+<div class="card-number">Bloco 09</div>
+</div>
+<div class="card-title">Modelagem Econométrica — 10 Modelos</div>
+<div class="card-desc">Regressão OLS, Logit, Cobb-Douglas, Fronteira Estocástica (SFA), Oaxaca-Blinder, Monte Carlo e VaR.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(59,130,246,.1);color:#3b82f6">OLS R²=0,847</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">COBB-DOUGLAS</span>
+<span class="card-tag" style="background:rgba(236,72,153,.1);color:#ec4899">MONTE CARLO</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Eficiência técnica: 76,8% | Gap: 9.738 L/dia</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 10 - Modelagem Avançada -->
+<a href="10 Modelagem avançada.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#3b82f6,#8b5cf6,#ec4899,#f59e0b)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(16,185,129,.1)">🧮</div>
+<div class="card-number">Bloco 10</div>
+</div>
+<div class="card-title">Análises Estratégicas — 12 Modelos</div>
+<div class="card-desc">Break-Even dinâmico, DuPont, Curva ABC, Sazonalidade, Criar vs Comprar, K-Means, Sobrevivência e Health Score.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">BREAK-EVEN</span>
+<span class="card-tag" style="background:rgba(139,92,246,.1);color:#8b5cf6">DUPONT</span>
+<span class="card-tag" style="background:rgba(245,158,11,.1);color:#f59e0b">PARETO ABC</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">ROA s/CT: 12,6% ⚠ | FHS: 54/100</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+</div>
+
+<!-- BLOCO 4: PLANO DE AÇÃO E FERRAMENTAS -->
+<div class="section-title">🎯 Plano de Ação e Ferramentas Interativas <span class="section-badge" style="background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25)">AÇÃO</span></div>
+
+<div class="cards-grid">
+
+<!-- 11 - Plano de Ação -->
+<a href="11 - Plano de Acao.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f59e0b,#10b981)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(16,185,129,.1)">🎯</div>
+<div class="card-number">Bloco 11</div>
+</div>
+<div class="card-title">Plano Estratégico — 10 Ações + Metas</div>
+<div class="card-desc">TOP 10 ações priorizadas, dashboard de metas com semáforo mensal, relatório executivo e KPIs de controle.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">10 AÇÕES</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">+R$ 460k/MÊS</span>
+<span class="card-tag" style="background:rgba(245,158,11,.1);color:#f59e0b">ROI 1.183%</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Invest: R$ 467k → Retorno: R$ 460k/mês</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 12 - Simulador -->
+<a href="12 - Interacao Real.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4,#10b981)"></div>
+<div class="card-new">INTERATIVO</div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(139,92,246,.1)">🎛️</div>
+<div class="card-number">Bloco 12</div>
+</div>
+<div class="card-title">Simulador Interativo de Cenários</div>
+<div class="card-desc">Mova controles e veja o impacto em tempo real. Monte Carlo, tabela de sensibilidade, comparador de cenários.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(139,92,246,.1);color:#8b5cf6">TEMPO REAL</span>
+<span class="card-tag" style="background:rgba(236,72,153,.1);color:#ec4899">MONTE CARLO</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">6 CENÁRIOS</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">Sliders interativos | DRE automática</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 13 - Clusters -->
+<a href="13 - Cluster.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#3b82f6,#f59e0b,#ef4444)"></div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(59,130,246,.1)">🎯</div>
+<div class="card-number">Bloco 13</div>
+</div>
+<div class="card-title">Análise de Clusters K-Means</div>
+<div class="card-desc">850 vacas em 4 clusters (Elite, Sólida, Atenção, Descarte). Bubble chart, heatmap, migração e IOFC por grupo.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">A: 210 ELITE</span>
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">D: 115 DESCARTE</span>
+<span class="card-tag" style="background:rgba(59,130,246,.1);color:#3b82f6">K-MEANS</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">IOFC total: R$ 587k | Cluster D: -R$ 121k</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+<!-- 14 - RACI Plano -->
+<a href="14 - RACI Plano de Acao.html" class="analysis-card">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f97316,#f59e0b,#3b82f6,#8b5cf6,#06b6d4,#10b981)"></div>
+<div class="card-new">ROADMAP</div>
+<div class="card-content">
+<div class="card-header">
+<div class="card-icon" style="background:rgba(16,185,129,.1)">📅</div>
+<div class="card-number">Bloco 14</div>
+</div>
+<div class="card-title">Roadmap Estratégico 12 Meses</div>
+<div class="card-desc">4 fases, 7 frentes, Gantt visual, timeline detalhada por fase, orçamento, RACI e fluxo de caixa do projeto.</div>
+<div class="card-tags">
+<span class="card-tag" style="background:rgba(239,68,68,.1);color:#ef4444">4 FASES</span>
+<span class="card-tag" style="background:rgba(16,185,129,.1);color:#10b981">R$ 3,19M ROI</span>
+<span class="card-tag" style="background:rgba(59,130,246,.1);color:#3b82f6">GANTT</span>
+</div>
+<div class="card-footer">
+<span class="card-meta">IOFC: R$ 587k → R$ 815k (+39%)</span>
+<span class="card-arrow">→</span>
+</div>
+</div>
+</a>
+
+</div>
+
+<!-- APÊNDICE -->
+<div class="appendix-section">
+<a href="apendice.html" class="appendix-btn">📎 Apêndice Técnico — Metodologia, Fontes e Glossário →</a>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<div class="footer-inner">
+<div class="footer-avatar">SS</div>
+<div class="footer-info">
+<div class="footer-label">Análise e Construção</div>
+<div class="footer-name">Dr. Sidney Souza</div>
+<div class="footer-contacts">
+<div class="footer-contact">📧 <a href="mailto:sidneyagro@gmail.com">sidneyagro@gmail.com</a></div>
+<div class="footer-contact">📱 <a href="tel:+5564992266886">(64) 9 9226-6886</a></div>
+<div class="footer-contact">📷 <a href="https://instagram.com/ruralin.ai" target="_blank">@ruralin.ai</a></div>
+</div>
+<div class="footer-bio">Sidney Souza é Doutor em Agronomia, Mestre em Administração, especialista em economia agrícola e finanças do agronegócio. Com formação em Administração e Economia, é fundador da <strong>Rural IN — Gestão Inteligente com Tecnologia no Agro</strong>, Consultor, Professor e Palestrante. Atua há mais de 25 anos no desenvolvimento de estratégias, análise de mercado e gestão da informação e do conhecimento.</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p><strong>FAZENDA BRASILANDA — Patrícia Kompier</strong></p>
+<p>14 Dashboards de Análise | Pecuária de Leite | Confinamento 60 ha</p>
+<p>Período: Janeiro e Fevereiro / 2026 | Rio Verde - GO</p>
+<p style="margin-top:8px;font-size:9px">© 2026 Rural IN — Gestão Inteligente com Tecnologia no Agro. Todos os direitos reservados.</p>
+</div>
+</div>
+
+</body>
+</html>
