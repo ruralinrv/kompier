@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — RH Completo | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+:root{--bg:#0a0e1a;--card:#111827;--card2:#1a2236;--bdr:#1e293b;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;padding:30px 20px}
+.wrap{max-width:700px;margin:0 auto}
+
+/* HEADER */
+.header{text-align:center;margin-bottom:32px;padding:28px;background:linear-gradient(135deg,rgba(17,24,39,.95),rgba(26,34,54,.9));border:1px solid var(--bdr);border-radius:16px;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#06b6d4,#3b82f6,#8b5cf6)}
+.header-logo{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cy);font-weight:700;margin-bottom:4px}
+.header-title{font-size:22px;font-weight:900;background:linear-gradient(135deg,#f1f5f9,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:14px}
+.header-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.header-kpis .hk{padding:10px;background:rgba(255,255,255,.03);border:1px solid var(--bdr);border-radius:8px}
+.hk-label{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.hk-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;color:var(--t1);margin-top:2px}
+.hk-sub{font-size:8px;color:var(--t3);margin-top:1px}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:28px;margin-bottom:24px;position:relative;overflow:hidden}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.ct-main{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ct-icon{font-size:18px}.ct-title{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.ct-badge{font-size:8px;padding:3px 10px;border-radius:50px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.ct-ref{font-size:10px;color:var(--t3);font-weight:600}
+
+.kpi-row{display:grid;gap:10px;margin-bottom:22px}
+.kpi-row-3{grid-template-columns:1fr 1fr 1fr}
+.kpi-row-4{grid-template-columns:1fr 1fr 1fr 1fr}
+.kpi-box{text-align:center;padding:14px 8px;border-radius:10px;border:1px solid var(--bdr);background:rgba(255,255,255,.02)}
+.kpi-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;line-height:1.2}
+.kpi-sub{font-size:8px;color:var(--t3);margin-top:2px}
+.kpi-label{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:4px;font-weight:600}
+
+.sec-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.04)}
+.sep{height:1px;background:rgba(255,255,255,.04);margin:18px 0}
+
+.bb{margin-bottom:10px}
+.bb-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.bb-name{font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px}
+.bb-val{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px}
+.bb-track{width:100%;height:28px;background:rgba(255,255,255,.03);border-radius:8px;overflow:hidden;position:relative}
+.bb-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:10px;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);min-width:2%;transition:width .6s ease}
+
+.tbl{width:100%;font-size:11px;border-collapse:collapse;margin-top:10px}
+.tbl th{text-align:left;padding:8px 10px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.tbl td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.03)}
+.tbl tr:last-child td{border-bottom:none}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+
+.note{font-size:10px;padding:12px 14px;border-radius:8px;margin-top:14px;line-height:1.7;display:flex;gap:8px;align-items:flex-start}
+.note-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+
+.dual-track{display:flex;gap:4px;margin-bottom:2px}
+.dual-track .bb-track{height:22px}
+
+@media(max-width:768px){body{padding:16px}.kpi-row-3,.kpi-row-4{grid-template-columns:1fr 1fr}.card{padding:18px}.header-kpis{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<div class="header">
+<div class="header-logo">Rural IN — Inteligência Pecuária</div>
+<div class="header-title">Fazenda Brasilanda — Bloco RH Completo</div>
+<div style="font-size:10px;color:var(--t3);margin-bottom:10px">Jan-Fev / 2026 | Análise de Mão de Obra e Dimensionamento</div>
+
+<div class="header-kpis">
+<div class="hk">
+<div class="hk-label">📅 Período</div>
+<div class="hk-val">Jan-Fev / 2026</div>
+</div>
+<div class="hk">
+<div class="hk-label">🐄 Rebanho Médio</div>
+<div class="hk-val">~1.450 cabeças</div>
+<div class="hk-sub">Jan: 1.454 | Fev: 1.446</div>
+</div>
+<div class="hk">
+<div class="hk-label">🥛 Vacas em Lactação</div>
+<div class="hk-val">Jan: 859 | Fev: 841</div>
+<div class="hk-sub">Média: ~850 VL</div>
+</div>
+<div class="hk">
+<div class="hk-label">🥛 Produção Média</div>
+<div class="hk-val">Jan: 32.535 L/d</div>
+<div class="hk-sub">Fev: 31.929 L/d</div>
+</div>
+<div class="hk">
+<div class="hk-label">👥 Equipe</div>
+<div class="hk-val">Jan: 45 | Fev: 47</div>
+<div class="hk-sub">+5 admissões | 0 deslig.</div>
+</div>
+<div class="hk">
+<div class="hk-label">💰 Folha Média</div>
+<div class="hk-val">R$ 310.044/mês</div>
+<div class="hk-sub">Jan: R$ 339.848 | Fev: R$ 280.240</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- RH-01 — PRODUTIVIDADE POR FUNCIONÁRIO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(16,185,129,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#06b6d4)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">👤</span>
+<span class="ct-title">Produtividade por Funcionário</span>
+<span class="ct-badge" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">BOM</span>
+</div>
+<span class="ct-ref">RH-01</span>
+</div>
+
+<!-- KPIs — Jan: 32535/45=723 | Fev: 31929/47=679 | Média ~701 -->
+<!-- Vacas/func: Jan 859/45=19,1 | Fev 841/47=17,9 | Média ~18,5 -->
+<!-- Cab total/func: Jan 1454/45=32,3 | Fev 1446/47=30,8 | Média ~31,5 -->
+<div class="kpi-row kpi-row-4">
+<div class="kpi-box" style="border-color:rgba(6,182,212,.25)">
+<div class="kpi-val" style="color:var(--cy);font-size:18px">723 → 679</div>
+<div class="kpi-label">L/FUNC/DIA</div>
+<div class="kpi-sub">Jan → Fev</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(16,185,129,.25)">
+<div class="kpi-val" style="color:var(--gn);font-size:20px">701</div>
+<div class="kpi-label">L/FUNC/DIA MÉDIO</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(245,158,11,.25)">
+<div class="kpi-val" style="color:var(--yl);font-size:20px">18,5</div>
+<div class="kpi-label">VACAS/FUNC MÉD.</div>
+<div class="kpi-sub">Jan 19,1 | Fev 17,9</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(139,92,246,.2)">
+<div class="kpi-val" style="color:var(--pr);font-size:20px">31,5</div>
+<div class="kpi-label">CAB. TOTAL/FUNC</div>
+<div class="kpi-sub">Jan 32,3 | Fev 30,8</div>
+</div>
+</div>
+
+<!-- L/FUNC/DIA vs BENCHMARKS -->
+<div class="sec-title">Litros / Funcionário / Dia — vs. Benchmarks (Média Bimestre)</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top Brasil</span><span class="bb-val" style="color:var(--yl)">800 L</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.45),rgba(245,158,11,.12))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">⭐ FAZENDA BRASILANDA</span><span class="bb-val" style="color:var(--gn)"><strong>701 L</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:87.6%;background:linear-gradient(90deg,#10b981,#06b6d4)"><span style="font-size:9px;font-weight:800;background:rgba(16,185,129,.3);padding:1px 6px;border-radius:3px">701 L — Acima da meta ✅</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta Boa</span><span class="bb-val">600 L</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:75%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">Média Setor</span><span class="bb-val" style="color:var(--t3)">400 L</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:50%;background:rgba(148,163,184,.1)"></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- VACAS/FUNC vs BENCHMARKS -->
+<div class="sec-title">Vacas em Lactação / Funcionário — vs. Benchmarks</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top Brasil</span><span class="bb-val" style="color:var(--yl)">40</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.45),rgba(245,158,11,.12))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta Boa</span><span class="bb-val">25</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:62.5%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">⭐ FAZENDA BRASILANDA</span><span class="bb-val" style="color:var(--yl)"><strong>18,5 ⚠</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:46.3%;background:linear-gradient(90deg,rgba(245,158,11,.6),rgba(245,158,11,.25))"><span style="font-size:9px;font-weight:800">18,5</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">Média Setor</span><span class="bb-val" style="color:var(--t3)">12</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:30%;background:rgba(148,163,184,.1)"></div></div>
+</div>
+
+<!-- NOTA -->
+<div class="note" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12)">
+<span class="note-icon">⚠️</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--yl)">L/func está ótimo (701 > 600)</strong>, mas vacas/func está baixo (18,5 vs meta 25). A <strong>produtividade individual da vaca compensa</strong> (37,5 L/VL), porém há oportunidade de otimização do quadro. Com 34 func → 25 vac/func (meta boa).
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- RH-02 — CUSTO DE MÃO DE OBRA POR LITRO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(249,115,22,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f97316,#f59e0b,#10b981)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">💰</span>
+<span class="ct-title">Custo de Mão de Obra por Litro</span>
+</div>
+<span class="ct-ref">RH-02</span>
+</div>
+
+<!-- KPIs: Jan: 339848/1008588=0,337 | Fev: 280240/894029=0,313 | Red: -7,1% -->
+<div class="kpi-row kpi-row-4">
+<div class="kpi-box" style="border-color:rgba(59,130,246,.25)">
+<div class="kpi-val" style="color:var(--bl);font-size:20px">R$ 0,34</div>
+<div class="kpi-label">JANEIRO</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(16,185,129,.25)">
+<div class="kpi-val" style="color:var(--gn);font-size:20px">R$ 0,31</div>
+<div class="kpi-label">FEVEREIRO</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(16,185,129,.2)">
+<div class="kpi-val" style="color:var(--gn);font-size:20px">-7,1%</div>
+<div class="kpi-label">REDUÇÃO</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(245,158,11,.25)">
+<div class="kpi-val" style="color:var(--yl);font-size:20px">R$ 0,22</div>
+<div class="kpi-label">🏆 TOP BR</div>
+</div>
+</div>
+
+<!-- CUSTO MO/LITRO — EVOLUÇÃO -->
+<div class="sec-title">Custo MO / Litro — Evolução e Benchmarks</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 Ineficiente</span><span class="bb-val" style="color:var(--rd)">R$ 0,45+</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(239,68,68,.4),rgba(239,68,68,.1))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">⚠ Limite</span><span class="bb-val" style="color:var(--or)">R$ 0,40</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:88.9%;background:rgba(148,163,184,.12)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--bl)">⭐ Janeiro</span><span class="bb-val" style="color:var(--bl)">R$ 0,34</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:75.6%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">⭐ Fevereiro</span><span class="bb-val" style="color:var(--gn)">R$ 0,31 📉</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:68.9%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta Boa</span><span class="bb-val">R$ 0,28</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:62.2%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top Brasil</span><span class="bb-val" style="color:var(--yl)">R$ 0,22</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:48.9%;background:linear-gradient(90deg,rgba(245,158,11,.5),rgba(245,158,11,.15))"></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- PARTICIPAÇÃO DA MO NO COE -->
+<div class="sec-title">Participação da MO no COE</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--bl)">Janeiro</span><span class="bb-val" style="color:var(--or)">19,2%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:64%;background:linear-gradient(90deg,rgba(249,115,22,.6),rgba(249,115,22,.2))"><span style="font-size:9px;font-weight:700">R$ 339.848</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">Fevereiro</span><span class="bb-val" style="color:var(--gn)">15,2% 📉</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:50.7%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.2))"><span style="font-size:9px;font-weight:700">R$ 280.240</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Benchmark (meta)</span><span class="bb-val" style="color:var(--t2)">12-15%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:45%;background:rgba(148,163,184,.15)"></div></div>
+</div>
+
+<div class="note" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.12)">
+<span class="note-icon">✅</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--gn)">Fev entrou na faixa boa (15,2%).</strong> Custo/litro melhorou 7,1%. Produção total Jan: 1.008.588 L | Fev: 894.029 L. A queda de volume (−11,4%) foi compensada pela redução maior da folha (−17,5%).
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- RH-03 — COMPOSIÇÃO SALARIAL DETALHADA -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(139,92,246,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">📑</span>
+<span class="ct-title">Composição Salarial Detalhada</span>
+</div>
+<span class="ct-ref">RH-03</span>
+</div>
+
+<!-- KPIs: Jan 339848/45=7552 | Fev 280240/47=5963 | Média 310044/46=6740 -->
+<div class="kpi-row kpi-row-4">
+<div class="kpi-box" style="border-color:rgba(59,130,246,.25)">
+<div class="kpi-val" style="color:var(--bl);font-size:16px">R$ 7.552</div>
+<div class="kpi-label">CUSTO/FUNC JAN</div>
+<div class="kpi-sub">45 funcionários</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(16,185,129,.25)">
+<div class="kpi-val" style="color:var(--gn);font-size:16px">R$ 5.963</div>
+<div class="kpi-label">CUSTO/FUNC FEV</div>
+<div class="kpi-sub">47 funcionários</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(6,182,212,.25)">
+<div class="kpi-val" style="color:var(--cy);font-size:16px">R$ 6.740</div>
+<div class="kpi-label">CUSTO/FUNC MÉDIO</div>
+<div class="kpi-sub">~46 func média</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(16,185,129,.2)">
+<div class="kpi-val" style="color:var(--gn);font-size:16px">-21,0%</div>
+<div class="kpi-label">VARIAÇÃO JAN→FEV</div>
+</div>
+</div>
+
+<div style="padding:10px 14px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:8px;margin-bottom:18px;font-size:10px;color:var(--t2);line-height:1.7">
+<strong style="color:var(--bl)">Jan: 45 func</strong> (quadro inicial 42 + 3 admissões) | <strong style="color:var(--gn)">Fev: 47 func</strong> (45 + 2 admissões) | Turnover: <strong style="color:var(--gn)">0,0% — Excelente</strong>
+</div>
+
+<!-- DISTRIBUIÇÃO MÉDIA DO CUSTO POR FUNCIONÁRIO -->
+<div class="sec-title">Distribuição Média do Custo por Funcionário (R$ 6.740)</div>
+
+<!-- 54,1% de 6740 = 3.646 | 37,8% = 2.548 | 8,1% = 546 -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--bl)">Salário Base</span><span class="bb-val" style="color:var(--bl)">54,1% — R$ 3.646</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:54.1%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"><span style="font-size:9px;font-weight:700">54,1%</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--pr)">Encargos Sociais</span><span class="bb-val" style="color:var(--pr)">37,8% — R$ 2.548</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:37.8%;background:linear-gradient(90deg,#8b5cf6,#a78bfa)"><span style="font-size:9px;font-weight:700">37,8%</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--cy)">Benefícios</span><span class="bb-val" style="color:var(--cy)">8,1% — R$ 546</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:8.1%;background:linear-gradient(90deg,#06b6d4,#22d3ee)"></div></div>
+</div>
+
+<div style="display:flex;height:14px;border-radius:6px;overflow:hidden;margin:12px 0 6px 0">
+<div style="width:54.1%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"></div>
+<div style="width:37.8%;background:linear-gradient(90deg,#8b5cf6,#a78bfa)"></div>
+<div style="width:8.1%;background:linear-gradient(90deg,#06b6d4,#22d3ee)"></div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:8px;color:var(--t3);margin-bottom:8px">
+<span>Salário 54,1%</span><span>Encargos 37,8%</span><span>Benef. 8,1%</span>
+</div>
+
+<div class="sep"></div>
+
+<!-- CUSTO TOTAL POR MÊS -->
+<div class="sec-title">Custo Total por Mês</div>
+
+<table class="tbl">
+<tr>
+<th>ITEM</th>
+<th style="text-align:center">JANEIRO (45)</th>
+<th style="text-align:center">FEVEREIRO (47)</th>
+<th style="text-align:right">MÉDIA</th>
+</tr>
+<tr>
+<td>Salários Brutos</td>
+<td class="nm" style="text-align:center">R$ 183.838</td>
+<td class="nm" style="text-align:center">R$ 151.610</td>
+<td class="nm" style="text-align:right">R$ 167.724</td>
+</tr>
+<tr>
+<td>Encargos Sociais</td>
+<td class="nm" style="text-align:center">R$ 128.443</td>
+<td class="nm" style="text-align:center">R$ 105.931</td>
+<td class="nm" style="text-align:right">R$ 117.187</td>
+</tr>
+<tr>
+<td>Benefícios</td>
+<td class="nm" style="text-align:center">R$ 17.567</td>
+<td class="nm" style="text-align:center">R$ 14.699</td>
+<td class="nm" style="text-align:right">R$ 16.133</td>
+</tr>
+<tr>
+<td>Horas Extras / 13º prov.</td>
+<td class="nm" style="text-align:center">R$ 10.000</td>
+<td class="nm" style="text-align:center">R$ 8.000</td>
+<td class="nm" style="text-align:right">R$ 9.000</td>
+</tr>
+<tr style="background:rgba(239,68,68,.04);border-top:2px solid var(--bdr)">
+<td><strong>TOTAL FOLHA</strong></td>
+<td class="nm" style="text-align:center"><strong style="color:var(--or)">R$ 339.848</strong></td>
+<td class="nm" style="text-align:center"><strong style="color:var(--gn)">R$ 280.240</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 310.044</strong></td>
+</tr>
+<tr style="background:rgba(139,92,246,.04)">
+<td><strong style="color:var(--pr)">CUSTO / FUNC</strong></td>
+<td class="nm" style="text-align:center"><strong style="color:var(--pr)">R$ 7.552</strong></td>
+<td class="nm" style="text-align:center"><strong style="color:var(--gn)">R$ 5.963</strong></td>
+<td class="nm" style="text-align:right"><strong style="color:var(--pr)">R$ 6.740</strong></td>
+</tr>
+</table>
+
+<div class="sep"></div>
+
+<!-- CUSTO/FUNC COMPARATIVO -->
+<div class="sec-title">Custo por Funcionário — Jan vs Fev</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--bl)">Janeiro (45 func)</span><span class="bb-val" style="color:var(--or)">R$ 7.552</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(59,130,246,.55),rgba(59,130,246,.2))"><span style="font-size:9px;font-weight:700">R$ 7.552/func</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">Fevereiro (47 func)</span><span class="bb-val" style="color:var(--gn)">R$ 5.963 📉</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:78.9%;background:linear-gradient(90deg,rgba(16,185,129,.55),rgba(16,185,129,.2))"><span style="font-size:9px;font-weight:700">R$ 5.963/func — -21%</span></div></div>
+</div>
+
+<div class="note" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.12)">
+<span class="note-icon">📉</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--gn)">Folha caiu R$ 59.608 (−17,5%)</strong> mesmo com +2 func em Fev. Custo/func caiu 21%. Com redimensionamento para 34 func (Cenário 2) → folha cairia para <strong>~R$ 229k/mês</strong> e custo MO/L para <strong>~R$ 0,24</strong>.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- RH-04 — HORÁRIO DA 1ª ALIMENTAÇÃO POR SETOR -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(239,68,68,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#f59e0b,#ef4444)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">🕐</span>
+<span class="ct-title">Horário da 1ª Alimentação por Setor</span>
+<span class="ct-badge" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">ALERTA</span>
+</div>
+<span class="ct-ref">RH-04</span>
+</div>
+
+<!-- LEGENDA -->
+<div style="display:flex;gap:18px;margin-bottom:18px;font-size:10px;color:var(--t2);align-items:center">
+<div style="display:flex;align-items:center;gap:5px"><div style="width:12px;height:12px;border-radius:3px;background:var(--bl)"></div><strong>Janeiro</strong></div>
+<div style="display:flex;align-items:center;gap:5px"><div style="width:12px;height:12px;border-radius:3px;background:var(--gn)"></div><strong>Fevereiro</strong></div>
+<div style="font-size:8px;color:var(--t3);margin-left:auto">Ideal: até 07:00 | ⚠ Alerta: 07:01-08:00 | 🔴 Crítico: 08:00+</div>
+</div>
+
+<div class="sec-title">Ranking — Do mais cedo ao mais atrasado (Fev/26)</div>
+
+<!-- RECRIA R1 a R9 -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">🟢 Recria R1 a R9</span><span class="bb-val"><span style="color:var(--bl)">06:18</span> | <span style="color:var(--gn)">06:14 ✅</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:18%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 06:18</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:16.5%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.25))"><span style="font-size:8px">Fev 06:14</span></div></div>
+</div>
+</div>
+
+<!-- PÓS-PARTO -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">🟢 Pós-Parto</span><span class="bb-val"><span style="color:var(--bl)">06:38</span> | <span style="color:var(--gn)">06:31 ✅</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:22.3%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 06:38</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:20.5%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.25))"><span style="font-size:8px">Fev 06:31</span></div></div>
+</div>
+</div>
+
+<!-- LOTE 5 -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">🟢 Lote 5</span><span class="bb-val"><span style="color:var(--bl)">07:15</span> | <span style="color:var(--gn)">07:10</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:31.5%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 07:15</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:30.2%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.25))"><span style="font-size:8px">Fev 07:10</span></div></div>
+</div>
+</div>
+
+<!-- LOTE 3 -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">🟢 Lote 3</span><span class="bb-val"><span style="color:var(--bl)">07:18</span> | <span style="color:var(--gn)">07:12</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:32.3%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 07:18</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:30.7%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.25))"><span style="font-size:8px">Fev 07:12</span></div></div>
+</div>
+</div>
+
+<!-- LOTE P1 -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🟡 Lote P1</span><span class="bb-val"><span style="color:var(--bl)">07:22</span> | <span style="color:var(--yl)">07:17</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:33.3%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 07:22</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:32%;background:linear-gradient(90deg,rgba(245,158,11,.55),rgba(245,158,11,.2))"><span style="font-size:8px">Fev 07:17</span></div></div>
+</div>
+</div>
+
+<!-- LOTE P2 -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🟡 Lote P2</span><span class="bb-val"><span style="color:var(--bl)">07:40</span> | <span style="color:var(--yl)">07:36</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:37.8%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 07:40</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:36.7%;background:linear-gradient(90deg,rgba(245,158,11,.55),rgba(245,158,11,.2))"><span style="font-size:8px">Fev 07:36</span></div></div>
+</div>
+</div>
+
+<!-- MASTITE -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🟡 Mastite</span><span class="bb-val"><span style="color:var(--bl)">07:48</span> | <span style="color:var(--yl)">07:42</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:39.8%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 07:48</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:38.5%;background:linear-gradient(90deg,rgba(245,158,11,.55),rgba(245,158,11,.2))"><span style="font-size:8px">Fev 07:42</span></div></div>
+</div>
+</div>
+
+<!-- LOTE 4 -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🟡 Lote 4</span><span class="bb-val"><span style="color:var(--bl)">07:50</span> | <span style="color:var(--yl)">07:43</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:40.3%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 07:50</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:39%;background:linear-gradient(90deg,rgba(245,158,11,.55),rgba(245,158,11,.2))"><span style="font-size:8px">Fev 07:43</span></div></div>
+</div>
+</div>
+
+<!-- LOTE P3 / NOVILHA -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">🟠 Lote P3 / Novilha</span><span class="bb-val"><span style="color:var(--bl)">08:20</span> | <span style="color:var(--or)">08:12-08:14</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:48%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 08:20</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:46.5%;background:linear-gradient(90deg,rgba(249,115,22,.55),rgba(249,115,22,.2))"><span style="font-size:8px">Fev 08:12</span></div></div>
+</div>
+</div>
+
+<!-- LOTE 6 -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">🟠 Lote 6</span><span class="bb-val"><span style="color:var(--bl)">08:22</span> | <span style="color:var(--or)">08:17</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:48.5%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 08:22</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:47%;background:linear-gradient(90deg,rgba(249,115,22,.55),rgba(249,115,22,.2))"><span style="font-size:8px">Fev 08:17</span></div></div>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<div style="font-size:11px;font-weight:800;color:var(--rd);margin-bottom:12px;display:flex;align-items:center;gap:6px">🔴 LOTES CRÍTICOS — ALTA PRODUÇÃO COM MAIOR ATRASO</div>
+
+<!-- LOTE 1 (ALTA PROD.) -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 LOTE 1 (ALTA PROD.)</span><span class="bb-val"><span style="color:var(--bl)">08:45</span> | <span style="color:var(--rd)">08:38</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:56%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 08:45</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:54%;background:linear-gradient(90deg,rgba(239,68,68,.6),rgba(239,68,68,.2))"><span style="font-size:8px">Fev 08:38 — 1h38 de atraso</span></div></div>
+</div>
+</div>
+
+<!-- LOTE 2 (ALTA PROD.) -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 LOTE 2 (ALTA PROD.)</span><span class="bb-val"><span style="color:var(--bl)">08:50</span> | <span style="color:var(--rd)">08:42</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:57%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 08:50</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:55.5%;background:linear-gradient(90deg,rgba(239,68,68,.6),rgba(239,68,68,.2))"><span style="font-size:8px">Fev 08:42 — 1h42 de atraso</span></div></div>
+</div>
+</div>
+
+<!-- PRÉ-PARTO -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 Pré-Parto</span><span class="bb-val"><span style="color:var(--bl)">09:02</span> | <span style="color:var(--rd)">08:57</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:60%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 09:02</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:58.5%;background:linear-gradient(90deg,rgba(239,68,68,.6),rgba(239,68,68,.2))"><span style="font-size:8px">Fev 08:57</span></div></div>
+</div>
+</div>
+
+<!-- VACA SECA -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 Vaca Seca</span><span class="bb-val"><span style="color:var(--bl)">09:25</span> | <span style="color:var(--rd)">09:20</span></span></div>
+<div class="dual-track">
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:63%;background:linear-gradient(90deg,rgba(59,130,246,.6),rgba(59,130,246,.25))"><span style="font-size:8px">Jan 09:25</span></div></div>
+<div class="bb-track" style="height:22px"><div class="bb-fill" style="width:62%;background:linear-gradient(90deg,rgba(239,68,68,.6),rgba(239,68,68,.2))"><span style="font-size:8px">Fev 09:20</span></div></div>
+</div>
+</div>
+
+<div class="note" style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15)">
+<span class="note-icon">⚠️</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--rd)">Lotes 1 e 2 são os de MAIOR produção (~195 vacas)</strong> — recebem comida ~1h40 após o ideal. Cada hora de atraso ≈ 0,5-1,0 L/vaca/dia. <strong>Perda estimada: R$ 25.000 — R$ 50.000/mês.</strong> Fev melhorou ~12 min nos lotes críticos, mas ainda longe do ideal (07:00).
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- RH-05 — EVOLUÇÃO JAN → FEV — INDICADORES DE MO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(6,182,212,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#06b6d4,#10b981)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">📊</span>
+<span class="ct-title">Evolução Jan → Fev — Indicadores de MO</span>
+</div>
+<span class="ct-ref">RH-05</span>
+</div>
+
+<table class="tbl">
+<tr>
+<th>INDICADOR</th>
+<th style="text-align:center">JANEIRO</th>
+<th style="text-align:center">FEVEREIRO</th>
+<th style="text-align:center">VARIAÇÃO</th>
+<th style="text-align:center">STATUS</th>
+</tr>
+<tr>
+<td>Funcionários</td>
+<td class="nm" style="text-align:center">45</td>
+<td class="nm" style="text-align:center">47</td>
+<td class="nm" style="text-align:center">+4,4%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+<tr>
+<td>Produção Total (L/mês)</td>
+<td class="nm" style="text-align:center">1.008.588</td>
+<td class="nm" style="text-align:center">894.029</td>
+<td class="nm" style="text-align:center;color:var(--yl)">-11,4%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+<tr>
+<td>L/func/dia</td>
+<td class="nm" style="text-align:center">723</td>
+<td class="nm" style="text-align:center">679</td>
+<td class="nm" style="text-align:center;color:var(--yl)">-6,1%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+<tr>
+<td>Vacas/func</td>
+<td class="nm" style="text-align:center">19,1</td>
+<td class="nm" style="text-align:center">17,9</td>
+<td class="nm" style="text-align:center;color:var(--yl)">-6,3%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+<tr>
+<td>Custo MO/Litro</td>
+<td class="nm" style="text-align:center">R$ 0,34</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 0,31</td>
+<td class="nm" style="text-align:center;color:var(--gn)">-7,1%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr>
+<td>Folha Total</td>
+<td class="nm" style="text-align:center">R$ 339.848</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 280.240</td>
+<td class="nm" style="text-align:center;color:var(--gn)">-17,5%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr>
+<td>Custo/Func</td>
+<td class="nm" style="text-align:center">R$ 7.552</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 5.963</td>
+<td class="nm" style="text-align:center;color:var(--gn)">-21,0%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr>
+<td>MO / COE</td>
+<td class="nm" style="text-align:center">19,2%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">15,2%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">-4,0 pp</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr>
+<td>Horário 1ª Alim (L1-2)</td>
+<td class="nm" style="text-align:center">08:52</td>
+<td class="nm" style="text-align:center;color:var(--gn)">08:40</td>
+<td class="nm" style="text-align:center;color:var(--gn)">-12 min</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rd)"></span></td>
+</tr>
+<tr>
+<td>Turnover</td>
+<td class="nm" style="text-align:center">0%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">0%</td>
+<td class="nm" style="text-align:center">0%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+</table>
+
+<div class="sep"></div>
+
+<!-- EVOLUÇÃO VISUAL — CUSTO MO/LITRO -->
+<div class="sec-title">Evolução Visual — Custo MO/Litro</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--bl)">Janeiro</span><span class="bb-val" style="color:var(--bl)">R$ 0,34</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:75.6%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">Fevereiro</span><span class="bb-val" style="color:var(--gn)">R$ 0,31 📉</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:68.9%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
+</div>
+
+<div style="margin-top:6px">
+<div class="bb-track" style="height:18px"><div class="bb-fill" style="width:68.9%;background:linear-gradient(90deg,rgba(16,185,129,.5),rgba(6,182,212,.3))"><span style="font-size:8px;font-weight:800;color:var(--gn)">Melhorou! −7,1%</span></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- EVOLUÇÃO VISUAL — FOLHA TOTAL -->
+<div class="sec-title">Evolução Visual — Folha Total</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--bl)">Janeiro (45 func)</span><span class="bb-val" style="color:var(--or)">R$ 339.848</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(249,115,22,.55),rgba(249,115,22,.2))"><span style="font-size:9px;font-weight:700">R$ 339.848</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">Fevereiro (47 func)</span><span class="bb-val" style="color:var(--gn)">R$ 280.240 📉</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:82.5%;background:linear-gradient(90deg,rgba(16,185,129,.55),rgba(16,185,129,.2))"><span style="font-size:9px;font-weight:700">R$ 280.240</span></div></div>
+</div>
+
+<div style="margin-top:8px;display:flex;justify-content:center">
+<div style="padding:6px 18px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--gn)">−R$ 59.608 (−17,5%)</div>
+</div>
+
+<div class="note" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.12)">
+<span class="note-icon">✅</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--gn)">Folha caiu 17,5% mesmo com +2 funcionários.</strong> Custo/litro melhorou. <strong>Pontos de atenção:</strong> produção caiu 11,4% (894k vs 1.008k L) e vacas/func piorou (19,1→17,9). Manter volume e otimizar quadro são prioridades para março.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- RH-06 — DIMENSIONAMENTO: ATUAL vs. CENÁRIOS IDEAIS -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(16,185,129,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f59e0b,#10b981)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">⚙️</span>
+<span class="ct-title">Dimensionamento: Atual vs. Cenários Ideais</span>
+<span class="ct-badge" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">OPORTUNIDADE</span>
+</div>
+<span class="ct-ref">RH-06</span>
+</div>
+
+<!-- BASE: Fev 47 func | 841 VL | Folha R$ 280.240 | Custo/func R$ 5.963 -->
+<div style="padding:10px 14px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:8px;margin-bottom:18px;font-size:10px;color:var(--t2);line-height:1.7">
+<strong>Base:</strong> Fev/26 — <strong style="color:var(--bl)">47 func</strong> | <strong>841 VL</strong> | Folha <strong>R$ 280.240</strong> | Custo/func <strong>R$ 5.963</strong>
+</div>
+
+<div class="sec-title">Cenários de Redimensionamento</div>
+
+<!-- ATUAL -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 Atual: 47 funcionários</span><span class="bb-val" style="color:var(--t2)">17,9 vac/func</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(239,68,68,.55),rgba(239,68,68,.2))"><span style="font-size:9px;font-weight:800">47 funcionários</span></div></div>
+</div>
+
+<!-- CENÁRIO 1: 841/20 = 42 func | Economia: (47-42)*5963 = R$ 29.815/mês -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">🟠 Cenário 1 (20 vac/func): 42</span><span class="bb-val" style="color:var(--or)">economia R$ 30k/mês</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:89.4%;background:linear-gradient(90deg,rgba(249,115,22,.55),rgba(249,115,22,.2))"><span style="font-size:9px;font-weight:800">42 funcionários</span></div></div>
+</div>
+
+<!-- CENÁRIO 2: 841/25 = 34 func | Economia: (47-34)*5963 = R$ 77.519/mês -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">🟢 Cenário 2 (25 vac/func): 34</span><span class="bb-val" style="color:var(--gn)">economia R$ 78k/mês</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:72.3%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.2))"><span style="font-size:9px;font-weight:800">34 funcionários</span></div></div>
+</div>
+
+<!-- CENÁRIO 3: 841/30 = 28 func | Economia: (47-28)*5963 = R$ 113.297/mês -->
+<div style="margin-bottom:14px">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Cenário 3 (30 vac/func): 28</span><span class="bb-val" style="color:var(--yl)">economia R$ 113k/mês</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:59.6%;background:linear-gradient(90deg,rgba(245,158,11,.55),rgba(245,158,11,.2))"><span style="font-size:9px;font-weight:800">28 funcionários</span></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- IMPACTO FINANCEIRO POR CENÁRIO -->
+<div class="sec-title">Impacto Financeiro por Cenário</div>
+
+<table class="tbl">
+<tr>
+<th>CENÁRIO</th>
+<th style="text-align:center">FUNCS.</th>
+<th style="text-align:center">VAC/FUNC</th>
+<th style="text-align:right">FOLHA/MÊS</th>
+<th style="text-align:right">ECON./MÊS</th>
+<th style="text-align:right">ECON./ANO</th>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td><strong style="color:var(--rd)">Atual</strong></td>
+<td class="nm" style="text-align:center">47</td>
+<td class="nm" style="text-align:center">17,9</td>
+<td class="nm" style="text-align:right">R$ 280k</td>
+<td class="nm" style="text-align:right;color:var(--t3)">—</td>
+<td class="nm" style="text-align:right;color:var(--t3)">—</td>
+</tr>
+<tr>
+<td><strong style="color:var(--or)">Cenário 1</strong></td>
+<td class="nm" style="text-align:center">42</td>
+<td class="nm" style="text-align:center">20,0</td>
+<td class="nm" style="text-align:right">R$ 250k</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 30k</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 358k</td>
+</tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong style="color:var(--gn)">Cenário 2</strong></td>
+<td class="nm" style="text-align:center">34</td>
+<td class="nm" style="text-align:center">24,7</td>
+<td class="nm" style="text-align:right">R$ 203k</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 78k</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 930k</td>
+</tr>
+<tr>
+<td><strong style="color:var(--yl)">Cenário 3</strong></td>
+<td class="nm" style="text-align:center">28</td>
+<td class="nm" style="text-align:center">30,0</td>
+<td class="nm" style="text-align:right">R$ 167k</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 113k</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 1,36M</td>
+</tr>
+</table>
+
+<div class="sep"></div>
+
+<!-- DESTAQUE CENÁRIO 2 -->
+<div style="padding:24px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(6,182,212,.05));border:2px solid rgba(16,185,129,.25);border-radius:16px;text-align:center">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:6px">POTENCIAL DE ECONOMIA ANUAL (CENÁRIO 2 — MAIS PROVÁVEL)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:900;color:var(--gn);line-height:1.1;margin-bottom:8px">R$ 930 Mil/ano</div>
+<div style="font-size:11px;color:var(--t2);margin-bottom:12px">Reduzindo de 47 para 34 func. | Investir em automação + treinamento</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px">
+<div style="padding:10px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--bdr)">
+<div style="font-size:9px;color:var(--t3);font-weight:600">FOLHA ATUAL</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800;color:var(--rd)">R$ 280k</div>
+</div>
+<div style="padding:10px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--bdr)">
+<div style="font-size:9px;color:var(--t3);font-weight:600">FOLHA META</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800;color:var(--gn)">R$ 203k</div>
+</div>
+<div style="padding:10px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--bdr)">
+<div style="font-size:9px;color:var(--t3);font-weight:600">CUSTO MO/L META</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800;color:var(--gn)">~R$ 0,23</div>
+</div>
+</div>
+</div>
+
+<div class="note" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12)">
+<span class="note-icon">⚡</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--yl)">Pré-requisitos:</strong> Automação parcial (ordenha, alimentação), treinamento intensivo, reestruturação de turnos. Redução gradual (6-12 meses) via não-reposição de vagas. Cada funcionário a menos = <strong>R$ 5.963/mês</strong> de economia direta (base Fev).
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- IMPACTO NO CUSTO MO/L POR CENÁRIO -->
+<div class="sec-title">Impacto no Custo MO/Litro por Cenário</div>
+
+<!-- Atual: 0,31 | C1: 250k/894029=0,28 | C2: 203k/894029=0,227 | C3: 167k/894029=0,187 -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">Atual (47 func)</span><span class="bb-val" style="color:var(--rd)">R$ 0,31</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:82%;background:linear-gradient(90deg,rgba(239,68,68,.55),rgba(239,68,68,.2))"><span style="font-size:9px;font-weight:700">R$ 0,31</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">Cenário 1 (42 func)</span><span class="bb-val" style="color:var(--or)">~R$ 0,28</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:74%;background:linear-gradient(90deg,rgba(249,115,22,.55),rgba(249,115,22,.2))"><span style="font-size:9px;font-weight:700">~R$ 0,28 — Meta Boa</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">Cenário 2 (34 func)</span><span class="bb-val" style="color:var(--gn)">~R$ 0,23</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:60.5%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.2))"><span style="font-size:9px;font-weight:700">~R$ 0,23 — Próximo Top BR</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">Cenário 3 (28 func)</span><span class="bb-val" style="color:var(--yl)">~R$ 0,19</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:50%;background:linear-gradient(90deg,rgba(245,158,11,.55),rgba(245,158,11,.2))"><span style="font-size:9px;font-weight:700">~R$ 0,19 — Supera Top BR!</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top Brasil (ref)</span><span class="bb-val" style="color:var(--yl)">R$ 0,22</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:58%;background:linear-gradient(90deg,rgba(245,158,11,.4),rgba(245,158,11,.1))"></div></div>
+</div>
+
+<div class="note" style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12)">
+<span class="note-icon">💎</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--bl)">Cenário 2 (34 func) é o mais equilibrado:</strong> atinge ~25 vac/func (meta), custo MO/L cai para R$ 0,23 (nível Top BR), e a economia de <strong>R$ 930k/ano</strong> pode financiar automação, treinamento e bonificações para reter os melhores.
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:24px 16px;margin-top:12px;font-size:9px;color:var(--t3);border-top:1px solid var(--bdr)">
+<div style="font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;color:var(--cy)">Rural IN — Inteligência Pecuária</div>
+<div>Fazenda Brasilanda | Bloco RH Completo | Jan-Fev 2026</div>
+<div style="margin-top:4px">Rebanho: Jan 1.454 | Fev 1.446 cab. | VL: Jan 859 | Fev 841 | Equipe: Jan 45 | Fev 47 func.</div>
+</div>
+
+</div><!-- fim .wrap -->
+</body>
+</html>

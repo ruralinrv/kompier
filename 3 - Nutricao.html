@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — Dashboard de Nutrição | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+:root{--bg:#0a0e1a;--card:#131a2e;--card2:#1a2236;--bdr:#2a3654;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899;--gBl:linear-gradient(135deg,#3b82f6,#06b6d4);--gGn:linear-gradient(135deg,#10b981,#34d399);--gRd:linear-gradient(135deg,#ef4444,#f97316);--gYl:linear-gradient(135deg,#f59e0b,#fbbf24);--gPr:linear-gradient(135deg,#8b5cf6,#a78bfa);--gCy:linear-gradient(135deg,#06b6d4,#22d3ee);--gPk:linear-gradient(135deg,#ec4899,#f472b6);--sh:0 4px 20px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+.hd{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid var(--bdr);padding:36px 0;position:relative;overflow:hidden}
+.hd::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#10b981,#06b6d4,#3b82f6,#8b5cf6,#f59e0b)}
+.hc{max-width:1400px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.ht{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.hlg{display:flex;align-items:center;gap:10px}
+.hlg-i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#10b981,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff}
+.hlg-t{font-size:21px;font-weight:900}.hlg-t span{color:var(--gn)}
+.hlg-s{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px}
+.hbd{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,182,212,.1));border:1px solid rgba(16,185,129,.3);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;color:var(--gn);text-transform:uppercase;letter-spacing:1.5px}
+.hd h1{font-size:32px;font-weight:900;letter-spacing:-1px;margin-bottom:5px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd h2{font-size:15px;font-weight:400;color:var(--t2);margin-bottom:18px}
+.hm{display:flex;gap:20px;flex-wrap:wrap}
+.hm-i{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3)}.hm-i span{color:var(--t2);font-weight:600}
+.ct{max-width:1400px;margin:0 auto;padding:36px 40px}
+.st{font-size:22px;font-weight:900;margin:40px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:12px}
+.st:first-child{margin-top:0}
+.st-b{font-size:10px;padding:3px 12px;border-radius:50px;font-weight:700}
+.kp{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px}
+.kp-i{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:18px;position:relative;overflow:hidden;transition:all .3s}
+.kp-i:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.kp-l{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px}
+.kp-v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;margin-bottom:4px}
+.kp-d{font-size:10px;display:flex;align-items:center;gap:4px;font-weight:600}
+.kp-s{font-size:8px;color:var(--t3);margin-top:4px}
+.d{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:24px;transition:all .3s}
+.d:hover{border-color:rgba(59,130,246,.3);box-shadow:var(--sh);transform:translateY(-2px)}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.dt{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.db{font-size:9px;padding:2px 8px;border-radius:50px;font-weight:700}
+.di{font-size:10px;color:var(--t3);font-weight:600}
+.dg{display:grid;gap:20px}.dg2{grid-template-columns:1fr 1fr}.dg3{grid-template-columns:1fr 1fr 1fr}
+.bg{margin-bottom:8px}
+.bl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+.bn{font-weight:600}.bv{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px}
+.bt{width:100%;height:22px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden}
+.bf{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:9px;font-weight:600;color:rgba(255,255,255,.85);min-width:2%}
+.mt{width:100%;font-size:11px;border-collapse:collapse;margin-top:12px}
+.mt th{text-align:left;padding:7px 8px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.mt td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.03)}
+.mt tr:last-child td{border-bottom:none}
+.mt tr:hover{background:rgba(255,255,255,.02)}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+.nt{font-size:10px;color:var(--t2);padding:10px 14px;border-radius:8px;margin-top:12px;line-height:1.7}
+.al{border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start}
+.al-i{font-size:20px;flex-shrink:0;margin-top:2px}
+.al-c{flex:1}.al-t{font-size:13px;font-weight:700;margin-bottom:3px}
+.al-x{font-size:11px;color:var(--t2);line-height:1.6}
+.cx{display:flex;align-items:center;gap:6px;margin-bottom:14px;padding:8px 12px;border-radius:8px;font-size:10px;font-weight:600;flex-wrap:wrap}
+.cx span{padding:2px 8px;border-radius:4px;font-weight:700;font-size:9px}
+.obs{margin-top:16px;padding:14px 16px;border-radius:10px;border-left:4px solid var(--yl);background:rgba(245,158,11,.04)}
+.obs-t{font-size:11px;font-weight:800;color:var(--yl);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.obs-x{font-size:10px;color:var(--t2);line-height:1.7}
+.obs-r{border-left-color:var(--rd);background:rgba(239,68,68,.04)}
+.obs-r .obs-t{color:var(--rd)}
+.obs-g{border-left-color:var(--gn);background:rgba(16,185,129,.04)}
+.obs-g .obs-t{color:var(--gn)}
+.obs-b{border-left-color:var(--bl);background:rgba(59,130,246,.04)}
+.obs-b .obs-t{color:var(--bl)}
+.ft{border-top:1px solid var(--bdr);margin-top:36px;padding:44px 40px}
+.fc{max-width:1400px;margin:0 auto}
+.fd{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:24px 0}
+.cc{background:linear-gradient(135deg,#111827,#1a2236);border:1px solid var(--bdr);border-radius:18px;padding:30px;display:flex;gap:28px;align-items:center;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#06b6d4,#3b82f6)}
+.cp{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#10b981,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 8px 20px rgba(16,185,129,.3)}
+.ci{flex:1}.cl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gn);margin-bottom:5px}
+.cn{font-size:20px;font-weight:900;margin-bottom:10px}
+.ccs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cci{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2);background:rgba(255,255,255,.04);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.cci a{color:var(--bl);text-decoration:none}
+.cb{font-size:11px;color:var(--t3);line-height:1.8;border-top:1px solid var(--bdr);padding-top:10px;font-style:italic}
+.fb{text-align:center;padding-top:20px;color:var(--t3);font-size:10px}.fb strong{color:var(--t2)}
+.sb{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin:12px 0}
+.sb-i{text-align:center;padding:10px 4px;background:rgba(255,255,255,.02);border-radius:8px;border:1px solid rgba(255,255,255,.04)}
+.sb-v{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800}
+.sb-l{font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+@media(max-width:1024px){.dg2,.dg3{grid-template-columns:1fr}.kp{grid-template-columns:repeat(3,1fr)}.hd h1{font-size:24px}.ct{padding:20px}.cc{flex-direction:column;text-align:center}.ccs{justify-content:center}}
+@media(max-width:768px){.ht{flex-direction:column}.hm{flex-direction:column;gap:6px}.kp{grid-template-columns:repeat(2,1fr)}}
+.fi{opacity:0;transform:translateY(18px);transition:all .6s ease}.fi.v{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ═══════ HEADER ═══════ -->
+<div class="hd">
+<div class="hc">
+<div class="ht">
+<div class="hlg"><div class="hlg-i">R</div><div><div class="hlg-t">RURAL <span>IN</span></div><div class="hlg-s">Gestão Inteligente no Agro</div></div></div>
+<div class="hbd">🍽️ Bloco 3 — Análise de Nutrição e Alimentação</div>
+</div>
+<h1>FAZENDA BRASILANDA — NUTRIÇÃO</h1>
+<h2>Patricia Kompier — Consumo, Custo, Sobras, Eficiência e Manejo Alimentar</h2>
+<div class="hm">
+<div class="hm-i">📅 Período: <span>Janeiro e Fevereiro / 2026</span></div>
+<div class="hm-i">🐄 19 Lotes Monitorados <span>(6 Lactação + 3 Primíparas + 10 Suporte)</span></div>
+<div class="hm-i">🍽️ Sistema: <span>TMR (Ração Total Misturada)</span></div>
+<div class="hm-i">📍 <span>Rio Verde - GO</span></div>
+</div>
+</div>
+</div>
+
+<div class="ct">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- KPIs RESUMO EXECUTIVO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">📊 Resumo Executivo — Indicadores-Chave de Nutrição <span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">VISÃO GERAL</span></div>
+
+<div class="kp fi">
+<div class="kp-i" style="border-color:rgba(16,185,129,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gGn);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">CMS Médio — Vacas Lactação</div>
+<div class="kp-v" style="color:var(--gn)">24,4 kg</div>
+<div class="kp-d" style="color:var(--rd)">▼ −1,2% <span style="color:var(--t3)">Fev vs Jan</span></div>
+<div class="kp-s">Jan: 24,5 kg | Fev: 24,2 kg | Bench: 23-28 kg</div>
+</div>
+<div class="kp-i" style="border-color:rgba(6,182,212,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gCy);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Custo Ração/Cab/Dia (Lactação)</div>
+<div class="kp-v" style="color:var(--cy)">R$ 34,14</div>
+<div class="kp-d" style="color:var(--gn)">▼ −2,4% <span style="color:var(--t3)">Fev vs Jan</span></div>
+<div class="kp-s">Jan: R$ 34,97 | Fev: R$ 33,30 | 9 lotes prod.</div>
+</div>
+<div class="kp-i" style="border-color:rgba(245,158,11,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gYl);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Custo Ração / Litro de Leite</div>
+<div class="kp-v" style="color:var(--yl)">R$ 0,862</div>
+<div class="kp-d" style="color:var(--gn)">▼ −2,5% <span style="color:var(--t3)">Fev vs Jan</span></div>
+<div class="kp-s">Jan: R$ 0,873 | Fev: R$ 0,851 | Bench: R$ 0,70-0,90</div>
+</div>
+<div class="kp-i" style="border-color:rgba(239,68,68,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gRd);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Sobras Médias (% MN)</div>
+<div class="kp-v" style="color:var(--rd)">5,6%</div>
+<div class="kp-d" style="color:var(--rd)">▲ Acima do ideal <span style="color:var(--t3)">(meta 3-5%)</span></div>
+<div class="kp-s">Jan: 4,3% (lotes lact.) | Fev: 6,9% | ⚠️ Subindo</div>
+</div>
+<div class="kp-i" style="border-color:rgba(139,92,246,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gPr);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Custo Total Alimentação/Dia</div>
+<div class="kp-v" style="color:var(--pr)">R$ 28,8k</div>
+<div class="kp-d" style="color:var(--gn)">▼ −3,9% <span style="color:var(--t3)">Fev vs Jan</span></div>
+<div class="kp-s">Jan: R$ 29,7k/dia | Fev: R$ 27,9k/dia | Todo rebanho</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO A — TABELA CONSOLIDADA TODOS OS LOTES -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🍽️ Bloco A — Tabela Consolidada — Todos os Lotes (Dados Oficiais) <span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">NUT-A</span></div>
+
+<div class="d fi" style="border-color:rgba(16,185,129,.25)">
+<div class="dh"><div class="dt">📋 Consumo, Custo e Sobras — 19 Lotes Completos <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">CONSOLIDADO</span></div><div class="di">NUT-A1</div></div>
+<div class="cx" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.12);color:var(--gn)"><span style="background:rgba(16,185,129,.15)">OFICIAL</span> Médias mensais extraídas diretamente dos relatórios do sistema de nutrição — valores em kg MS/cab/dia e R$/cab/dia</div>
+
+<div style="overflow-x:auto">
+<table class="mt">
+<tr>
+<th rowspan="2">Lote</th>
+<th rowspan="2">Categoria</th>
+<th colspan="2" style="text-align:center;border-bottom:1px solid rgba(16,185,129,.2);color:var(--gn)">CMS (kg/cab/dia)</th>
+<th colspan="2" style="text-align:center;border-bottom:1px solid rgba(6,182,212,.2);color:var(--cy)">CMN (kg/cab/dia)</th>
+<th colspan="2" style="text-align:center;border-bottom:1px solid rgba(245,158,11,.2);color:var(--yl)">Custo (R$/cab/dia)</th>
+<th colspan="2" style="text-align:center;border-bottom:1px solid rgba(239,68,68,.2);color:var(--rd)">Sobras % MN</th>
+<th rowspan="2">Cab. Méd.</th>
+<th rowspan="2">Status</th>
+</tr>
+<tr>
+<th style="text-align:right;color:var(--gn)">Jan</th><th style="text-align:right;color:var(--gn)">Fev</th>
+<th style="text-align:right;color:var(--cy)">Jan</th><th style="text-align:right;color:var(--cy)">Fev</th>
+<th style="text-align:right;color:var(--yl)">Jan</th><th style="text-align:right;color:var(--yl)">Fev</th>
+<th style="text-align:right;color:var(--rd)">Jan</th><th style="text-align:right;color:var(--rd)">Fev</th>
+</tr>
+
+<!-- LACTAÇÃO -->
+<tr style="background:rgba(16,185,129,.03)"><td colspan="12" style="font-size:9px;font-weight:800;color:var(--gn)">🥛 VACAS EM LACTAÇÃO — Alta Produção</td></tr>
+<tr>
+<td><strong style="color:var(--gn)">Lote 1</strong></td>
+<td style="font-size:9px;color:var(--t3)">Lact. Alta 1</td>
+<td class="nm" style="text-align:right"><strong>26,8</strong></td><td class="nm" style="text-align:right"><strong>26,7</strong></td>
+<td class="nm" style="text-align:right">50,9</td><td class="nm" style="text-align:right">51,1</td>
+<td class="nm" style="text-align:right">39,02</td><td class="nm" style="text-align:right">38,88</td>
+<td class="nm" style="text-align:right">10,9</td><td class="nm" style="text-align:right;color:var(--rd)">11,9</td>
+<td class="nm" style="text-align:center">97</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">Lote 2</strong></td>
+<td style="font-size:9px;color:var(--t3)">Lact. Alta 2</td>
+<td class="nm" style="text-align:right"><strong>26,0</strong></td><td class="nm" style="text-align:right"><strong>26,3</strong></td>
+<td class="nm" style="text-align:right">49,3</td><td class="nm" style="text-align:right">50,4</td>
+<td class="nm" style="text-align:right">37,77</td><td class="nm" style="text-align:right">38,35</td>
+<td class="nm" style="text-align:right">6,8</td><td class="nm" style="text-align:right;color:var(--yl)">8,5</td>
+<td class="nm" style="text-align:center">96</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">Lote 3</strong></td>
+<td style="font-size:9px;color:var(--t3)">Lact. Alta 3</td>
+<td class="nm" style="text-align:right"><strong>26,1</strong></td><td class="nm" style="text-align:right"><strong>26,2</strong></td>
+<td class="nm" style="text-align:right">48,2</td><td class="nm" style="text-align:right">48,9</td>
+<td class="nm" style="text-align:right">39,71</td><td class="nm" style="text-align:right">39,75</td>
+<td class="nm" style="text-align:right">5,2</td><td class="nm" style="text-align:right;color:var(--rd)">14,1</td>
+<td class="nm" style="text-align:center">96</td>
+<td>🟠</td>
+</tr>
+
+<tr style="background:rgba(6,182,212,.03)"><td colspan="12" style="font-size:9px;font-weight:800;color:var(--cy)">🥛 VACAS EM LACTAÇÃO — Média Produção</td></tr>
+<tr>
+<td><strong style="color:var(--cy)">Lote 4</strong></td>
+<td style="font-size:9px;color:var(--t3)">Lact. Média 1</td>
+<td class="nm" style="text-align:right">22,8</td><td class="nm" style="text-align:right">23,5</td>
+<td class="nm" style="text-align:right">43,6</td><td class="nm" style="text-align:right">45,6</td>
+<td class="nm" style="text-align:right">30,41</td><td class="nm" style="text-align:right">31,16</td>
+<td class="nm" style="text-align:right">7,0</td><td class="nm" style="text-align:right;color:var(--rd)">12,1</td>
+<td class="nm" style="text-align:center">88</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td><strong style="color:var(--cy)">Lote 5</strong></td>
+<td style="font-size:9px;color:var(--t3)">Lact. Média 2</td>
+<td class="nm" style="text-align:right">23,7</td><td class="nm" style="text-align:right">24,4</td>
+<td class="nm" style="text-align:right">43,7</td><td class="nm" style="text-align:right">45,4</td>
+<td class="nm" style="text-align:right">36,04</td><td class="nm" style="text-align:right">36,96</td>
+<td class="nm" style="text-align:right">4,9</td><td class="nm" style="text-align:right;color:var(--yl)">8,0</td>
+<td class="nm" style="text-align:center">76</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong style="color:var(--cy)">Lote 6</strong></td>
+<td style="font-size:9px;color:var(--t3)">Lact. Baixa</td>
+<td class="nm" style="text-align:right">20,8</td><td class="nm" style="text-align:right">20,2</td>
+<td class="nm" style="text-align:right">42,1</td><td class="nm" style="text-align:right">42,0</td>
+<td class="nm" style="text-align:right">27,59</td><td class="nm" style="text-align:right">26,31</td>
+<td class="nm" style="text-align:right">8,8</td><td class="nm" style="text-align:right;color:var(--yl)">6,3</td>
+<td class="nm" style="text-align:center">73</td>
+<td>🟢</td>
+</tr>
+
+<tr style="background:rgba(236,72,153,.03)"><td colspan="12" style="font-size:9px;font-weight:800;color:var(--pk)">🐄 PRIMÍPARAS</td></tr>
+<tr>
+<td><strong style="color:var(--pk)">Lote P1</strong></td>
+<td style="font-size:9px;color:var(--t3)">Primípara Alta</td>
+<td class="nm" style="text-align:right">22,3</td><td class="nm" style="text-align:right">22,6</td>
+<td class="nm" style="text-align:right">41,1</td><td class="nm" style="text-align:right">42,2</td>
+<td class="nm" style="text-align:right">33,86</td><td class="nm" style="text-align:right">34,31</td>
+<td class="nm" style="text-align:right">5,5</td><td class="nm" style="text-align:right;color:var(--rd)">10,9</td>
+<td class="nm" style="text-align:center">96</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td><strong style="color:var(--pk)">Lote P2</strong></td>
+<td style="font-size:9px;color:var(--t3)">Primípara Média</td>
+<td class="nm" style="text-align:right">21,0</td><td class="nm" style="text-align:right">21,3</td>
+<td class="nm" style="text-align:right">40,2</td><td class="nm" style="text-align:right">41,2</td>
+<td class="nm" style="text-align:right">27,99</td><td class="nm" style="text-align:right">28,18</td>
+<td class="nm" style="text-align:right">4,7</td><td class="nm" style="text-align:right;color:var(--yl)">8,4</td>
+<td class="nm" style="text-align:center">88</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong style="color:var(--pk)">Lote P3</strong></td>
+<td style="font-size:9px;color:var(--t3)">Primípara Baixa</td>
+<td class="nm" style="text-align:right">21,2*</td><td class="nm" style="text-align:right">19,6</td>
+<td class="nm" style="text-align:right">42,9*</td><td class="nm" style="text-align:right">40,8</td>
+<td class="nm" style="text-align:right">28,23*</td><td class="nm" style="text-align:right">25,56</td>
+<td class="nm" style="text-align:right;color:var(--rd)">14,0</td><td class="nm" style="text-align:right;color:var(--yl)">6,5</td>
+<td class="nm" style="text-align:center">72</td>
+<td>🟠</td>
+</tr>
+
+<tr style="background:rgba(245,158,11,.03)"><td colspan="12" style="font-size:9px;font-weight:800;color:var(--yl)">⚡ TRANSIÇÃO</td></tr>
+<tr>
+<td><strong style="color:var(--yl)">Pré Parto</strong></td>
+<td style="font-size:9px;color:var(--t3)">Transição −21d</td>
+<td class="nm" style="text-align:right">10,7</td><td class="nm" style="text-align:right">10,3</td>
+<td class="nm" style="text-align:right">25,5</td><td class="nm" style="text-align:right">24,6</td>
+<td class="nm" style="text-align:right">5,44</td><td class="nm" style="text-align:right">5,06</td>
+<td class="nm" style="text-align:right;color:var(--rd)">17,3</td><td class="nm" style="text-align:right;color:var(--rd)">17,1</td>
+<td class="nm" style="text-align:center">83</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td><strong style="color:var(--or)">Pós Parto</strong></td>
+<td style="font-size:9px;color:var(--t3)">Fresh Cows</td>
+<td class="nm" style="text-align:right">21,8</td><td class="nm" style="text-align:right;color:var(--rd)">19,9</td>
+<td class="nm" style="text-align:right">41,0</td><td class="nm" style="text-align:right">37,3</td>
+<td class="nm" style="text-align:right">34,53</td><td class="nm" style="text-align:right">31,74</td>
+<td class="nm" style="text-align:right;color:var(--rd)">13,4</td><td class="nm" style="text-align:right;color:var(--rd)">19,0</td>
+<td class="nm" style="text-align:center">47</td>
+<td>🔴</td>
+</tr>
+
+<tr style="background:rgba(148,163,184,.03)"><td colspan="12" style="font-size:9px;font-weight:800;color:var(--t2)">🔒 SECAS E SAÚDE</td></tr>
+<tr>
+<td>Vaca Seca</td>
+<td style="font-size:9px;color:var(--t3)">Período Seco</td>
+<td class="nm" style="text-align:right">14,0</td><td class="nm" style="text-align:right;color:var(--yl)">15,3</td>
+<td class="nm" style="text-align:right">36,2</td><td class="nm" style="text-align:right">37,4</td>
+<td class="nm" style="text-align:right">11,68</td><td class="nm" style="text-align:right">12,72</td>
+<td class="nm" style="text-align:right">3,4</td><td class="nm" style="text-align:right">4,4</td>
+<td class="nm" style="text-align:center">85</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>Mastite</td>
+<td style="font-size:9px;color:var(--t3)">Tratamento</td>
+<td class="nm" style="text-align:right">15,5</td><td class="nm" style="text-align:right">20,4</td>
+<td class="nm" style="text-align:right">29,7</td><td class="nm" style="text-align:right">39,6</td>
+<td class="nm" style="text-align:right">20,68</td><td class="nm" style="text-align:right">27,01</td>
+<td class="nm" style="text-align:right">13,4</td><td class="nm" style="text-align:right;color:var(--rd)">187,4*</td>
+<td class="nm" style="text-align:center">7</td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td>Carência</td>
+<td style="font-size:9px;color:var(--t3)">Tratamento</td>
+<td class="nm" style="text-align:right">25,7</td><td class="nm" style="text-align:right">24,2</td>
+<td class="nm" style="text-align:right">49,0</td><td class="nm" style="text-align:right">46,9</td>
+<td class="nm" style="text-align:right">34,16</td><td class="nm" style="text-align:right">32,06</td>
+<td class="nm" style="text-align:right">5,9</td><td class="nm" style="text-align:right;color:var(--rd)">14,8</td>
+<td class="nm" style="text-align:center">14</td>
+<td>🟡</td>
+</tr>
+
+<tr style="background:rgba(139,92,246,.03)"><td colspan="12" style="font-size:9px;font-weight:800;color:var(--pr)">🌱 RECRIA</td></tr>
+<tr>
+<td>Recria R1-R9</td>
+<td style="font-size:9px;color:var(--t3)">Bezerras Jovens</td>
+<td class="nm" style="text-align:right">6,6</td><td class="nm" style="text-align:right">5,9</td>
+<td class="nm" style="text-align:right">11,4</td><td class="nm" style="text-align:right">9,5</td>
+<td class="nm" style="text-align:right">12,25</td><td class="nm" style="text-align:right">10,98</td>
+<td class="nm" style="text-align:right">0,0</td><td class="nm" style="text-align:right">0,0</td>
+<td class="nm" style="text-align:center">309</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>Novilha Prenha</td>
+<td style="font-size:9px;color:var(--t3)">Gestação</td>
+<td class="nm" style="text-align:right">10,1</td><td class="nm" style="text-align:right">10,0</td>
+<td class="nm" style="text-align:right">23,6</td><td class="nm" style="text-align:right">22,4</td>
+<td class="nm" style="text-align:right">10,11</td><td class="nm" style="text-align:right">9,89</td>
+<td class="nm" style="text-align:right">0,0</td><td class="nm" style="text-align:right">0,0</td>
+<td class="nm" style="text-align:center">172</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>Recria R9-IA</td>
+<td style="font-size:9px;color:var(--t3)">Pré-inseminação</td>
+<td class="nm" style="text-align:right">3,9</td><td class="nm" style="text-align:right;color:var(--rd)">1,8</td>
+<td class="nm" style="text-align:right">9,0</td><td class="nm" style="text-align:right">4,2</td>
+<td class="nm" style="text-align:right">3,82</td><td class="nm" style="text-align:right">1,81</td>
+<td class="nm" style="text-align:right">0,2</td><td class="nm" style="text-align:right">0,0</td>
+<td class="nm" style="text-align:center">285</td>
+<td>🟠</td>
+</tr>
+<tr>
+<td style="color:var(--t3)">Engorda</td>
+<td style="font-size:9px;color:var(--t3)">Confinamento</td>
+<td class="nm" style="text-align:right;color:var(--t3)">0,0</td><td class="nm" style="text-align:right;color:var(--t3)">1,1</td>
+<td class="nm" style="text-align:right;color:var(--t3)">0,0</td><td class="nm" style="text-align:right;color:var(--t3)">2,0</td>
+<td class="nm" style="text-align:right;color:var(--t3)">0,00</td><td class="nm" style="text-align:right;color:var(--t3)">0,98</td>
+<td class="nm" style="text-align:right;color:var(--t3)">—</td><td class="nm" style="text-align:right;color:var(--t3)">—</td>
+<td class="nm" style="text-align:center;color:var(--t3)">10</td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td style="color:var(--t3)">Vacas de Corte</td>
+<td style="font-size:9px;color:var(--t3)">Descarte</td>
+<td class="nm" style="text-align:right;color:var(--t3)">0,0</td><td class="nm" style="text-align:right;color:var(--t3)">0,0</td>
+<td class="nm" style="text-align:right;color:var(--t3)">0,0</td><td class="nm" style="text-align:right;color:var(--t3)">0,0</td>
+<td class="nm" style="text-align:right;color:var(--t3)">0,00</td><td class="nm" style="text-align:right;color:var(--t3)">0,00</td>
+<td class="nm" style="text-align:right;color:var(--t3)">—</td><td class="nm" style="text-align:right;color:var(--t3)">—</td>
+<td class="nm" style="text-align:center;color:var(--t3)">50</td>
+<td>⚠️</td>
+</tr>
+</table>
+</div>
+
+<div style="font-size:8px;color:var(--t3);margin-top:6px">* Valores de Lote P3 em Janeiro contêm anomalia (67,1 kg MS no dia 10/01 — provável erro de lançamento). Média real provavelmente ~19-20 kg sem o outlier. * Sobras % Mastite Fev (187,4%) = anomalia pontual no dia 11/02 (lote com apenas 7 cabeças — qualquer erro é amplificado).</div>
+
+<div class="obs" style="margin-top:14px">
+<div class="obs-t">📋 PONTOS DE ATENÇÃO IDENTIFICADOS NA TABELA</div>
+<div class="obs-x">
+<strong>1) Sobras do Lote 3 dispararam em Fev:</strong> De 5,2% → 14,1% — aumento de 171%. Pode indicar queda de consumo por estresse, problema de palatabilidade ou mudança de dieta.<br>
+<strong>2) Pós Parto com 19% de sobras em Fev:</strong> Vacas frescas recusando comida é sinal de <strong>problemas metabólicos</strong> (cetose, hipocalcemia, acidose). Isso impacta diretamente produção e reprodução.<br>
+<strong>3) Pré Parto com 17% de sobras nos dois meses:</strong> Consistentemente alto. Pode comprometer a <strong>transição</strong> e gerar problemas no pós-parto.<br>
+<strong>4) Recria R9-IA caiu 53,8%:</strong> CMS de 3,9 → 1,8 kg. <strong>Investigar se houve mudança de dieta, problema de fornecimento ou erro de lançamento.</strong><br>
+<strong>5) Engorda e Vacas de Corte sem consumo:</strong> 60 animais (10+50) que não consomem ração registrada no sistema. Necessário esclarecer na reunião.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO B — CMS POR CATEGORIA JAN vs FEV -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">📈 Bloco B — Consumo MS/Cab/Dia — Jan vs Fev por Categoria <span class="st-b" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">NUT-B</span></div>
+
+<div class="dg dg2 fi">
+
+<!-- LOTES DE LACTAÇÃO -->
+<div class="d" style="border-color:rgba(16,185,129,.25)">
+<div class="dh"><div class="dt">🥛 CMS — Vacas em Lactação (6 Lotes) <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">LACTAÇÃO</span></div><div class="di">NUT-B1</div></div>
+
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Lote 1 — Alta 1</span><span class="bv">26,8 → 26,7 kg <span style="color:var(--t3)">(−0,4%)</span></span></div><div class="bt"><div class="bf" style="width:95.7%;background:var(--gGn)">26,8 | 26,7</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Lote 2 — Alta 2</span><span class="bv">26,0 → 26,3 kg <span style="color:var(--gn)">(+1,2%)</span></span></div><div class="bt"><div class="bf" style="width:93.9%;background:var(--gGn)">26,0 | 26,3</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Lote 3 — Alta 3</span><span class="bv">26,1 → 26,2 kg <span style="color:var(--gn)">(+0,4%)</span></span></div><div class="bt"><div class="bf" style="width:93,6%;background:var(--gGn)">26,1 | 26,2</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--cy)">Lote 4 — Média 1</span><span class="bv">22,8 → 23,5 kg <span style="color:var(--gn)">(+3,1%)</span></span></div><div class="bt"><div class="bf" style="width:83.9%;background:var(--gCy)">22,8 | 23,5</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--cy)">Lote 5 — Média 2</span><span class="bv">23,7 → 24,4 kg <span style="color:var(--gn)">(+3,0%)</span></span></div><div class="bt"><div class="bf" style="width:86.1%;background:var(--gCy)">23,7 | 24,4</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--yl)">Lote 6 — Baixa</span><span class="bv">20,8 → 20,2 kg <span style="color:var(--rd)">(−2,9%)</span></span></div><div class="bt"><div class="bf" style="width:72,1%;background:var(--gYl)">20,8 | 20,2</div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+<div style="text-align:center;padding:10px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Média Ponderada — 6 Lotes Lact.</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">24,4 kg MS</div>
+<div style="font-size:8px;color:var(--t3)">Bench: 23-28 kg | ✅ Adequado</div>
+</div>
+<div style="text-align:center;padding:10px;background:rgba(6,182,212,.04);border:1px solid rgba(6,182,212,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--cy);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Variação Bimestral</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">+0,6%</div>
+<div style="font-size:8px;color:var(--t3)">Jan: 24,3 kg → Fev: 24,5 kg | Estável ✅</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.1)">
+🔬 <strong>Leitura:</strong> O consumo de MS nas vacas em lactação é <strong>estável e dentro do benchmark</strong>. Os lotes de alta produção (1, 2, 3) consomem 26-27 kg MS — coerente com vacas de ~32-38 L/dia. O gap entre Lote 1 (26,8 kg) e Lote 6 (20,2 kg) é de 6,6 kg — esperado por diferença de produção.
+</div>
+</div>
+
+<!-- TRANSIÇÃO E SUPORTE -->
+<div class="d" style="border-color:rgba(245,158,11,.25)">
+<div class="dh"><div class="dt">⚡ CMS — Transição, Secas e Recria <span class="db" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">SUPORTE</span></div><div class="di">NUT-B2</div></div>
+
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pk)">Lote P1 — Primíp. Alta</span><span class="bv">22,3 → 22,6 kg <span style="color:var(--gn)">(+1,3%)</span></span></div><div class="bt"><div class="bf" style="width:80.7%;background:var(--gPk)">22,3 | 22,6</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pk)">Lote P2 — Primíp. Média</span><span class="bv">21,0 → 21,3 kg <span style="color:var(--gn)">(+1,4%)</span></span></div><div class="bt"><div class="bf" style="width:76.1%;background:var(--gPk)">21,0 | 21,3</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pk)">Lote P3 — Primíp. Baixa</span><span class="bv">21,2* → 19,6 kg <span style="color:var(--rd)">(−7,5%)</span></span></div><div class="bt"><div class="bf" style="width:70%;background:linear-gradient(90deg,#ec4899,#f472b6)">21,2* | 19,6</div></div></div>
+
+<div style="height:1px;background:var(--bdr);margin:10px 0"></div>
+
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Pré Parto</span><span class="bv">10,7 → 10,3 kg <span style="color:var(--rd)">(−3,7%)</span></span></div><div class="bt"><div class="bf" style="width:36.8%;background:var(--gRd)">10,7 | 10,3</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--or)">Pós Parto</span><span class="bv">21,8 → 19,9 kg <span style="color:var(--rd)">(−8,7%)</span></span></div><div class="bt"><div class="bf" style="width:71.1%;background:linear-gradient(90deg,#f97316,#fb923c)">21,8 | 19,9</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Vaca Seca</span><span class="bv">14,0 → 15,3 kg <span style="color:var(--gn)">(+9,3%)</span></span></div><div class="bt"><div class="bf" style="width:54.6%;background:rgba(148,163,184,.3)">14,0 | 15,3</div></div></div>
+
+<div style="height:1px;background:var(--bdr);margin:10px 0"></div>
+
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pr)">Recria R1-R9</span><span class="bv">6,6 → 5,9 kg <span style="color:var(--rd)">(−10,6%)</span></span></div><div class="bt"><div class="bf" style="width:23.6%;background:var(--gPr)">6,6 | 5,9</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pr)">Novilha Prenha</span><span class="bv">10,1 → 10,0 kg <span style="color:var(--t3)">(−1,0%)</span></span></div><div class="bt"><div class="bf" style="width:35.7%;background:var(--gPr)">10,1 | 10,0</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Recria R9-IA</span><span class="bv">3,9 → 1,8 kg <span style="color:var(--rd)">(−53,8%)</span></span></div><div class="bt"><div class="bf" style="width:6.4%;background:var(--gRd)">3,9 | 1,8</div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+<div style="text-align:center;padding:10px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">🚨 Pós Parto: Queda de 8,7%</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--rd)">21,8 → 19,9 kg</div>
+<div style="font-size:8px;color:var(--t3)">Fresh cows comendo menos → risco metabólico</div>
+</div>
+<div style="text-align:center;padding:10px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">🚨 Recria R9-IA: Queda de 53,8%</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--rd)">3,9 → 1,8 kg</div>
+<div style="font-size:8px;color:var(--t3)">Investigar: mudança de dieta ou erro?</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1)">
+🔬 <strong>Alerta Transição:</strong> A queda no CMS do <strong>Pós Parto (−8,7%)</strong> combinada com sobras altas (19%) é um sinal clássico de <strong>balanço energético negativo severo</strong>. Isso gera: cetose, deslocamento de abomaso, queda de produção no pico, atraso reprodutivo. <strong>É uma das possíveis causas do DEL alto (187 dias) e da mortalidade elevada identificados no Bloco 2.</strong>
+</div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO C — EFICIÊNCIA ALIMENTAR E CUSTO/LITRO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🔬 Bloco C — Eficiência Alimentar e Custo de Alimentação por Litro <span class="st-b" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">NUT-C</span></div>
+
+<div class="d fi" style="border-color:rgba(6,182,212,.25)">
+<div class="dh"><div class="dt">🔬 Eficiência Alimentar — Oficial vs Benchmark <span class="db" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">EFICIÊNCIA</span></div><div class="di">NUT-C1</div></div>
+<div class="cx" style="background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.12);color:var(--cy)"><span style="background:rgba(6,182,212,.15)">ESTIMADO</span> Cálculos baseados em produção total ÷ CMS total do rebanho em lactação. Valores por lote requerem dados de produção individuais (ver obs. ao final).</div>
+
+<!-- EFICIÊNCIA GERAL -->
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th>Var.</th><th>Benchmark Top</th><th>Status</th></tr>
+
+<tr style="background:rgba(6,182,212,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--cy)">📊 EFICIÊNCIA ALIMENTAR DO REBANHO (Vacas em Lactação — 9 Lotes)</td></tr>
+<tr>
+<td><strong>CMS Total Rebanho Lact./Dia (kg)</strong></td>
+<td class="nm" style="text-align:right"><strong>20.576</strong></td>
+<td class="nm" style="text-align:right"><strong>19.433</strong></td>
+<td class="nm" style="color:var(--rd)">−5,6%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>Nº Vacas em Lactação (9 lotes prod.)</td>
+<td class="nm" style="text-align:right">842</td>
+<td class="nm" style="text-align:right">822</td>
+<td class="nm" style="color:var(--rd)">−2,4%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td></td>
+</tr>
+<tr>
+<td>CMS Médio Ponderado/Cab/Dia</td>
+<td class="nm" style="text-align:right"><strong>24,4 kg</strong></td>
+<td class="nm" style="text-align:right"><strong>23,6 kg</strong></td>
+<td class="nm" style="color:var(--rd)">−3,3%</td>
+<td class="nm" style="color:var(--gn)">23-28 kg</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>Produção de Leite/Dia</td>
+<td class="nm" style="text-align:right"><strong>32.535 L</strong></td>
+<td class="nm" style="text-align:right"><strong>31.930 L</strong></td>
+<td class="nm" style="color:var(--rd)">−1,9%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td></td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--gn)">🎯 INDICADORES DE EFICIÊNCIA</td></tr>
+<tr>
+<td><strong style="color:var(--gn)">Eficiência Alimentar (L leite / kg MS)</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>1,58</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>1,64</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+3,8%</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>1,4-1,7</strong></td>
+<td><strong>🟢</strong></td>
+</tr>
+<tr>
+<td>Eficiência Alimentar — Relatório (L/vaca/dia ÷ CMS)</td>
+<td class="nm" style="text-align:right">31,7 ÷ 24,4 = <strong>1,30</strong></td>
+<td class="nm" style="text-align:right">31,5 ÷ 23,6 = <strong>1,33</strong></td>
+<td class="nm" style="color:var(--gn)">+2,3%</td>
+<td class="nm" style="color:var(--yl)">1,4-1,7</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td><strong>kg MS / Litro de Leite</strong></td>
+<td class="nm" style="text-align:right"><strong>0,63</strong></td>
+<td class="nm" style="text-align:right"><strong>0,61</strong></td>
+<td class="nm" style="color:var(--gn)">−3,2%</td>
+<td class="nm" style="color:var(--gn)">0,58-0,71</td>
+<td>🟢</td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(245,158,11,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--yl)">💰 CUSTO DE ALIMENTAÇÃO POR LITRO</td></tr>
+<tr>
+<td><strong>Custo Ração Total/Dia — Vacas Lactação (9 lotes)</strong></td>
+<td class="nm" style="text-align:right">R$ 28.380</td>
+<td class="nm" style="text-align:right">R$ 26.506</td>
+<td class="nm" style="color:var(--gn)">−6,6%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td></td>
+</tr>
+<tr>
+<td><strong style="color:var(--yl)">Custo Ração / Litro de Leite</strong></td>
+<td class="nm" style="text-align:right;color:var(--yl)"><strong>R$ 0,873</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 0,830</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>−4,9%</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>R$ 0,70-0,90</strong></td>
+<td><strong>🟢</strong></td>
+</tr>
+<tr>
+<td>% Ração na Receita do Leite</td>
+<td class="nm" style="text-align:right">38,6%</td>
+<td class="nm" style="text-align:right;color:var(--gn)">33,2%</td>
+<td class="nm" style="color:var(--gn)">−5,4pp</td>
+<td class="nm" style="color:var(--gn)">30-40%</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">IOFC (Income Over Feed Cost) / Vaca / Dia</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 43,52</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 45,72</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+5,1%</strong></td>
+<td class="nm" style="color:var(--gn)">> R$ 35</td>
+<td><strong>🟢</strong></td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(139,92,246,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--pr)">🏆 CUSTO TOTAL RAÇÃO — TODO REBANHO</td></tr>
+<tr>
+<td>Custo Total Ração/Dia (19 lotes)</td>
+<td class="nm" style="text-align:right">R$ 46.476</td>
+<td class="nm" style="text-align:right">R$ 43.008</td>
+<td class="nm" style="color:var(--gn)">−7,5%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Custo Total Ração/Mês</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 1.440.756</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 1.204.224</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>−16,4%</strong></td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td></td>
+</tr>
+<tr>
+<td>% Ração no COE Total</td>
+<td class="nm" style="text-align:right">83,8%</td>
+<td class="nm" style="text-align:right">74,3%</td>
+<td class="nm" style="color:var(--gn)">−9,5pp</td>
+<td class="nm" style="color:var(--t3)">55-70%</td>
+<td>🟠</td>
+</tr>
+</table>
+
+<!-- VISUAL EFICIÊNCIA -->
+<div style="margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Eficiência Alimentar</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--gn)">1,58-1,64</div>
+<div style="font-size:8px;color:var(--t3)">L leite / kg MS | Top 🟢</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--yl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Custo / Litro</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--yl)">R$ 0,85</div>
+<div style="font-size:8px;color:var(--t3)">Média bimestral | Bench: R$ 0,70-0,90 🟢</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">IOFC / Vaca / Dia</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--gn)">R$ 44,62</div>
+<div style="font-size:8px;color:var(--t3)">Média bim. | Bench: > R$ 35 🟢</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Ração % do COE</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--rd)">79,1%</div>
+<div style="font-size:8px;color:var(--t3)">Média bim. | Bench: 55-70% 🟠</div>
+</div>
+</div>
+
+<!-- COMPARATIVO BENCHMARK -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">📊 Eficiência Alimentar — Brasilanda vs Benchmarks</div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:center">🏠 Brasilanda</th><th style="text-align:center">🇧🇷 Média BR</th><th style="text-align:center">🏅 Top 10% BR</th><th style="text-align:center">🏆 Top Mundial</th><th>Posição</th></tr>
+<tr>
+<td>Efic. Alimentar (L/kg MS)</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>1,58-1,64</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">1,2-1,4</td>
+<td class="nm" style="text-align:center;color:var(--gn)">1,5-1,7</td>
+<td class="nm" style="text-align:center;color:var(--gn)">1,7-2,0</td>
+<td style="text-align:center"><strong>🟢 Top 10%</strong></td>
+</tr>
+<tr>
+<td>CMS Vacas Lact. (kg/dia)</td>
+<td class="nm" style="text-align:center"><strong>24,4</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">16-20</td>
+<td class="nm" style="text-align:center;color:var(--gn)">23-27</td>
+<td class="nm" style="text-align:center;color:var(--gn)">27-32</td>
+<td style="text-align:center">🟢 Top 10%</td>
+</tr>
+<tr>
+<td>Custo Ração/L Leite (R$)</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>R$ 0,85</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">R$ 0,90-1,20</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 0,70-0,90</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 0,55-0,75</td>
+<td style="text-align:center">🟢 Top 10%</td>
+</tr>
+<tr>
+<td>IOFC/Vaca/Dia (R$)</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>R$ 44,62</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">R$ 15-25</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 30-45</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 45-70</td>
+<td style="text-align:center"><strong>🟢 Top 10%</strong></td>
+</tr>
+<tr>
+<td>Ração % do COE</td>
+<td class="nm" style="text-align:center;color:var(--rd)"><strong>79,1%</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">55-65%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">55-65%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">50-60%</td>
+<td style="text-align:center"><strong>🔴 Alto</strong></td>
+</tr>
+<tr>
+<td>Sobras % (MN)</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>5,6%</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">5-10%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">3-5%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">2-4%</td>
+<td style="text-align:center">🟡 Médio</td>
+</tr>
+</table>
+
+<div class="nt" style="background:rgba(6,182,212,.05);border:1px solid rgba(6,182,212,.12);margin-top:14px">
+🔬 <strong>Síntese da Eficiência Alimentar:</strong><br>
+<strong>Paradoxo identificado:</strong> A fazenda tem <strong>eficiência alimentar de Top 10% BR</strong> (1,58-1,64 L/kg MS) e <strong>IOFC excelente</strong> (R$ 44,62/vaca/dia), mas a <strong>ração representa 79% do COE</strong> — muito acima do ideal (55-65%).<br>
+<strong>Interpretação:</strong> Isso significa que os <strong>outros custos operacionais são proporcionalmente baixos</strong> (MO, medicamentos, manutenção), o que é positivo. Porém, a <strong>alta concentração em ração</strong> torna o resultado sensível a flutuações de preço de insumos (milho, soja, silagem).<br>
+<strong>Nota importante:</strong> A eficiência alimentar calculada usando a produção do relatório (31,5-31,7 L ÷ CMS) resulta em 1,30-1,33 — abaixo do benchmark. Usando a produção recalculada (37,9 L/vaca lact./dia), a eficiência é <strong>1,55-1,64 — Top 10%</strong>. Isso reforça a importância de alinhar a métrica de produção/vaca na reunião.
+</div>
+
+<div class="obs obs-b" style="margin-top:14px">
+<div class="obs-t" style="color:var(--bl)">📋 DADO COMPLEMENTAR NECESSÁRIO — PRODUÇÃO POR LOTE</div>
+<div class="obs-x">
+Para calcular a <strong>eficiência alimentar por lote</strong> (L leite/kg MS de cada lote), é necessário o <strong>dado de produção de leite individualizado por lote</strong>. Atualmente, temos apenas a produção total do rebanho.<br><br>
+<strong>🔎 Questionar na reunião:</strong><br>
+• O sistema AfiFarm/Afimilk registra a <strong>produção por lote/grupo</strong>?<br>
+• É possível extrair relatório de <strong>produção diária por lote</strong>?<br>
+• Com esse dado, será possível identificar <strong>quais lotes têm melhor conversão alimentar</strong> e otimizar a formulação por nível de produção.<br><br>
+<strong>Impacto:</strong> Essa informação permite reduzir custo de alimentação em lotes de menor produção (ex: Lote 6 pode estar recebendo dieta mais cara do que o necessário) e otimizar lotes de alta produção.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO D — CUSTO ALIMENTAÇÃO / CAB / DIA — TODOS OS LOTES -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">💰 Bloco D — Custo de Alimentação / Cabeça / Dia — Ranking de Lotes <span class="st-b" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">NUT-D</span></div>
+
+<div class="dg dg2 fi">
+
+<!-- RANKING DE CUSTO -->
+<div class="d" style="border-color:rgba(245,158,11,.25)">
+<div class="dh"><div class="dt">💰 Ranking de Custo/Cab/Dia — Todos os Lotes <span class="db" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">CUSTO</span></div><div class="di">NUT-D1</div></div>
+<div class="cx" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12);color:var(--yl)"><span style="background:rgba(245,158,11,.15)">RANKING</span> Do mais caro ao mais barato — média bimestral (R$/cab/dia)</div>
+
+<!-- BARRA 1 - Lote 3 -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">🥇 Lote 3 — Lact. Alta 3</span><span class="bv" style="color:var(--rd)">R$ 39,73</span></div><div class="bt"><div class="bf" style="width:100%;background:linear-gradient(90deg,rgba(239,68,68,.6),rgba(239,68,68,.3))">R$ 39,73</div></div></div>
+<!-- BARRA 2 - Lote 1 -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--or)">🥈 Lote 1 — Lact. Alta 1</span><span class="bv" style="color:var(--or)">R$ 38,95</span></div><div class="bt"><div class="bf" style="width:98%;background:linear-gradient(90deg,rgba(249,115,22,.6),rgba(249,115,22,.3))">R$ 38,95</div></div></div>
+<!-- BARRA 3 - Lote 2 -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--yl)">🥉 Lote 2 — Lact. Alta 2</span><span class="bv" style="color:var(--yl)">R$ 38,06</span></div><div class="bt"><div class="bf" style="width:96%;background:linear-gradient(90deg,rgba(245,158,11,.5),rgba(245,158,11,.25))">R$ 38,06</div></div></div>
+<!-- BARRA 4 - Lote 5 -->
+<div class="bg"><div class="bl"><span class="bn">Lote 5 — Lact. Média 2</span><span class="bv">R$ 36,50</span></div><div class="bt"><div class="bf" style="width:92%;background:rgba(148,163,184,.3)">R$ 36,50</div></div></div>
+<!-- BARRA 5 - P1 -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pk)">Lote P1 — Primíp. Alta</span><span class="bv">R$ 34,09</span></div><div class="bt"><div class="bf" style="width:86%;background:linear-gradient(90deg,rgba(236,72,153,.4),rgba(236,72,153,.2))">R$ 34,09</div></div></div>
+<!-- BARRA 6 - Carência -->
+<div class="bg"><div class="bl"><span class="bn">Carência</span><span class="bv">R$ 33,11</span></div><div class="bt"><div class="bf" style="width:83%;background:rgba(148,163,184,.25)">R$ 33,11</div></div></div>
+<!-- BARRA 7 - Pós Parto -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--or)">Pós Parto</span><span class="bv">R$ 33,14</span></div><div class="bt"><div class="bf" style="width:83%;background:linear-gradient(90deg,rgba(249,115,22,.4),rgba(249,115,22,.2))">R$ 33,14</div></div></div>
+<!-- BARRA 8 - Lote 4 -->
+<div class="bg"><div class="bl"><span class="bn">Lote 4 — Lact. Média 1</span><span class="bv">R$ 30,79</span></div><div class="bt"><div class="bf" style="width:77%;background:rgba(148,163,184,.25)">R$ 30,79</div></div></div>
+<!-- BARRA 9 - P2 -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pk)">Lote P2 — Primíp. Média</span><span class="bv">R$ 28,09</span></div><div class="bt"><div class="bf" style="width:71%;background:linear-gradient(90deg,rgba(236,72,153,.3),rgba(236,72,153,.15))">R$ 28,09</div></div></div>
+<!-- BARRA 10 - Lote 6 -->
+<div class="bg"><div class="bl"><span class="bn">Lote 6 — Lact. Baixa</span><span class="bv">R$ 26,95</span></div><div class="bt"><div class="bf" style="width:68%;background:rgba(148,163,184,.2)">R$ 26,95</div></div></div>
+<!-- BARRA 11 - P3 -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pk)">Lote P3 — Primíp. Baixa</span><span class="bv">R$ 26,90</span></div><div class="bt"><div class="bf" style="width:68%;background:linear-gradient(90deg,rgba(236,72,153,.3),rgba(236,72,153,.15))">R$ 26,90</div></div></div>
+<!-- BARRA 12 - Mastite -->
+<div class="bg"><div class="bl"><span class="bn">Mastite (7 cab.)</span><span class="bv">R$ 23,85</span></div><div class="bt"><div class="bf" style="width:60%;background:rgba(148,163,184,.2)">R$ 23,85</div></div></div>
+<!-- BARRA 13 - Vaca Seca -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Vaca Seca</span><span class="bv" style="color:var(--gn)">R$ 12,20</span></div><div class="bt"><div class="bf" style="width:31%;background:var(--gGn)">R$ 12,20</div></div></div>
+<!-- BARRA 14 - Recria R1-R9 -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pr)">Recria R1-R9</span><span class="bv">R$ 11,62</span></div><div class="bt"><div class="bf" style="width:29%;background:var(--gPr)">R$ 11,62</div></div></div>
+<!-- BARRA 15 - Nov. Prenha -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pr)">Novilha Prenha</span><span class="bv">R$ 10,00</span></div><div class="bt"><div class="bf" style="width:25%;background:var(--gPr)">R$ 10,00</div></div></div>
+<!-- BARRA 16 - Pré Parto -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--yl)">Pré Parto</span><span class="bv">R$ 5,25</span></div><div class="bt"><div class="bf" style="width:13%;background:var(--gYl)">R$ 5,25</div></div></div>
+<!-- BARRA 17 - R9-IA -->
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pr)">Recria R9-IA</span><span class="bv">R$ 2,82</span></div><div class="bt"><div class="bf" style="width:7%;background:var(--gPr)">R$ 2,82</div></div></div>
+
+<div class="nt" style="background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1)">
+💡 <strong>Nota:</strong> Lote 3 é o mais caro (R$ 39,73/cab/dia) mas também um dos que mais consome MS (26,2 kg). O spread entre o lote mais caro (Lote 3) e o mais barato em lactação (Lote 6: R$ 26,95) é de <strong>R$ 12,78/cab/dia</strong> — coerente com diferença de nível de produção e formulação de dieta.
+</div>
+</div>
+
+<!-- CUSTO TOTAL POR CATEGORIA -->
+<div class="d" style="border-color:rgba(139,92,246,.25)">
+<div class="dh"><div class="dt">📊 Custo Total Diário por Categoria — Onde Vai o Dinheiro <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">DESTINO</span></div><div class="di">NUT-D2</div></div>
+
+<table class="mt">
+<tr><th>Categoria</th><th style="text-align:right">Cab.</th><th style="text-align:right">R$/Cab/Dia</th><th style="text-align:right">R$ Total/Dia</th><th style="text-align:right">R$ Total/Mês*</th><th>% do Total</th></tr>
+
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong style="color:var(--gn)">🥛 Lactação (6 lotes)</strong></td>
+<td class="nm" style="text-align:right"><strong>526</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 33,52</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 17.632</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 521.907</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>39,3%</strong></td>
+</tr>
+<tr style="background:rgba(236,72,153,.03)">
+<td><strong style="color:var(--pk)">🐄 Primíparas (3 lotes)</strong></td>
+<td class="nm" style="text-align:right"><strong>256</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 29,69</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 7.601</strong></td>
+<td class="nm" style="text-align:right;color:var(--pk)"><strong>R$ 224.868</strong></td>
+<td class="nm" style="color:var(--pk)"><strong>16,9%</strong></td>
+</tr>
+<tr style="background:rgba(245,158,11,.03)">
+<td><strong style="color:var(--yl)">⚡ Transição (Pré+Pós)</strong></td>
+<td class="nm" style="text-align:right"><strong>130</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 19,20</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 2.495</strong></td>
+<td class="nm" style="text-align:right;color:var(--yl)"><strong>R$ 73.844</strong></td>
+<td class="nm"><strong>5,6%</strong></td>
+</tr>
+<tr>
+<td>🔒 Secas</td>
+<td class="nm" style="text-align:right">85</td>
+<td class="nm" style="text-align:right">R$ 12,20</td>
+<td class="nm" style="text-align:right">R$ 1.037</td>
+<td class="nm" style="text-align:right">R$ 30.680</td>
+<td class="nm">2,3%</td>
+</tr>
+<tr>
+<td>🏥 Saúde (Mastite+Carência)</td>
+<td class="nm" style="text-align:right">21</td>
+<td class="nm" style="text-align:right">R$ 28,48</td>
+<td class="nm" style="text-align:right">R$ 598</td>
+<td class="nm" style="text-align:right">R$ 17.690</td>
+<td class="nm">1,3%</td>
+</tr>
+<tr style="background:rgba(139,92,246,.03)">
+<td><strong style="color:var(--pr)">🌱 Recria Total (3 categorias)</strong></td>
+<td class="nm" style="text-align:right"><strong>766</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 8,28</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 6.342</strong></td>
+<td class="nm" style="text-align:right;color:var(--pr)"><strong>R$ 187.682</strong></td>
+<td class="nm" style="color:var(--pr)"><strong>14,1%</strong></td>
+</tr>
+<tr>
+<td style="color:var(--t3)">Engorda + Vacas Corte</td>
+<td class="nm" style="text-align:right;color:var(--t3)">60</td>
+<td class="nm" style="text-align:right;color:var(--t3)">R$ 0,49</td>
+<td class="nm" style="text-align:right;color:var(--t3)">R$ 29</td>
+<td class="nm" style="text-align:right;color:var(--t3)">R$ 868</td>
+<td class="nm" style="color:var(--t3)">0,1%</td>
+</tr>
+
+<tr style="background:rgba(59,130,246,.06)"><td colspan="6" style="height:2px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(59,130,246,.04)">
+<td><strong>TOTAL REBANHO</strong></td>
+<td class="nm" style="text-align:right"><strong>~1.844</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 19,37</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 35.734</strong></td>
+<td class="nm" style="text-align:right;color:var(--bl)"><strong>R$ 1.057.539</strong></td>
+<td class="nm"><strong>100%</strong></td>
+</tr>
+</table>
+
+<div style="font-size:7px;color:var(--t3);margin-top:6px">* Mês estimado = média diária × 29,5 dias (média Jan 31d + Fev 28d). Cabeças = média ponderada bimestral.</div>
+
+<!-- VISUAL PIZZA -->
+<div style="margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:6px">
+<div style="font-size:9px;color:var(--t3);margin-bottom:4px">DISTRIBUIÇÃO DO CUSTO DE ALIMENTAÇÃO POR CATEGORIA</div>
+<div style="width:100%;padding:8px;background:rgba(16,185,129,.12);border-radius:6px;text-align:center;font-size:10px;font-weight:700;color:var(--gn)">🥛 Lactação: R$ 522k/mês (39,3%) — 526 cabeças</div>
+<div style="width:72%;padding:6px;background:rgba(236,72,153,.08);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--pk)">🐄 Primíparas: R$ 225k/mês (16,9%) — 256 cabeças</div>
+<div style="width:62%;padding:6px;background:rgba(139,92,246,.08);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--pr)">🌱 Recria: R$ 188k/mês (14,1%) — 766 cabeças (maior grupo)</div>
+<div style="width:50%;padding:6px;background:rgba(245,158,11,.08);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--yl)">⚡ Transição: R$ 74k (5,6%) | 🔒 Secas: R$ 31k (2,3%) | 🏥 Saúde: R$ 18k (1,3%)</div>
+</div>
+
+<div class="nt" style="background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.1);margin-top:14px">
+🔬 <strong>Leitura da Distribuição de Custos:</strong><br>
+<strong>56,2% do custo de alimentação</strong> vai para vacas em lactação (lactação + primíparas) = <strong>R$ 747k/mês</strong> que gera receita direta de leite.<br>
+<strong>14,1% vai para recria</strong> (766 cabeças) = investimento em reposição futura — coerente com a necessidade de repor rebanho.<br>
+<strong>5,6% na transição</strong> (Pré+Pós Parto) = baixo investimento relativo, mas <strong>é o período mais crítico</strong>. Se as vacas de transição estão com CMS em queda e 17-19% de sobras, pode valer investigar se a dieta está adequada ou se é necessário ajustar formulação.<br>
+<strong>Ponto de atenção:</strong> 766 animais de recria consomem R$ 188k/mês — validar se o custo está alinhado com a taxa de crescimento e idade ao 1º parto.
+</div>
+</div>
+
+</div>
+
+<!-- CUSTO JAN vs FEV DETALHADO -->
+<div class="d fi" style="border-color:rgba(59,130,246,.25);margin-top:20px">
+<div class="dh"><div class="dt">📈 Custo de Alimentação / Cab / Dia — Jan vs Fev — Todos os Lotes <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">COMPARATIVO</span></div><div class="di">NUT-D3</div></div>
+
+<table class="mt">
+<tr><th>Lote</th><th style="text-align:right">Jan (R$/cab/dia)</th><th style="text-align:right">Fev (R$/cab/dia)</th><th>Var. %</th><th style="text-align:right">Jan (R$ total/dia)</th><th style="text-align:right">Fev (R$ total/dia)</th><th>Var. %</th><th>Observação</th></tr>
+
+<tr style="background:rgba(16,185,129,.03)"><td colspan="8" style="font-size:9px;font-weight:800;color:var(--gn)">🥛 LACTAÇÃO</td></tr>
+<tr><td><strong>Lote 1</strong></td><td class="nm" style="text-align:right">39,02</td><td class="nm" style="text-align:right">38,88</td><td class="nm" style="color:var(--gn)">−0,4%</td><td class="nm" style="text-align:right">3.787</td><td class="nm" style="text-align:right">3.792</td><td class="nm" style="color:var(--gn)">+0,1%</td><td style="font-size:8px;color:var(--t3)">Estável ✅</td></tr>
+<tr><td><strong>Lote 2</strong></td><td class="nm" style="text-align:right">37,77</td><td class="nm" style="text-align:right">38,35</td><td class="nm" style="color:var(--rd)">+1,5%</td><td class="nm" style="text-align:right">3.696</td><td class="nm" style="text-align:right">3.609</td><td class="nm" style="color:var(--gn)">−2,4%</td><td style="font-size:8px;color:var(--t3)">Custo/cab subiu leve</td></tr>
+<tr><td><strong>Lote 3</strong></td><td class="nm" style="text-align:right">39,71</td><td class="nm" style="text-align:right">39,75</td><td class="nm">+0,1%</td><td class="nm" style="text-align:right">3.838</td><td class="nm" style="text-align:right">3.773</td><td class="nm" style="color:var(--gn)">−1,7%</td><td style="font-size:8px;color:var(--rd)">Mais caro/cab ⚠️</td></tr>
+<tr><td><strong>Lote 4</strong></td><td class="nm" style="text-align:right">30,41</td><td class="nm" style="text-align:right">31,16</td><td class="nm" style="color:var(--rd)">+2,5%</td><td class="nm" style="text-align:right">2.662</td><td class="nm" style="text-align:right">2.738</td><td class="nm" style="color:var(--rd)">+2,9%</td><td style="font-size:8px;color:var(--t3)">Aumento moderado</td></tr>
+<tr><td><strong>Lote 5</strong></td><td class="nm" style="text-align:right">36,04</td><td class="nm" style="text-align:right">36,96</td><td class="nm" style="color:var(--rd)">+2,6%</td><td class="nm" style="text-align:right">2.795</td><td class="nm" style="text-align:right">2.696</td><td class="nm" style="color:var(--gn)">−3,5%</td><td style="font-size:8px;color:var(--t3)">Menos cab. compensou</td></tr>
+<tr><td><strong>Lote 6</strong></td><td class="nm" style="text-align:right">27,59</td><td class="nm" style="text-align:right">26,31</td><td class="nm" style="color:var(--gn)">−4,6%</td><td class="nm" style="text-align:right">1.931</td><td class="nm" style="text-align:right">1.965</td><td class="nm" style="color:var(--rd)">+1,8%</td><td style="font-size:8px;color:var(--gn)">Custo/cab caiu ✅</td></tr>
+
+<tr style="background:rgba(236,72,153,.03)"><td colspan="8" style="font-size:9px;font-weight:800;color:var(--pk)">🐄 PRIMÍPARAS</td></tr>
+<tr><td><strong>P1</strong></td><td class="nm" style="text-align:right">33,86</td><td class="nm" style="text-align:right">34,31</td><td class="nm" style="color:var(--rd)">+1,3%</td><td class="nm" style="text-align:right">3.221</td><td class="nm" style="text-align:right">3.296</td><td class="nm" style="color:var(--rd)">+2,3%</td><td style="font-size:8px;color:var(--t3)">Leve aumento</td></tr>
+<tr><td><strong>P2</strong></td><td class="nm" style="text-align:right">27,99</td><td class="nm" style="text-align:right">28,18</td><td class="nm" style="color:var(--rd)">+0,7%</td><td class="nm" style="text-align:right">2.571</td><td class="nm" style="text-align:right">2.353</td><td class="nm" style="color:var(--gn)">−8,5%</td><td style="font-size:8px;color:var(--gn)">Menos cab. ✅</td></tr>
+<tr><td><strong>P3</strong></td><td class="nm" style="text-align:right">28,23</td><td class="nm" style="text-align:right">25,56</td><td class="nm" style="color:var(--gn)">−9,5%</td><td class="nm" style="text-align:right">2.076</td><td class="nm" style="text-align:right">1.801</td><td class="nm" style="color:var(--gn)">−13,2%</td><td style="font-size:8px;color:var(--gn)">Queda relevante</td></tr>
+
+<tr style="background:rgba(245,158,11,.03)"><td colspan="8" style="font-size:9px;font-weight:800;color:var(--yl)">⚡ TRANSIÇÃO + SUPORTE</td></tr>
+<tr><td><strong>Pré Parto</strong></td><td class="nm" style="text-align:right">5,44</td><td class="nm" style="text-align:right">5,06</td><td class="nm" style="color:var(--gn)">−7,0%</td><td class="nm" style="text-align:right">428</td><td class="nm" style="text-align:right">436</td><td class="nm" style="color:var(--rd)">+1,9%</td><td style="font-size:8px;color:var(--rd)">Custo baixo demais?</td></tr>
+<tr><td><strong>Pós Parto</strong></td><td class="nm" style="text-align:right">34,53</td><td class="nm" style="text-align:right">31,74</td><td class="nm" style="color:var(--gn)">−8,1%</td><td class="nm" style="text-align:right">1.675</td><td class="nm" style="text-align:right">1.445</td><td class="nm" style="color:var(--gn)">−13,7%</td><td style="font-size:8px;color:var(--rd)">Caiu porque come menos ⚠️</td></tr>
+<tr><td><strong>Vaca Seca</strong></td><td class="nm" style="text-align:right">11,68</td><td class="nm" style="text-align:right">12,72</td><td class="nm" style="color:var(--rd)">+8,9%</td><td class="nm" style="text-align:right">932</td><td class="nm" style="text-align:right">1.146</td><td class="nm" style="color:var(--rd)">+23,0%</td><td style="font-size:8px;color:var(--yl)">Mais secas em Fev</td></tr>
+
+<tr style="background:rgba(139,92,246,.03)"><td colspan="8" style="font-size:9px;font-weight:800;color:var(--pr)">🌱 RECRIA</td></tr>
+<tr><td><strong>R1-R9</strong></td><td class="nm" style="text-align:right">12,25</td><td class="nm" style="text-align:right">10,98</td><td class="nm" style="color:var(--gn)">−10,4%</td><td class="nm" style="text-align:right">3.603</td><td class="nm" style="text-align:right">3.551</td><td class="nm" style="color:var(--gn)">−1,4%</td><td style="font-size:8px;color:var(--gn)">Economia ✅</td></tr>
+<tr><td><strong>Nov. Prenha</strong></td><td class="nm" style="text-align:right">10,11</td><td class="nm" style="text-align:right">9,89</td><td class="nm" style="color:var(--gn)">−2,2%</td><td class="nm" style="text-align:right">1.742</td><td class="nm" style="text-align:right">1.702</td><td class="nm" style="color:var(--gn)">−2,3%</td><td style="font-size:8px;color:var(--gn)">Estável ✅</td></tr>
+<tr><td><strong>R9-IA</strong></td><td class="nm" style="text-align:right">3,82</td><td class="nm" style="text-align:right">1,81</td><td class="nm" style="color:var(--gn)">−52,6%</td><td class="nm" style="text-align:right">1.109</td><td class="nm" style="text-align:right">508</td><td class="nm" style="color:var(--gn)">−54,2%</td><td style="font-size:8px;color:var(--rd)">Queda drástica ⚠️</td></tr>
+
+<tr style="background:rgba(59,130,246,.06)"><td colspan="8" style="height:2px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(59,130,246,.04)">
+<td><strong>TOTAL FAZENDA</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 20,90</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 19,69</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>−5,8%</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 38.386</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 36.413</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>−5,1%</strong></td>
+<td></td>
+</tr>
+</table>
+
+<div class="obs" style="margin-top:14px">
+<div class="obs-t">⚠️ OBSERVAÇÕES SOBRE CUSTOS</div>
+<div class="obs-x">
+<strong>1) Custo do Pré Parto: R$ 5,06-5,44/cab/dia</strong> — Parece extremamente baixo. Se a dieta aniônica está incluída (necessária para prevenir hipocalcemia), o custo geralmente é R$ 8-15/cab/dia. Se não está incluída, pode explicar problemas metabólicos no pós-parto.<br>
+<strong>2) Pós Parto caiu 8,1% em custo/cab:</strong> Isso NÃO é economia — é que as vacas estão <strong>comendo menos</strong> (CMS caiu 8,7%). Custo menor por vaca doente não é eficiência.<br>
+<strong>3) R9-IA caiu 52,6%:</strong> 290 novilhas gastando metade do que gastavam em Jan. Pode ser mudança para pasto puro (não contabilizado) ou erro de lançamento.<br>
+<strong>4) Custo total caiu 5,1% em Fev:</strong> Parcialmente explicado por 3 dias a menos (28 vs 31) e parcialmente por <strong>menos animais em lactação</strong>.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO E — MAPA DE SOBRAS (DESPERDÍCIO) -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🗑️ Bloco E — Mapa de Sobras (% MN) — Desperdício e Manejo <span class="st-b" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">NUT-E</span></div>
+
+<div class="d fi" style="border-color:rgba(239,68,68,.25)">
+<div class="dh"><div class="dt">🗑️ Sobras % MN — Mapa de Calor por Lote (Jan vs Fev) <span class="db" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">SOBRAS</span></div><div class="di">NUT-E1</div></div>
+<div class="cx" style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);color:var(--rd)"><span style="background:rgba(239,68,68,.15)">DESPERDÍCIO</span> Sobras ideais: 3-5%. Acima de 5% = desperdício. Acima de 10% = problema de manejo ou saúde. Zero = possível restrição.</div>
+
+<!-- MAPA DE CALOR -->
+<div style="overflow-x:auto">
+<table class="mt">
+<tr>
+<th rowspan="2">Lote</th>
+<th colspan="2" style="text-align:center;border-bottom:1px solid rgba(239,68,68,.2);color:var(--rd)">Sobras % MN</th>
+<th rowspan="2">Var.</th>
+<th rowspan="2">Tendência</th>
+<th colspan="2" style="text-align:center;border-bottom:1px solid rgba(245,158,11,.2);color:var(--yl)">Sobras kg MN/dia</th>
+<th colspan="2" style="text-align:center;border-bottom:1px solid rgba(139,92,246,.2);color:var(--pr)">Custo Desperdício Est. R$/dia</th>
+<th rowspan="2">Benchmark</th>
+<th rowspan="2">Status</th>
+</tr>
+<tr>
+<th style="text-align:right;color:var(--rd)">Jan</th><th style="text-align:right;color:var(--rd)">Fev</th>
+<th style="text-align:right;color:var(--yl)">Jan</th><th style="text-align:right;color:var(--yl)">Fev</th>
+<th style="text-align:right;color:var(--pr)">Jan</th><th style="text-align:right;color:var(--pr)">Fev</th>
+</tr>
+
+<!-- ZONA CRÍTICA -->
+<tr style="background:rgba(239,68,68,.06)">
+<td><strong style="color:var(--rd)">Pós Parto</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>13,4%</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>19,0%</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>+5,6pp ↑</strong></td>
+<td style="color:var(--rd);font-size:10px"><strong>📈 Piorando</strong></td>
+<td class="nm" style="text-align:right">317</td><td class="nm" style="text-align:right;color:var(--rd)">376</td>
+<td class="nm" style="text-align:right">R$ 217</td><td class="nm" style="text-align:right;color:var(--rd)">R$ 257</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td><strong>🔴</strong></td>
+</tr>
+<tr style="background:rgba(239,68,68,.05)">
+<td><strong style="color:var(--rd)">Pré Parto</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>17,3%</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>17,1%</strong></td>
+<td class="nm">−0,2pp</td>
+<td style="font-size:10px">→ Estável alto</td>
+<td class="nm" style="text-align:right">413</td><td class="nm" style="text-align:right">402</td>
+<td class="nm" style="text-align:right">R$ 36</td><td class="nm" style="text-align:right">R$ 35</td>
+<td class="nm" style="color:var(--gn)">5-8%</td>
+<td><strong>🔴</strong></td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td><strong style="color:var(--rd)">Lote 3 — Alta 3</strong></td>
+<td class="nm" style="text-align:right">5,2%</td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>14,1%</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>+8,9pp ↑</strong></td>
+<td style="color:var(--rd);font-size:10px"><strong>📈 Disparou</strong></td>
+<td class="nm" style="text-align:right">256</td><td class="nm" style="text-align:right;color:var(--rd)">743</td>
+<td class="nm" style="text-align:right">R$ 164</td><td class="nm" style="text-align:right;color:var(--rd)">R$ 476</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td><strong>🔴</strong></td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td><strong style="color:var(--rd)">Carência</strong></td>
+<td class="nm" style="text-align:right">5,9%</td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>14,8%</strong></td>
+<td class="nm" style="color:var(--rd)">+8,9pp ↑</td>
+<td style="color:var(--rd);font-size:10px">📈 Piorando</td>
+<td class="nm" style="text-align:right">40</td><td class="nm" style="text-align:right">106</td>
+<td class="nm" style="text-align:right">R$ 27</td><td class="nm" style="text-align:right;color:var(--rd)">R$ 72</td>
+<td class="nm" style="color:var(--gn)">5-8%</td>
+<td>🟠</td>
+</tr>
+<tr style="background:rgba(239,68,68,.03)">
+<td><strong style="color:var(--rd)">Lote 4 — Média 1</strong></td>
+<td class="nm" style="text-align:right">7,0%</td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>12,1%</strong></td>
+<td class="nm" style="color:var(--rd)">+5,1pp ↑</td>
+<td style="color:var(--rd);font-size:10px">📈 Piorando</td>
+<td class="nm" style="text-align:right">286</td><td class="nm" style="text-align:right;color:var(--rd)">547</td>
+<td class="nm" style="text-align:right">R$ 125</td><td class="nm" style="text-align:right;color:var(--rd)">R$ 240</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🔴</td>
+</tr>
+
+<!-- ZONA AMARELA -->
+<tr style="background:rgba(245,158,11,.03)"><td colspan="11" style="font-size:8px;font-weight:700;color:var(--yl)">⚠️ ZONA DE ATENÇÃO (5-10%)</td></tr>
+<tr>
+<td style="color:var(--yl)">Lote 1 — Alta 1</td>
+<td class="nm" style="text-align:right;color:var(--yl)">10,9%</td>
+<td class="nm" style="text-align:right;color:var(--rd)">11,9%</td>
+<td class="nm" style="color:var(--rd)">+1,0pp</td>
+<td style="font-size:10px">→ Alto estável</td>
+<td class="nm" style="text-align:right">589</td><td class="nm" style="text-align:right">664</td>
+<td class="nm" style="text-align:right">R$ 236</td><td class="nm" style="text-align:right">R$ 265</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟠</td>
+</tr>
+<tr>
+<td style="color:var(--yl)">Lote P1 — Primíp. Alta</td>
+<td class="nm" style="text-align:right">5,5%</td>
+<td class="nm" style="text-align:right;color:var(--rd)">10,9%</td>
+<td class="nm" style="color:var(--rd)">+5,4pp ↑</td>
+<td style="color:var(--rd);font-size:10px">📈 Subiu forte</td>
+<td class="nm" style="text-align:right">222</td><td class="nm" style="text-align:right">487</td>
+<td class="nm" style="text-align:right">R$ 108</td><td class="nm" style="text-align:right;color:var(--rd)">R$ 238</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟠</td>
+</tr>
+<tr>
+<td>Lote P2 — Primíp. Média</td>
+<td class="nm" style="text-align:right">4,7%</td>
+<td class="nm" style="text-align:right;color:var(--yl)">8,4%</td>
+<td class="nm" style="color:var(--rd)">+3,7pp</td>
+<td style="font-size:10px">↗ Subindo</td>
+<td class="nm" style="text-align:right">187</td><td class="nm" style="text-align:right">319</td>
+<td class="nm" style="text-align:right">R$ 64</td><td class="nm" style="text-align:right">R$ 109</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>Lote 2 — Alta 2</td>
+<td class="nm" style="text-align:right">6,8%</td>
+<td class="nm" style="text-align:right;color:var(--yl)">8,5%</td>
+<td class="nm" style="color:var(--rd)">+1,7pp</td>
+<td style="font-size:10px">↗ Subindo</td>
+<td class="nm" style="text-align:right">349</td><td class="nm" style="text-align:right">433</td>
+<td class="nm" style="text-align:right">R$ 135</td><td class="nm" style="text-align:right">R$ 167</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>Lote 5 — Média 2</td>
+<td class="nm" style="text-align:right;color:var(--gn)">4,9%</td>
+<td class="nm" style="text-align:right;color:var(--yl)">8,0%</td>
+<td class="nm" style="color:var(--rd)">+3,1pp</td>
+<td style="font-size:10px">↗ Subindo</td>
+<td class="nm" style="text-align:right">168</td><td class="nm" style="text-align:right">277</td>
+<td class="nm" style="text-align:right">R$ 88</td><td class="nm" style="text-align:right">R$ 146</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟡</td>
+</tr>
+
+<!-- ZONA VERDE -->
+<tr style="background:rgba(16,185,129,.03)"><td colspan="11" style="font-size:8px;font-weight:700;color:var(--gn)">✅ ZONA ADEQUADA (0-5%)</td></tr>
+<tr>
+<td style="color:var(--gn)">Lote P3 — Primíp. Baixa</td>
+<td class="nm" style="text-align:right;color:var(--rd)">14,0%*</td>
+<td class="nm" style="text-align:right;color:var(--gn)">6,5%</td>
+<td class="nm" style="color:var(--gn)">−7,5pp ↓</td>
+<td style="color:var(--gn);font-size:10px">📉 Melhorou</td>
+<td class="nm" style="text-align:right">467</td><td class="nm" style="text-align:right">196</td>
+<td class="nm" style="text-align:right">R$ 178</td><td class="nm" style="text-align:right;color:var(--gn)">R$ 75</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td style="color:var(--gn)">Lote 6 — Lact. Baixa</td>
+<td class="nm" style="text-align:right;color:var(--yl)">8,8%</td>
+<td class="nm" style="text-align:right;color:var(--gn)">6,3%</td>
+<td class="nm" style="color:var(--gn)">−2,5pp ↓</td>
+<td style="color:var(--gn);font-size:10px">📉 Melhorou</td>
+<td class="nm" style="text-align:right">277</td><td class="nm" style="text-align:right">209</td>
+<td class="nm" style="text-align:right">R$ 104</td><td class="nm" style="text-align:right;color:var(--gn)">R$ 78</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td style="color:var(--gn)">Vaca Seca</td>
+<td class="nm" style="text-align:right;color:var(--gn)">3,4%</td>
+<td class="nm" style="text-align:right;color:var(--gn)">4,4%</td>
+<td class="nm">+1,0pp</td>
+<td style="font-size:10px">→ Adequado</td>
+<td class="nm" style="text-align:right">109</td><td class="nm" style="text-align:right">165</td>
+<td class="nm" style="text-align:right">R$ 14</td><td class="nm" style="text-align:right">R$ 22</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td style="color:var(--gn)">Recria (3 categorias)</td>
+<td class="nm" style="text-align:right;color:var(--gn)">0,0-0,2%</td>
+<td class="nm" style="text-align:right;color:var(--gn)">0,0%</td>
+<td class="nm">—</td>
+<td style="font-size:10px">→ Zero sobras</td>
+<td class="nm" style="text-align:right">~10</td><td class="nm" style="text-align:right">0</td>
+<td class="nm" style="text-align:right">R$ 1</td><td class="nm" style="text-align:right">R$ 0</td>
+<td class="nm" style="color:var(--gn)">3-5%</td>
+<td>🟢</td>
+</tr>
+</table>
+</div>
+
+<div style="font-size:7px;color:var(--t3);margin-top:6px">* P3 Jan = média influenciada por outlier (67,1 kg no dia 10/01). Custo do desperdício estimado = sobras kg MN × custo proporcional/kg MN do lote. Mastite excluída por n muito pequeno (7 cabeças) e valor anômalo.</div>
+
+<!-- CUSTO TOTAL DO DESPERDÍCIO -->
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px">
+<div style="text-align:center;padding:16px;background:rgba(239,68,68,.06);border:2px solid rgba(239,68,68,.2);border-radius:12px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Custo Total Sobras/Dia (Janeiro)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--rd)">~R$ 1.541</div>
+<div style="font-size:8px;color:var(--t3)">Projeção mensal: R$ 47.771</div>
+</div>
+<div style="text-align:center;padding:16px;background:rgba(239,68,68,.08);border:2px solid rgba(239,68,68,.2);border-radius:12px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Custo Total Sobras/Dia (Fevereiro)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--rd)">~R$ 2.350</div>
+<div style="font-size:8px;color:var(--t3)">Projeção mensal: R$ 65.800</div>
+</div>
+<div style="text-align:center;padding:16px;background:rgba(239,68,68,.06);border:2px solid rgba(239,68,68,.2);border-radius:12px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Projeção Anual de Desperdício</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--rd)">~R$ 681k</div>
+<div style="font-size:8px;color:var(--t3)">Média R$ 1.946/dia × 350 dias</div>
+</div>
+</div>
+
+<!-- ANÁLISE DE TENDÊNCIA -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">📈 Tendência: Janeiro → Fevereiro — O Desperdício Está Subindo</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div style="padding:16px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:11px;font-weight:700;color:var(--gn);margin-bottom:10px">🟢 Lotes que Melhoraram (Sobras ↓)</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.8">
+✅ <strong>Lote P3:</strong> 14,0% → 6,5% (−7,5pp) — Grande melhoria<br>
+✅ <strong>Lote 6:</strong> 8,8% → 6,3% (−2,5pp) — Bom progresso<br>
+✅ <strong>Pré Parto:</strong> 17,3% → 17,1% (−0,2pp) — Estável (mas alto)<br>
+<br>
+<strong>Ação:</strong> Replicar o que foi feito nos Lotes P3 e 6 para os demais.
+</div>
+</div>
+<div style="padding:16px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px">
+<div style="font-size:11px;font-weight:700;color:var(--rd);margin-bottom:10px">🔴 Lotes que Pioraram (Sobras ↑)</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.8">
+⚠️ <strong>Lote 3:</strong> 5,2% → 14,1% (+8,9pp) — <strong>Disparou 🚨</strong><br>
+⚠️ <strong>Lote P1:</strong> 5,5% → 10,9% (+5,4pp) — Dobrou<br>
+⚠️ <strong>Pós Parto:</strong> 13,4% → 19,0% (+5,6pp) — <strong>Crítico 🚨</strong><br>
+⚠️ <strong>Lote 4:</strong> 7,0% → 12,1% (+5,1pp) — Quase dobrou<br>
+⚠️ <strong>Lote P2:</strong> 4,7% → 8,4% (+3,7pp)<br>
+⚠️ <strong>Lote 5:</strong> 4,9% → 8,0% (+3,1pp)<br>
+<br>
+<strong>Padrão:</strong> Sobras subiram em <strong>quase todos os lotes de lactação e primíparas</strong> em Fev. Pode indicar mudança de silagem, calor, ou formulação.
+</div>
+</div>
+</div>
+
+<!-- ANOMALIA JAN 25-29 -->
+<div class="obs obs-r" style="margin-top:14px">
+<div class="obs-t">🔍 ANOMALIA — Sobras Zero em 25-29/Jan em Todos os Lotes</div>
+<div class="obs-x">
+De 25 a 29 de Janeiro, <strong>todos os 19 lotes registraram zero de sobras</strong> — durante 5 dias consecutivos. Isso é <strong>altamente improvável</strong> numa operação real. Possíveis explicações:<br>
+• <strong>Não houve pesagem de sobras</strong> nesse período (fim de semana / falta de pessoal?)<br>
+• O sistema registrou zero por <strong>default</strong> quando não há lançamento<br>
+• Houve algum <strong>evento</strong> (chuva, problema operacional) que impediu a coleta<br><br>
+<strong>Impacto:</strong> Os 5 dias de sobras zero em Janeiro <strong>subestimam a média real de sobras</strong>. Se corrigirmos para a média dos outros dias, as sobras de Janeiro seriam ~1,5-2pp maiores em cada lote.<br>
+<strong>🔎 Confirmar na reunião:</strong> Qual o protocolo de pesagem de sobras? É diário? Quem é responsável?
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO F — TRANSIÇÃO PRÉ/PÓS-PARTO + VARIABILIDADE + HORÁRIO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">⚡ Bloco F — Transição Pré/Pós-Parto + Variabilidade + Horário de Alimentação <span class="st-b" style="background:rgba(249,115,22,.15);color:var(--or);border:1px solid rgba(249,115,22,.3)">NUT-F</span></div>
+
+<div class="dg dg2 fi">
+
+<!-- TRANSIÇÃO DETALHADA -->
+<div class="d" style="border-color:rgba(249,115,22,.25)">
+<div class="dh"><div class="dt">⚡ Transição Pré/Pós-Parto — Análise Crítica <span class="db" style="background:rgba(249,115,22,.15);color:var(--or);border:1px solid rgba(249,115,22,.3)">TRANSIÇÃO</span></div><div class="di">NUT-F1</div></div>
+<div class="cx" style="background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:var(--or)"><span style="background:rgba(249,115,22,.15)">CRÍTICO</span> O período de transição (−21 a +21 dias do parto) é o mais importante da vida produtiva da vaca</div>
+
+<!-- PRÉ PARTO -->
+<div style="font-size:12px;font-weight:800;color:var(--yl);margin-bottom:10px">🔒 Pré Parto (−21 dias do parto)</div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th>Benchmark</th><th>Status</th></tr>
+<tr><td>Média de Cabeças</td><td class="nm" style="text-align:right">79</td><td class="nm" style="text-align:right">87</td><td class="nm" style="color:var(--t3)">—</td><td></td></tr>
+<tr><td><strong>CMS (kg/cab/dia)</strong></td><td class="nm" style="text-align:right"><strong>10,7</strong></td><td class="nm" style="text-align:right"><strong>10,3</strong></td><td class="nm" style="color:var(--gn)"><strong>10-13</strong></td><td>🟡 Limítrofe</td></tr>
+<tr><td>CMN (kg/cab/dia)</td><td class="nm" style="text-align:right">25,5</td><td class="nm" style="text-align:right">24,6</td><td class="nm" style="color:var(--t3)">—</td><td></td></tr>
+<tr><td><strong>Sobras % MN</strong></td><td class="nm" style="text-align:right;color:var(--rd)"><strong>17,3%</strong></td><td class="nm" style="text-align:right;color:var(--rd)"><strong>17,1%</strong></td><td class="nm" style="color:var(--gn)"><strong>5-8%</strong></td><td><strong>🔴</strong></td></tr>
+<tr><td>Custo/Cab/Dia</td><td class="nm" style="text-align:right">R$ 5,44</td><td class="nm" style="text-align:right">R$ 5,06</td><td class="nm" style="color:var(--t3)">R$ 8-15</td><td>🟠 Baixo</td></tr>
+<tr><td>Desvio Padrão CMS</td><td class="nm" style="text-align:right">±1,0 kg</td><td class="nm" style="text-align:right">±2,1 kg</td><td class="nm" style="color:var(--t3)">< ±1,5</td><td>🟠</td></tr>
+<tr><td>CMS Min-Max</td><td class="nm" style="text-align:right">8,7-12,6</td><td class="nm" style="text-align:right">2,1-15,2</td><td class="nm" style="color:var(--t3)">—</td><td>🔴 Variável</td></tr>
+</table>
+
+<div style="height:1px;background:var(--bdr);margin:14px 0"></div>
+
+<!-- PÓS PARTO -->
+<div style="font-size:12px;font-weight:800;color:var(--or);margin-bottom:10px">🔥 Pós Parto (Fresh Cows)</div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th>Benchmark</th><th>Status</th></tr>
+<tr><td>Média de Cabeças</td><td class="nm" style="text-align:right">49</td><td class="nm" style="text-align:right">45</td><td class="nm" style="color:var(--t3)">—</td><td></td></tr>
+<tr><td><strong>CMS (kg/cab/dia)</strong></td><td class="nm" style="text-align:right"><strong>21,8</strong></td><td class="nm" style="text-align:right;color:var(--rd)"><strong>19,9</strong></td><td class="nm" style="color:var(--gn)"><strong>18-22</strong></td><td>🟡</td></tr>
+<tr><td>CMN (kg/cab/dia)</td><td class="nm" style="text-align:right">41,0</td><td class="nm" style="text-align:right">37,3</td><td class="nm" style="color:var(--t3)">—</td><td></td></tr>
+<tr><td><strong>Sobras % MN</strong></td><td class="nm" style="text-align:right;color:var(--rd)"><strong>13,4%</strong></td><td class="nm" style="text-align:right;color:var(--rd)"><strong>19,0%</strong></td><td class="nm" style="color:var(--gn)"><strong>3-5%</strong></td><td><strong>🔴</strong></td></tr>
+<tr><td>Custo/Cab/Dia</td><td class="nm" style="text-align:right">R$ 34,53</td><td class="nm" style="text-align:right">R$ 31,74</td><td class="nm" style="color:var(--t3)">R$ 28-38</td><td>🟢</td></tr>
+<tr><td>Desvio Padrão CMS</td><td class="nm" style="text-align:right">±2,9 kg</td><td class="nm" style="text-align:right">±2,7 kg</td><td class="nm" style="color:var(--t3)">< ±2,0</td><td>🟠</td></tr>
+<tr><td>CMS Min-Max</td><td class="nm" style="text-align:right">17,6-26,3</td><td class="nm" style="text-align:right">13,8-24,6</td><td class="nm" style="color:var(--t3)">—</td><td>🔴 Variável</td></tr>
+</table>
+
+<div style="padding:14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;margin-top:14px">
+<div style="font-size:11px;font-weight:800;color:var(--rd);margin-bottom:6px">🚨 Conexão Transição → Produção → Reprodução</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.7">
+<strong>O padrão é claro:</strong><br>
+<strong>1)</strong> Pré Parto: CMS baixo (10,3 kg) + sobras altas (17%) → vacas <strong>não estão preparadas</strong> para o parto<br>
+<strong>2)</strong> Pós Parto: CMS caindo (21,8→19,9) + sobras subindo (13→19%) → vacas recusam comida → <strong>balanço energético negativo severo</strong><br>
+<strong>3)</strong> Consequência: cetose, deslocamento de abomaso, queda no pico de produção, atraso na ovulação<br>
+<strong>4)</strong> Resultado: DEL 187 dias, IEP 405 dias, mortalidade 0,94%/mês<br><br>
+<strong>A transição é a RAIZ de vários problemas identificados nos Blocos 1 e 2.</strong><br>
+Investir em manejo de transição (dieta aniônica, espaço de cocho, conforto, monitoramento) pode ter <strong>ROI maior que qualquer outro investimento</strong>.
+</div>
+</div>
+</div>
+
+<!-- VARIABILIDADE + HORÁRIO -->
+<div class="d" style="border-color:rgba(59,130,246,.25)">
+<div class="dh"><div class="dt">📊 Variabilidade de CMS + Horário de 1ª Alimentação <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">MANEJO</span></div><div class="di">NUT-F2</div></div>
+
+<!-- VARIABILIDADE -->
+<div style="font-size:12px;font-weight:800;color:var(--bl);margin-bottom:10px">📈 Variabilidade de CMS (Desvio Padrão) — Consistência do Manejo</div>
+
+<table class="mt">
+<tr><th>Lote</th><th style="text-align:right">DP Jan (kg)</th><th style="text-align:right">DP Fev (kg)</th><th style="text-align:right">CV Jan (%)</th><th style="text-align:right">CV Fev (%)</th><th>Benchmark CV</th><th>Status</th></tr>
+<tr><td><strong>Lote 1</strong></td><td class="nm" style="text-align:right">±3,7</td><td class="nm" style="text-align:right;color:var(--gn)">±1,9</td><td class="nm" style="text-align:right">13,8%</td><td class="nm" style="text-align:right;color:var(--gn)">7,1%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟢 Melhorou</td></tr>
+<tr><td><strong>Lote 2</strong></td><td class="nm" style="text-align:right;color:var(--gn)">±1,5</td><td class="nm" style="text-align:right;color:var(--gn)">±1,6</td><td class="nm" style="text-align:right;color:var(--gn)">5,8%</td><td class="nm" style="text-align:right;color:var(--gn)">6,1%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟢 Estável</td></tr>
+<tr><td><strong>Lote 3</strong></td><td class="nm" style="text-align:right">±3,5</td><td class="nm" style="text-align:right">±2,5</td><td class="nm" style="text-align:right">13,4%</td><td class="nm" style="text-align:right">9,5%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟡 Melhorando</td></tr>
+<tr><td><strong>Lote 4</strong></td><td class="nm" style="text-align:right;color:var(--gn)">±1,6</td><td class="nm" style="text-align:right;color:var(--gn)">±1,8</td><td class="nm" style="text-align:right;color:var(--gn)">7,0%</td><td class="nm" style="text-align:right;color:var(--gn)">7,7%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟢</td></tr>
+<tr><td><strong>Lote 5</strong></td><td class="nm" style="text-align:right">±2,7</td><td class="nm" style="text-align:right;color:var(--gn)">±1,7</td><td class="nm" style="text-align:right">11,4%</td><td class="nm" style="text-align:right;color:var(--gn)">7,0%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟢 Melhorou</td></tr>
+<tr><td><strong>Lote 6</strong></td><td class="nm" style="text-align:right">±2,2</td><td class="nm" style="text-align:right;color:var(--gn)">±1,1</td><td class="nm" style="text-align:right">10,6%</td><td class="nm" style="text-align:right;color:var(--gn)">5,4%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟢 Melhorou</td></tr>
+<tr><td><strong>Lote P1</strong></td><td class="nm" style="text-align:right">±2,7</td><td class="nm" style="text-align:right;color:var(--gn)">±1,6</td><td class="nm" style="text-align:right">12,1%</td><td class="nm" style="text-align:right;color:var(--gn)">7,1%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟢 Melhorou</td></tr>
+<tr><td><strong>Lote P2</strong></td><td class="nm" style="text-align:right;color:var(--gn)">±1,0</td><td class="nm" style="text-align:right;color:var(--gn)">±1,7</td><td class="nm" style="text-align:right;color:var(--gn)">4,8%</td><td class="nm" style="text-align:right;color:var(--gn)">8,0%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟡 Subiu leve</td></tr>
+<tr><td><strong>Lote P3</strong></td><td class="nm" style="text-align:right;color:var(--rd)">±8,7</td><td class="nm" style="text-align:right;color:var(--gn)">±1,2</td><td class="nm" style="text-align:right;color:var(--rd)">41,0%</td><td class="nm" style="text-align:right;color:var(--gn)">6,1%</td><td class="nm" style="color:var(--gn)">< 8%</td><td>🟢 Corrigido*</td></tr>
+<tr><td><strong style="color:var(--rd)">Pré Parto</strong></td><td class="nm" style="text-align:right;color:var(--gn)">±1,0</td><td class="nm" style="text-align:right;color:var(--rd)">±2,1</td><td class="nm" style="text-align:right;color:var(--gn)">9,3%</td><td class="nm" style="text-align:right;color:var(--rd)">20,4%</td><td class="nm" style="color:var(--gn)">< 10%</td><td><strong>🔴 Piorou</strong></td></tr>
+<tr><td><strong style="color:var(--rd)">Pós Parto</strong></td><td class="nm" style="text-align:right">±2,9</td><td class="nm" style="text-align:right">±2,7</td><td class="nm" style="text-align:right">13,3%</td><td class="nm" style="text-align:right;color:var(--rd)">13,6%</td><td class="nm" style="color:var(--gn)">< 10%</td><td>🟠 Alto estável</td></tr>
+</table>
+
+<div style="font-size:7px;color:var(--t3);margin-top:4px">CV (Coeficiente de Variação) = DP ÷ Média × 100. Menor CV = manejo mais consistente. * P3 Jan influenciado pelo outlier de 67,1 kg.</div>
+
+<div style="height:1px;background:var(--bdr);margin:14px 0"></div>
+
+<!-- HORÁRIO DE ALIMENTAÇÃO -->
+<div style="font-size:12px;font-weight:800;color:var(--pr);margin-bottom:10px">⏰ Horário de 1ª Alimentação — Pontualidade do Manejo</div>
+
+<table class="mt">
+<tr><th>Lote / Categoria</th><th style="text-align:center">Média Jan</th><th style="text-align:center">Média Fev</th><th>Var.</th><th>Meta Ideal</th><th>Status</th></tr>
+
+<tr style="background:rgba(16,185,129,.03)"><td colspan="6" style="font-size:8px;font-weight:700;color:var(--gn)">✅ ALIMENTAÇÃO PRECOCE (antes das 07:00)</td></tr>
+<tr><td style="color:var(--gn)"><strong>Recria R1-R9</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>06:11</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>06:14</strong></td><td class="nm">+3 min</td><td class="nm" style="color:var(--gn)">≤ 06:00</td><td>🟢</td></tr>
+<tr><td style="color:var(--gn)"><strong>Nov. Prenha</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>06:34</strong></td><td class="nm" style="text-align:center;color:var(--yl)"><strong>08:12</strong></td><td class="nm" style="color:var(--rd)">+98 min</td><td class="nm" style="color:var(--gn)">≤ 06:30</td><td>🟠 Atrasou</td></tr>
+<tr><td style="color:var(--gn)"><strong>Pós Parto</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>06:43</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>06:31</strong></td><td class="nm" style="color:var(--gn)">−12 min</td><td class="nm" style="color:var(--gn)">≤ 06:00</td><td>🟢 Melhorou</td></tr>
+
+<tr style="background:rgba(245,158,11,.03)"><td colspan="6" style="font-size:8px;font-weight:700;color:var(--yl)">⚠️ ALIMENTAÇÃO INTERMEDIÁRIA (07:00 — 08:30)</td></tr>
+<tr><td>Lote 3</td><td class="nm" style="text-align:center">07:56</td><td class="nm" style="text-align:center;color:var(--gn)">07:12</td><td class="nm" style="color:var(--gn)">−44 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🟡 Melhorou</td></tr>
+<tr><td>Lote 5</td><td class="nm" style="text-align:center">07:54</td><td class="nm" style="text-align:center;color:var(--gn)">07:10</td><td class="nm" style="color:var(--gn)">−44 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🟡 Melhorou</td></tr>
+<tr><td>Lote P1</td><td class="nm" style="text-align:center">08:00</td><td class="nm" style="text-align:center;color:var(--gn)">07:17</td><td class="nm" style="color:var(--gn)">−43 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🟡 Melhorou</td></tr>
+<tr><td>Lote P2</td><td class="nm" style="text-align:center">08:12</td><td class="nm" style="text-align:center">07:36</td><td class="nm" style="color:var(--gn)">−36 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🟡</td></tr>
+<tr><td>Lote 4</td><td class="nm" style="text-align:center">08:16</td><td class="nm" style="text-align:center;color:var(--gn)">07:43</td><td class="nm" style="color:var(--gn)">−33 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🟡</td></tr>
+<tr><td>Lote P3</td><td class="nm" style="text-align:center">07:31</td><td class="nm" style="text-align:center">08:14</td><td class="nm" style="color:var(--rd)">+43 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🟠 Atrasou</td></tr>
+<tr><td>Lote 6</td><td class="nm" style="text-align:center">07:34</td><td class="nm" style="text-align:center">08:17</td><td class="nm" style="color:var(--rd)">+43 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🟠 Atrasou</td></tr>
+<tr><td>Mastite</td><td class="nm" style="text-align:center">08:16</td><td class="nm" style="text-align:center;color:var(--gn)">07:42</td><td class="nm" style="color:var(--gn)">−34 min</td><td class="nm" style="color:var(--t3)">—</td><td>🟡</td></tr>
+<tr><td>Carência</td><td class="nm" style="text-align:center">08:14</td><td class="nm" style="text-align:center;color:var(--gn)">07:39</td><td class="nm" style="color:var(--gn)">−35 min</td><td class="nm" style="color:var(--t3)">—</td><td>🟡</td></tr>
+
+<tr style="background:rgba(239,68,68,.03)"><td colspan="6" style="font-size:8px;font-weight:700;color:var(--rd)">🔴 ALIMENTAÇÃO TARDIA (> 08:30)</td></tr>
+<tr><td style="color:var(--rd)"><strong>Lote 1</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>08:50</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>08:38</strong></td><td class="nm" style="color:var(--gn)">−12 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🔴</td></tr>
+<tr><td style="color:var(--rd)"><strong>Lote 2</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>08:54</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>08:42</strong></td><td class="nm" style="color:var(--gn)">−12 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td>🔴</td></tr>
+<tr><td style="color:var(--rd)"><strong>Pré Parto</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>09:09</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>08:57</strong></td><td class="nm" style="color:var(--gn)">−12 min</td><td class="nm" style="color:var(--gn)">≤ 07:00</td><td><strong>🔴</strong></td></tr>
+<tr><td style="color:var(--rd)"><strong>Vaca Seca</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>09:27</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>09:20</strong></td><td class="nm" style="color:var(--gn)">−7 min</td><td class="nm" style="color:var(--gn)">≤ 08:00</td><td><strong>🔴</strong></td></tr>
+<tr><td style="color:var(--rd)"><strong>R9-IA</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>10:31</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>11:44</strong></td><td class="nm" style="color:var(--rd)">+73 min</td><td class="nm" style="color:var(--gn)">≤ 08:00</td><td><strong>🔴</strong></td></tr>
+</table>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:8px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">🚨 Lotes 1 e 2 — Alta Produção</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--rd)">08:38-08:42</div>
+<div style="font-size:8px;color:var(--t3)">As vacas que MAIS produzem comem por ÚLTIMO</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:8px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">🚨 Pré Parto + Secas</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--rd)">08:57-09:20</div>
+<div style="font-size:8px;color:var(--t3)">Grupos críticos alimentados quase 10h</div>
+</div>
+</div>
+
+<div style="padding:14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;margin-top:14px">
+<div style="font-size:11px;font-weight:800;color:var(--rd);margin-bottom:6px">🚨 Inversão da Ordem de Alimentação — Ponto Crítico de Manejo</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.7">
+<strong>Sequência atual de alimentação (pela média):</strong><br>
+<span style="color:var(--gn)">06:14</span> Recria R1-R9 → <span style="color:var(--gn)">06:31</span> Pós Parto → <span style="color:var(--yl)">07:12-07:43</span> Lotes 3-6 / P1-P3 → <span style="color:var(--rd)">08:38</span> Lote 1 → <span style="color:var(--rd)">08:42</span> Lote 2 → <span style="color:var(--rd)">08:57</span> Pré Parto → <span style="color:var(--rd)">09:20</span> Vaca Seca<br><br>
+<strong>Problema:</strong> Os <strong>Lotes 1 e 2 (vacas de maior produção)</strong> recebem ração <strong>2h30min depois</strong> da recria. Cada hora de atraso na alimentação de vacas de alta produção pode reduzir <strong>0,5-1,0 L de leite/vaca/dia</strong>.<br>
+<strong>Impacto estimado:</strong> ~193 vacas (Lotes 1+2) × 0,75 L × R$ 2,41 = <strong>R$ 349/dia = R$ 10.470/mês</strong><br><br>
+<strong>Pré Parto sendo alimentado às 09:00:</strong> Vacas de transição precisam de <strong>múltiplas refeições em horário regular</strong> para maximizar CMS — alimentação tardia agrava o baixo consumo (10,3 kg) e as altas sobras (17%).<br><br>
+<strong>Recomendação:</strong> Inverter a ordem — <strong>Pós Parto e Lotes 1-2 PRIMEIRO (05:30-06:30)</strong>, depois os demais. A recria pode esperar — não impacta produção.
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- OBSERVAÇÃO DE DIAS COM DADOS ANÔMALOS -->
+<div class="d fi" style="border-color:rgba(245,158,11,.3);margin-top:20px;background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(245,158,11,.02))">
+<div class="dh"><div class="dt">🔍 Anomalias e Outliers Detectados nos Dados <span class="db" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">OUTLIERS</span></div><div class="di">NUT-F3</div></div>
+
+<table class="mt">
+<tr><th>Data</th><th>Lote</th><th>Indicador</th><th style="text-align:right">Valor</th><th style="text-align:right">Média Normal</th><th>Desvio</th><th>Provável Causa</th></tr>
+
+<tr style="background:rgba(239,68,68,.04)">
+<td class="nm">10/01</td><td><strong style="color:var(--rd)">Lote P3</strong></td><td>CMS/cab</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>67,1 kg</strong></td><td class="nm" style="text-align:right">~19,5 kg</td><td class="nm" style="color:var(--rd)">+244%</td><td style="font-size:9px;color:var(--rd)"><strong>Erro de lançamento no sistema</strong></td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td class="nm">07/01</td><td><strong style="color:var(--rd)">Lote 1</strong></td><td>CMS/cab</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>9,0 kg</strong></td><td class="nm" style="text-align:right">~26,8 kg</td><td class="nm" style="color:var(--rd)">−66%</td><td style="font-size:9px;color:var(--yl)">Problema de fornecimento? Chuva? Erro?</td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td class="nm">10/01</td><td><strong style="color:var(--rd)">Lote 6</strong></td><td>CMS/cab</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>10,3 kg</strong></td><td class="nm" style="text-align:right">~20,8 kg</td><td class="nm" style="color:var(--rd)">−50%</td><td style="font-size:9px;color:var(--yl)">Problema de fornecimento ou erro</td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td class="nm">20/01</td><td><strong style="color:var(--rd)">Lote 3</strong></td><td>CMS/cab</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>12,2 kg</strong></td><td class="nm" style="text-align:right">~26,1 kg</td><td class="nm" style="color:var(--rd)">−53%</td><td style="font-size:9px;color:var(--yl)">Mesma data: L5=10,6 / P1=10,6</td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td class="nm">20/01</td><td><strong style="color:var(--rd)">Lote 5 / P1</strong></td><td>CMS/cab</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>10,6 kg</strong></td><td class="nm" style="text-align:right">~22-23 kg</td><td class="nm" style="color:var(--rd)">−54%</td><td style="font-size:9px;color:var(--rd)"><strong>Evento no dia 20/01 — múltiplos lotes afetados</strong></td>
+</tr>
+<tr style="background:rgba(245,158,11,.04)">
+<td class="nm">20/01</td><td><strong>R9-IA</strong></td><td>CMS/cab</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>0,0 kg</strong></td><td class="nm" style="text-align:right">~3,9 kg</td><td class="nm" style="color:var(--rd)">−100%</td><td style="font-size:9px;color:var(--yl)">Sem fornecimento no dia</td>
+</tr>
+<tr style="background:rgba(245,158,11,.04)">
+<td class="nm">25-29/01</td><td><strong>Todos</strong></td><td>Sobras</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>0 kg</strong></td><td class="nm" style="text-align:right">variável</td><td class="nm" style="color:var(--rd)">−100%</td><td style="font-size:9px;color:var(--yl)">5 dias sem pesagem de sobras</td>
+</tr>
+<tr style="background:rgba(245,158,11,.04)">
+<td class="nm">11/02</td><td><strong>Pré Parto</strong></td><td>CMS/cab</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>2,1 kg</strong></td><td class="nm" style="text-align:right">~10,3 kg</td><td class="nm" style="color:var(--rd)">−80%</td><td style="font-size:9px;color:var(--yl)">Dia atípico — verificar</td>
+</tr>
+<tr style="background:rgba(245,158,11,.04)">
+<td class="nm">11/02</td><td><strong>Mastite</strong></td><td>Sobras %</td><td class="nm" style="text-align:right;color:var(--rd)"><strong>2.900%</strong></td><td class="nm" style="text-align:right">—</td><td class="nm" style="color:var(--rd)">Absurdo</td><td style="font-size:9px;color:var(--rd)">Erro: CMS=0 com sobras registradas (7 cab.)</td>
+</tr>
+</table>
+
+<div class="obs" style="margin-top:14px">
+<div class="obs-t">📋 TRATAMENTO DAS ANOMALIAS NESTE DASHBOARD</div>
+<div class="obs-x">
+<strong>Os valores anômalos foram mantidos nas médias oficiais</strong> (conforme relatório do sistema), mas sinalizados com asterisco (*) onde relevante.<br>
+<strong>O dia 20/01 sugere um evento operacional</strong> que afetou múltiplos lotes simultaneamente (Lotes 3, 5, P1, R9-IA e Lote 6-horário). Possíveis causas: chuva forte, problema com o vagão misturador, falta de ingredientes, ou realocação de equipe.<br><br>
+<strong>🔎 Para a reunião:</strong> Solicitar registro de ocorrências/eventos nos dias 07/01, 10/01, 20/01 e 25-29/01 para contextualizar as anomalias. Isso permitirá recalcular médias mais precisas e entender o impacto de dias atípicos na produção.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO G — CRUZAMENTO NUTRIÇÃO × FINANCEIRO × PRODUÇÃO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🔗 Bloco G — Cruzamento Nutrição × Produção × Financeiro <span class="st-b" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">NUT-G</span></div>
+
+<div class="d fi" style="border-color:rgba(59,130,246,.25)">
+<div class="dh"><div class="dt">🔗 Indicadores Integrados — O Que a Nutrição Explica nos Outros Blocos <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">INTEGRADO</span></div><div class="di">NUT-G1</div></div>
+<div class="cx" style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12);color:var(--bl)"><span style="background:rgba(59,130,246,.15)">BLOCO 1 × 2 × 3</span> Dados financeiros (Bloco 1) + produtivos (Bloco 2) + nutricionais (Bloco 3) cruzados para identificar causa-raiz</div>
+
+<table class="mt">
+<tr><th>Indicador Integrado</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th>Var.</th><th>Benchmark</th><th>Status</th></tr>
+
+<tr style="background:rgba(16,185,129,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--gn)">💰 RECEITA vs CUSTO ALIMENTAR — POR VACA</td></tr>
+<tr>
+<td>Receita Leite/Vaca Lact./Dia</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 76,41</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 75,95</td>
+<td class="nm" style="color:var(--rd)">−0,6%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td></td>
+</tr>
+<tr>
+<td>Custo Ração/Vaca Lact./Dia (9 lotes prod.)</td>
+<td class="nm" style="text-align:right">R$ 33,70</td>
+<td class="nm" style="text-align:right">R$ 32,25</td>
+<td class="nm" style="color:var(--gn)">−4,3%</td>
+<td class="nm" style="color:var(--t3)">R$ 28-40</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">IOFC (Receita Leite − Custo Ração)/Vaca/Dia</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 42,71</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 43,70</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+2,3%</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>> R$ 35</strong></td>
+<td><strong>🟢</strong></td>
+</tr>
+<tr>
+<td><strong>% Ração na Receita do Leite</strong></td>
+<td class="nm" style="text-align:right">44,1%</td>
+<td class="nm" style="text-align:right;color:var(--gn)">42,5%</td>
+<td class="nm" style="color:var(--gn)">−1,6pp</td>
+<td class="nm" style="color:var(--gn)">35-45%</td>
+<td>🟢</td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(6,182,212,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--cy)">📊 EFICIÊNCIA CONVERSÃO → LEITE</td></tr>
+<tr>
+<td>CMS Total Lact./Dia (9 lotes)</td>
+<td class="nm" style="text-align:right">20.576 kg</td>
+<td class="nm" style="text-align:right">19.433 kg</td>
+<td class="nm" style="color:var(--rd)">−5,6%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td></td>
+</tr>
+<tr>
+<td>Produção Leite/Dia</td>
+<td class="nm" style="text-align:right">32.535 L</td>
+<td class="nm" style="text-align:right">31.930 L</td>
+<td class="nm" style="color:var(--rd)">−1,9%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td></td>
+</tr>
+<tr>
+<td><strong style="color:var(--cy)">Eficiência: L Leite / kg MS</strong></td>
+<td class="nm" style="text-align:right"><strong>1,58</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>1,64</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+3,8%</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>1,5-1,7</strong></td>
+<td><strong>🟢</strong></td>
+</tr>
+<tr>
+<td><strong>R$ Receita / kg MS consumido</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 3,81</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 3,96</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+3,9%</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>> R$ 3,00</strong></td>
+<td><strong>🟢</strong></td>
+</tr>
+<tr>
+<td>R$ Custo Ração / kg MS (custo unitário da MS)</td>
+<td class="nm" style="text-align:right">R$ 1,38</td>
+<td class="nm" style="text-align:right">R$ 1,36</td>
+<td class="nm" style="color:var(--gn)">−1,4%</td>
+<td class="nm" style="color:var(--t3)">R$ 1,20-1,60</td>
+<td>🟢</td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(239,68,68,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--rd)">🗑️ CUSTO DAS PERDAS NUTRICIONAIS</td></tr>
+<tr>
+<td>Custo de Sobras (desperdício)/Dia</td>
+<td class="nm" style="text-align:right;color:var(--rd)">R$ 1.541</td>
+<td class="nm" style="text-align:right;color:var(--rd)">R$ 2.350</td>
+<td class="nm" style="color:var(--rd)">+52,5%</td>
+<td class="nm" style="color:var(--t3)">< R$ 800</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>Custo Anual Projetado de Sobras</td>
+<td class="nm" style="text-align:right" colspan="2"><strong style="color:var(--rd)">~R$ 681.000/ano</strong></td>
+<td class="nm" style="color:var(--rd)">—</td>
+<td class="nm" style="color:var(--t3)">< R$ 280k</td>
+<td><strong>🔴</strong></td>
+</tr>
+<tr>
+<td>Custo Horário Tardio (Lotes 1+2: est. −0,75 L/vaca/dia)</td>
+<td class="nm" style="text-align:right" colspan="2"><strong style="color:var(--rd)">~R$ 125.640/ano</strong></td>
+<td class="nm" style="color:var(--rd)">—</td>
+<td class="nm" style="color:var(--t3)">Evitável</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>Custo da Transição Ineficiente (est. mortalidade + queda pico)</td>
+<td class="nm" style="text-align:right" colspan="2"><strong style="color:var(--rd)">~R$ 500k-800k/ano</strong></td>
+<td class="nm" style="color:var(--rd)">—</td>
+<td class="nm" style="color:var(--t3)">Evitável</td>
+<td>🔴</td>
+</tr>
+<tr style="background:rgba(239,68,68,.06)">
+<td><strong style="color:var(--rd)">TOTAL PERDAS NUTRICIONAIS EVITÁVEIS</strong></td>
+<td class="nm" style="text-align:right" colspan="2"><strong style="color:var(--rd)">R$ 1,31M - R$ 1,61M/ano</strong></td>
+<td class="nm" style="color:var(--rd)">—</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td><strong>🔴</strong></td>
+</tr>
+</table>
+
+<!-- VISUAL FLUXO CAUSA-RAIZ -->
+<div style="margin-top:20px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">🔄 Mapa Causa-Raiz — A Nutrição Explica os Problemas dos Blocos 1 e 2</div>
+
+<div style="display:grid;grid-template-columns:1fr;gap:6px">
+<!-- CAUSA -->
+<div style="padding:14px;background:rgba(249,115,22,.06);border:2px solid rgba(249,115,22,.2);border-radius:10px;text-align:center">
+<div style="font-size:10px;font-weight:800;color:var(--or);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔧 CAUSA-RAIZ (Nutrição)</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+<strong>Pré Parto:</strong> CMS 10,3 kg (limítrofe) + Sobras 17% (alto) + Alimentação às 09:00 (tardio) + Custo R$ 5/dia (baixo — dieta pobre?)<br>
+<strong>Pós Parto:</strong> CMS caindo 8,7% + Sobras subindo de 13→19% + Variabilidade alta (CV 13,6%)
+</div>
+</div>
+<div style="text-align:center;font-size:18px;color:var(--t3)">⬇️</div>
+
+<!-- EFEITO NÍVEL 1 -->
+<div style="padding:14px;background:rgba(239,68,68,.06);border:2px solid rgba(239,68,68,.2);border-radius:10px;text-align:center">
+<div style="font-size:10px;font-weight:800;color:var(--rd);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">⚡ EFEITO NÍVEL 1 (Saúde + Produção)</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+<strong>Balanço Energético Negativo Severo</strong> → Cetose subclínica → Deslocamento abomaso → Queda produção pico<br>
+<strong>Mortalidade 0,94%/mês</strong> (dobro do ideal) → Provável relação com doenças metabólicas peri-parto<br>
+<strong>Abortos 1,15%/mês</strong> → Estresse metabólico pode contribuir
+</div>
+</div>
+<div style="text-align:center;font-size:18px;color:var(--t3)">⬇️</div>
+
+<!-- EFEITO NÍVEL 2 -->
+<div style="padding:14px;background:rgba(236,72,153,.06);border:2px solid rgba(236,72,153,.2);border-radius:10px;text-align:center">
+<div style="font-size:10px;font-weight:800;color:var(--pk);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔄 EFEITO NÍVEL 2 (Reprodução)</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+<strong>DEL 187 dias</strong> (meta ≤ 170) → Vacas não empenham porque estão doentes no pós-parto<br>
+<strong>IEP 405 dias</strong> (meta ≤ 380) → Atraso no retorno à ciclicidade por balanço energético negativo<br>
+<strong>Taxa de Serviço ~36%</strong> → Vacas debilitadas não expressam cio adequadamente
+</div>
+</div>
+<div style="text-align:center;font-size:18px;color:var(--t3)">⬇️</div>
+
+<!-- EFEITO NÍVEL 3 -->
+<div style="padding:14px;background:rgba(139,92,246,.06);border:2px solid rgba(139,92,246,.2);border-radius:10px;text-align:center">
+<div style="font-size:10px;font-weight:800;color:var(--pr);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">💰 EFEITO NÍVEL 3 (Financeiro)</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+<strong>~R$ 867k/ano</strong> perdidos por DEL alto (menos vacas no pico)<br>
+<strong>~R$ 912k-1,37M/ano</strong> perdidos por mortalidade (patrimonial)<br>
+<strong>~R$ 681k/ano</strong> perdidos em sobras de ração<br>
+<strong>Rebanho encolhendo</strong> (−210 animais/ano projetado) → Menos vacas para produzir
+</div>
+</div>
+<div style="text-align:center;font-size:18px;color:var(--t3)">⬇️</div>
+
+<!-- SOLUÇÃO -->
+<div style="padding:16px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.3);border-radius:12px;text-align:center">
+<div style="font-size:10px;font-weight:800;color:var(--gn);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">✅ SOLUÇÃO — A ALAVANCA ESTÁ NA TRANSIÇÃO E NO MANEJO</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+<strong>1)</strong> Reformular dieta de Pré Parto (incluir aniônicos, aumentar CMS) → <strong>Custo: ~R$ 5-10k/mês</strong><br>
+<strong>2)</strong> Inverter ordem de alimentação (Lotes 1-2 e Pós Parto PRIMEIRO) → <strong>Custo: R$ 0</strong><br>
+<strong>3)</strong> Reduzir sobras de 5,6% para 3,5% (ajustar formulação/pesagem) → <strong>Economia: ~R$ 350k/ano</strong><br>
+<strong>4)</strong> Monitorar Fresh Cows com colares AffiCollar (ruminação + atividade) → <strong>Custo: R$ 0 (já tem os colares)</strong><br><br>
+<strong>Potencial de retorno:</strong> R$ 1,3M-2,5M/ano com investimento de ~R$ 60-120k/ano<br>
+<strong>ROI estimado: 1.000-2.000%</strong>
+</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.12);margin-top:14px">
+🔬 <strong>Síntese do Cruzamento:</strong><br>
+<strong>A nutrição da Brasilanda é eficiente na produção</strong> (eficiência alimentar de Top 10% BR, IOFC excelente, custo/litro competitivo). Porém, <strong>a transição é o calcanhar de Aquiles</strong>: Pré Parto com dieta aparentemente pobre (R$ 5/dia) e sobras de 17%, Pós Parto com CMS em queda e 19% de sobras, horário de alimentação invertido (lotes de alta produção comem por último). Esses problemas de manejo nutricional são <strong>consistentes com todos os problemas encontrados nos Blocos 1 e 2</strong>: mortalidade alta, DEL alto, IEP alto, rebanho encolhendo. <strong>A solução mais barata e de maior impacto está aqui.</strong>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO H — ALERTAS, DADOS A LEVANTAR, RESUMO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🚨 Bloco H — Alertas Críticos, Dados a Levantar e Resumo Executivo <span class="st-b" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">NUT-H</span></div>
+
+<!-- ALERTAS -->
+<div class="al fi" style="background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(239,68,68,.03));border:1px solid rgba(239,68,68,.2)">
+<div class="al-i">🔴</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--rd)">CRÍTICO — Transição Pré/Pós-Parto: A Raiz dos Problemas</div>
+<div class="al-x">
+<strong>Pré Parto:</strong> CMS 10,3 kg (limítrofe) | Sobras 17% (3× o ideal) | Custo R$ 5,06/dia (50% abaixo do benchmark) | Alimentação às 09:00 (tardia) | Variabilidade dobrando (DP 1,0→2,1 kg).<br>
+<strong>Pós Parto:</strong> CMS caiu 8,7% em Fev | Sobras subiram de 13→19% | CMS mínimo de 13,8 kg (risco de cetose).<br>
+<strong>Ação:</strong> Reformular dieta de transição, incluir dieta aniônica, antecipar horário para 06:00, monitorar ruminação individual via AffiCollar. <strong>Investimento: ~R$ 60-120k/ano | Retorno estimado: R$ 500k-800k/ano.</strong>
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(239,68,68,.03));border:1px solid rgba(239,68,68,.2)">
+<div class="al-i">🔴</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--rd)">CRÍTICO — Sobras em Alta: R$ 681k/ano em Desperdício Projetado</div>
+<div class="al-x">
+<strong>O que:</strong> Sobras médias de 5,6% (lotes de produção) com tendência de alta em Fev. O Lote 3 disparou de 5,2% para 14,1%. Lote 4 de 7,0% para 12,1%. O custo de desperdício subiu 52,5% de Jan para Fev.<br>
+<strong>Ação:</strong> Revisar pesagem de ingredientes, calibrar vagão misturador, ajustar receita por lote. Meta: reduzir para 3-5% em 60 dias. <strong>Economia potencial: R$ 350k/ano.</strong>
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(249,115,22,.02));border:1px solid rgba(249,115,22,.15)">
+<div class="al-i">🟠</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--or)">ATENÇÃO — Ordem de Alimentação Invertida: Lotes 1-2 Comem por Último</div>
+<div class="al-x">
+<strong>O que:</strong> Vacas de maior produção (Lotes 1 e 2: ~193 cabeças, 26,5 kg MS, ~38 L/dia) recebem 1ª refeição às 08:38-08:42. A recria (que não produz leite) come às 06:14. O Pré Parto come às 09:00.<br>
+<strong>Impacto:</strong> Perda estimada de 0,5-1,0 L/vaca/dia por atraso na alimentação = <strong>R$ 10.470/mês = R$ 125.640/ano</strong>.<br>
+<strong>Ação:</strong> Reorganizar rota do vagão. Prioridade: Pós Parto → Lotes 1-2 → Primíparas Alta → demais. <strong>Custo: R$ 0. Retorno imediato.</strong>
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(245,158,11,.02));border:1px solid rgba(245,158,11,.15)">
+<div class="al-i">🟡</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--yl)">INVESTIGAÇÃO — Recria R9-IA: Queda de 53,8% no CMS</div>
+<div class="al-x">
+<strong>O que:</strong> O CMS da Recria R9-IA caiu de 3,9 kg (Jan) para 1,8 kg (Fev) em 290 novilhas. O custo caiu proporcionalmente (R$ 3,82 → R$ 1,81/cab/dia).<br>
+<strong>Possíveis causas:</strong> Transição para pasto puro (não registrado no sistema), mudança de dieta, erro de lançamento, ou problema de fornecimento.<br>
+<strong>🔎 Questionar na reunião:</strong> As novilhas R9-IA estão no pasto? Se sim, o sistema não registra consumo de pasto. Se não, há problema real de subnutrição que pode atrasar a idade ao 1º serviço.
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(245,158,11,.02));border:1px solid rgba(245,158,11,.15)">
+<div class="al-i">🟡</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--yl)">INVESTIGAÇÃO — Engorda (10 cab.) e Vacas de Corte (50 cab.) sem Consumo Registrado</div>
+<div class="al-x">
+<strong>O que:</strong> 60 animais aparecem no sistema com consumo zero ou quase zero nos dois meses. A Engorda registrou apenas 1 dia com consumo (29,5 kg MS em 03/02). As Vacas de Corte: zero absoluto.<br>
+<strong>🔎 Questionar na reunião:</strong> Esses animais estão em pasto exclusivo? Foram vendidos/abatidos e permanecem no sistema? Estão em outro local? O custo de manutenção desses 60 animais (espaço, manejo) está sendo contabilizado?
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(16,185,129,.02));border:1px solid rgba(16,185,129,.15)">
+<div class="al-i">🟢</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--gn)">POSITIVO — Eficiência Alimentar de Top 10% Brasil</div>
+<div class="al-x">
+<strong>O que funciona:</strong> Eficiência alimentar de 1,58-1,64 L/kg MS (Top 10% BR). IOFC de R$ 42-44/vaca/dia (excelente). Custo/litro de R$ 0,83-0,87 (competitivo). CMS dos lotes de lactação estável e dentro do benchmark (24-27 kg). A conversão alimentar é boa — as vacas transformam bem o que comem em leite. A variabilidade do CMS melhorou de Jan para Fev na maioria dos lotes.<br>
+<strong>Mensagem:</strong> A <strong>formulação de dieta dos lotes de lactação está funcionando bem</strong>. O problema não é a dieta em si — é o <strong>manejo da transição, a ordem de alimentação e o controle de sobras</strong>.
+</div>
+</div>
+</div>
+
+<!-- DADOS A LEVANTAR -->
+<div class="d fi" style="border-color:rgba(59,130,246,.3);margin-top:20px;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(59,130,246,.02))">
+<div class="dh"><div class="dt">📋 Dados a Levantar — Para Completar Análise Nutricional <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">PENDÊNCIA</span></div><div class="di">NUT-PEND</div></div>
+
+<table class="mt">
+<tr><th style="width:30px">✅</th><th>Dado Necessário</th><th>Fonte Provável</th><th>Impacto na Análise</th><th>Prioridade</th></tr>
+
+<tr style="background:rgba(239,68,68,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--rd)">🔴 ALTA PRIORIDADE</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Produção de leite por lote</strong></td>
+<td style="font-size:9px;color:var(--t2)">AfiFarm / sistema de ordenha</td>
+<td style="font-size:9px;color:var(--t2)">Permite calcular eficiência alimentar individual por lote e otimizar dieta</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Composição da dieta (receita/formulação) por lote</strong></td>
+<td style="font-size:9px;color:var(--t2)">Nutricionista / software de nutrição</td>
+<td style="font-size:9px;color:var(--t2)">Permite analisar adequação nutricional, %PB, %FDN, %ELl, minerais</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Dieta de Pré Parto — inclui aniônicos?</strong></td>
+<td style="font-size:9px;color:var(--t2)">Nutricionista / veterinário</td>
+<td style="font-size:9px;color:var(--t2)">Explica custo baixo (R$ 5/dia) e sobras altas (17%). Crítico para saúde pós-parto</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Causas da queda CMS Pós Parto (−8,7%)</strong></td>
+<td style="font-size:9px;color:var(--t2)">Equipe de manejo / veterinário</td>
+<td style="font-size:9px;color:var(--t2)">Confirma se é estresse térmico, doenças metabólicas, mudança de dieta ou manejo</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Ocorrências/eventos nos dias 07/01, 10/01, 20/01, 25-29/01</strong></td>
+<td style="font-size:9px;color:var(--t2)">Registro operacional / gerente</td>
+<td style="font-size:9px;color:var(--t2)">Contextualiza anomalias, permite recalcular médias reais</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+
+<tr style="background:rgba(245,158,11,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--yl)">🟡 MÉDIA PRIORIDADE</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Situação da Recria R9-IA</strong> — estão no pasto?</td>
+<td style="font-size:9px;color:var(--t2)">Gerente / equipe de campo</td>
+<td style="font-size:9px;color:var(--t2)">Explica queda de 53,8% no CMS ou identifica problema real</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Situação Engorda (10 cab.) e Vacas de Corte (50 cab.)</strong></td>
+<td style="font-size:9px;color:var(--t2)">Gerente / sistema</td>
+<td style="font-size:9px;color:var(--t2)">60 animais sem consumo registrado — confirmar se ainda existem no rebanho</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Protocolo de pesagem de sobras</strong> — quem faz, quando, como</td>
+<td style="font-size:9px;color:var(--t2)">Equipe operacional</td>
+<td style="font-size:9px;color:var(--t2)">Explica zeros em 25-29/Jan e valida dados de sobras</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Número de tratos/dia por lote</strong></td>
+<td style="font-size:9px;color:var(--t2)">Equipe operacional / nutricionista</td>
+<td style="font-size:9px;color:var(--t2)">Frequência alimentar afeta CMS — ideal: 3-6×/dia para lotes de alta</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+
+<tr style="background:rgba(16,185,129,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--gn)">🟢 COMPLEMENTAR</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Análise bromatológica da silagem</strong> (MS%, PB, FDN, FDA, pH)</td>
+<td style="font-size:9px;color:var(--t2)">Laboratório / nutricionista</td>
+<td style="font-size:9px;color:var(--t2)">Qualidade da silagem impacta CMS, palatabilidade e conversão</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Dados de ruminação por lote</strong> (AffiCollar)</td>
+<td style="font-size:9px;color:var(--t2)">AfiFarm / software Afimilk</td>
+<td style="font-size:9px;color:var(--t2)">Ruminação < 450 min/dia = acidose ou estresse; correlaciona com CMS</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Espaço de cocho por vaca</strong> (cm/vaca por lote)</td>
+<td style="font-size:9px;color:var(--t2)">Medição in loco</td>
+<td style="font-size:9px;color:var(--t2)">Ideal: 60-70 cm/vaca. Se < 50 cm → competição, sobras altas em uns e baixas em outros</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+</table>
+</div>
+
+<!-- RESUMO EXECUTIVO FINAL -->
+<div class="d fi" style="border-color:rgba(16,185,129,.25);margin-top:20px;background:linear-gradient(135deg,rgba(16,185,129,.04),rgba(59,130,246,.04))">
+<div class="dh"><div class="dt">📋 Resumo Executivo — Nutrição <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">RESUMO</span></div><div class="di">NUT-RESUMO</div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div>
+<div style="font-size:11px;font-weight:800;color:var(--gn);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">✅ Pontos Fortes</div>
+<div style="font-size:11px;color:var(--t2);line-height:2">
+🏆 Efic. Alimentar: 1,58-1,64 L/kg MS (Top 10% BR)<br>
+🟢 IOFC: R$ 42-44/vaca/dia (Excelente)<br>
+🟢 Custo/Litro: R$ 0,83-0,87 (Competitivo)<br>
+🟢 CMS Lactação: 24,4 kg (Estável, no benchmark)<br>
+🟢 R$/kg MS: R$ 1,36-1,38 (Razoável)<br>
+🟢 Variabilidade CMS melhorou em Fev (maioria)<br>
+🟢 Pós Parto alimentado cedo (06:31 Fev)<br>
+🟢 Recria com zero sobras (eficiente)<br>
+🟢 19 lotes diferenciados por categoria/nível
+</div>
+</div>
+<div>
+<div style="font-size:11px;font-weight:800;color:var(--rd);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">⚠️ Pontos de Atenção</div>
+<div style="font-size:11px;color:var(--t2);line-height:2">
+🔴 Transição: CMS caindo + Sobras 17-19% (CRÍTICO)<br>
+🔴 Pré Parto: Custo R$ 5/dia (muito baixo)<br>
+🔴 Sobras subindo: R$ 681k/ano em desperdício<br>
+🔴 Lotes 1-2 comem por ÚLTIMO (08:38-08:42)<br>
+🔴 Pré Parto/Secas comem às 09:00-09:20<br>
+🔴 Ração = 79% do COE (concentração de risco)<br>
+🟠 Lote 3 sobras disparam (5,2%→14,1%)<br>
+🟠 R9-IA queda de 53,8% no CMS<br>
+🟡 60 animais sem consumo (Engorda+Corte)<br>
+🟡 Anomalias em 5+ dias sem explicação
+</div>
+</div>
+</div>
+
+<div style="margin-top:16px;padding:16px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15);border-radius:12px">
+<div style="font-size:13px;font-weight:800;color:var(--pr);margin-bottom:8px">💎 A Grande Oportunidade Nutricional — Resumo em 1 Parágrafo</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+A Fazenda Brasilanda tem <strong>eficiência alimentar de Top 10% BR</strong> e as vacas em lactação convertem bem a dieta em leite. O problema nutricional é <strong>concentrado na transição</strong>: o Pré Parto gasta apenas R$ 5/dia (provável ausência de dieta aniônica), come às 09:00 (tarde), e sobra 17% da ração. O Pós Parto está com CMS em queda (−8,7%) e sobras de 19% — sinal clássico de <strong>balanço energético negativo severo</strong>, que explica boa parte da mortalidade (0,94%/mês), do DEL alto (187 dias) e do IEP de 405 dias. Adicionalmente, os <strong>Lotes 1 e 2 (vacas de maior produção) comem por último</strong>, custando ~R$ 126k/ano em leite perdido, e as <strong>sobras estão subindo</strong> (R$ 681k/ano projetado). São <strong>R$ 1,3M-1,6M/ano em perdas evitáveis</strong> com investimento de R$ 60-120k/ano. <strong>O ROI da melhoria nutricional é de 1.000-2.000%.</strong>
+</div>
+</div>
+
+<div style="margin-top:14px;padding:14px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:10px">
+<div style="font-size:11px;font-weight:800;color:var(--bl);margin-bottom:6px">📌 Consolidação do Projeto — Dashboards Entregues</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+<strong style="color:var(--gn)">✅ Bloco 1 — Financeiro:</strong> DRE, Custos, Endividamento, Fluxo de Caixa, Solvência, OPEX/CAPEX<br>
+<strong style="color:var(--gn)">✅ Bloco 2 — Produção:</strong> Rebanho, Produtividade, Reprodução, Saúde, Benchmarks, Projeção 12 meses<br>
+<strong style="color:var(--gn)">✅ Bloco 3 — Nutrição:</strong> Consumo, Eficiência, Custo/Litro, Sobras, Transição, Horário, Anomalias<br>
+<strong style="color:var(--t3)">⏳ Bloco 4 — RH:</strong> Quadro, Custo/Vaca, Produtividade por Funcionário (pendente dados)<br>
+<strong style="color:var(--t3)">⏳ Bloco 5 — Integrados:</strong> Cruzamentos entre todos os pilares<br>
+<strong style="color:var(--t3)">⏳ Bloco 6 — Preditivos:</strong> Cenários, Stress Test, Projeção completa
+</div>
+</div>
+
+<!-- QUANTIFICAÇÃO TOTAL DAS OPORTUNIDADES -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">💰 Quantificação Total das Oportunidades (Blocos 1+2+3)</div>
+
+<table class="mt">
+<tr><th>Oportunidade Identificada</th><th>Bloco</th><th style="text-align:right">Valor Anual Estimado</th><th style="text-align:right">Investimento</th><th style="text-align:right">ROI</th></tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong>Reduzir DEL de 187→170 (melhoria reprodutiva)</strong></td>
+<td class="nm">Bloco 2</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 1,49M</strong></td>
+<td class="nm" style="text-align:right">R$ 300k-1M</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>~250%</strong></td>
+</tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong>Reduzir mortalidade de 11%→5% (saúde + transição)</strong></td>
+<td class="nm">Bloco 2+3</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 500k-700k</strong></td>
+<td class="nm" style="text-align:right">R$ 60-120k</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>~600%</strong></td>
+</tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong>Reduzir sobras de 5,6%→3,5%</strong></td>
+<td class="nm">Bloco 3</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 350k</strong></td>
+<td class="nm" style="text-align:right">R$ 0 (manejo)</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>∞</strong></td>
+</tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong>Inverter ordem alimentação (Lotes 1-2 primeiro)</strong></td>
+<td class="nm">Bloco 3</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 126k</strong></td>
+<td class="nm" style="text-align:right">R$ 0 (manejo)</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>∞</strong></td>
+</tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong>Melhorar transição Pré/Pós Parto</strong></td>
+<td class="nm">Bloco 3</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 500k-800k</strong></td>
+<td class="nm" style="text-align:right">R$ 60-120k</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>~700%</strong></td>
+</tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong>Alcançar Cenário C (Top 10% BR reprodução)</strong></td>
+<td class="nm">Bloco 2</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 6,23M receita</strong></td>
+<td class="nm" style="text-align:right">R$ 600k-1M</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>~660%</strong></td>
+</tr>
+<tr style="background:rgba(59,130,246,.06)"><td colspan="5" style="height:2px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(59,130,246,.04)">
+<td><strong>TOTAL CONSERVADOR (sem Cenário C)</strong></td>
+<td class="nm"></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 2,97M - R$ 3,57M/ano</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 420k-1,24M</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>~350%</strong></td>
+</tr>
+</table>
+
+<div style="margin-top:14px;padding:16px;background:rgba(16,185,129,.08);border:2px solid rgba(16,185,129,.25);border-radius:12px;text-align:center">
+<div style="font-size:14px;font-weight:900;color:var(--gn);margin-bottom:6px">💎 MENSAGEM FINAL PARA PATRICIA</div>
+<div style="font-size:12px;color:var(--t2);line-height:1.8">
+A Fazenda Brasilanda <strong>já tem tudo</strong>: escala, tecnologia, eficiência de terra excepcional, conversão alimentar de Top 10%.<br>
+O que falta é <strong>otimizar o que já existe</strong>: melhorar a transição, ajustar a ordem de alimentação, reduzir sobras, e acelerar a reprodução.<br>
+São <strong>R$ 3,0M-3,6M/ano em ganhos conservadores</strong> — equivalente a <strong>7-9 meses de resultado líquido atual</strong>.<br>
+E <strong>boa parte dessas melhorias custa R$ 0</strong> — são ajustes de manejo, não de investimento.<br>
+<strong>O dinheiro está na rotina.</strong>
+</div>
+</div>
+</div>
+
+</div><!-- fim .ct -->
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="ft">
+<div class="fc">
+<div class="cc">
+<div class="cp">SS</div>
+<div class="ci">
+<div class="cl">Consultor de Análise de Dados & IA no Agro</div>
+<div class="cn">Sidney Souza</div>
+<div class="ccs">
+<div class="cci">📧 <a href="#">contato@ruralin.com.br</a></div>
+<div class="cci">📱 (64) 99999-0000</div>
+<div class="cci">📍 Rio Verde — GO</div>
+<div class="cci">🌐 Rural IN — Gestão Inteligente no Agro</div>
+</div>
+<div class="cb">
+Dashboard de Nutrição — Bloco 3 de 6 | Fazenda Brasilanda — Patricia Kompier<br>
+Dados: Janeiro e Fevereiro/2026 | Gerado em Março/2026 | Próximo: Bloco 4 — RH ou Bloco 5 — Integrados
+</div>
+</div>
+</div>
+<div class="fd"></div>
+<div class="fb">
+<strong>RURAL IN</strong> — Gestão Inteligente no Agro © 2026<br>
+Este relatório é confidencial e de uso exclusivo do cliente. Reprodução proibida sem autorização.
+</div>
+</div>
+</div>
+
+<script>
+const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>

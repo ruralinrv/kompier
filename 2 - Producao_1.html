@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — Dashboard de Produção | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+:root{--bg:#0a0e1a;--card:#131a2e;--card2:#1a2236;--bdr:#2a3654;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899;--gBl:linear-gradient(135deg,#3b82f6,#06b6d4);--gGn:linear-gradient(135deg,#10b981,#34d399);--gRd:linear-gradient(135deg,#ef4444,#f97316);--gYl:linear-gradient(135deg,#f59e0b,#fbbf24);--gPr:linear-gradient(135deg,#8b5cf6,#a78bfa);--gCy:linear-gradient(135deg,#06b6d4,#22d3ee);--gPk:linear-gradient(135deg,#ec4899,#f472b6);--sh:0 4px 20px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+.hd{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid var(--bdr);padding:36px 0;position:relative;overflow:hidden}
+.hd::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#10b981)}
+.hc{max-width:1400px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.ht{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.hlg{display:flex;align-items:center;gap:10px}
+.hlg-i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#06b6d4,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff}
+.hlg-t{font-size:21px;font-weight:900}.hlg-t span{color:var(--cy)}
+.hlg-s{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px}
+.hbd{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(59,130,246,.1));border:1px solid rgba(6,182,212,.3);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;color:var(--cy);text-transform:uppercase;letter-spacing:1.5px}
+.hd h1{font-size:32px;font-weight:900;letter-spacing:-1px;margin-bottom:5px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd h2{font-size:15px;font-weight:400;color:var(--t2);margin-bottom:18px}
+.hm{display:flex;gap:20px;flex-wrap:wrap}
+.hm-i{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3)}.hm-i span{color:var(--t2);font-weight:600}
+.ct{max-width:1400px;margin:0 auto;padding:36px 40px}
+.st{font-size:22px;font-weight:900;margin:40px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:12px}
+.st:first-child{margin-top:0}
+.st-b{font-size:10px;padding:3px 12px;border-radius:50px;font-weight:700}
+.kp{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px}
+.kp-i{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:18px;position:relative;overflow:hidden;transition:all .3s}
+.kp-i:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.kp-l{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px}
+.kp-v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;margin-bottom:4px}
+.kp-d{font-size:10px;display:flex;align-items:center;gap:4px;font-weight:600}
+.kp-s{font-size:8px;color:var(--t3);margin-top:4px}
+.dg{display:grid;gap:20px}.dg2{grid-template-columns:1fr 1fr}.dg3{grid-template-columns:1fr 1fr 1fr}
+.d{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:24px;transition:all .3s}
+.d:hover{border-color:rgba(59,130,246,.3);box-shadow:var(--sh);transform:translateY(-2px)}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.dt{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.db{font-size:9px;padding:2px 8px;border-radius:50px;font-weight:700}
+.di{font-size:10px;color:var(--t3);font-weight:600}
+.bg{margin-bottom:8px}
+.bl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+.bn{font-weight:600}.bv{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px}
+.bt{width:100%;height:22px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden}
+.bf{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:9px;font-weight:600;color:rgba(255,255,255,.85);min-width:2%}
+.mt{width:100%;font-size:11px;border-collapse:collapse;margin-top:12px}
+.mt th{text-align:left;padding:7px 8px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.mt td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.03)}
+.mt tr:last-child td{border-bottom:none}
+.mt tr:hover{background:rgba(255,255,255,.02)}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+.nt{font-size:10px;color:var(--t2);padding:10px 14px;border-radius:8px;margin-top:12px;line-height:1.7}
+.al{border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start}
+.al-i{font-size:20px;flex-shrink:0;margin-top:2px}
+.al-c{flex:1}.al-t{font-size:13px;font-weight:700;margin-bottom:3px}
+.al-x{font-size:11px;color:var(--t2);line-height:1.6}
+.sb{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin:12px 0}
+.sb-i{text-align:center;padding:10px 4px;background:rgba(255,255,255,.02);border-radius:8px;border:1px solid rgba(255,255,255,.04)}
+.sb-v{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800}
+.sb-l{font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.cx{display:flex;align-items:center;gap:6px;margin-bottom:14px;padding:8px 12px;border-radius:8px;font-size:10px;font-weight:600;flex-wrap:wrap}
+.cx span{padding:2px 8px;border-radius:4px;font-weight:700;font-size:9px}
+.obs{margin-top:16px;padding:14px 16px;border-radius:10px;border-left:4px solid var(--yl);background:rgba(245,158,11,.04)}
+.obs-t{font-size:11px;font-weight:800;color:var(--yl);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.obs-x{font-size:10px;color:var(--t2);line-height:1.7}
+.obs-r{border-left-color:var(--rd);background:rgba(239,68,68,.04)}
+.obs-r .obs-t{color:var(--rd)}
+.obs-g{border-left-color:var(--gn);background:rgba(16,185,129,.04)}
+.obs-g .obs-t{color:var(--gn)}
+.obs-b{border-left-color:var(--bl);background:rgba(59,130,246,.04)}
+.obs-b .obs-t{color:var(--bl)}
+.bk{display:grid;grid-template-columns:1fr auto 1fr;gap:4px;align-items:center;font-size:10px;margin:4px 0}
+.bk-l{text-align:right;color:var(--t2)}.bk-v{font-family:'JetBrains Mono',monospace;font-weight:700;padding:4px 10px;border-radius:6px;min-width:80px;text-align:center}.bk-b{color:var(--t3)}
+.dre-r{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:6px;margin-bottom:4px;font-size:12px}
+.dre-l{font-weight:600;display:flex;align-items:center;gap:6px}
+.dre-v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px}
+.dre-t{font-weight:800;font-size:13px;padding:10px 12px;border-radius:8px;margin:6px 0}
+.ft{border-top:1px solid var(--bdr);margin-top:36px;padding:44px 40px}
+.fc{max-width:1400px;margin:0 auto}
+.fd{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:24px 0}
+.cc{background:linear-gradient(135deg,#111827,#1a2236);border:1px solid var(--bdr);border-radius:18px;padding:30px;display:flex;gap:28px;align-items:center;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#06b6d4,#3b82f6,#8b5cf6)}
+.cp{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 8px 20px rgba(6,182,212,.3)}
+.ci{flex:1}.cl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--cy);margin-bottom:5px}
+.cn{font-size:20px;font-weight:900;margin-bottom:10px}
+.ccs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cci{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2);background:rgba(255,255,255,.04);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.cci a{color:var(--bl);text-decoration:none}
+.cb{font-size:11px;color:var(--t3);line-height:1.8;border-top:1px solid var(--bdr);padding-top:10px;font-style:italic}
+.fb{text-align:center;padding-top:20px;color:var(--t3);font-size:10px}.fb strong{color:var(--t2)}
+@media(max-width:1024px){.dg2,.dg3{grid-template-columns:1fr}.kp{grid-template-columns:repeat(3,1fr)}.hd h1{font-size:24px}.ct{padding:20px}.cc{flex-direction:column;text-align:center}.ccs{justify-content:center}}
+@media(max-width:768px){.ht{flex-direction:column}.hm{flex-direction:column;gap:6px}.kp{grid-template-columns:repeat(2,1fr)}.sb{grid-template-columns:repeat(3,1fr)}}
+.fi{opacity:0;transform:translateY(18px);transition:all .6s ease}.fi.v{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ═══════ HEADER ═══════ -->
+<div class="hd">
+<div class="hc">
+<div class="ht">
+<div class="hlg"><div class="hlg-i">R</div><div><div class="hlg-t">RURAL <span>IN</span></div><div class="hlg-s">Gestão Inteligente no Agro</div></div></div>
+<div class="hbd">🐄 Bloco 2 — Análise de Produção e Reprodução</div>
+</div>
+<h1>FAZENDA BRASILANDA — PRODUÇÃO</h1>
+<h2>Patricia Kompier — Rebanho, Produtividade, Reprodução, Saúde e Projeções</h2>
+<div class="hm">
+<div class="hm-i">📅 Período: <span>Janeiro e Fevereiro / 2026</span></div>
+<div class="hm-i">🐄 Rebanho Total: <span>1.454 (Jan) / 1.446 (Fev)</span></div>
+<div class="hm-i">🥛 Produção: <span>1.902.617 L (bimestre)</span></div>
+<div class="hm-i">📍 <span>Rio Verde - GO</span></div>
+<div class="hm-i">💲 Preço Médio: <span>R$ 2,41/L</span></div>
+</div>
+</div>
+</div>
+
+<div class="ct">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- KPIs RESUMO EXECUTIVO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">📊 Resumo Executivo — Indicadores-Chave de Produção <span class="st-b" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">VISÃO GERAL</span></div>
+
+<div class="kp fi">
+<div class="kp-i" style="border-color:rgba(6,182,212,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gCy);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Produção Bimestral</div>
+<div class="kp-v" style="color:var(--cy)">1.902.617 L</div>
+<div class="kp-d" style="color:var(--rd)">▼ −11,4% <span style="color:var(--t3)">Fev vs Jan</span></div>
+<div class="kp-s">Jan: 1.008.588 L | Fev: 894.029 L</div>
+</div>
+<div class="kp-i" style="border-color:rgba(16,185,129,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gGn);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Produção Média/Vaca/Dia</div>
+<div class="kp-v" style="color:var(--gn)">31,6 L</div>
+<div class="kp-d" style="color:var(--rd)">▼ −0,6% <span style="color:var(--t3)">Fev vs Jan</span></div>
+<div class="kp-s">Jan: 31,7 L | Fev: 31,5 L | Bench: 30-35 L</div>
+</div>
+<div class="kp-i" style="border-color:rgba(239,68,68,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gRd);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">DEL Médio</div>
+<div class="kp-v" style="color:var(--rd)">187 dias</div>
+<div class="kp-d" style="color:var(--rd)">⚠ Acima do ideal <span style="color:var(--t3)">(meta ≤ 170)</span></div>
+<div class="kp-s">Jan: 186 | Fev: 187 | +17 dias acima</div>
+</div>
+<div class="kp-i" style="border-color:rgba(245,158,11,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gYl);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Intervalo entre Partos</div>
+<div class="kp-v" style="color:var(--yl)">405 dias</div>
+<div class="kp-d" style="color:var(--rd)">⚠ Alto <span style="color:var(--t3)">(ideal ≤ 380)</span></div>
+<div class="kp-s">Meta top: 365 dias | Perda: ~40 dias</div>
+</div>
+<div class="kp-i" style="border-color:rgba(139,92,246,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gPr);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Vacas em Lactação</div>
+<div class="kp-v" style="color:var(--pr)">850 méd.</div>
+<div class="kp-d" style="color:var(--rd)">▼ −2,1% <span style="color:var(--t3)">Fev vs Jan</span></div>
+<div class="kp-s">Jan: 859 | Fev: 841 | −18 vacas</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO A — ESTRUTURA DO REBANHO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🐂 Bloco A — Estrutura e Composição do Rebanho <span class="st-b" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">PROD-A</span></div>
+
+<div class="dg dg2 fi">
+
+<!-- COMPOSIÇÃO -->
+<div class="d" style="border-color:rgba(139,92,246,.25)">
+<div class="dh"><div class="dt">🐂 Composição do Rebanho — Pirâmide <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">ESTRUTURA</span></div><div class="di">PROD-A1</div></div>
+
+<table class="mt">
+<tr><th>Categoria</th><th style="text-align:right">Janeiro</th><th>% Total</th><th style="text-align:right">Fevereiro</th><th>% Total</th><th>Var.</th><th>Benchmark</th></tr>
+<tr style="background:rgba(6,182,212,.04)">
+<td><strong style="color:var(--cy)">🥛 Vacas em Lactação</strong></td>
+<td class="nm" style="text-align:right"><strong>859</strong></td>
+<td class="nm" style="color:var(--cy)"><strong>59,1%</strong></td>
+<td class="nm" style="text-align:right"><strong>841</strong></td>
+<td class="nm" style="color:var(--cy)"><strong>58,2%</strong></td>
+<td class="nm" style="color:var(--rd)">−2,1%</td>
+<td class="nm" style="color:var(--t3)">60-65%</td>
+</tr>
+<tr>
+<td style="color:var(--yl)">🔒 Vacas Secas</td>
+<td class="nm" style="text-align:right">167</td>
+<td class="nm">11,5%</td>
+<td class="nm" style="text-align:right">173</td>
+<td class="nm">12,0%</td>
+<td class="nm" style="color:var(--rd)">+3,6%</td>
+<td class="nm" style="color:var(--t3)">10-15%</td>
+</tr>
+<tr>
+<td style="color:var(--gn)">🤰 Novilhas Prenhas</td>
+<td class="nm" style="text-align:right">246</td>
+<td class="nm">16,9%</td>
+<td class="nm" style="text-align:right">255</td>
+<td class="nm">17,6%</td>
+<td class="nm" style="color:var(--gn)">+3,7%</td>
+<td class="nm" style="color:var(--t3)">15-20%</td>
+</tr>
+<tr>
+<td>🐄 Novilhas Não-Prenhas</td>
+<td class="nm" style="text-align:right">167</td>
+<td class="nm">11,5%</td>
+<td class="nm" style="text-align:right">160</td>
+<td class="nm">11,1%</td>
+<td class="nm" style="color:var(--gn)">−4,2%</td>
+<td class="nm" style="color:var(--t3)">8-12%</td>
+</tr>
+<tr>
+<td>🐂 Machos</td>
+<td class="nm" style="text-align:right">15</td>
+<td class="nm">1,0%</td>
+<td class="nm" style="text-align:right">16</td>
+<td class="nm">1,1%</td>
+<td class="nm">+6,7%</td>
+<td class="nm" style="color:var(--t3)">< 2%</td>
+</tr>
+<tr style="background:rgba(139,92,246,.06)">
+<td><strong>TOTAL REBANHO</strong></td>
+<td class="nm" style="text-align:right"><strong>1.454</strong></td>
+<td class="nm"><strong>100%</strong></td>
+<td class="nm" style="text-align:right"><strong>1.446</strong></td>
+<td class="nm"><strong>100%</strong></td>
+<td class="nm" style="color:var(--rd)">−0,55%</td>
+<td></td>
+</tr>
+</table>
+
+<!-- PIRÂMIDE VISUAL -->
+<div style="margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="font-size:9px;color:var(--t3);margin-bottom:4px">PIRÂMIDE DO REBANHO (Fev/2026)</div>
+<div style="width:42%;padding:8px;background:rgba(6,182,212,.12);border-radius:6px;text-align:center;font-size:10px;font-weight:700;color:var(--cy)">🥛 Lactação: 841 (58,2%)</div>
+<div style="width:56%;padding:6px;background:rgba(245,158,11,.08);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--yl)">🔒 Secas: 173 (12,0%) | Relação Lact:Seca = 4,86:1</div>
+<div style="width:70%;padding:6px;background:rgba(16,185,129,.08);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--gn)">🤰 Nov. Prenhas: 255 (17,6%) — Reposição futura ✅</div>
+<div style="width:84%;padding:6px;background:rgba(148,163,184,.06);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--t2)">🐄 Nov. Não-Prenhas: 160 (11,1%) + 🐂 Machos: 16 (1,1%)</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+<div style="text-align:center;padding:10px;background:rgba(6,182,212,.04);border:1px solid rgba(6,182,212,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--cy);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Relação Lactação:Seca</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--cy)">4,86 : 1</div>
+<div style="font-size:8px;color:var(--t3)">Benchmark: 5,0-6,5 : 1 | 🟡 Levemente abaixo</div>
+</div>
+<div style="text-align:center;padding:10px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Taxa de Reposição (Nov. Prenhas / Vacas)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">25,1%</div>
+<div style="font-size:8px;color:var(--t3)">255 novilhas ÷ 1.014 vacas | Benchmark: 20-30% ✅</div>
+</div>
+</div>
+</div>
+
+<!-- MOVIMENTAÇÃO -->
+<div class="d" style="border-color:rgba(249,115,22,.25)">
+<div class="dh"><div class="dt">🔄 Movimentação do Rebanho — Entradas × Saídas <span class="db" style="background:rgba(249,115,22,.15);color:var(--or);border:1px solid rgba(249,115,22,.3)">FLUXO</span></div><div class="di">PROD-A2</div></div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th>Var.</th><th>Benchmark</th><th>Status</th></tr>
+<tr style="background:rgba(16,185,129,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--gn)">ENTRADAS (+)</td></tr>
+<tr>
+<td style="color:var(--gn)">🐣 Nascimentos</td>
+<td class="nm" style="text-align:right;color:var(--gn)">35</td>
+<td class="nm" style="text-align:right;color:var(--gn)">37</td>
+<td class="nm" style="color:var(--gn)">+5,7%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td style="color:var(--t3)">📥 Importação (compra)</td>
+<td class="nm" style="text-align:right">0</td>
+<td class="nm" style="text-align:right">0</td>
+<td class="nm">—</td>
+<td></td>
+<td></td>
+</tr>
+<tr style="background:rgba(16,185,129,.03)"><td><strong>Total Entradas</strong></td><td class="nm" style="text-align:right"><strong>35</strong></td><td class="nm" style="text-align:right"><strong>37</strong></td><td class="nm" style="color:var(--gn)">+5,7%</td><td></td><td></td></tr>
+
+<tr style="background:rgba(239,68,68,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--rd)">SAÍDAS (−)</td></tr>
+<tr>
+<td style="color:var(--rd)">🔪 Abate/Descarte</td>
+<td class="nm" style="text-align:right;color:var(--rd)">37</td>
+<td class="nm" style="text-align:right;color:var(--rd)">51</td>
+<td class="nm" style="color:var(--rd)"><strong>+37,8%</strong></td>
+<td class="nm" style="color:var(--t3)">2-3%/mês</td>
+<td><strong>🔴</strong></td>
+</tr>
+<tr>
+<td style="color:var(--rd)">💀 Mortes</td>
+<td class="nm" style="text-align:right;color:var(--rd)">9</td>
+<td class="nm" style="text-align:right;color:var(--rd)">10</td>
+<td class="nm" style="color:var(--rd)">+11,1%</td>
+<td class="nm" style="color:var(--t3)">< 0,5%/mês</td>
+<td><strong>🟠</strong></td>
+</tr>
+<tr style="background:rgba(239,68,68,.03)"><td><strong>Total Saídas</strong></td><td class="nm" style="text-align:right;color:var(--rd)"><strong>46</strong></td><td class="nm" style="text-align:right;color:var(--rd)"><strong>61</strong></td><td class="nm" style="color:var(--rd)"><strong>+32,6%</strong></td><td></td><td></td></tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(239,68,68,.06)">
+<td><strong style="color:var(--rd)">SALDO (Entradas − Saídas)</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>−11</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>−24</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>−118%</strong></td>
+<td class="nm" style="color:var(--t3)">Ideal: ≥ 0</td>
+<td><strong>🔴</strong></td>
+</tr>
+</table>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:8px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Taxa de Descarte Mensal (Fev)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--rd)">3,53%</div>
+<div style="font-size:8px;color:var(--t3)">51 ÷ 1.446 | Bench: ≤ 2,5%/mês</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:8px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Mortalidade Mensal (Fev)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--rd)">0,99%</div>
+<div style="font-size:8px;color:var(--t3)">10 mortes ÷ 1.014 vacas | Bench: ≤ 0,5%</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.12);border-radius:8px">
+<div style="font-size:8px;color:var(--yl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Saldo Bim. (Entradas − Saídas)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--rd)">−35 animais</div>
+<div style="font-size:8px;color:var(--t3)">72 nascidos − 88 abates − 19 mortes</div>
+</div>
+</div>
+
+<div class="obs obs-r" style="margin-top:14px">
+<div class="obs-t">📋 PONTO DE VERIFICAÇÃO — REUNIÃO DE APRESENTAÇÃO</div>
+<div class="obs-x">
+<strong>Descarte em Fevereiro (51 animais = 3,53%/mês):</strong> Se projetado para 12 meses, a taxa anual seria de <strong>~42%</strong> — muito acima do ideal (25-30%). <strong>Perguntas a esclarecer na reunião:</strong><br>
+• Esses 51 animais incluem venda de novilhas/excedentes ou são apenas vacas de descarte involuntário?<br>
+• Quais as causas principais? (reprodução, mastite, casco, produção baixa, idade?)<br>
+• Existe um protocolo de critérios para descarte?<br>
+<strong>Mortalidade (0,99%/mês → ~12% anual projetado):</strong><br>
+• Qual categoria mais morre? (vacas adultas, novilhas, bezerras?)<br>
+• Quais as causas identificadas?<br>
+Esses dados são essenciais para calibrar a projeção de rebanho e o custo de reposição.
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO B — PRODUÇÃO DIÁRIA E MENSAL -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🥛 Bloco B — Produção Diária e Mensal <span class="st-b" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">PROD-B</span></div>
+
+<div class="d fi" style="border-color:rgba(6,182,212,.25)">
+<div class="dh"><div class="dt">🥛 Produção — Jan × Fev (Diária, Mensal, por Vaca, por ha) <span class="db" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">PRODUÇÃO</span></div><div class="di">PROD-B1</div></div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th style="text-align:right">Média Bim.</th><th>Var. AH</th><th>Benchmark Top</th><th>Status</th></tr>
+
+<tr style="background:rgba(6,182,212,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--cy)">VOLUME DE PRODUÇÃO</td></tr>
+<tr><td><strong>Produção Total (L/mês)</strong></td><td class="nm" style="text-align:right"><strong>1.008.588</strong></td><td class="nm" style="text-align:right"><strong>894.029</strong></td><td class="nm" style="text-align:right"><strong>951.309</strong></td><td class="nm" style="color:var(--rd)"><strong>−11,36%</strong></td><td class="nm" style="color:var(--t3)">—</td><td>🟠</td></tr>
+<tr><td>Produção Diária (L/dia)</td><td class="nm" style="text-align:right">32.535</td><td class="nm" style="text-align:right">31.930</td><td class="nm" style="text-align:right">32.233</td><td class="nm" style="color:var(--rd)">−1,86%</td><td class="nm" style="color:var(--t3)">—</td><td>🟡</td></tr>
+<tr><td>Dias no Mês</td><td class="nm" style="text-align:right">31</td><td class="nm" style="text-align:right">28</td><td class="nm" style="text-align:right">29,5</td><td class="nm">—</td><td></td><td></td></tr>
+<tr><td>Aproveitamento do Leite</td><td class="nm" style="text-align:right;color:var(--gn)">100%</td><td class="nm" style="text-align:right;color:var(--gn)">100%</td><td class="nm" style="text-align:right;color:var(--gn)"><strong>100%</strong></td><td class="nm">—</td><td class="nm" style="color:var(--t3)">95-98%</td><td>🟢 Excelente</td></tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--gn)">PRODUTIVIDADE</td></tr>
+<tr><td><strong>L/Vaca/Dia (relatório)</strong></td><td class="nm" style="text-align:right"><strong>31,7</strong></td><td class="nm" style="text-align:right"><strong>31,5</strong></td><td class="nm" style="text-align:right"><strong>31,6</strong></td><td class="nm" style="color:var(--rd)">−0,63%</td><td class="nm" style="color:var(--gn)"><strong>35-40</strong></td><td>🟡</td></tr>
+<tr><td>L/Vaca/Mês</td><td class="nm" style="text-align:right">982,7</td><td class="nm" style="text-align:right">882,0</td><td class="nm" style="text-align:right">932,4</td><td class="nm" style="color:var(--rd)">−10,25%</td><td class="nm" style="color:var(--t3)">1.050-1.200</td><td>🟡</td></tr>
+<tr><td>L/Total Vacas/Dia (lact.+secas)</td><td class="nm" style="text-align:right">26,5</td><td class="nm" style="text-align:right">26,4</td><td class="nm" style="text-align:right">26,5</td><td class="nm" style="color:var(--rd)">−0,38%</td><td class="nm" style="color:var(--t3)">28-32</td><td>🟡</td></tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(245,158,11,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--yl)">PRODUTIVIDADE POR ÁREA</td></tr>
+<tr><td><strong>L/ha/dia (60 ha)</strong></td><td class="nm" style="text-align:right"><strong>542,3</strong></td><td class="nm" style="text-align:right"><strong>532,2</strong></td><td class="nm" style="text-align:right"><strong>537,2</strong></td><td class="nm" style="color:var(--rd)">−1,86%</td><td class="nm" style="color:var(--gn)"><strong>250-400</strong></td><td><strong>🟢 Top</strong></td></tr>
+<tr><td>L/ha/mês</td><td class="nm" style="text-align:right">16.810</td><td class="nm" style="text-align:right">14.900</td><td class="nm" style="text-align:right">15.855</td><td class="nm" style="color:var(--rd)">−11,36%</td><td class="nm" style="color:var(--t3)">7.500-12.000</td><td>🟢 Top</td></tr>
+<tr><td>L/ha/ano (projeção)</td><td class="nm" style="text-align:right" colspan="2">—</td><td class="nm" style="text-align:right;color:var(--gn)"><strong>190.262</strong></td><td></td><td class="nm" style="color:var(--t3)">90k-145k</td><td><strong>🟢 Excepcional</strong></td></tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(139,92,246,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--pr)">LOTAÇÃO E ESCALA</td></tr>
+<tr><td>Vacas Lact./ha</td><td class="nm" style="text-align:right">14,3</td><td class="nm" style="text-align:right">14,0</td><td class="nm" style="text-align:right"><strong>14,2</strong></td><td class="nm" style="color:var(--rd)">−2,1%</td><td class="nm" style="color:var(--t3)">5-10</td><td>🟢 Alto (confinamento)</td></tr>
+<tr><td>Total Animais/ha</td><td class="nm" style="text-align:right">24,2</td><td class="nm" style="text-align:right">24,1</td><td class="nm" style="text-align:right"><strong>24,2</strong></td><td class="nm" style="color:var(--rd)">−0,55%</td><td class="nm" style="color:var(--t3)">10-15</td><td>🟢 Confinamento</td></tr>
+<tr><td>Receita Leite/ha/mês (R$)</td><td class="nm" style="text-align:right">37.981</td><td class="nm" style="text-align:right">38.147</td><td class="nm" style="text-align:right;color:var(--gn)"><strong>38.064</strong></td><td class="nm" style="color:var(--gn)">+0,44%</td><td class="nm" style="color:var(--t3)">10k-25k</td><td><strong>🟢 Excepcional</strong></td></tr>
+</table>
+
+<!-- EXPLICAÇÃO DA QUEDA -->
+<div style="margin-top:18px;padding:16px;background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(249,115,22,.03));border:1px solid rgba(239,68,68,.15);border-radius:10px">
+<div style="font-size:12px;font-weight:800;color:var(--rd);margin-bottom:10px">📉 Decomposição da Queda de 11,36% na Produção (Jan → Fev)</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Efeito Dias no Mês</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--rd)">−9,68%</div>
+<div style="font-size:9px;color:var(--t3)">28 ÷ 31 = 0,9032 | 3 dias a menos</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Efeito Vacas (−18)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--rd)">−2,10%</div>
+<div style="font-size:9px;color:var(--t3)">859 → 841 = −18 vacas em lactação</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(249,115,22,.04);border:1px solid rgba(249,115,22,.1);border-radius:8px">
+<div style="font-size:8px;color:var(--or);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Efeito Produtividade/Vaca</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--or)">−0,63%</div>
+<div style="font-size:9px;color:var(--t3)">31,7 → 31,5 L/vaca/dia | Quase estável</div>
+</div>
+</div>
+<div style="font-size:10px;color:var(--t2);margin-top:10px;text-align:center">
+<strong>Conclusão:</strong> A queda de 11,36% é explicada por <strong>~85% pelo efeito calendário (Fev tem 3 dias a menos)</strong> e ~15% pela redução de vacas. A produtividade individual ficou praticamente estável. <strong>Não houve deterioração de eficiência individual — o problema é número de vacas.</strong>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO C — REPRODUÇÃO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🔄 Bloco C — Reprodução — Painel Crítico <span class="st-b" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">PROD-C</span></div>
+
+<div class="d fi" style="border-color:rgba(236,72,153,.25)">
+<div class="dh"><div class="dt">🔄 Reprodução — Indicadores Completos <span class="db" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">REPRO</span></div><div class="di">PROD-C1</div></div>
+<div class="cx" style="background:rgba(236,72,153,.06);border:1px solid rgba(236,72,153,.12);color:var(--pk)"><span style="background:rgba(236,72,153,.15)">PAINEL CRÍTICO</span> Reprodução é o motor de produção futura — cada dia perdido de DEL custa leite e dinheiro</div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th>Var.</th><th>Benchmark Top</th><th>Status</th><th>Impacto</th></tr>
+
+<tr style="background:rgba(239,68,68,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--rd)">⏱️ TEMPO EM LACTAÇÃO</td></tr>
+<tr>
+<td><strong style="color:var(--rd)">DEL Médio (Dias em Lactação)</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>186</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>187</strong></td>
+<td class="nm" style="color:var(--rd)">+0,54%</td>
+<td class="nm" style="color:var(--gn)"><strong>≤ 170</strong></td>
+<td><strong>🔴</strong></td>
+<td style="font-size:9px;color:var(--rd)"><strong>17 dias acima → perda de produção</strong></td>
+</tr>
+<tr>
+<td><strong style="color:var(--rd)">Intervalo entre Partos (IEP)</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)" colspan="2"><strong>405 dias</strong></td>
+<td class="nm">—</td>
+<td class="nm" style="color:var(--gn)"><strong>≤ 380</strong></td>
+<td><strong>🔴</strong></td>
+<td style="font-size:9px;color:var(--rd)"><strong>25 dias acima → 0,07 partos/vaca a menos por ano</strong></td>
+</tr>
+<tr>
+<td>IEP Meta Top (referência mundial)</td>
+<td class="nm" style="text-align:right;color:var(--gn)" colspan="2">365 dias</td>
+<td class="nm">—</td>
+<td class="nm" style="color:var(--gn)">365</td>
+<td>🎯</td>
+<td style="font-size:9px;color:var(--t3)">40 dias de gap vs. meta ideal</td>
+</tr>
+<tr>
+<td>Período de Serviço Estimado</td>
+<td class="nm" style="text-align:right;color:var(--yl)" colspan="2"><strong>~125 dias</strong></td>
+<td class="nm">—</td>
+<td class="nm" style="color:var(--gn)">≤ 100</td>
+<td>🟠</td>
+<td style="font-size:9px;color:var(--t3)">IEP (405) − Gestação (280) = 125 dias aberto</td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(139,92,246,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--pr)">💉 INSEMINAÇÃO</td></tr>
+<tr>
+<td>Inseminações 1ª</td>
+<td class="nm" style="text-align:right">137</td>
+<td class="nm" style="text-align:right">84</td>
+<td class="nm" style="color:var(--rd)"><strong>−38,7%</strong></td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td>🟠</td>
+<td style="font-size:9px">Menos vacas entrando em programa</td>
+</tr>
+<tr>
+<td>Inseminações 2ª+</td>
+<td class="nm" style="text-align:right">209</td>
+<td class="nm" style="text-align:right">182</td>
+<td class="nm" style="color:var(--rd)">−12,9%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td>🟡</td>
+<td style="font-size:9px">Re-inseminações — concepção anterior falhou</td>
+</tr>
+<tr>
+<td><strong>Total de Inseminações</strong></td>
+<td class="nm" style="text-align:right"><strong>346</strong></td>
+<td class="nm" style="text-align:right"><strong>266</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>−23,1%</strong></td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td>🟠</td>
+<td style="font-size:9px;color:var(--rd)">80 inseminações a menos</td>
+</tr>
+<tr>
+<td>Não para Inseminação</td>
+<td class="nm" style="text-align:right">18</td>
+<td class="nm" style="text-align:right">5</td>
+<td class="nm" style="color:var(--gn)">−72,2%</td>
+<td class="nm" style="color:var(--t3)">< 5%</td>
+<td>🟢</td>
+<td style="font-size:9px;color:var(--gn)">Melhora — menos vacas inaptas</td>
+</tr>
+<tr>
+<td>Relação Re-IA / 1ª IA</td>
+<td class="nm" style="text-align:right">1,53</td>
+<td class="nm" style="text-align:right">2,17</td>
+<td class="nm" style="color:var(--rd)">+41,5%</td>
+<td class="nm" style="color:var(--t3)">≤ 1,5</td>
+<td>🟠</td>
+<td style="font-size:9px;color:var(--yl)">Mais vacas repetindo cio</td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--gn)">🤰 CONCEPÇÃO E PRENHEZ</td></tr>
+<tr>
+<td><strong>Diagnósticos Positivos (Prenhas)</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>106</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>145</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+36,8%</strong></td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td>🟢</td>
+<td style="font-size:9px;color:var(--gn)">Mais vacas confirmando prenhez</td>
+</tr>
+<tr>
+<td>Diagnósticos Negativos — DP(−)</td>
+<td class="nm" style="text-align:right;color:var(--rd)">138</td>
+<td class="nm" style="text-align:right;color:var(--rd)">117</td>
+<td class="nm" style="color:var(--gn)">−15,2%</td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td>🟡</td>
+<td style="font-size:9px">Menos vacas falhando</td>
+</tr>
+<tr>
+<td><strong>Taxa de Concepção Aparente*</strong></td>
+<td class="nm" style="text-align:right"><strong>30,6%</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>54,5%</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+23,9pp</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>35-45%</strong></td>
+<td>⚠️</td>
+<td style="font-size:9px;color:var(--yl)"><strong>*Ver observação abaixo</strong></td>
+</tr>
+<tr>
+<td>Taxa DP(+) / Total Diagnósticos</td>
+<td class="nm" style="text-align:right">43,4%</td>
+<td class="nm" style="text-align:right;color:var(--gn)">55,3%</td>
+<td class="nm" style="color:var(--gn)">+11,9pp</td>
+<td class="nm" style="color:var(--t3)">50-60%</td>
+<td>🟢</td>
+<td style="font-size:9px;color:var(--gn)">Mais da metade dos DPs é positivo</td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(245,158,11,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--yl)">📊 TAXAS CALCULADAS</td></tr>
+<tr>
+<td>Taxa de Serviço Estimada (IA/vacas elegíveis)</td>
+<td class="nm" style="text-align:right">40,3%</td>
+<td class="nm" style="text-align:right">31,6%</td>
+<td class="nm" style="color:var(--rd)">−8,7pp</td>
+<td class="nm" style="color:var(--gn)">≥ 50%</td>
+<td>🟠</td>
+<td style="font-size:9px;color:var(--rd)">Abaixo do benchmark — detecção de cio?</td>
+</tr>
+<tr>
+<td>Taxa de Prenhez Estimada (Prenhas/vacas elegíveis)</td>
+<td class="nm" style="text-align:right">12,3%</td>
+<td class="nm" style="text-align:right">17,2%</td>
+<td class="nm" style="color:var(--gn)">+4,9pp</td>
+<td class="nm" style="color:var(--gn)">≥ 20-25%</td>
+<td>🟠</td>
+<td style="font-size:9px;color:var(--rd)">Abaixo da meta top</td>
+</tr>
+<tr>
+<td>Serviços por Concepção Estimado</td>
+<td class="nm" style="text-align:right">3,26</td>
+<td class="nm" style="text-align:right">1,83</td>
+<td class="nm" style="color:var(--gn)">−43,8%</td>
+<td class="nm" style="color:var(--gn)">≤ 2,5</td>
+<td>🟡</td>
+<td style="font-size:9px">Jan alto, Fev bom — verificar consistência</td>
+</tr>
+</table>
+
+<!-- NOTA CÁLCULO TAXAS -->
+<div style="font-size:8px;color:var(--t3);margin-top:6px;padding:6px;background:rgba(255,255,255,.01);border-radius:4px">
+* <strong>Premissas dos cálculos:</strong> Vacas elegíveis para IA estimadas = Vacas em Lactação − Prenhas do mês anterior − Vacas em período voluntário de espera (PVE estimado 60 dias). Taxa de Serviço = Total IA ÷ Vacas elegíveis. Taxa de Prenhez = Prenhas ÷ Vacas elegíveis. Serviços/Concepção = Total IA ÷ Prenhas. Valores estimados — validar com dados reais do sistema reprodutivo.
+</div>
+
+<!-- OBSERVAÇÃO TAXA DE CONCEPÇÃO -->
+<div class="obs" style="margin-top:14px">
+<div class="obs-t">📋 PONTO DE VERIFICAÇÃO — TAXA DE CONCEPÇÃO FEVEREIRO (54,5%)</div>
+<div class="obs-x">
+O cálculo direto (Prenhas ÷ Total de Inseminações) resulta em <strong>30,6% em Janeiro</strong> e <strong>54,5% em Fevereiro</strong>.<br><br>
+<strong>O valor de Fevereiro (54,5%) está significativamente acima do benchmark (35-45%).</strong> Possíveis explicações:<br>
+• Os 145 diagnósticos positivos de Fev <strong>incluem vacas inseminadas em meses anteriores</strong> (Dez/Jan) cujo DP foi confirmado em Fev → neste caso, não é taxa de concepção "do mês", mas sim taxa de confirmação de prenhez<br>
+• Pode haver <strong>defasagem temporal</strong> entre inseminação e diagnóstico (30-60 dias dependendo do protocolo)<br><br>
+<strong>🔎 Esclarecer na reunião com equipe técnica:</strong><br>
+• O número de "Prenhas" no relatório refere-se a diagnósticos realizados no mês sobre inseminações <strong>de qual período</strong>?<br>
+• Qual o protocolo de DP utilizado? (Ultrassom aos 28-35 dias? Palpação aos 45-60 dias?)<br>
+• Qual a <strong>taxa de concepção real por protocolo/lote</strong> que o sistema reprodutivo calcula?<br>
+Se a taxa real for confirmada em ~30-35%, os indicadores reprodutivos são <strong>adequados mas com espaço de melhoria</strong>. Se realmente estiver em 54%, é uma <strong>performance excepcional</strong> que precisa ser documentada.
+</div>
+</div>
+
+<!-- DEL VISUAL -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">📈 DEL — Análise Visual e Impacto Econômico</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+<!-- GAUGE DEL -->
+<div style="padding:18px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px">
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:12px;text-align:center">Posição do DEL na Curva de Lactação</div>
+
+<div style="position:relative;height:24px;background:linear-gradient(90deg,rgba(16,185,129,.4) 0%,rgba(16,185,129,.4) 33%,rgba(245,158,11,.4) 33%,rgba(245,158,11,.4) 56%,rgba(239,68,68,.4) 56%,rgba(239,68,68,.3) 100%);border-radius:8px;margin-bottom:6px;overflow:visible">
+<!-- Marcas -->
+<div style="position:absolute;left:0;top:-16px;font-size:8px;color:var(--gn);font-weight:700">0</div>
+<div style="position:absolute;left:33%;top:-16px;font-size:8px;color:var(--gn);font-weight:700;transform:translateX(-50%)">100d (pico)</div>
+<div style="position:absolute;left:56%;top:-16px;font-size:8px;color:var(--yl);font-weight:700;transform:translateX(-50%)">170d (ideal)</div>
+<div style="position:absolute;right:0;top:-16px;font-size:8px;color:var(--rd);font-weight:700">305d (seca)</div>
+<!-- Ponteiro -->
+<div style="position:absolute;left:61.3%;top:-6px;transform:translateX(-50%);font-size:16px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))">🔽</div>
+<div style="position:absolute;left:61.3%;bottom:-18px;transform:translateX(-50%);font-size:9px;font-weight:800;color:var(--rd)">187d ←</div>
+<!-- Zonas -->
+<div style="position:absolute;left:8%;top:50%;transform:translateY(-50%);font-size:7px;font-weight:700;color:rgba(255,255,255,.7)">PICO</div>
+<div style="position:absolute;left:42%;top:50%;transform:translateY(-50%);font-size:7px;font-weight:700;color:rgba(255,255,255,.7)">MID</div>
+<div style="position:absolute;left:72%;top:50%;transform:translateY(-50%);font-size:7px;font-weight:700;color:rgba(255,255,255,.7)">DECLÍNIO</div>
+</div>
+
+<div style="font-size:9px;color:var(--t2);text-align:center;margin-top:22px;line-height:1.6">
+O rebanho está <strong style="color:var(--rd)">na zona de declínio</strong> da curva de lactação.<br>
+Com DEL 187, as vacas já passaram do pico (60-100 dias) e estão produzindo <strong>15-25% menos</strong> do que poderiam no pico.
+</div>
+</div>
+
+<!-- IMPACTO ECONÔMICO DEL -->
+<div style="padding:18px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px">
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:12px;text-align:center">💰 Impacto Econômico do DEL Elevado</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="text-align:center;padding:10px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Perda Estimada por Dia Extra de DEL</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--rd)">~R$ 5,00/vaca/dia</div>
+<div style="font-size:8px;color:var(--t3)">Menos leite + custo manutenção</div>
+</div>
+<div style="text-align:center;padding:10px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">17 Dias Extras × 850 Vacas</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--rd)">~R$ 72.250/mês</div>
+<div style="font-size:8px;color:var(--t3)">Custo oportunidade mensal</div>
+</div>
+<div style="text-align:center;padding:10px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Projeção Anual</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--rd)">~R$ 867.000/ano</div>
+<div style="font-size:8px;color:var(--t3)">Perdido por DEL acima da meta</div>
+</div>
+<div style="text-align:center;padding:10px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--yl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">IEP 405d vs Meta 380d</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--yl)">~0,90 partos/vaca/ano</div>
+<div style="font-size:8px;color:var(--t3)">Ideal: 0,96 | Top: 1,00</div>
+</div>
+</div>
+
+<div style="font-size:9px;color:var(--t2);text-align:center;margin-top:10px;line-height:1.6">
+<strong>Traduzindo:</strong> Reduzir o DEL de 187 para 170 (meta) pode gerar <strong>+R$ 867k/ano</strong> — equivalente a <strong>2,1 meses de resultado líquido</strong> (R$ 404k/mês). <strong>Reprodução é o alavancador financeiro nº 1 desta fazenda.</strong>
+</div>
+</div>
+
+</div>
+
+<!-- COMPARATIVO COM BENCHMARKS -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">📊 Reprodução — Comparativo com Benchmarks de Referência</div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:center">Brasilanda</th><th style="text-align:center">🟡 Médio BR</th><th style="text-align:center">🟢 Top 10% BR</th><th style="text-align:center">🏆 Top Mundial</th><th>Gap vs Top BR</th></tr>
+<tr>
+<td>DEL Médio</td>
+<td class="nm" style="text-align:center;color:var(--rd)"><strong>187</strong></td>
+<td class="nm" style="text-align:center">190-210</td>
+<td class="nm" style="text-align:center;color:var(--gn)">160-170</td>
+<td class="nm" style="text-align:center;color:var(--gn)">145-155</td>
+<td class="nm" style="text-align:center;color:var(--rd)">+17 dias</td>
+</tr>
+<tr>
+<td>IEP</td>
+<td class="nm" style="text-align:center;color:var(--rd)"><strong>405 dias</strong></td>
+<td class="nm" style="text-align:center">420-450</td>
+<td class="nm" style="text-align:center;color:var(--gn)">370-385</td>
+<td class="nm" style="text-align:center;color:var(--gn)">360-370</td>
+<td class="nm" style="text-align:center;color:var(--rd)">+20-35 dias</td>
+</tr>
+<tr>
+<td>Taxa de Serviço</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>~36%</strong></td>
+<td class="nm" style="text-align:center">35-40%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">55-65%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">65-75%</td>
+<td class="nm" style="text-align:center;color:var(--rd)">−19-29pp</td>
+</tr>
+<tr>
+<td>Taxa de Concepção</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>~30-35%</strong></td>
+<td class="nm" style="text-align:center">30-35%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">38-45%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">42-50%</td>
+<td class="nm" style="text-align:center;color:var(--yl)">−3-15pp</td>
+</tr>
+<tr>
+<td>Taxa de Prenhez</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>~15%</strong></td>
+<td class="nm" style="text-align:center">12-16%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">22-28%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">28-35%</td>
+<td class="nm" style="text-align:center;color:var(--rd)">−7-13pp</td>
+</tr>
+<tr>
+<td>Serviços/Concepção</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>~2,5</strong></td>
+<td class="nm" style="text-align:center">3,0-3,5</td>
+<td class="nm" style="text-align:center;color:var(--gn)">2,0-2,5</td>
+<td class="nm" style="text-align:center;color:var(--gn)">1,8-2,2</td>
+<td class="nm" style="text-align:center;color:var(--gn)">≈ no target</td>
+</tr>
+<tr>
+<td>Mortalidade (%/mês)</td>
+<td class="nm" style="text-align:center;color:var(--rd)"><strong>0,94%</strong></td>
+<td class="nm" style="text-align:center">0,6-0,8%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">0,3-0,4%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">< 0,3%</td>
+<td class="nm" style="text-align:center;color:var(--rd)">+0,5-0,6pp</td>
+</tr>
+<tr>
+<td>Abortos (%/mês)</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>1,15%</strong></td>
+<td class="nm" style="text-align:center">1,0-2,0%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">< 0,8%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">< 0,5%</td>
+<td class="nm" style="text-align:center;color:var(--rd)">+0,35-0,65pp</td>
+</tr>
+</table>
+
+<div class="nt" style="background:rgba(236,72,153,.05);border:1px solid rgba(236,72,153,.12)">
+🔬 <strong>Leitura do Benchmark Reprodutivo:</strong><br>
+<strong>Posição atual:</strong> A Brasilanda está na <strong>média brasileira</strong> em reprodução — melhor que muitos, mas significativamente abaixo do Top 10%.<br>
+<strong>Gap principal:</strong> A <strong>Taxa de Serviço (~36%)</strong> é o gargalo — significa que apenas ~36% das vacas elegíveis são inseminadas por ciclo de 21 dias. O benchmark top é 55-65%. Com os <strong>1.000 colares AffiCollar</strong>, a fazenda tem tecnologia para elevar a detecção de cio. Se não está detectando, pode ser: PVE longo demais, problema de manejo, protocolo de IATF inadequado, ou estresse térmico.<br>
+<strong>Potencial financeiro:</strong> Levar a taxa de prenhez de 15% para 22% geraria ~<strong>60 vacas a mais parindo por ano</strong> → ~R$ 1,5M adicionais/ano em leite.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO D — SAÚDE E DESCARTE -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🏥 Bloco D — Saúde, Mortalidade e Descarte <span class="st-b" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">PROD-D</span></div>
+
+<div class="dg dg2 fi">
+
+<!-- MORTALIDADE E ABORTOS -->
+<div class="d" style="border-color:rgba(239,68,68,.25)">
+<div class="dh"><div class="dt">💀 Mortalidade e Abortos <span class="db" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">SAÚDE</span></div><div class="di">PROD-D1</div></div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Jan</th><th style="text-align:right">Fev</th><th>Média</th><th>Benchmark</th><th>Status</th></tr>
+<tr>
+<td><strong style="color:var(--rd)">Mortes (total)</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)">9</td>
+<td class="nm" style="text-align:right;color:var(--rd)">10</td>
+<td class="nm" style="color:var(--rd)"><strong>9,5/mês</strong></td>
+<td class="nm" style="color:var(--t3)">< 5/mês</td>
+<td><strong>🔴</strong></td>
+</tr>
+<tr>
+<td>Mortalidade %/mês</td>
+<td class="nm" style="text-align:right">0,88%</td>
+<td class="nm" style="text-align:right;color:var(--rd)">0,99%</td>
+<td class="nm" style="color:var(--rd)"><strong>0,94%</strong></td>
+<td class="nm" style="color:var(--gn)">≤ 0,5%</td>
+<td>🔴</td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td><strong style="color:var(--rd)">Projeção Anual</strong></td>
+<td class="nm" style="text-align:right" colspan="2">—</td>
+<td class="nm" style="color:var(--rd)"><strong>~114 mortes (11,2%)</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>≤ 5-6%</strong></td>
+<td><strong>🔴</strong></td>
+</tr>
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr>
+<td><strong style="color:var(--yl)">Abortos (total)</strong></td>
+<td class="nm" style="text-align:right;color:var(--yl)">18</td>
+<td class="nm" style="text-align:right">12</td>
+<td class="nm" style="color:var(--yl)"><strong>15/mês</strong></td>
+<td class="nm" style="color:var(--t3)">< 8/mês</td>
+<td>🟠</td>
+</tr>
+<tr>
+<td>Aborto %/mês</td>
+<td class="nm" style="text-align:right;color:var(--yl)">1,40%</td>
+<td class="nm" style="text-align:right">0,90%</td>
+<td class="nm" style="color:var(--yl)"><strong>1,15%</strong></td>
+<td class="nm" style="color:var(--gn)">≤ 0,8%</td>
+<td>🟠</td>
+</tr>
+<tr style="background:rgba(245,158,11,.04)">
+<td><strong>Projeção Anual</strong></td>
+<td class="nm" style="text-align:right" colspan="2">—</td>
+<td class="nm" style="color:var(--yl)"><strong>~180 abortos (13,8%)</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>≤ 5-8%</strong></td>
+<td>🟠</td>
+</tr>
+</table>
+
+<!-- CUSTO DA MORTALIDADE -->
+<div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);border-radius:8px">
+<div style="font-size:7px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Custo Estimado por Morte (Vaca Adulta)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--rd)">R$ 8.000-12.000</div>
+<div style="font-size:8px;color:var(--t3)">Valor patrimonial + produção perdida</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);border-radius:8px">
+<div style="font-size:7px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Perda Anual Estimada (Mortes)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--rd)">R$ 912k - R$ 1,37M</div>
+<div style="font-size:8px;color:var(--t3)">114 mortes × R$ 8-12k/cabeça</div>
+</div>
+</div>
+
+<div class="obs obs-r" style="margin-top:12px">
+<div class="obs-t">📋 PONTO DE VERIFICAÇÃO — REUNIÃO DE APRESENTAÇÃO</div>
+<div class="obs-x">
+<strong>Mortalidade de 0,94%/mês → ~11,2% anual projetado:</strong><br>
+É <strong>praticamente o dobro</strong> do aceitável (5-6%). Porém, sem saber a <strong>categoria</strong> dos animais que morrem, não é possível direcionar ação.<br><br>
+<strong>🔎 Perguntas essenciais para a reunião:</strong><br>
+• As 19 mortes do bimestre foram de <strong>vacas adultas, novilhas ou bezerras</strong>?<br>
+• Quais as <strong>causas de morte</strong> identificadas? (metabólicas, infecciosas, acidentes, parto?)<br>
+• Existe <strong>necropsia</strong> ou registro de causa de morte no sistema?<br>
+• As mortes se concentram em alguma <strong>fase específica</strong>? (peri-parto, pós-parto, transição?)<br><br>
+<strong>Abortos (1,15%/mês):</strong> Janeiro foi alto (1,4%), Fevereiro melhorou (0,9%). Sanidade está em dia (confirmado). Investigar: <strong>estresse térmico, micotoxinas na dieta, manejo de lote</strong>.
+</div>
+</div>
+</div>
+
+<!-- DESCARTE -->
+<div class="d" style="border-color:rgba(249,115,22,.25)">
+<div class="dh"><div class="dt">📉 Taxa de Descarte Anual — Projeção <span class="db" style="background:rgba(249,115,22,.15);color:var(--or);border:1px solid rgba(249,115,22,.3)">DESCARTE</span></div><div class="di">PROD-D2</div></div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Jan</th><th style="text-align:right">Fev</th><th>Média/mês</th><th>Projeção Anual</th><th>Benchmark</th></tr>
+<tr>
+<td><strong>Abate/Descarte</strong></td>
+<td class="nm" style="text-align:right">37</td>
+<td class="nm" style="text-align:right;color:var(--rd)">51</td>
+<td class="nm"><strong>44/mês</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>528/ano</strong></td>
+<td class="nm" style="color:var(--t3)">25-30% do rebanho</td>
+</tr>
+<tr>
+<td>Descarte % / mês</td>
+<td class="nm" style="text-align:right">2,54%</td>
+<td class="nm" style="text-align:right;color:var(--rd)">3,53%</td>
+<td class="nm" style="color:var(--rd)"><strong>3,03%</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>~36,4%</strong></td>
+<td class="nm" style="color:var(--gn)">≤ 2,5%/mês</td>
+</tr>
+<tr>
+<td><strong>Mortes</strong></td>
+<td class="nm" style="text-align:right">9</td>
+<td class="nm" style="text-align:right">10</td>
+<td class="nm"><strong>9,5/mês</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>114/ano</strong></td>
+<td class="nm" style="color:var(--t3)">≤ 5-6%</td>
+</tr>
+<tr style="background:rgba(239,68,68,.06)">
+<td><strong style="color:var(--rd)">Total Perdas (Descarte + Mortes)</strong></td>
+<td class="nm" style="text-align:right"><strong>46</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>61</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>53,5/mês</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>642/ano (44,2%)</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>≤ 30-35%</strong></td>
+</tr>
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong style="color:var(--gn)">Nascimentos (Reposição Natural)</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)">35</td>
+<td class="nm" style="text-align:right;color:var(--gn)">37</td>
+<td class="nm" style="color:var(--gn)"><strong>36/mês</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>432/ano</strong></td>
+<td class="nm" style="color:var(--t3)">—</td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td><strong style="color:var(--rd)">Déficit de Reposição</strong></td>
+<td class="nm" style="text-align:right;color:var(--rd)">−11</td>
+<td class="nm" style="text-align:right;color:var(--rd)">−24</td>
+<td class="nm" style="color:var(--rd)"><strong>−17,5/mês</strong></td>
+<td class="nm" style="color:var(--rd)"><strong>−210/ano</strong></td>
+<td class="nm" style="color:var(--gn)">Ideal: ≥ 0</td>
+</tr>
+</table>
+
+<!-- VISUAL FUNIL DE PERDAS -->
+<div style="margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="font-size:9px;color:var(--t3);margin-bottom:4px">FUNIL DE PERDAS — PROJEÇÃO ANUAL</div>
+<div style="width:100%;padding:8px;background:rgba(6,182,212,.1);border-radius:6px;text-align:center;font-size:10px;font-weight:700;color:var(--cy)">🐄 Rebanho Inicial: ~1.450 animais (100%)</div>
+<div style="width:75%;padding:6px;background:rgba(239,68,68,.08);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--rd)">🔪 Descarte: −528/ano (36,4%) ← ⚠️ ALTO</div>
+<div style="width:60%;padding:6px;background:rgba(239,68,68,.1);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--rd)">💀 Mortes: −114/ano (7,9%) ← ⚠️ ALTO</div>
+<div style="width:50%;padding:6px;background:rgba(16,185,129,.08);border-radius:6px;text-align:center;font-size:10px;font-weight:600;color:var(--gn)">🐣 Nascimentos: +432/ano (+29,8%)</div>
+<div style="width:45%;padding:8px;background:rgba(239,68,68,.12);border-radius:6px;text-align:center;font-size:10px;font-weight:700;color:var(--rd)">📉 Saldo: −210/ano → Rebanho encolhendo</div>
+</div>
+
+<div class="obs" style="margin-top:12px">
+<div class="obs-t">📋 PONTO DE VERIFICAÇÃO — REUNIÃO DE APRESENTAÇÃO</div>
+<div class="obs-x">
+<strong>Taxa de descarte projetada de 36,4%/ano:</strong> Se confirmada, o rebanho precisa repor <strong>528 animais/ano</strong>, mas só nascem ~432. Isso gera um <strong>déficit de 210 animais/ano</strong> que, se não compensado por compras, reduz o rebanho produtivo progressivamente.<br><br>
+<strong>🔎 Esclarecer na reunião:</strong><br>
+• Os 88 abates do bimestre incluem <strong>venda de excedentes/novilhas</strong> (saída voluntária) ou são apenas <strong>descarte involuntário</strong> (problemas)?<br>
+• Se houver venda de novilhas de genética superior, o "descarte" na verdade é <strong>receita positiva</strong> e não perda<br>
+• Qual é o <strong>critério de descarte</strong> utilizado? (produção mínima, reprodução, mastite crônica, casco?)<br>
+• Existe plano de <strong>compra de novilhas</strong> para cobrir o déficit ou a reposição será 100% interna?<br><br>
+<strong>Nota:</strong> A presença de 255 novilhas prenhas no rebanho indica pipeline de reposição, mas o ritmo de nascimento (36/mês) é insuficiente para cobrir as perdas (53,5/mês).
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- MASTITE E BCS — PONTO CEGO -->
+<div class="d fi" style="border-color:rgba(245,158,11,.25);margin-top:20px">
+<div class="dh"><div class="dt">🔍 Mastite, BCS e CCS — Dados Não Disponíveis <span class="db" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">PONTO CEGO</span></div><div class="di">PROD-D3</div></div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+
+<div style="padding:16px;background:rgba(245,158,11,.04);border:2px dashed rgba(245,158,11,.2);border-radius:10px;text-align:center">
+<div style="font-size:24px;margin-bottom:8px">🦠</div>
+<div style="font-size:11px;font-weight:800;color:var(--yl)">MASTITE</div>
+<div style="font-size:10px;color:var(--t2);margin:6px 0">Sem dados no relatório</div>
+<div style="font-size:8px;color:var(--t3);line-height:1.5">Mastite é o <strong>maior fator de descarte involuntário</strong> e perda de produção. Gera custo direto (tratamento) e indireto (leite descartado, queda de produção, descarte antecipado).</div>
+</div>
+
+<div style="padding:16px;background:rgba(245,158,11,.04);border:2px dashed rgba(245,158,11,.2);border-radius:10px;text-align:center">
+<div style="font-size:24px;margin-bottom:8px">⚖️</div>
+<div style="font-size:11px;font-weight:800;color:var(--yl)">BCS (Escore Corporal)</div>
+<div style="font-size:10px;color:var(--t2);margin:6px 0">Sem dados (seca e ao parir)</div>
+<div style="font-size:8px;color:var(--t3);line-height:1.5">BCS na secagem e ao parir determinam a <strong>capacidade produtiva no pós-parto</strong>. Vacas magras (< 3,0) ou gordas (> 3,75) ao parir têm mais problemas metabólicos.</div>
+</div>
+
+<div style="padding:16px;background:rgba(245,158,11,.04);border:2px dashed rgba(245,158,11,.2);border-radius:10px;text-align:center">
+<div style="font-size:24px;margin-bottom:8px">🔬</div>
+<div style="font-size:11px;font-weight:800;color:var(--yl)">CCS (Céls. Somáticas)</div>
+<div style="font-size:10px;color:var(--t2);margin:6px 0">Sem dados</div>
+<div style="font-size:8px;color:var(--t3);line-height:1.5">CCS < 200 mil = excelente. CCS > 400 mil = perda de produção e bonificação. Indicador direto de <strong>saúde do úbere</strong> e qualidade do leite.</div>
+</div>
+
+<div style="padding:16px;background:rgba(245,158,11,.04);border:2px dashed rgba(245,158,11,.2);border-radius:10px;text-align:center">
+<div style="font-size:24px;margin-bottom:8px">🧪</div>
+<div style="font-size:11px;font-weight:800;color:var(--yl)">CBT / Qualidade</div>
+<div style="font-size:10px;color:var(--t2);margin:6px 0">Sem dados</div>
+<div style="font-size:8px;color:var(--t3);line-height:1.5">CBT, gordura%, proteína% e lactose% definem a <strong>bonificação no preço do leite</strong>. Podem significar R$ 0,05-0,15/L a mais. Com 951k L/mês, isso é R$ 47-143k/mês.</div>
+</div>
+</div>
+
+<div class="obs" style="margin-top:14px">
+<div class="obs-t">⚠️ PONTO DE ATENÇÃO — DADOS NECESSÁRIOS PARA ANÁLISE COMPLETA</div>
+<div class="obs-x">
+A <strong>ausência de dados de mastite, BCS, CCS e qualidade do leite</strong> é um <strong>ponto cego significativo</strong> nesta análise. Esses indicadores:<br>
+• Explicam parte da mortalidade e do descarte elevado<br>
+• Determinam o potencial de bonificação no preço (estimado R$ 47-143k/mês)<br>
+• São essenciais para o diagnóstico de saúde do rebanho<br><br>
+<strong>Possibilidades:</strong><br>
+• O sistema de colares AffiCollar (1.000 unidades) <strong>pode ter dados de ruminação e atividade</strong> que indicam mastite subclínica — verificar se estão sendo utilizados para este fim<br>
+• O laticínio que compra o leite <strong>provavelmente tem análise mensal de tanque</strong> (CCS, CBT, gordura, proteína) — solicitar relatórios<br>
+• A coleta de BCS deve ser incorporada na rotina de manejo de secagem e pré-parto
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO E — PRODUTIVIDADE BENCHMARKS -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">📊 Bloco E — Produtividade — Benchmarks Completos <span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">PROD-E</span></div>
+
+<div class="d fi" style="border-color:rgba(16,185,129,.25)">
+<div class="dh"><div class="dt">📊 Brasilanda vs. Benchmarks — Todos os Indicadores de Produtividade <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">BENCH</span></div><div class="di">PROD-E1</div></div>
+<div class="cx" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.12);color:var(--gn)"><span style="background:rgba(16,185,129,.15)">4 NÍVEIS</span> Fazenda atual → Média Brasil → Top 10% Brasil → Top Mundial (EUA, Israel, Países Baixos)</div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:center">🏠 Brasilanda</th><th style="text-align:center">🇧🇷 Média BR</th><th style="text-align:center">🏅 Top 10% BR</th><th style="text-align:center">🏆 Top Mundial</th><th style="text-align:center">Posição</th><th>Gap vs Top BR</th></tr>
+
+<tr style="background:rgba(6,182,212,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--cy)">🥛 PRODUÇÃO POR ANIMAL</td></tr>
+<tr>
+<td>L/Vaca em Lactação/Dia</td>
+<td class="nm" style="text-align:center"><strong>31,6</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">18-22</td>
+<td class="nm" style="text-align:center;color:var(--gn)">32-38</td>
+<td class="nm" style="text-align:center;color:var(--gn)">40-50</td>
+<td style="text-align:center">🟡</td>
+<td class="nm" style="color:var(--rd)">−0,4 a −6,4 L</td>
+</tr>
+<tr>
+<td>L/Total Vacas (Lact.+Secas)/Dia</td>
+<td class="nm" style="text-align:center"><strong>26,5</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">14-18</td>
+<td class="nm" style="text-align:center;color:var(--gn)">28-33</td>
+<td class="nm" style="text-align:center;color:var(--gn)">35-42</td>
+<td style="text-align:center">🟡</td>
+<td class="nm" style="color:var(--rd)">−1,5 a −6,5 L</td>
+</tr>
+<tr>
+<td>L/Vaca/Mês</td>
+<td class="nm" style="text-align:center"><strong>932</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">540-660</td>
+<td class="nm" style="text-align:center;color:var(--gn)">960-1.140</td>
+<td class="nm" style="text-align:center;color:var(--gn)">1.200-1.500</td>
+<td style="text-align:center">🟡</td>
+<td class="nm" style="color:var(--rd)">−28 a −208 L</td>
+</tr>
+<tr>
+<td>L/Vaca/Ano (proj.)</td>
+<td class="nm" style="text-align:center"><strong>11.189</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">5.000-7.000</td>
+<td class="nm" style="text-align:center;color:var(--gn)">11.500-13.500</td>
+<td class="nm" style="text-align:center;color:var(--gn)">13.500-16.000</td>
+<td style="text-align:center">🟡</td>
+<td class="nm" style="color:var(--rd)">−311 a −2.311 L</td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(245,158,11,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--yl)">🌾 PRODUÇÃO POR ÁREA</td></tr>
+<tr>
+<td><strong>L/ha/dia</strong></td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>537</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">15-40</td>
+<td class="nm" style="text-align:center;color:var(--gn)">80-200</td>
+<td class="nm" style="text-align:center;color:var(--gn)">250-450</td>
+<td style="text-align:center"><strong>🏆</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+137 a +337 L ✅</strong></td>
+</tr>
+<tr>
+<td><strong>L/ha/ano (proj.)</strong></td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>190.262</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">5.000-15.000</td>
+<td class="nm" style="text-align:center;color:var(--gn)">30.000-75.000</td>
+<td class="nm" style="text-align:center;color:var(--gn)">90.000-165.000</td>
+<td style="text-align:center"><strong>🏆</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+25k a +160k ✅</strong></td>
+</tr>
+<tr>
+<td>Receita/ha/mês (R$)</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>R$ 38.064</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">1.000-3.000</td>
+<td class="nm" style="text-align:center;color:var(--gn)">8.000-18.000</td>
+<td class="nm" style="text-align:center;color:var(--gn)">20.000-35.000</td>
+<td style="text-align:center"><strong>🏆</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+R$ 20-30k ✅</strong></td>
+</tr>
+<tr>
+<td>Animais/ha</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>24,1</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">1-3</td>
+<td class="nm" style="text-align:center;color:var(--gn)">5-10</td>
+<td class="nm" style="text-align:center;color:var(--gn)">15-25 (conf.)</td>
+<td style="text-align:center"><strong>🏆</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>Top nível ✅</strong></td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(139,92,246,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--pr)">💰 EFICIÊNCIA ECONÔMICA</td></tr>
+<tr>
+<td>Receita/Vaca Lactação/Mês (R$)</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>R$ 2.690</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">800-1.200</td>
+<td class="nm" style="text-align:center;color:var(--gn)">2.400-3.200</td>
+<td class="nm" style="text-align:center;color:var(--gn)">3.200-4.500</td>
+<td style="text-align:center">🟢</td>
+<td class="nm" style="color:var(--gn)">No range top BR ✅</td>
+</tr>
+<tr>
+<td>COE/Vaca Lactação/Mês (R$)</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>R$ 1.963</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">600-1.000</td>
+<td class="nm" style="text-align:center;color:var(--yl)">1.600-2.200</td>
+<td class="nm" style="text-align:center;color:var(--yl)">2.200-3.000</td>
+<td style="text-align:center">🟡</td>
+<td class="nm">No range</td>
+</tr>
+<tr>
+<td>Margem/Vaca Lactação/Mês (R$)</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>R$ 727</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">100-300</td>
+<td class="nm" style="text-align:center;color:var(--gn)">500-900</td>
+<td class="nm" style="text-align:center;color:var(--gn)">800-1.500</td>
+<td style="text-align:center">🟢</td>
+<td class="nm" style="color:var(--gn)">No range top BR ✅</td>
+</tr>
+<tr>
+<td>Margem Bruta sobre COE (%)</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>27,1%</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">10-20%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">25-35%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">30-45%</td>
+<td style="text-align:center">🟢</td>
+<td class="nm" style="color:var(--gn)">No range top BR ✅</td>
+</tr>
+<tr>
+<td>Aproveitamento Leite (%)</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>100%</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">93-96%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">97-99%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">98-99,5%</td>
+<td style="text-align:center"><strong>🏆</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>Acima de todos ✅</strong></td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(236,72,153,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--pk)">🏗️ ESCALA E ESTRUTURA</td></tr>
+<tr>
+<td>Rebanho Total</td>
+<td class="nm" style="text-align:center"><strong>1.450</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">30-100</td>
+<td class="nm" style="text-align:center;color:var(--gn)">200-800</td>
+<td class="nm" style="text-align:center;color:var(--gn)">1.000-10.000</td>
+<td style="text-align:center"><strong>🟢</strong></td>
+<td class="nm" style="color:var(--gn)">Grande porte ✅</td>
+</tr>
+<tr>
+<td>% Vacas em Lactação / Total</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>58,2%</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">40-50%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">60-68%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">65-72%</td>
+<td style="text-align:center">🟡</td>
+<td class="nm" style="color:var(--rd)">−1,8 a −9,8pp</td>
+</tr>
+<tr>
+<td>Relação Lact : Seca</td>
+<td class="nm" style="text-align:center;color:var(--yl)"><strong>4,86:1</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">3,0-4,0:1</td>
+<td class="nm" style="text-align:center;color:var(--gn)">5,0-6,5:1</td>
+<td class="nm" style="text-align:center;color:var(--gn)">6,0-8,0:1</td>
+<td style="text-align:center">🟡</td>
+<td class="nm" style="color:var(--rd)">−0,14 a −1,64</td>
+</tr>
+</table>
+
+<!-- SCORECARD VISUAL -->
+<div style="margin-top:20px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">🎯 Scorecard Resumido — Onde Brilha, Onde Está Ok, Onde Precisa Melhorar</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+
+<!-- BRILHA -->
+<div style="padding:18px;background:rgba(16,185,129,.04);border:2px solid rgba(16,185,129,.2);border-radius:12px">
+<div style="font-size:12px;font-weight:800;color:var(--gn);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;text-align:center">🏆 EXCELÊNCIA (Top / Acima do Top)</div>
+<div style="font-size:11px;color:var(--t2);line-height:2.2">
+<div style="display:flex;justify-content:space-between;align-items:center">L/ha/dia <span class="nm" style="color:var(--gn);font-size:13px"><strong>537</strong> 🏆</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">L/ha/ano <span class="nm" style="color:var(--gn);font-size:13px"><strong>190k</strong> 🏆</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Receita/ha/mês <span class="nm" style="color:var(--gn);font-size:13px"><strong>R$ 38k</strong> 🏆</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Aproveit. Leite <span class="nm" style="color:var(--gn);font-size:13px"><strong>100%</strong> 🏆</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Animais/ha <span class="nm" style="color:var(--gn);font-size:13px"><strong>24,1</strong> 🏆</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Escala rebanho <span class="nm" style="color:var(--gn);font-size:13px"><strong>1.450</strong> 🟢</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Margem/COE <span class="nm" style="color:var(--gn);font-size:13px"><strong>27,1%</strong> 🟢</span></div>
+</div>
+</div>
+
+<!-- ADEQUADO -->
+<div style="padding:18px;background:rgba(245,158,11,.04);border:2px solid rgba(245,158,11,.2);border-radius:12px">
+<div style="font-size:12px;font-weight:800;color:var(--yl);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;text-align:center">🟡 ADEQUADO (Média / Limítrofe Top)</div>
+<div style="font-size:11px;color:var(--t2);line-height:2.2">
+<div style="display:flex;justify-content:space-between;align-items:center">L/vaca/dia <span class="nm" style="color:var(--yl);font-size:13px"><strong>31,6</strong> 🟡</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">L/vaca/ano <span class="nm" style="color:var(--yl);font-size:13px"><strong>11.189</strong> 🟡</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Receita/vaca/mês <span class="nm" style="color:var(--gn);font-size:13px"><strong>R$ 2.690</strong> 🟢</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">% Lact./Total <span class="nm" style="color:var(--yl);font-size:13px"><strong>58,2%</strong> 🟡</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Lact:Seca <span class="nm" style="color:var(--yl);font-size:13px"><strong>4,86:1</strong> 🟡</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Serv./Concepção <span class="nm" style="color:var(--yl);font-size:13px"><strong>~2,5</strong> 🟡</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Taxa Concepção <span class="nm" style="color:var(--yl);font-size:13px"><strong>~30-35%</strong> 🟡</span></div>
+</div>
+</div>
+
+<!-- PRECISA MELHORAR -->
+<div style="padding:18px;background:rgba(239,68,68,.04);border:2px solid rgba(239,68,68,.2);border-radius:12px">
+<div style="font-size:12px;font-weight:800;color:var(--rd);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;text-align:center">🔴 ATENÇÃO (Abaixo do Ideal)</div>
+<div style="font-size:11px;color:var(--t2);line-height:2.2">
+<div style="display:flex;justify-content:space-between;align-items:center">DEL Médio <span class="nm" style="color:var(--rd);font-size:13px"><strong>187d</strong> 🔴</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">IEP <span class="nm" style="color:var(--rd);font-size:13px"><strong>405d</strong> 🔴</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Mortalidade/mês <span class="nm" style="color:var(--rd);font-size:13px"><strong>0,94%</strong> 🔴</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Descarte/mês <span class="nm" style="color:var(--rd);font-size:13px"><strong>3,03%</strong> 🔴</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Taxa de Serviço <span class="nm" style="color:var(--rd);font-size:13px"><strong>~36%</strong> 🔴</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Taxa de Prenhez <span class="nm" style="color:var(--rd);font-size:13px"><strong>~15%</strong> 🔴</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center">Abortos/mês <span class="nm" style="color:var(--rd);font-size:13px"><strong>1,15%</strong> 🟠</span></div>
+</div>
+</div>
+
+</div>
+
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);margin-top:14px">
+🔬 <strong>Síntese do Benchmark:</strong><br>
+<strong>Paradoxo da Brasilanda:</strong> A fazenda é <strong>excepcional em eficiência de uso de terra</strong> (top mundial) e escala, mas <strong>está abaixo do top em eficiência reprodutiva e por animal</strong>.<br>
+<strong>Tradução:</strong> É uma fazenda que <strong>produz muito leite com pouca terra</strong>, mas <strong>cada vaca poderia produzir mais</strong> se a reprodução melhorasse (DEL mais baixo = mais vacas no pico = mais leite por vaca).<br>
+<strong>O caminho é claro:</strong> Não precisa investir em mais vacas ou mais terra. Precisa fazer as <strong>vacas que já tem</strong> pararem de ficar tempo demais em lactação tardia. <strong>O ganho está no DEL e na taxa de prenhez — é o alavancador mais barato que existe.</strong>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO F — DEL, CURVA DE LACTAÇÃO E PROJEÇÃO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">📈 Bloco F — DEL, Curva de Lactação e Projeção de Impacto (12 meses) <span class="st-b" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">PROD-F</span></div>
+
+<!-- CURVA DE LACTAÇÃO ESTIMADA -->
+<div class="d fi" style="border-color:rgba(59,130,246,.25)">
+<div class="dh"><div class="dt">📈 Curva de Lactação Estimada — Posição Atual do Rebanho <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">CURVA</span></div><div class="di">PROD-F1</div></div>
+<div class="cx" style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12);color:var(--bl)"><span style="background:rgba(59,130,246,.15)">ESTIMADA</span> Curva baseada em modelo Wood para Holstein tropical. Valores estimados — validar com dados individuais do AffiCollar</div>
+
+<!-- CURVA VISUAL COM BARRAS -->
+<div style="font-size:10px;font-weight:700;color:var(--t2);margin-bottom:10px">Produção Estimada por Fase de Lactação (L/vaca/dia)</div>
+
+<div style="display:flex;align-items:flex-end;gap:3px;height:180px;padding:0 8px;margin-bottom:4px">
+<!-- 0-30 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--gn);font-weight:700">32</div>
+<div style="width:100%;height:112px;background:linear-gradient(180deg,rgba(16,185,129,.6),rgba(16,185,129,.3));border-radius:4px 4px 0 0"></div>
+<div style="font-size:6px;color:var(--t3);text-align:center">0-30d</div>
+</div>
+<!-- 31-60 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--gn);font-weight:700">40</div>
+<div style="width:100%;height:140px;background:linear-gradient(180deg,rgba(16,185,129,.7),rgba(16,185,129,.4));border-radius:4px 4px 0 0"></div>
+<div style="font-size:6px;color:var(--t3);text-align:center">31-60d</div>
+</div>
+<!-- 61-90 PICO -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--gn);font-weight:800">45 ★</div>
+<div style="width:100%;height:158px;background:linear-gradient(180deg,rgba(16,185,129,.9),rgba(16,185,129,.5));border-radius:4px 4px 0 0;border:1px solid rgba(16,185,129,.5)"></div>
+<div style="font-size:6px;color:var(--gn);text-align:center;font-weight:700">61-90d<br>PICO</div>
+</div>
+<!-- 91-120 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--gn);font-weight:700">42</div>
+<div style="width:100%;height:147px;background:linear-gradient(180deg,rgba(16,185,129,.6),rgba(16,185,129,.3));border-radius:4px 4px 0 0"></div>
+<div style="font-size:6px;color:var(--t3);text-align:center">91-120d</div>
+</div>
+<!-- 121-150 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--yl);font-weight:700">38</div>
+<div style="width:100%;height:133px;background:linear-gradient(180deg,rgba(245,158,11,.5),rgba(245,158,11,.25));border-radius:4px 4px 0 0"></div>
+<div style="font-size:6px;color:var(--t3);text-align:center">121-150d</div>
+</div>
+<!-- 151-180 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--yl);font-weight:700">34</div>
+<div style="width:100%;height:119px;background:linear-gradient(180deg,rgba(245,158,11,.4),rgba(245,158,11,.2));border-radius:4px 4px 0 0"></div>
+<div style="font-size:6px;color:var(--t3);text-align:center">151-180d</div>
+</div>
+<!-- 181-210 → POSIÇÃO ATUAL -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative">
+<div style="font-size:7px;color:var(--rd);font-weight:800">30 ←</div>
+<div style="width:100%;height:105px;background:linear-gradient(180deg,rgba(239,68,68,.6),rgba(239,68,68,.3));border-radius:4px 4px 0 0;border:2px solid rgba(239,68,68,.5)"></div>
+<div style="font-size:6px;color:var(--rd);text-align:center;font-weight:800">181-210d<br>📍 ATUAL</div>
+</div>
+<!-- 211-240 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--rd);font-weight:700">27</div>
+<div style="width:100%;height:95px;background:linear-gradient(180deg,rgba(239,68,68,.4),rgba(239,68,68,.2));border-radius:4px 4px 0 0"></div>
+<div style="font-size:6px;color:var(--t3);text-align:center">211-240d</div>
+</div>
+<!-- 241-270 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--rd);font-weight:700">24</div>
+<div style="width:100%;height:84px;background:linear-gradient(180deg,rgba(239,68,68,.3),rgba(239,68,68,.15));border-radius:4px 4px 0 0"></div>
+<div style="font-size:6px;color:var(--t3);text-align:center">241-270d</div>
+</div>
+<!-- 271-305 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<div style="font-size:7px;color:var(--t3);font-weight:700">20</div>
+<div style="width:100%;height:70px;background:linear-gradient(180deg,rgba(148,163,184,.3),rgba(148,163,184,.15));border-radius:4px 4px 0 0"></div>
+<div style="font-size:6px;color:var(--t3);text-align:center">271-305d<br>Seca</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin:10px 0">
+<div style="display:flex;align-items:center;gap:4px;font-size:8px"><div style="width:12px;height:12px;background:rgba(16,185,129,.5);border-radius:2px"></div><span style="color:var(--t3)">Pico / Subida (0-120d)</span></div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px"><div style="width:12px;height:12px;background:rgba(245,158,11,.4);border-radius:2px"></div><span style="color:var(--t3)">Mid-lactação (121-180d)</span></div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px"><div style="width:12px;height:12px;background:rgba(239,68,68,.4);border-radius:2px"></div><span style="color:var(--t3)">Declínio (181-305d) ← <strong style="color:var(--rd)">Posição Atual</strong></span></div>
+</div>
+
+<div style="margin-top:12px;padding:14px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px">
+<div style="font-size:11px;font-weight:700;color:var(--rd);margin-bottom:6px">🔑 Por que o DEL alto é o problema nº 1?</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.7">
+Com DEL 187, a <strong>maioria das vacas já passou do pico</strong> (60-90 dias) e está na fase de declínio, onde cada dia a mais significa <strong>menos leite</strong>. Se o DEL fosse 170 (meta top BR), mais vacas estariam nas fases de pico e mid-lactação, produzindo <strong>2-5 L/vaca/dia a mais</strong>.<br><br>
+<strong>Simulação:</strong> Se DEL caísse de 187→170, e isso adicionasse em média +2 L/vaca/dia:<br>
+→ 850 vacas × 2 L × 30,4 dias × R$ 2,41 = <strong>+R$ 124.547/mês</strong> = <strong>+R$ 1,49M/ano</strong><br>
+Isso equivale a <strong>+30% do resultado líquido atual</strong> — sem gastar um real a mais em ração ou estrutura.
+</div>
+</div>
+</div>
+
+<!-- PROJEÇÃO 12 MESES -->
+<div class="d fi" style="border-color:rgba(139,92,246,.25);margin-top:20px">
+<div class="dh"><div class="dt">🔮 Projeção — Impacto da Reprodução na Produção (12 meses) <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">PROJEÇÃO</span></div><div class="di">PROD-F2</div></div>
+<div class="cx" style="background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.12);color:var(--pr)"><span style="background:rgba(139,92,246,.15)">3 CENÁRIOS</span> Projeção com base nos indicadores atuais vs cenários de melhoria reprodutiva — 12 meses a partir de Mar/2026</div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:center">🔴 Cenário A<br><span style="font-size:7px;color:var(--rd)">Mantém atual</span></th><th style="text-align:center">🟡 Cenário B<br><span style="font-size:7px;color:var(--yl)">Melhoria moderada</span></th><th style="text-align:center">🟢 Cenário C<br><span style="font-size:7px;color:var(--gn)">Meta Top 10% BR</span></th></tr>
+
+<tr style="background:rgba(139,92,246,.03)"><td colspan="4" style="font-size:9px;font-weight:800;color:var(--pr)">PREMISSAS REPRODUTIVAS</td></tr>
+<tr><td style="font-size:10px">DEL Médio</td><td class="nm" style="text-align:center;color:var(--rd)">187 → 190</td><td class="nm" style="text-align:center;color:var(--yl)">187 → 175</td><td class="nm" style="text-align:center;color:var(--gn)">187 → 165</td></tr>
+<tr><td style="font-size:10px">IEP</td><td class="nm" style="text-align:center;color:var(--rd)">405 → 410</td><td class="nm" style="text-align:center;color:var(--yl)">405 → 385</td><td class="nm" style="text-align:center;color:var(--gn)">405 → 370</td></tr>
+<tr><td style="font-size:10px">Taxa de Prenhez</td><td class="nm" style="text-align:center;color:var(--rd)">15% (mantém)</td><td class="nm" style="text-align:center;color:var(--yl)">20%</td><td class="nm" style="text-align:center;color:var(--gn)">25%</td></tr>
+<tr><td style="font-size:10px">Taxa de Descarte + Mortes (%/ano)</td><td class="nm" style="text-align:center;color:var(--rd)">44% (mantém)</td><td class="nm" style="text-align:center;color:var(--yl)">35%</td><td class="nm" style="text-align:center;color:var(--gn)">28%</td></tr>
+<tr><td style="font-size:10px">L/vaca/dia média</td><td class="nm" style="text-align:center;color:var(--rd)">31,0 (cai leve)</td><td class="nm" style="text-align:center;color:var(--yl)">33,0</td><td class="nm" style="text-align:center;color:var(--gn)">35,0</td></tr>
+
+<tr><td colspan="4" style="height:2px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(139,92,246,.03)"><td colspan="4" style="font-size:9px;font-weight:800;color:var(--pr)">RESULTADOS PROJETADOS — 12 MESES (Mar/2026 a Fev/2027)</td></tr>
+
+<tr><td style="font-size:10px"><strong>Vacas em Lactação (média)</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>810</strong></td><td class="nm" style="text-align:center;color:var(--yl)"><strong>870</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>920</strong></td></tr>
+<tr><td style="font-size:10px"><strong>Produção Diária (L/dia)</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>25.110</strong></td><td class="nm" style="text-align:center;color:var(--yl)"><strong>28.710</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>32.200</strong></td></tr>
+<tr><td style="font-size:10px"><strong>Produção Anual (L)</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>9.165.150</strong></td><td class="nm" style="text-align:center;color:var(--yl)"><strong>10.479.150</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>11.753.000</strong></td></tr>
+<tr><td style="font-size:10px">Produção Mensal Média (L)</td><td class="nm" style="text-align:center;color:var(--rd)">763.763</td><td class="nm" style="text-align:center;color:var(--yl)">873.263</td><td class="nm" style="text-align:center;color:var(--gn)">979.417</td></tr>
+
+<tr><td colspan="4" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td colspan="4" style="font-size:9px;font-weight:800;color:var(--gn)">IMPACTO FINANCEIRO (Preço mantido R$ 2,41/L)</td></tr>
+<tr><td style="font-size:10px"><strong>Receita Leite Anual</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>R$ 22,09M</strong></td><td class="nm" style="text-align:center;color:var(--yl)"><strong>R$ 25,25M</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>R$ 28,32M</strong></td></tr>
+<tr><td style="font-size:10px">Diferença vs Cenário A</td><td class="nm" style="text-align:center;color:var(--t3)">—</td><td class="nm" style="text-align:center;color:var(--gn)"><strong>+R$ 3,17M</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>+R$ 6,23M</strong></td></tr>
+<tr><td style="font-size:10px">Diferença vs Situação Atual (bimestre proj.)</td><td class="nm" style="text-align:center;color:var(--rd)"><strong>−R$ 5,32M</strong></td><td class="nm" style="text-align:center;color:var(--rd)"><strong>−R$ 2,16M</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>+R$ 0,91M</strong></td></tr>
+
+<tr><td colspan="4" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr><td style="font-size:10px"><strong>Custo Adicional Estimado</strong></td><td class="nm" style="text-align:center;color:var(--t3)">R$ 0</td><td class="nm" style="text-align:center;color:var(--yl)">~R$ 300-500k/ano</td><td class="nm" style="text-align:center;color:var(--yl)">~R$ 600k-1,0M/ano</td></tr>
+<tr><td style="font-size:10px;color:var(--t3)"><em>(mais sêmen, hormônios, assessoria reprodutiva, manejo)</em></td><td></td><td></td><td></td></tr>
+
+<tr style="background:rgba(16,185,129,.06)"><td style="font-size:10px"><strong style="color:var(--gn)">Retorno Líquido Estimado</strong></td><td class="nm" style="text-align:center;color:var(--t3)">Baseline</td><td class="nm" style="text-align:center;color:var(--gn)"><strong>+R$ 2,7-2,9M</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>+R$ 5,2-5,6M</strong></td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td style="font-size:10px"><strong style="color:var(--gn)">ROI da Melhoria Reprodutiva</strong></td><td class="nm" style="text-align:center;color:var(--t3)">—</td><td class="nm" style="text-align:center;color:var(--gn)"><strong>~650%</strong></td><td class="nm" style="text-align:center;color:var(--gn)"><strong>~660%</strong></td></tr>
+</table>
+
+<!-- VISUAL DOS 3 CENÁRIOS -->
+<div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+
+<!-- CENÁRIO A -->
+<div style="padding:16px;background:rgba(239,68,68,.04);border:2px solid rgba(239,68,68,.2);border-radius:12px;text-align:center">
+<div style="font-size:10px;font-weight:800;color:var(--rd);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">🔴 Cenário A — Sem Ação</div>
+<div style="font-size:9px;color:var(--t2);margin-bottom:10px">Reprodução piora gradualmente. Rebanho encolhe.</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--rd)">810 vacas</div>
+<div style="font-size:10px;color:var(--t3)">25.110 L/dia</div>
+<div style="margin:8px 0">
+<div style="width:100%;height:8px;background:rgba(255,255,255,.04);border-radius:4px"><div style="width:78%;height:100%;background:var(--gRd);border-radius:4px"></div></div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">78% do potencial atual</div>
+</div>
+<div style="font-size:12px;font-weight:800;color:var(--rd)">R$ 22,09M/ano</div>
+<div style="font-size:9px;color:var(--rd)">↘ Declínio progressivo</div>
+</div>
+
+<!-- CENÁRIO B -->
+<div style="padding:16px;background:rgba(245,158,11,.04);border:2px solid rgba(245,158,11,.2);border-radius:12px;text-align:center">
+<div style="font-size:10px;font-weight:800;color:var(--yl);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">🟡 Cenário B — Melhoria Moderada</div>
+<div style="font-size:9px;color:var(--t2);margin-bottom:10px">IATF otimizada + melhor detecção de cio. Viável em 6-9 meses.</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--yl)">870 vacas</div>
+<div style="font-size:10px;color:var(--t3)">28.710 L/dia</div>
+<div style="margin:8px 0">
+<div style="width:100%;height:8px;background:rgba(255,255,255,.04);border-radius:4px"><div style="width:89%;height:100%;background:var(--gYl);border-radius:4px"></div></div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">89% do potencial</div>
+</div>
+<div style="font-size:12px;font-weight:800;color:var(--yl)">R$ 25,25M/ano</div>
+<div style="font-size:9px;color:var(--gn)">↗ +R$ 3,17M vs Cenário A</div>
+</div>
+
+<!-- CENÁRIO C -->
+<div style="padding:16px;background:rgba(16,185,129,.04);border:2px solid rgba(16,185,129,.2);border-radius:12px;text-align:center">
+<div style="font-size:10px;font-weight:800;color:var(--gn);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">🟢 Cenário C — Meta Top 10% BR</div>
+<div style="font-size:9px;color:var(--t2);margin-bottom:10px">Programa reprodutivo completo + controle de descarte. 12-18 meses.</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--gn)">920 vacas</div>
+<div style="font-size:10px;color:var(--t3)">32.200 L/dia</div>
+<div style="margin:8px 0">
+<div style="width:100%;height:8px;background:rgba(255,255,255,.04);border-radius:4px"><div style="width:100%;height:100%;background:var(--gGn);border-radius:4px"></div></div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">100% do potencial estimado</div>
+</div>
+<div style="font-size:12px;font-weight:800;color:var(--gn)">R$ 28,32M/ano</div>
+<div style="font-size:9px;color:var(--gn)">↗ +R$ 6,23M vs Cenário A</div>
+</div>
+
+</div>
+
+<!-- TIMELINE DE IMPLEMENTAÇÃO -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">⏱️ Timeline de Impacto — Quando os resultados aparecem?</div>
+
+<div style="position:relative;padding-left:30px;margin:14px 0">
+<div style="position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--bl),var(--gn))"></div>
+
+<div style="position:relative;margin-bottom:16px;padding:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.1);border-radius:10px">
+<div style="position:absolute;left:-24px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--bl);border:2px solid var(--bg)"></div>
+<div style="font-size:9px;color:var(--bl);font-weight:700;text-transform:uppercase;letter-spacing:1px">Mês 1-3 (Mar-Mai/2026)</div>
+<div style="font-size:11px;font-weight:700;color:var(--t1);margin:4px 0">🔧 Ações Imediatas — Sem Custo Extra</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.6">
+• Revisar protocolo de IATF e ajustar timing<br>
+• Ativar alertas de cio nos 1.000 colares AffiCollar (se não ativados)<br>
+• Reduzir PVE (período voluntário de espera) se > 60 dias<br>
+• Investigar causas de descarte e mortalidade<br>
+<strong>Resultado esperado:</strong> Taxa de serviço sobe de 36% para 45% em 2-3 meses
+</div>
+</div>
+
+<div style="position:relative;margin-bottom:16px;padding:14px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1);border-radius:10px">
+<div style="position:absolute;left:-24px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--yl);border:2px solid var(--bg)"></div>
+<div style="font-size:9px;color:var(--yl);font-weight:700;text-transform:uppercase;letter-spacing:1px">Mês 4-6 (Jun-Ago/2026)</div>
+<div style="font-size:11px;font-weight:700;color:var(--t1);margin:4px 0">📈 Primeiros Resultados Reprodutivos</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.6">
+• Mais vacas emprenham → DPs positivos aumentam<br>
+• Taxa de prenhez sobe para ~20%<br>
+• Abortos reduzem com melhor manejo nutricional da transição<br>
+<strong>Resultado esperado:</strong> DEL começa a cair (~180 dias). Primeiras vacas "novas" parindo dos protocolos ajustados.
+</div>
+</div>
+
+<div style="position:relative;margin-bottom:16px;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.1);border-radius:10px">
+<div style="position:absolute;left:-24px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--gn);border:2px solid var(--bg)"></div>
+<div style="font-size:9px;color:var(--gn);font-weight:700;text-transform:uppercase;letter-spacing:1px">Mês 7-12 (Set/2026 - Fev/2027)</div>
+<div style="font-size:11px;font-weight:700;color:var(--t1);margin:4px 0">💰 Impacto Financeiro Visível</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.6">
+• Mais vacas em lactação (partos das prenhezes do Mês 1-3)<br>
+• DEL cai para ~175 → mais vacas no pico → mais L/vaca/dia<br>
+• Mortalidade e descarte começam a cair com melhor saúde<br>
+• Novilhas prenhas (255) começam a parir e entrar no rebanho<br>
+<strong>Resultado esperado:</strong> Produção sobe para ~29.000 L/dia (+10% vs atual). Receita adicional de ~R$ 200k/mês.<br>
+<strong>Resultado pleno do Cenário C: 18-24 meses</strong> (DEL < 170, IEP < 380, 920 vacas em lactação).
+</div>
+</div>
+
+</div>
+
+<div class="nt" style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12);margin-top:14px">
+🔬 <strong>Conclusão da Projeção:</strong><br>
+<strong>A reprodução é o maior alavancador financeiro da Fazenda Brasilanda.</strong> A diferença entre "não fazer nada" (Cenário A) e "alcançar o Top 10% BR" (Cenário C) é de <strong>R$ 6,23 milhões por ano</strong> — 3,7× o serviço da dívida anual (R$ 1,70M). <br><br>
+O mais importante: <strong>a fazenda já tem a infraestrutura</strong> (Free Stall, 1.000 colares AffiCollar, equipe técnica, MilkTaxi). O investimento adicional necessário é de <strong>R$ 300k-1,0M/ano</strong> (sêmen, hormônios, assessoria) com ROI de <strong>~650%</strong>. <br><br>
+<strong>Mensagem para Patricia:</strong> A próxima grande conquista da Brasilanda não é comprar mais vacas ou mais terra — é fazer as vacas que já tem <strong>emprenharem mais rápido, parirem mais vezes e ficarem menos tempo em lactação tardia</strong>. O dinheiro está na <strong>curva de lactação</strong>.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO G — INDICADORES INTEGRADOS PRODUÇÃO × FINANCEIRO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🔗 Bloco G — Indicadores Integrados (Produção × Financeiro) <span class="st-b" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">PROD-G</span></div>
+
+<div class="d fi" style="border-color:rgba(59,130,246,.25)">
+<div class="dh"><div class="dt">🔗 Cruzamento Produção × Financeiro — Indicadores de Eficiência Real <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">INTEGRADO</span></div><div class="di">PROD-G1</div></div>
+<div class="cx" style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12);color:var(--bl)"><span style="background:rgba(59,130,246,.15)">BLOCO 1 × BLOCO 2</span> Dados financeiros do Dashboard 1 cruzados com dados de produção do Dashboard 2</div>
+
+<table class="mt">
+<tr><th>Indicador Integrado</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th style="text-align:right">Média Bim.</th><th>Benchmark Top</th><th>Status</th></tr>
+
+<tr style="background:rgba(6,182,212,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--cy)">💰 CUSTO POR ANIMAL</td></tr>
+<tr>
+<td>COE / Vaca em Lactação / Mês</td>
+<td class="nm" style="text-align:right">R$ 2.000</td>
+<td class="nm" style="text-align:right">R$ 1.925</td>
+<td class="nm" style="text-align:right"><strong>R$ 1.963</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 1.600-2.200</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>COT / Vaca em Lactação / Mês</td>
+<td class="nm" style="text-align:right">R$ 2.279</td>
+<td class="nm" style="text-align:right">R$ 2.210</td>
+<td class="nm" style="text-align:right"><strong>R$ 2.245</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 1.900-2.600</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>Custo Completo / Vaca Lact. / Mês</td>
+<td class="nm" style="text-align:right">R$ 2.443</td>
+<td class="nm" style="text-align:right">R$ 2.380</td>
+<td class="nm" style="text-align:right;color:var(--yl)"><strong>R$ 2.412</strong></td>
+<td class="nm" style="color:var(--t3)">—</td>
+<td>🟡</td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--gn)">💵 RECEITA E MARGEM POR ANIMAL</td></tr>
+<tr>
+<td>Receita Leite / Vaca Lact. / Mês</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 2.653</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 2.721</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 2.690</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 2.400-3.200</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong>Margem sobre COE / Vaca / Mês</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 653</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 796</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 727</strong></td>
+<td class="nm" style="color:var(--gn)">R$ 500-900</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong>Margem sobre COT / Vaca / Mês</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 374</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 511</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 445</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 200-500</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">Margem Real / Vaca / Mês (após dívida)</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 210</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 341</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 278</strong></td>
+<td class="nm" style="color:var(--t3)">> R$ 0</td>
+<td>🟢</td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(245,158,11,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--yl)">🐄 EFICIÊNCIA DA MÃO DE OBRA</td></tr>
+<tr>
+<td>Custo MO / Vaca Lact. / Mês</td>
+<td class="nm" style="text-align:right">R$ 406</td>
+<td class="nm" style="text-align:right">R$ 343</td>
+<td class="nm" style="text-align:right"><strong>R$ 375</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 250-450</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>Litros / Funcionário / Dia (est. 25 func.)*</td>
+<td class="nm" style="text-align:right">1.301</td>
+<td class="nm" style="text-align:right">1.277</td>
+<td class="nm" style="text-align:right"><strong>1.289</strong></td>
+<td class="nm" style="color:var(--gn)">1.000-1.500</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>Vacas / Funcionário (est. 25 func.)*</td>
+<td class="nm" style="text-align:right">34,4</td>
+<td class="nm" style="text-align:right">33,6</td>
+<td class="nm" style="text-align:right"><strong>34,0</strong></td>
+<td class="nm" style="color:var(--gn)">30-50</td>
+<td>🟢</td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(239,68,68,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--rd)">🍽️ EFICIÊNCIA ALIMENTAR</td></tr>
+<tr>
+<td>Custo Ração / Vaca Lact. / Dia</td>
+<td class="nm" style="text-align:right">R$ 33,06</td>
+<td class="nm" style="text-align:right">R$ 32,31</td>
+<td class="nm" style="text-align:right;color:var(--yl)"><strong>R$ 32,69</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 25-38</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>Custo Ração / L de Leite</td>
+<td class="nm" style="text-align:right">R$ 0,873</td>
+<td class="nm" style="text-align:right">R$ 0,851</td>
+<td class="nm" style="text-align:right;color:var(--yl)"><strong>R$ 0,862</strong></td>
+<td class="nm" style="color:var(--gn)">R$ 0,70-0,90</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td><strong>% Ração na Receita do Leite</strong></td>
+<td class="nm" style="text-align:right">38,6%</td>
+<td class="nm" style="text-align:right">33,2%</td>
+<td class="nm" style="text-align:right;color:var(--yl)"><strong>35,8%</strong></td>
+<td class="nm" style="color:var(--gn)">30-40%</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>IOFC (Income Over Feed Cost) / Vaca / Dia</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 43,52</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 43,64</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 43,58</strong></td>
+<td class="nm" style="color:var(--gn)">> R$ 35</td>
+<td>🟢</td>
+</tr>
+
+<tr><td colspan="6" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(139,92,246,.04)"><td colspan="6" style="font-size:10px;font-weight:800;color:var(--pr)">📊 CUSTO DE REPOSIÇÃO E PERDAS</td></tr>
+<tr>
+<td>Custo Mortalidade / Mês (est.)</td>
+<td class="nm" style="text-align:right;color:var(--rd)">R$ 72.000-108.000</td>
+<td class="nm" style="text-align:right;color:var(--rd)">R$ 80.000-120.000</td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>~R$ 95.000</strong></td>
+<td class="nm" style="color:var(--t3)">< R$ 40k</td>
+<td>🔴</td>
+</tr>
+<tr>
+<td>Custo Abortos / Mês (est.)</td>
+<td class="nm" style="text-align:right;color:var(--yl)">~R$ 54.000</td>
+<td class="nm" style="text-align:right;color:var(--yl)">~R$ 36.000</td>
+<td class="nm" style="text-align:right;color:var(--yl)"><strong>~R$ 45.000</strong></td>
+<td class="nm" style="color:var(--t3)">< R$ 24k</td>
+<td>🟠</td>
+</tr>
+<tr style="background:rgba(239,68,68,.06)">
+<td><strong style="color:var(--rd)">Total Perda Estimada (Mortes+Abortos+DEL)</strong></td>
+<td class="nm" style="text-align:right" colspan="2">—</td>
+<td class="nm" style="text-align:right;color:var(--rd)"><strong>~R$ 212.000/mês</strong></td>
+<td class="nm" style="color:var(--t3)">< R$ 100k</td>
+<td><strong>🔴</strong></td>
+</tr>
+</table>
+
+<div style="font-size:7px;color:var(--t3);margin-top:6px">* Estimativa de 25 funcionários baseada no custo médio de MO (R$ 310k/mês ÷ ~R$ 3.500/funcionário + encargos + benefícios). Número real a ser confirmado na reunião. IOFC = Receita Leite/vaca/dia − Custo Ração/vaca/dia.</div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px">
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Cada Vaca Gera/Mês</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--gn)">R$ 278</div>
+<div style="font-size:8px;color:var(--t3)">Margem real (após tudo)</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--rd);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Cada Morte Custa</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--rd)">R$ 10.000</div>
+<div style="font-size:8px;color:var(--t3)">Patrimônio + produção perdida</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--yl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Cada Aborto Custa</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--yl)">R$ 3.000</div>
+<div style="font-size:8px;color:var(--t3)">Dias aberto + re-inseminação</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--bl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Perdas Evitáveis/Ano</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--bl)">R$ 2,54M</div>
+<div style="font-size:8px;color:var(--t3)">R$ 212k × 12 meses</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.12);margin-top:14px">
+🔬 <strong>Achado Integrado:</strong><br>
+A fazenda gera <strong>R$ 278/vaca/mês de margem real</strong> — ou seja, cada vaca que sai do rebanho (por morte ou descarte) elimina esse fluxo. Com 53,5 saídas/mês, a fazenda está <strong>"perdendo" R$ 14.873/mês em margem futura</strong> além do custo patrimonial.<br>
+O <strong>IOFC (Income Over Feed Cost) de R$ 43,58/vaca/dia é excelente</strong> — mostra que a conversão alimentar é boa. O problema não é eficiência alimentar; é <strong>ter poucas vacas no pico de produção</strong> (DEL) e <strong>perder vacas demais</strong> (descarte + mortes).
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO H — ALERTAS, OBSERVAÇÕES E DADOS A LEVANTAR -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🚨 Bloco H — Alertas Críticos, Observações e Dados Pendentes <span class="st-b" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">PROD-H</span></div>
+
+<!-- ALERTA 1 -->
+<div class="al fi" style="background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(239,68,68,.03));border:1px solid rgba(239,68,68,.2)">
+<div class="al-i">🔴</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--rd)">CRÍTICO — DEL 187 e IEP 405 dias: R$ 867k/ano em Leite Perdido</div>
+<div class="al-x">
+<strong>O que:</strong> O rebanho está com DEL médio de 187 dias (meta: ≤ 170) e IEP de 405 dias (meta: ≤ 380). Isso coloca a maioria das vacas na <strong>fase de declínio da curva de lactação</strong>.<br>
+<strong>Impacto:</strong> Estimativa de <strong>R$ 867 mil/ano em produção perdida</strong> por vacas que ficam tempo demais em lactação tardia. Equivale a 2,1 meses de resultado líquido.<br>
+<strong>Ação imediata:</strong> Revisar protocolo de IATF, ativar detecção de cio nos colares AffiCollar, reduzir PVE. Meta: DEL ≤ 175 em 6 meses, ≤ 170 em 12 meses.
+</div>
+</div>
+</div>
+
+<!-- ALERTA 2 -->
+<div class="al fi" style="background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(239,68,68,.03));border:1px solid rgba(239,68,68,.2)">
+<div class="al-i">🔴</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--rd)">CRÍTICO — Rebanho Encolhendo: −35 Animais no Bimestre</div>
+<div class="al-x">
+<strong>O que:</strong> As saídas (88 abates + 19 mortes = 107) superaram as entradas (72 nascimentos) em <strong>35 animais</strong> em apenas 2 meses. Projeção anual: <strong>−210 animais</strong>.<br>
+<strong>Impacto:</strong> Se mantido, em 12 meses o rebanho terá <strong>~810 vacas em lactação</strong> (vs. 850 atuais), reduzindo produção em <strong>~1.200 L/dia</strong> = <strong>R$ 88k/mês a menos</strong>.<br>
+<strong>Ação:</strong> Investigar composição do descarte (voluntário vs. involuntário). Considerar compra de novilhas se pipeline interno for insuficiente. Reduzir mortalidade para ≤ 0,5%/mês.
+</div>
+</div>
+</div>
+
+<!-- ALERTA 3 -->
+<div class="al fi" style="background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(249,115,22,.02));border:1px solid rgba(249,115,22,.15)">
+<div class="al-i">🟠</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--or)">ATENÇÃO — Mortalidade Projetada ~11,2%/ano (Dobro do Aceitável)</div>
+<div class="al-x">
+<strong>O que:</strong> 19 mortes no bimestre (0,94%/mês) projeta <strong>~114 mortes/ano (11,2%)</strong>. O aceitável para fazendas de grande porte é ≤ 5-6%.<br>
+<strong>Impacto:</strong> Perda patrimonial estimada de <strong>R$ 912k a R$ 1,37M/ano</strong> + perda de produção futura.<br>
+<strong>Ação:</strong> Identificar categorias e causas. Implementar protocolo de transição peri-parto. Monitorar doenças metabólicas (cetose, hipocalcemia, acidose).
+</div>
+</div>
+</div>
+
+<!-- ALERTA 4 -->
+<div class="al fi" style="background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(249,115,22,.02));border:1px solid rgba(249,115,22,.15)">
+<div class="al-i">🟠</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--or)">ATENÇÃO — Taxa de Serviço ~36% (Meta: ≥ 50%)</div>
+<div class="al-x">
+<strong>O que:</strong> Apenas ~36% das vacas elegíveis estão sendo inseminadas por ciclo de 21 dias. O benchmark top BR é 55-65%.<br>
+<strong>Impacto:</strong> Baixa taxa de serviço → menos prenhezes → DEL alto → IEP alto → menos partos → menos leite. É a <strong>raiz do problema reprodutivo</strong>.<br>
+<strong>Paradoxo:</strong> A fazenda tem <strong>1.000 colares AffiCollar</strong> que detectam cio automaticamente. Se a tecnologia está ativa e a taxa de serviço é 36%, o gargalo pode ser: <strong>manejo na hora da IA, falta de pessoal para inseminar, PVE longo demais, ou vacas com problemas uterinos</strong> impedindo a IA.<br>
+<strong>Ação:</strong> Auditar processo desde detecção de cio (colares) até execução da IA. Verificar PVE. Avaliar taxa de IA sobre alertas do AffiCollar.
+</div>
+</div>
+</div>
+
+<!-- ALERTA 5 - POSITIVO -->
+<div class="al fi" style="background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(16,185,129,.02));border:1px solid rgba(16,185,129,.15)">
+<div class="al-i">🟢</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--gn)">POSITIVO — Eficiência de Uso de Terra: Nível Mundial</div>
+<div class="al-x">
+<strong>O que:</strong> A Brasilanda produz <strong>537 L/ha/dia</strong> e gera <strong>R$ 38k de receita de leite/ha/mês</strong> — acima do benchmark top mundial (250-450 L/ha/dia).<br>
+<strong>O que funciona:</strong> Confinamento em Free Stall com 24,1 animais/ha. Aproveitamento de 100% do leite (zero descarte). IOFC de R$ 43,58/vaca/dia. Margem sobre COE de 27,1%. Investimentos estratégicos em tecnologia (colares + MilkTaxi + gerador).<br>
+<strong>Mensagem:</strong> A <strong>estrutura e a eficiência de uso de terra são excepcionais</strong>. A fazenda está pronta para dar o próximo salto — que é puramente reprodutivo.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- OBSERVAÇÃO DIVERGÊNCIA L/VACA/DIA -->
+<!-- ═══════════════════════════════════════ -->
+<div class="d fi" style="border-color:rgba(245,158,11,.3);margin-top:20px;background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(245,158,11,.02))">
+<div class="dh"><div class="dt">⚠️ Observação Técnica — Divergência na Produção por Vaca/Dia <span class="db" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">DIVERGÊNCIA</span></div><div class="di">PROD-OBS1</div></div>
+
+<div style="font-size:12px;font-weight:800;color:var(--yl);margin-bottom:12px">🔍 Foi identificada uma divergência relevante entre duas fontes de dados:</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+
+<!-- CÁLCULO FINANCEIRO -->
+<div style="padding:16px;background:rgba(59,130,246,.06);border:2px solid rgba(59,130,246,.2);border-radius:12px">
+<div style="font-size:10px;font-weight:800;color:var(--bl);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;text-align:center">📊 Cálculo via Dados Financeiros</div>
+<table class="mt" style="margin-top:4px">
+<tr><th></th><th style="text-align:center">Janeiro</th><th style="text-align:center">Fevereiro</th></tr>
+<tr><td style="font-size:10px">Produção Total (L)</td><td class="nm" style="text-align:center">1.008.587</td><td class="nm" style="text-align:center">894.029</td></tr>
+<tr><td style="font-size:10px">Vacas em Lactação</td><td class="nm" style="text-align:center">859</td><td class="nm" style="text-align:center">841</td></tr>
+<tr><td style="font-size:10px">Dias no Mês</td><td class="nm" style="text-align:center">31</td><td class="nm" style="text-align:center">28</td></tr>
+<tr style="background:rgba(59,130,246,.06)"><td style="font-size:10px"><strong>L/Vaca/Dia (calculado)</strong></td><td class="nm" style="text-align:center;color:var(--bl)"><strong>37,87</strong></td><td class="nm" style="text-align:center;color:var(--bl)"><strong>38,02</strong></td></tr>
+</table>
+</div>
+
+<!-- RELATÓRIO DE PRODUÇÃO -->
+<div style="padding:16px;background:rgba(139,92,246,.06);border:2px solid rgba(139,92,246,.2);border-radius:12px">
+<div style="font-size:10px;font-weight:800;color:var(--pr);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;text-align:center">📋 Relatório do Sistema de Produção</div>
+<table class="mt" style="margin-top:4px">
+<tr><th></th><th style="text-align:center">Janeiro</th><th style="text-align:center">Fevereiro</th></tr>
+<tr><td style="font-size:10px">Produção Média/Vaca/Dia</td><td class="nm" style="text-align:center;color:var(--pr)"><strong>31,7</strong></td><td class="nm" style="text-align:center;color:var(--pr)"><strong>31,5</strong></td></tr>
+<tr><td colspan="3" style="font-size:9px;color:var(--t3);padding-top:8px">Fonte: relatório do software de gestão do rebanho</td></tr>
+</table>
+<div style="margin-top:10px;text-align:center;padding:10px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);border-radius:8px">
+<div style="font-size:10px;font-weight:800;color:var(--rd)">DIFERENÇA: ~6,2 L/vaca/dia (19,6%)</div>
+</div>
+</div>
+
+</div>
+
+<div style="font-size:11px;font-weight:700;color:var(--yl);margin-bottom:8px">Possíveis Explicações para a Divergência:</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+<div style="padding:12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:8px">
+<div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:4px">Hipótese 1 — Denominador Diferente</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.6">O sistema pode calcular L/vaca/dia usando <strong>todas as vacas (lactação + secas)</strong> no denominador:<br>
+Jan: 1.008.587 ÷ (859+167) ÷ 31 = <strong>31,71 L/vaca/dia ✅ BATE</strong><br>
+Fev: 894.029 ÷ (841+173) ÷ 28 = <strong>31,49 L/vaca/dia ✅ BATE</strong></div>
+</div>
+<div style="padding:12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:8px">
+<div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:4px">Hipótese 2 — Média Ponderada Diária</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.6">O sistema pode usar a <strong>média ponderada da produção individual diária</strong> de cada vaca, que pode diferir do cálculo total ÷ contagem estática se houver entrada/saída de vacas ao longo do mês.</div>
+</div>
+</div>
+
+<div style="padding:14px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.2);border-radius:10px">
+<div style="font-size:11px;font-weight:800;color:var(--gn);margin-bottom:6px">✅ CONCLUSÃO PROVÁVEL:</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.7">
+A <strong>Hipótese 1 é a mais provável</strong> — o sistema calcula usando <strong>total de vacas (lactação + secas)</strong>, não apenas vacas em lactação. Quando recalculamos:<br>
+• Jan: 1.008.587 ÷ 1.026 vacas ÷ 31 dias = <strong>31,71 L — bate com os 31,7 do relatório</strong><br>
+• Fev: 894.029 ÷ 1.014 vacas ÷ 28 dias = <strong>31,49 L — bate com os 31,5 do relatório</strong><br><br>
+<strong>Neste dashboard, utilizamos os valores do relatório de produção (31,7 e 31,5 L/vaca/dia)</strong> conforme instrução. Para comparação com benchmarks de mercado que usam L/vaca <strong>em lactação</strong>/dia, o valor real é <strong>~37,9 L/vaca/dia</strong>, que é <strong>Top 10% BR</strong>. Recomenda-se alinhar com a equipe técnica qual métrica utilizar como padrão.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- DADOS A LEVANTAR PARA PRÓXIMA ANÁLISE -->
+<!-- ═══════════════════════════════════════ -->
+<div class="d fi" style="border-color:rgba(59,130,246,.3);margin-top:20px;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(59,130,246,.02))">
+<div class="dh"><div class="dt">📋 Dados a Levantar — Para Inserir na Análise Pós-Reunião <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">PENDÊNCIA</span></div><div class="di">PROD-PEND</div></div>
+<div class="cx" style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12);color:var(--bl)"><span style="background:rgba(59,130,246,.15)">CHECKLIST</span> Dados que enriquecem significativamente a análise — solicitar antes ou durante a reunião de apresentação</div>
+
+<table class="mt">
+<tr><th style="width:30px">✅</th><th>Dado</th><th>Fonte Provável</th><th>Impacto na Análise</th><th>Prioridade</th></tr>
+
+<tr style="background:rgba(239,68,68,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--rd)">🔴 ALTA PRIORIDADE — Alteram conclusões</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>CCS (Contagem de Células Somáticas)</strong> — média tanque e individual</td>
+<td style="font-size:9px;color:var(--t2)">Laticínio (relatório mensal do tanque) ou controle leiteiro</td>
+<td style="font-size:9px;color:var(--t2)">Define saúde do úbere, prevalência de mastite subclínica, bonificação no preço</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>CBT (Contagem Bacteriana Total)</strong></td>
+<td style="font-size:9px;color:var(--t2)">Laticínio</td>
+<td style="font-size:9px;color:var(--t2)">Qualidade higiênica, risco de penalização no preço</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Gordura % e Proteína %</strong> do leite</td>
+<td style="font-size:9px;color:var(--t2)">Laticínio / Controle Leiteiro</td>
+<td style="font-size:9px;color:var(--t2)">Bonificação no preço (est. R$ 0,05-0,15/L = R$ 47-143k/mês adicional)</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Causas de morte por categoria</strong> (vacas, novilhas, bezerras)</td>
+<td style="font-size:9px;color:var(--t2)">Registro do sistema / veterinário</td>
+<td style="font-size:9px;color:var(--t2)">Direciona ações de redução de mortalidade (11,2% → meta 5%)</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Composição do descarte</strong> — voluntário (venda) vs involuntário (problemas)</td>
+<td style="font-size:9px;color:var(--t2)">Registro do sistema / gestor</td>
+<td style="font-size:9px;color:var(--t2)">Muda completamente a leitura da taxa de descarte (36,4% → pode ser normal se inclui venda)</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+
+<tr style="background:rgba(245,158,11,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--yl)">🟡 MÉDIA PRIORIDADE — Enriquecem a análise</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Distribuição do rebanho por DEL</strong> (curva de lactação real)</td>
+<td style="font-size:9px;color:var(--t2)">Sistema de gestão / AffiCollar</td>
+<td style="font-size:9px;color:var(--t2)">Mostra quantas vacas estão no pico, mid e declínio — permite simular impacto real</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Taxa de Detecção de Cio (EDR)</strong> real dos colares AffiCollar</td>
+<td style="font-size:9px;color:var(--t2)">Software AfiFarm / Afimilk</td>
+<td style="font-size:9px;color:var(--t2)">Explica gap na taxa de serviço — detecção vs execução da IA</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>BCS (Escore de Condição Corporal)</strong> na secagem e ao parir</td>
+<td style="font-size:9px;color:var(--t2)">Avaliação visual / equipe técnica</td>
+<td style="font-size:9px;color:var(--t2)">Explica doenças metabólicas e performance pós-parto</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Protocolo de IATF</strong> utilizado (tipo, timing, taxa de resposta)</td>
+<td style="font-size:9px;color:var(--t2)">Veterinário reprodutivo</td>
+<td style="font-size:9px;color:var(--t2)">Permite otimizar protocolo e aumentar taxa de concepção</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Quadro de funcionários</strong> — número real e funções</td>
+<td style="font-size:9px;color:var(--t2)">RH / Patricia</td>
+<td style="font-size:9px;color:var(--t2)">Calibra indicadores de produtividade da MO (L/funcionário/dia)</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+
+<tr style="background:rgba(16,185,129,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--gn)">🟢 COMPLEMENTAR — Profundidade analítica</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Lactose %</strong> do leite</td>
+<td style="font-size:9px;color:var(--t2)">Laticínio / Controle Leiteiro</td>
+<td style="font-size:9px;color:var(--t2)">Indicador de saúde do úbere e mastite subclínica</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Dieta detalhada</strong> (composição, consumo MS, custo/kg MS)</td>
+<td style="font-size:9px;color:var(--t2)">Nutricionista</td>
+<td style="font-size:9px;color:var(--t2)">Permite calcular eficiência alimentar real (L/kg MS)</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Taxa de prenhez mensal</strong> (não apenas concepção)</td>
+<td style="font-size:9px;color:var(--t2)">Sistema de gestão reprodutiva</td>
+<td style="font-size:9px;color:var(--t2)">Indicador mais preciso que taxa de concepção para projeção de partos</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Dados de ruminação e atividade</strong> dos colares AffiCollar</td>
+<td style="font-size:9px;color:var(--t2)">Software AfiFarm</td>
+<td style="font-size:9px;color:var(--t2)">Detecção precoce de doenças, estresse, sub-alimentação</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Histórico de IEP e DEL</strong> (últimos 12-24 meses)</td>
+<td style="font-size:9px;color:var(--t2)">Sistema de gestão</td>
+<td style="font-size:9px;color:var(--t2)">Permite análise de tendência e sazonalidade reprodutiva</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+</table>
+</div>
+
+<!-- RESUMO EXECUTIVO FINAL -->
+<div class="d fi" style="border-color:rgba(16,185,129,.25);margin-top:20px;background:linear-gradient(135deg,rgba(16,185,129,.04),rgba(59,130,246,.04))">
+<div class="dh"><div class="dt">📋 Resumo Executivo — Produção e Reprodução <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">RESUMO</span></div><div class="di">PROD-RESUMO</div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div>
+<div style="font-size:11px;font-weight:800;color:var(--gn);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">✅ Pontos Fortes</div>
+<div style="font-size:11px;color:var(--t2);line-height:2">
+🏆 L/ha/dia: 537 (Top Mundial)<br>
+🏆 Receita/ha: R$ 38k/mês (Excepcional)<br>
+🏆 Aproveitamento leite: 100% (zero descarte)<br>
+🟢 L/vaca lact./dia: ~37,9 (Top 10% BR)*<br>
+🟢 IOFC: R$ 43,58/vaca/dia (Excelente)<br>
+🟢 Margem/vaca/mês: R$ 278 (após tudo)<br>
+🟢 Ração/receita: 35,8% (dentro do ideal)<br>
+🟢 Novilhas prenhas: 255 (pipeline ok)<br>
+🟢 Infraestrutura tecnológica de ponta
+</div>
+</div>
+<div>
+<div style="font-size:11px;font-weight:800;color:var(--rd);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">⚠️ Pontos de Atenção</div>
+<div style="font-size:11px;color:var(--t2);line-height:2">
+🔴 DEL: 187 dias (meta ≤ 170) → R$ 867k/ano<br>
+🔴 IEP: 405 dias (meta ≤ 380)<br>
+🔴 Mortalidade: 0,94%/mês → ~11,2%/ano<br>
+🔴 Rebanho encolhendo: −35 no bimestre<br>
+🟠 Taxa de Serviço: ~36% (meta ≥ 50%)<br>
+🟠 Taxa de Prenhez: ~15% (meta ≥ 22%)<br>
+🟠 Abortos: 1,15%/mês (meta ≤ 0,8%)<br>
+🟡 Sem dados: Mastite, CCS, BCS, CBT<br>
+🟡 Divergência L/vaca/dia: 31,6 vs 37,9
+</div>
+</div>
+</div>
+
+<div style="margin-top:16px;padding:16px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15);border-radius:12px">
+<div style="font-size:13px;font-weight:800;color:var(--pr);margin-bottom:8px">💎 A Grande Oportunidade — Resumo em 1 Parágrafo</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+A Fazenda Brasilanda tem <strong>infraestrutura de nível mundial</strong>, gera <strong>R$ 278/vaca/mês de margem real</strong> e produz <strong>537 L/ha/dia</strong>. Porém, opera com <strong>DEL de 187 dias e IEP de 405 dias</strong>, perdendo <strong>~R$ 2,54M/ano em ineficiências evitáveis</strong> (mortes + abortos + DEL alto). O caminho para destravar esse valor é <strong>puramente reprodutivo</strong>: reduzir DEL para ≤ 170, elevar taxa de prenhez de 15% para ≥ 22%, e reduzir perdas (mortalidade + descarte). Isso é viável com a tecnologia que a fazenda <strong>já possui</strong> (1.000 colares AffiCollar) — custaria <strong>R$ 300k-1,0M/ano com ROI de ~650%</strong>. A diferença entre o cenário atual e o Top 10% BR é de <strong>+R$ 6,23M/ano em receita de leite</strong>. <strong>O dinheiro está na curva de lactação.</strong>
+</div>
+</div>
+
+<div style="margin-top:14px;padding:14px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:10px">
+<div style="font-size:11px;font-weight:800;color:var(--bl);margin-bottom:6px">📌 Status do Projeto — Dashboards Entregues e Próximos</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+<strong style="color:var(--gn)">✅ Bloco 1 — Financeiro:</strong> DRE, Custos, Endividamento, Fluxo de Caixa, Solvência, OPEX/CAPEX<br>
+<strong style="color:var(--gn)">✅ Bloco 2 — Produção:</strong> Rebanho, Produtividade, Reprodução, Saúde, Benchmarks, Projeção 12 meses<br>
+<strong style="color:var(--t3)">⏳ Bloco 3 — Nutrição:</strong> Dieta, Consumo MS, Eficiência Alimentar (pendente dados)<br>
+<strong style="color:var(--t3)">⏳ Bloco 4 — RH:</strong> Quadro, Custo/Vaca, Produtividade por Funcionário (pendente dados)<br>
+<strong style="color:var(--t3)">⏳ Bloco 5 — Integrados:</strong> Cruzamentos entre todos os pilares<br>
+<strong style="color:var(--t3)">⏳ Bloco 6 — Preditivos:</strong> Cenários, Monte Carlo, Stress Test, Projeção com Financiamentos
+</div>
+</div>
+</div>
+
+</div><!-- fim .ct -->
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="ft">
+<div class="fc">
+<div class="cc">
+<div class="cp">SS</div>
+<div class="ci">
+<div class="cl">Consultor de Análise de Dados & IA no Agro</div>
+<div class="cn">Sidney Souza</div>
+<div class="ccs">
+<div class="cci">📧 <a href="#">contato@ruralin.com.br</a></div>
+<div class="cci">📱 (64) 99999-0000</div>
+<div class="cci">📍 Rio Verde — GO</div>
+<div class="cci">🌐 Rural IN — Gestão Inteligente no Agro</div>
+</div>
+<div class="cb">
+Dashboard de Produção — Bloco 2 de 6 | Fazenda Brasilanda — Patricia Kompier<br>
+Dados: Janeiro e Fevereiro/2026 | Gerado em Março/2026 | Próximo: Bloco 3 — Nutrição
+</div>
+</div>
+</div>
+<div class="fd"></div>
+<div class="fb">
+<strong>RURAL IN</strong> — Gestão Inteligente no Agro © 2026<br>
+Este relatório é confidencial e de uso exclusivo do cliente. Reprodução proibida sem autorização.
+</div>
+</div>
+</div>
+
+<script>
+const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>

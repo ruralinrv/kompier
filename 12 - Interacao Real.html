@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — Simulador Interativo de Cenarios | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+:root{--bg:#0a0e1a;--card:#1a2236;--bdr:#2a3654;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899;--gBl:linear-gradient(135deg,#3b82f6,#06b6d4);--gGn:linear-gradient(135deg,#10b981,#34d399);--gRd:linear-gradient(135deg,#ef4444,#f97316);--gYl:linear-gradient(135deg,#f59e0b,#fbbf24);--gPr:linear-gradient(135deg,#8b5cf6,#a78bfa);--gCy:linear-gradient(135deg,#06b6d4,#22d3ee);--gPk:linear-gradient(135deg,#ec4899,#f472b6);--sh:0 4px 20px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+.hd{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid var(--bdr);padding:36px 0;position:relative;overflow:hidden}
+.hd::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4,#10b981,#f59e0b,#ef4444)}
+.hc{max-width:1400px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.ht{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.hlg{display:flex;align-items:center;gap:10px}
+.hlg-i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff}
+.hlg-t{font-size:21px;font-weight:900}.hlg-t span{color:var(--pr)}
+.hlg-s{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px}
+.hbd{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(59,130,246,.1));border:1px solid rgba(139,92,246,.3);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;color:var(--pr);text-transform:uppercase;letter-spacing:1.5px}
+.hd h1{font-size:34px;font-weight:900;letter-spacing:-1px;margin-bottom:5px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd h2{font-size:16px;font-weight:400;color:var(--t2);margin-bottom:18px}
+.hm{display:flex;gap:20px;flex-wrap:wrap}
+.hm-i{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3)}.hm-i span{color:var(--t2);font-weight:600}
+.ct{max-width:1400px;margin:0 auto;padding:36px 40px}
+.st{font-size:22px;font-weight:900;margin:40px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.st:first-of-type{margin-top:0}
+.st-b{font-size:10px;padding:3px 12px;border-radius:50px;font-weight:700}
+.d{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:24px;transition:all .3s;margin-bottom:20px}
+.d:hover{border-color:rgba(139,92,246,.3);box-shadow:var(--sh)}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.dt{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.db{font-size:9px;padding:2px 8px;border-radius:50px;font-weight:700}
+.di{font-size:10px;color:var(--t3);font-weight:600}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+.nt{font-size:10px;color:var(--t2);padding:8px 12px;border-radius:8px;margin-top:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+
+/* SIMULADOR ESPECIFICO */
+.sim-panel{background:linear-gradient(135deg,rgba(139,92,246,.04),rgba(59,130,246,.04));border:2px solid rgba(139,92,246,.2);border-radius:16px;padding:28px;margin-bottom:20px}
+.sim-section{margin-bottom:24px}
+.sim-section-title{font-size:11px;color:var(--pr);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sim-section-title::before{content:'';width:3px;height:16px;background:var(--gPr);border-radius:2px}
+
+.slider-group{margin-bottom:18px}
+.slider-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.slider-name{font-size:11px;font-weight:600;color:var(--t2)}
+.slider-val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;padding:2px 10px;border-radius:6px;min-width:80px;text-align:center}
+.slider-range{display:flex;justify-content:space-between;font-size:8px;color:var(--t3);margin-top:2px}
+
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:4px;background:rgba(255,255,255,.06);outline:none;cursor:pointer}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+input[type="range"].sl-bl::-webkit-slider-thumb{background:var(--bl)}
+input[type="range"].sl-gn::-webkit-slider-thumb{background:var(--gn)}
+input[type="range"].sl-yl::-webkit-slider-thumb{background:var(--yl)}
+input[type="range"].sl-rd::-webkit-slider-thumb{background:var(--rd)}
+input[type="range"].sl-pr::-webkit-slider-thumb{background:var(--pr)}
+input[type="range"].sl-pk::-webkit-slider-thumb{background:var(--pk)}
+input[type="range"].sl-cy::-webkit-slider-thumb{background:var(--cy)}
+input[type="range"].sl-or::-webkit-slider-thumb{background:var(--or)}
+
+input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+input[type="range"].sl-bl::-moz-range-thumb{background:var(--bl)}
+input[type="range"].sl-gn::-moz-range-thumb{background:var(--gn)}
+input[type="range"].sl-yl::-moz-range-thumb{background:var(--yl)}
+input[type="range"].sl-rd::-moz-range-thumb{background:var(--rd)}
+input[type="range"].sl-pr::-moz-range-thumb{background:var(--pr)}
+input[type="range"].sl-pk::-moz-range-thumb{background:var(--pk)}
+input[type="range"].sl-cy::-moz-range-thumb{background:var(--cy)}
+input[type="range"].sl-or::-moz-range-thumb{background:var(--or)}
+
+.res-card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:16px;text-align:center;transition:all .4s}
+.res-card.pos{border-color:rgba(16,185,129,.3);box-shadow:0 0 20px rgba(16,185,129,.08)}
+.res-card.neg{border-color:rgba(239,68,68,.3);box-shadow:0 0 20px rgba(239,68,68,.08)}
+.res-card.warn{border-color:rgba(245,158,11,.3);box-shadow:0 0 20px rgba(245,158,11,.08)}
+.res-label{font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.res-value{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;transition:all .3s}
+.res-sub{font-size:8px;color:var(--t3);margin-top:2px}
+.res-delta{font-size:10px;font-weight:700;margin-top:4px;padding:2px 8px;border-radius:4px;display:inline-block}
+
+.gauge-wrap{display:flex;justify-content:center;margin:20px 0}
+.gauge-svg{width:200px;height:120px}
+.gauge-bg{fill:none;stroke:rgba(255,255,255,.06);stroke-width:12;stroke-linecap:round}
+.gauge-fill{fill:none;stroke-width:12;stroke-linecap:round;transition:all .5s ease}
+.gauge-text{font-family:'JetBrains Mono',monospace;font-weight:900;fill:var(--t1)}
+.gauge-label{font-size:10px;fill:var(--t3)}
+
+.scenario-btn{padding:10px 20px;border:2px solid var(--bdr);border-radius:10px;background:rgba(255,255,255,.02);color:var(--t2);font-size:11px;font-weight:700;cursor:pointer;transition:all .3s;text-transform:uppercase;letter-spacing:1px}
+.scenario-btn:hover{border-color:var(--pr);color:var(--pr);background:rgba(139,92,246,.06)}
+.scenario-btn.active{border-color:var(--pr);color:var(--pr);background:rgba(139,92,246,.1)}
+
+.comp-bar{display:flex;height:28px;border-radius:6px;overflow:hidden;margin:6px 0}
+.comp-seg{display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:rgba(255,255,255,.9);transition:all .5s}
+
+.mt{width:100%;font-size:11px;border-collapse:collapse;margin-top:12px}
+.mt th{text-align:left;padding:6px 8px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.mt td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.03)}
+.mt tr:last-child td{border-bottom:none}
+
+.pulse{animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+.ft{border-top:1px solid var(--bdr);margin-top:36px;padding:44px 40px}
+.fc{max-width:1400px;margin:0 auto}
+.fd{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:24px 0}
+.cc{background:linear-gradient(135deg,#111827,#1a2236);border:1px solid var(--bdr);border-radius:18px;padding:30px;display:flex;gap:28px;align-items:center;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4)}
+.cp{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 8px 20px rgba(139,92,246,.3)}
+.ci{flex:1}.cl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--pr);margin-bottom:5px}
+.cn{font-size:20px;font-weight:900;margin-bottom:10px}
+.ccs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cci{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2);background:rgba(255,255,255,.04);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.cb{font-size:11px;color:var(--t3);line-height:1.8;border-top:1px solid var(--bdr);padding-top:10px;font-style:italic}
+.fb{text-align:center;padding-top:20px;color:var(--t3);font-size:10px}.fb strong{color:var(--t2)}
+.fi{opacity:0;transform:translateY(18px);transition:all .6s ease}.fi.v{opacity:1;transform:translateY(0)}
+@media(max-width:1024px){.g2,.g3,.g4{grid-template-columns:1fr}.hd h1{font-size:24px}.ct{padding:20px}.cc{flex-direction:column;text-align:center}.ccs{justify-content:center}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hd">
+<div class="hc">
+<div class="ht">
+<div class="hlg"><div class="hlg-i">R</div><div><div class="hlg-t">RURAL <span>IN</span></div><div class="hlg-s">Gestao Inteligente no Agro</div></div></div>
+<div class="hbd">Simulador Interativo de Cenarios</div>
+</div>
+<h1>SIMULADOR — FAZENDA BRASILANDA</h1>
+<h2>Mova os controles e veja o impacto financeiro em tempo real</h2>
+<div class="hm">
+<div class="hm-i">Base Real: <span>Jan-Fev / 2026</span></div>
+<div class="hm-i">Preco Atual: <span>R$ 2,41/L</span></div>
+<div class="hm-i">Producao Atual: <span>32.200 L/dia</span></div>
+<div class="hm-i">VL Atual: <span>~850</span></div>
+<div class="hm-i">Funcionarios: <span>47</span></div>
+</div>
+</div>
+</div>
+
+<!-- CONTEUDO -->
+<div class="ct">
+
+<div class="st fi">Simulador de Cenarios — Controle Total <span class="st-b" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">PRODUTO #4</span><span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">INTERATIVO</span></div>
+
+<!-- CENARIOS PRE-DEFINIDOS -->
+<div class="d fi">
+<div class="dh"><div class="dt">⚡ Cenarios Pre-Definidos — Clique para Carregar <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">ATALHO</span></div></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button class="scenario-btn" onclick="loadScenario('atual')">📍 Atual (Fev/26)</button>
+<button class="scenario-btn" onclick="loadScenario('pessimista')">🔴 Pessimista</button>
+<button class="scenario-btn" onclick="loadScenario('conservador')">🟡 Conservador</button>
+<button class="scenario-btn" onclick="loadScenario('base')">🔵 Base (Plano)</button>
+<button class="scenario-btn" onclick="loadScenario('otimista')">🟢 Otimista</button>
+<button class="scenario-btn" onclick="loadScenario('moonshot')">🚀 Moonshot</button>
+</div>
+<div class="nt" style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12);margin-top:12px">
+<strong>Dica:</strong> Clique em um cenario para carregar os valores automaticamente, ou ajuste cada slider manualmente para criar seu proprio cenario personalizado.
+</div>
+</div>
+
+<!-- PAINEL DE INPUTS -->
+<div class="g2 fi">
+
+<!-- COLUNA ESQUERDA: INPUTS -->
+<div>
+<div class="sim-panel">
+
+<!-- RECEITA -->
+<div class="sim-section">
+<div class="sim-section-title">Receita & Mercado</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Preco do Leite (R$/L)</span>
+<span class="slider-val" id="val-preco" style="background:rgba(16,185,129,.1);color:var(--gn)">R$ 2,41</span>
+</div>
+<input type="range" id="sl-preco" class="sl-gn" min="1.80" max="3.50" step="0.01" value="2.41" oninput="calc()">
+<div class="slider-range"><span>R$ 1,80</span><span>R$ 3,50</span></div>
+</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Bonus Qualidade (R$/L)</span>
+<span class="slider-val" id="val-bonus" style="background:rgba(6,182,212,.1);color:var(--cy)">R$ 0,00</span>
+</div>
+<input type="range" id="sl-bonus" class="sl-cy" min="0" max="0.25" step="0.01" value="0" oninput="calc()">
+<div class="slider-range"><span>R$ 0,00</span><span>R$ 0,25</span></div>
+</div>
+</div>
+
+<!-- PRODUCAO -->
+<div class="sim-section">
+<div class="sim-section-title">Producao & Rebanho</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Vacas em Lactacao (VL)</span>
+<span class="slider-val" id="val-vl" style="background:rgba(59,130,246,.1);color:var(--bl)">850</span>
+</div>
+<input type="range" id="sl-vl" class="sl-bl" min="500" max="1200" step="5" value="850" oninput="calc()">
+<div class="slider-range"><span>500</span><span>1.200</span></div>
+</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Producao/Vaca/Dia (L)</span>
+<span class="slider-val" id="val-pvl" style="background:rgba(59,130,246,.1);color:var(--bl)">37,9</span>
+</div>
+<input type="range" id="sl-pvl" class="sl-bl" min="25" max="50" step="0.1" value="37.9" oninput="calc()">
+<div class="slider-range"><span>25,0 L</span><span>50,0 L</span></div>
+</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Capacidade Tanque (L/dia)</span>
+<span class="slider-val" id="val-tanque" style="background:rgba(139,92,246,.1);color:var(--pr)">40.000</span>
+</div>
+<input type="range" id="sl-tanque" class="sl-pr" min="30000" max="80000" step="1000" value="40000" oninput="calc()">
+<div class="slider-range"><span>30.000 L</span><span>80.000 L</span></div>
+</div>
+</div>
+
+<!-- CUSTOS -->
+<div class="sim-section">
+<div class="sim-section-title">Custos</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Custo Racao (R$/VL/dia)</span>
+<span class="slider-val" id="val-racao" style="background:rgba(245,158,11,.1);color:var(--yl)">R$ 24,50</span>
+</div>
+<input type="range" id="sl-racao" class="sl-yl" min="15" max="40" step="0.50" value="24.5" oninput="calc()">
+<div class="slider-range"><span>R$ 15,00</span><span>R$ 40,00</span></div>
+</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">% Sobras Alimentacao</span>
+<span class="slider-val" id="val-sobras" style="background:rgba(249,115,22,.1);color:var(--or)">10,0%</span>
+</div>
+<input type="range" id="sl-sobras" class="sl-or" min="2" max="18" step="0.5" value="10" oninput="calc()">
+<div class="slider-range"><span>2%</span><span>18%</span></div>
+</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Funcionarios</span>
+<span class="slider-val" id="val-func" style="background:rgba(236,72,153,.1);color:var(--pk)">47</span>
+</div>
+<input type="range" id="sl-func" class="sl-pk" min="25" max="60" step="1" value="47" oninput="calc()">
+<div class="slider-range"><span>25</span><span>60</span></div>
+</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Custo/Funcionario/Mes (R$)</span>
+<span class="slider-val" id="val-cfunc" style="background:rgba(236,72,153,.1);color:var(--pk)">R$ 6.000</span>
+</div>
+<input type="range" id="sl-cfunc" class="sl-pk" min="4000" max="10000" step="100" value="6000" oninput="calc()">
+<div class="slider-range"><span>R$ 4.000</span><span>R$ 10.000</span></div>
+</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Outros Custos Fixos (R$/mes)</span>
+<span class="slider-val" id="val-cfix" style="background:rgba(239,68,68,.1);color:var(--rd)">R$ 180k</span>
+</div>
+<input type="range" id="sl-cfix" class="sl-rd" min="100000" max="400000" step="5000" value="180000" oninput="calc()">
+<div class="slider-range"><span>R$ 100k</span><span>R$ 400k</span></div>
+</div>
+
+<div class="slider-group">
+<div class="slider-label">
+<span class="slider-name">Depreciacao + Custo Oportunidade (R$/mes)</span>
+<span class="slider-val" id="val-deprec" style="background:rgba(239,68,68,.1);color:var(--rd)">R$ 405k</span>
+</div>
+<input type="range" id="sl-deprec" class="sl-rd" min="200000" max="700000" step="5000" value="405000" oninput="calc()">
+<div class="slider-range"><span>R$ 200k</span><span>R$ 700k</span></div>
+</div>
+
+</div><!-- fim sim-panel -->
+
+<!-- BOTAO RESET -->
+<div style="text-align:center;margin-top:12px">
+<button class="scenario-btn" onclick="loadScenario('atual')" style="border-color:var(--rd);color:var(--rd)">🔄 Resetar para Valores Atuais</button>
+</div>
+
+</div><!-- fim coluna esquerda -->
+
+<!-- COLUNA DIREITA: RESULTADOS -->
+<div id="results-panel">
+<!-- Preenchido pelo JavaScript -->
+</div>
+
+</div><!-- fim g2 -->
+<!-- PAINEL DE RESULTADOS DETALHADO (abaixo do g2) -->
+<div class="d fi" id="detail-panel" style="border:2px solid rgba(139,92,246,.3);background:linear-gradient(135deg,rgba(139,92,246,.03),rgba(17,24,39,1))">
+<div class="dh"><div class="dt">📊 Decomposicao Financeira Completa <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">DETALHE</span><span class="db pulse" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">TEMPO REAL</span></div></div>
+
+<!-- BARRA DE COMPOSICAO DE CUSTOS -->
+<div style="margin-bottom:20px">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700">Composicao dos Custos — Proporcao Visual</div>
+<div class="comp-bar" id="cost-bar">
+<div class="comp-seg" id="bar-racao" style="background:var(--yl)">Racao</div>
+<div class="comp-seg" id="bar-mo" style="background:var(--pk)">MO</div>
+<div class="comp-seg" id="bar-fix" style="background:var(--or)">Fixo</div>
+<div class="comp-seg" id="bar-dep" style="background:var(--rd)">Deprec+CO</div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:8px;color:var(--t3);margin-top:4px">
+<span id="bar-racao-pct"></span>
+<span id="bar-mo-pct"></span>
+<span id="bar-fix-pct"></span>
+<span id="bar-dep-pct"></span>
+</div>
+</div>
+
+<!-- TABELA DRE SIMPLIFICADA -->
+<div style="margin-bottom:20px">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:700">DRE Simplificada Mensal</div>
+<table class="mt" id="dre-table">
+<tr><th style="width:45%">Item</th><th style="width:20%">R$/Mes</th><th style="width:15%">R$/Litro</th><th style="width:20%">% Receita</th></tr>
+<tr style="background:rgba(16,185,129,.04)"><td style="font-weight:700;color:var(--gn)">📥 RECEITA BRUTA</td><td class="nm" id="dre-rec" style="color:var(--gn)"></td><td class="nm" id="dre-rec-l" style="color:var(--gn)"></td><td class="nm" style="color:var(--gn)">100%</td></tr>
+<tr><td style="padding-left:20px;color:var(--t2)">Leite</td><td class="nm" id="dre-leite"></td><td class="nm" id="dre-leite-l"></td><td class="nm" id="dre-leite-pct"></td></tr>
+<tr><td style="padding-left:20px;color:var(--t2)">Bonus Qualidade</td><td class="nm" id="dre-bonus"></td><td class="nm" id="dre-bonus-l"></td><td class="nm" id="dre-bonus-pct"></td></tr>
+<tr style="background:rgba(245,158,11,.03)"><td style="font-weight:700;color:var(--yl)">📤 CUSTO RACAO (c/ sobras)</td><td class="nm" id="dre-rac" style="color:var(--yl)"></td><td class="nm" id="dre-rac-l" style="color:var(--yl)"></td><td class="nm" id="dre-rac-pct" style="color:var(--yl)"></td></tr>
+<tr style="background:rgba(16,185,129,.02)"><td style="font-weight:700;color:var(--em)">🥛 IOFC (Receita - Racao)</td><td class="nm" id="dre-iofc" style="color:var(--em)"></td><td class="nm" id="dre-iofc-l" style="color:var(--em)"></td><td class="nm" id="dre-iofc-pct" style="color:var(--em)"></td></tr>
+<tr><td style="padding-left:20px;color:var(--t2)">Mao de Obra</td><td class="nm" id="dre-mo"></td><td class="nm" id="dre-mo-l"></td><td class="nm" id="dre-mo-pct"></td></tr>
+<tr><td style="padding-left:20px;color:var(--t2)">Outros Custos Fixos</td><td class="nm" id="dre-fix"></td><td class="nm" id="dre-fix-l"></td><td class="nm" id="dre-fix-pct"></td></tr>
+<tr style="background:rgba(59,130,246,.04)"><td style="font-weight:700;color:var(--bl)">💰 COE TOTAL</td><td class="nm" id="dre-coe" style="color:var(--bl)"></td><td class="nm" id="dre-coe-l" style="color:var(--bl)"></td><td class="nm" id="dre-coe-pct" style="color:var(--bl)"></td></tr>
+<tr style="background:rgba(59,130,246,.03)"><td style="font-weight:700;color:var(--cy)">📈 MARGEM SOBRE COE</td><td class="nm" id="dre-mcoe" style="color:var(--cy)"></td><td class="nm" id="dre-mcoe-l" style="color:var(--cy)"></td><td class="nm" id="dre-mcoe-pct" style="color:var(--cy)"></td></tr>
+<tr><td style="padding-left:20px;color:var(--t2)">Deprec. + Custo Oportunidade</td><td class="nm" id="dre-dep"></td><td class="nm" id="dre-dep-l"></td><td class="nm" id="dre-dep-pct"></td></tr>
+<tr style="background:rgba(239,68,68,.04)"><td style="font-weight:700;color:var(--or)">📊 CT TOTAL</td><td class="nm" id="dre-ct" style="color:var(--or)"></td><td class="nm" id="dre-ct-l" style="color:var(--or)"></td><td class="nm" id="dre-ct-pct" style="color:var(--or)"></td></tr>
+<tr id="dre-res-row"><td style="font-weight:900;font-size:13px">✅ RESULTADO LIQUIDO</td><td class="nm" id="dre-res" style="font-size:14px"></td><td class="nm" id="dre-res-l" style="font-size:14px"></td><td class="nm" id="dre-res-pct" style="font-size:14px"></td></tr>
+</table>
+</div>
+
+<!-- INDICADORES DE EFICIENCIA -->
+<div style="margin-bottom:16px">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:700">Indicadores de Eficiencia</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px" id="eff-grid">
+<div class="res-card" id="eff-lpf">
+<div class="res-label" style="color:var(--t3)">L/Func/Dia</div>
+<div class="res-value" id="eff-lpf-v" style="font-size:18px"></div>
+<div class="res-sub">Meta: 1.176</div>
+</div>
+<div class="res-card" id="eff-iofc">
+<div class="res-label" style="color:var(--t3)">IOFC/VL/Dia</div>
+<div class="res-value" id="eff-iofc-v" style="font-size:18px"></div>
+<div class="res-sub">Meta: R$ 40+</div>
+</div>
+<div class="res-card" id="eff-roa">
+<div class="res-label" style="color:var(--t3)">ROA Anual</div>
+<div class="res-value" id="eff-roa-v" style="font-size:18px"></div>
+<div class="res-sub">CDI: 14,25%</div>
+</div>
+<div class="res-card" id="eff-bep">
+<div class="res-label" style="color:var(--t3)">BEP CT (L/dia)</div>
+<div class="res-value" id="eff-bep-v" style="font-size:18px"></div>
+<div class="res-sub" id="eff-bep-sub"></div>
+</div>
+<div class="res-card" id="eff-mo-pct">
+<div class="res-label" style="color:var(--t3)">MO % Receita</div>
+<div class="res-value" id="eff-mopct-v" style="font-size:18px"></div>
+<div class="res-sub">Meta: &lt;8%</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- TABELA DE SENSIBILIDADE PRECO x PRODUCAO -->
+<div class="d fi" style="border:2px solid rgba(59,130,246,.3);background:linear-gradient(135deg,rgba(59,130,246,.03),rgba(17,24,39,1))">
+<div class="dh"><div class="dt">🔥 Tabela de Sensibilidade — Preco x Producao/Vaca <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">MATRIZ</span></div><div class="di">Resultado Liquido Mensal (R$) com parametros atuais do simulador</div></div>
+
+<div style="overflow-x:auto">
+<table class="mt" id="sens-table" style="font-size:10px">
+<thead>
+<tr><th style="text-align:center;font-size:8px">Resultado<br>R$/mes</th><th id="sh1" style="text-align:center"></th><th id="sh2" style="text-align:center"></th><th id="sh3" style="text-align:center"></th><th id="sh4" style="text-align:center"></th><th id="sh5" style="text-align:center"></th><th id="sh6" style="text-align:center"></th><th id="sh7" style="text-align:center"></th></tr>
+</thead>
+<tbody id="sens-body">
+</tbody>
+</table>
+</div>
+
+<div class="nt" style="background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.12);margin-top:10px">
+<strong>Como ler:</strong> Linhas = Producao/Vaca (L/dia). Colunas = Preco do Leite (R$/L). Celula = Resultado liquido mensal. <strong style="color:var(--gn)">Verde</strong> = lucro. <strong style="color:var(--rd)">Vermelho</strong> = prejuizo. O ponto com ⬤ e o cenario atual do simulador.
+</div>
+</div>
+
+<!-- COMPARADOR DE CENARIOS -->
+<div class="d fi" style="border:2px solid rgba(16,185,129,.3);background:linear-gradient(135deg,rgba(16,185,129,.03),rgba(17,24,39,1))">
+<div class="dh"><div class="dt">📐 Comparador de Cenarios — Todos Lado a Lado <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">BENCHMARK</span></div></div>
+
+<div style="overflow-x:auto">
+<table class="mt" id="comp-table" style="font-size:10px">
+<tr>
+<th>Indicador</th>
+<th style="text-align:center;color:var(--t2)">📍 Atual</th>
+<th style="text-align:center;color:var(--rd)">🔴 Pessimista</th>
+<th style="text-align:center;color:var(--yl)">🟡 Conservador</th>
+<th style="text-align:center;color:var(--bl)">🔵 Base</th>
+<th style="text-align:center;color:var(--gn)">🟢 Otimista</th>
+<th style="text-align:center;color:var(--pr)">🚀 Moonshot</th>
+<th style="text-align:center;background:rgba(139,92,246,.08);color:var(--pr)">🎯 SEU CENARIO</th>
+</tr>
+<tr><td style="font-weight:700">Preco (R$/L)</td><td class="nm" style="text-align:center">2,41</td><td class="nm" style="text-align:center">2,10</td><td class="nm" style="text-align:center">2,50</td><td class="nm" style="text-align:center">2,65</td><td class="nm" style="text-align:center">2,85</td><td class="nm" style="text-align:center">3,10</td><td class="nm" id="cp-preco" style="text-align:center;background:rgba(139,92,246,.06)"></td></tr>
+<tr><td style="font-weight:700">VL</td><td class="nm" style="text-align:center">850</td><td class="nm" style="text-align:center">750</td><td class="nm" style="text-align:center">780</td><td class="nm" style="text-align:center">820</td><td class="nm" style="text-align:center">900</td><td class="nm" style="text-align:center">1.050</td><td class="nm" id="cp-vl" style="text-align:center;background:rgba(139,92,246,.06)"></td></tr>
+<tr><td style="font-weight:700">Prod/VL (L/dia)</td><td class="nm" style="text-align:center">37,9</td><td class="nm" style="text-align:center">35,0</td><td class="nm" style="text-align:center">38,5</td><td class="nm" style="text-align:center">40,8</td><td class="nm" style="text-align:center">42,5</td><td class="nm" style="text-align:center">45,0</td><td class="nm" id="cp-pvl" style="text-align:center;background:rgba(139,92,246,.06)"></td></tr>
+<tr><td style="font-weight:700">Producao (L/dia)</td><td class="nm" style="text-align:center">32.200</td><td class="nm" style="text-align:center">26.250</td><td class="nm" style="text-align:center">30.030</td><td class="nm" style="text-align:center">33.456</td><td class="nm" style="text-align:center">38.250</td><td class="nm" style="text-align:center">47.250</td><td class="nm" id="cp-prod" style="text-align:center;background:rgba(139,92,246,.06)"></td></tr>
+<tr><td style="font-weight:700">Funcionarios</td><td class="nm" style="text-align:center">47</td><td class="nm" style="text-align:center">47</td><td class="nm" style="text-align:center">42</td><td class="nm" style="text-align:center">34</td><td class="nm" style="text-align:center">34</td><td class="nm" style="text-align:center">36</td><td class="nm" id="cp-func" style="text-align:center;background:rgba(139,92,246,.06)"></td></tr>
+<tr><td style="font-weight:700">Sobras (%)</td><td class="nm" style="text-align:center">10%</td><td class="nm" style="text-align:center">12%</td><td class="nm" style="text-align:center">7%</td><td class="nm" style="text-align:center">4%</td><td class="nm" style="text-align:center">3%</td><td class="nm" style="text-align:center">3%</td><td class="nm" id="cp-sobras" style="text-align:center;background:rgba(139,92,246,.06)"></td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td style="font-weight:700;color:var(--gn)">Receita/Mes</td><td class="nm" style="text-align:center">R$ 2,33M</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 1,65M</td><td class="nm" style="text-align:center;color:var(--yl)">R$ 2,25M</td><td class="nm" style="text-align:center;color:var(--bl)">R$ 2,66M</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 3,27M</td><td class="nm" style="text-align:center;color:var(--pr)">R$ 4,39M</td><td class="nm" id="cp-rec" style="text-align:center;font-weight:800;background:rgba(139,92,246,.06)"></td></tr>
+<tr style="background:rgba(245,158,11,.03)"><td style="font-weight:700;color:var(--yl)">CT/Mes</td><td class="nm" style="text-align:center">R$ 2,11M</td><td class="nm" style="text-align:center">R$ 1,87M</td><td class="nm" style="text-align:center">R$ 1,90M</td><td class="nm" style="text-align:center">R$ 1,91M</td><td class="nm" style="text-align:center">R$ 2,09M</td><td class="nm" style="text-align:center">R$ 2,54M</td><td class="nm" id="cp-ct" style="text-align:center;font-weight:800;background:rgba(139,92,246,.06)"></td></tr>
+<tr id="cp-res-row"><td style="font-weight:900;font-size:12px">Resultado/Mes</td><td class="nm" style="text-align:center;color:var(--yl)">R$ 222k</td><td class="nm" style="text-align:center;color:var(--rd)">-R$ 215k</td><td class="nm" style="text-align:center;color:var(--yl)">R$ 350k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 756k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 1,18M</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 1,86M</td><td class="nm" id="cp-res" style="text-align:center;font-weight:900;font-size:13px;background:rgba(139,92,246,.06)"></td></tr>
+<tr><td style="font-weight:700">ROA Anual</td><td class="nm" style="text-align:center">12,6%</td><td class="nm" style="text-align:center;color:var(--rd)">-12,2%</td><td class="nm" style="text-align:center;color:var(--yl)">19,9%</td><td class="nm" style="text-align:center;color:var(--gn)">43,0%</td><td class="nm" style="text-align:center;color:var(--gn)">67,1%</td><td class="nm" style="text-align:center;color:var(--gn)">105,6%</td><td class="nm" id="cp-roa" style="text-align:center;font-weight:800;background:rgba(139,92,246,.06)"></td></tr>
+<tr><td style="font-weight:700">L/Func/Dia</td><td class="nm" style="text-align:center">686</td><td class="nm" style="text-align:center;color:var(--rd)">559</td><td class="nm" style="text-align:center;color:var(--yl)">715</td><td class="nm" style="text-align:center;color:var(--gn)">984</td><td class="nm" style="text-align:center;color:var(--gn)">1.125</td><td class="nm" style="text-align:center;color:var(--gn)">1.313</td><td class="nm" id="cp-lpf" style="text-align:center;font-weight:800;background:rgba(139,92,246,.06)"></td></tr>
+</table>
+</div>
+
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);margin-top:10px">
+<strong>A coluna "SEU CENARIO" 🎯</strong> reflete exatamente os valores que voce configurou nos sliders acima. Compare seu cenario personalizado com os 5 cenarios de referencia.
+</div>
+</div>
+
+<!-- PAINEL MONTE CARLO SIMPLIFICADO -->
+<div class="d fi" style="border:2px solid rgba(236,72,153,.3);background:linear-gradient(135deg,rgba(236,72,153,.03),rgba(17,24,39,1))">
+<div class="dh"><div class="dt">🎲 Mini Monte Carlo — Risco do Cenario Atual <span class="db" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">RISCO</span></div><div class="di">1.000 simulacoes com ±15% variacao</div></div>
+
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px" id="mc-grid">
+<div class="res-card" id="mc-p5">
+<div class="res-label" style="color:var(--rd)">P5 (Pessimista)</div>
+<div class="res-value" id="mc-p5-v" style="font-size:16px;color:var(--rd)"></div>
+<div class="res-sub">5% chance abaixo</div>
+</div>
+<div class="res-card" id="mc-p25">
+<div class="res-label" style="color:var(--or)">P25</div>
+<div class="res-value" id="mc-p25-v" style="font-size:16px;color:var(--or)"></div>
+<div class="res-sub">25% chance abaixo</div>
+</div>
+<div class="res-card" id="mc-p50">
+<div class="res-label" style="color:var(--bl)">P50 (Mediana)</div>
+<div class="res-value" id="mc-p50-v" style="font-size:16px;color:var(--bl)"></div>
+<div class="res-sub">Cenario mais provavel</div>
+</div>
+<div class="res-card" id="mc-p75">
+<div class="res-label" style="color:var(--gn)">P75</div>
+<div class="res-value" id="mc-p75-v" style="font-size:16px;color:var(--gn)"></div>
+<div class="res-sub">75% chance abaixo</div>
+</div>
+<div class="res-card" id="mc-p95">
+<div class="res-label" style="color:var(--gn)">P95 (Otimista)</div>
+<div class="res-value" id="mc-p95-v" style="font-size:16px;color:var(--gn)"></div>
+<div class="res-sub">5% chance acima</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+<div style="text-align:center;padding:14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px">
+<div style="font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:1px">Prob. Prejuizo</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:900;color:var(--rd)" id="mc-prob-loss"></div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:10px">
+<div style="font-size:8px;color:var(--yl);text-transform:uppercase;letter-spacing:1px">VaR 5% (Pior caso)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:900;color:var(--yl)" id="mc-var"></div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:10px">
+<div style="font-size:8px;color:var(--gn);text-transform:uppercase;letter-spacing:1px">Resultado Medio</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:900;color:var(--gn)" id="mc-mean"></div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(236,72,153,.05);border:1px solid rgba(236,72,153,.12);margin-top:10px">
+<strong>Metodologia:</strong> 1.000 simulacoes com variacao aleatoria de ±15% sobre preco e ±10% sobre producao e custos. Distribuicao normal truncada. <strong>Atualiza automaticamente quando voce move qualquer slider.</strong>
+</div>
+</div>
+
+<!-- O QUE ACONTECE SE... -->
+<div class="d fi" style="border:2px solid rgba(6,182,212,.3);background:linear-gradient(135deg,rgba(6,182,212,.03),rgba(17,24,39,1))">
+<div class="dh"><div class="dt">🤔 E Se...? — Analise de Impacto Rapida <span class="db" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">WHAT-IF</span></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px" id="whatif-grid">
+<div style="padding:16px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px">
+<div style="font-size:9px;color:var(--rd);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">⚠️ Se preco cair R$ 0,30/L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;margin-bottom:4px" id="wf-preco-down"></div>
+<div style="font-size:9px;color:var(--t3)" id="wf-preco-down-d"></div>
+</div>
+<div style="padding:16px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:9px;color:var(--gn);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">📈 Se preco subir R$ 0,30/L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;margin-bottom:4px" id="wf-preco-up"></div>
+<div style="font-size:9px;color:var(--t3)" id="wf-preco-up-d"></div>
+</div>
+<div style="padding:16px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px">
+<div style="font-size:9px;color:var(--rd);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">⚠️ Se descartar 0 vacas (manter cluster D)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;margin-bottom:4px" id="wf-no-desc"></div>
+<div style="font-size:9px;color:var(--t3)" id="wf-no-desc-d"></div>
+</div>
+<div style="padding:16px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:9px;color:var(--gn);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">📈 Se prod/vaca subir +5L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;margin-bottom:4px" id="wf-prod-up"></div>
+<div style="font-size:9px;color:var(--t3)" id="wf-prod-up-d"></div>
+</div>
+<div style="padding:16px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.12);border-radius:10px">
+<div style="font-size:9px;color:var(--yl);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">🌽 Se milho subir 25%</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;margin-bottom:4px" id="wf-milho-up"></div>
+<div style="font-size:9px;color:var(--t3)" id="wf-milho-up-d"></div>
+</div>
+<div style="padding:16px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:9px;color:var(--gn);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">✅ Se executar TODAS as 10 acoes</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;margin-bottom:4px" id="wf-all"></div>
+<div style="font-size:9px;color:var(--t3)" id="wf-all-d"></div>
+</div>
+</div>
+</div>
+<!-- FOOTER -->
+<div class="ft">
+<div class="fc">
+<div class="cc">
+<div class="cp">RI</div>
+<div class="ci">
+<div class="cl">Consultoria Rural IN</div>
+<div class="cn">Sidney Souza — Analista de Dados & Estrategia</div>
+<div class="ccs">
+<div class="cci">📊 Simulador Interativo</div>
+<div class="cci">🐄 Pecuaria Leiteira de Precisao</div>
+<div class="cci">🎲 Monte Carlo Simplificado</div>
+</div>
+<div class="cb">"Se voce nao sabe para onde vai, qualquer caminho serve. Aqui, voce escolhe o caminho e ve exatamente onde ele leva." — Este simulador permite testar cenarios infinitos com os dados reais da Fazenda Brasilanda. Todos os calculos sao instantaneos e baseados em premissas reais.</div>
+</div>
+</div>
+<div class="fd"></div>
+<div class="fb">
+<strong>RURAL IN</strong> — Todos os direitos reservados © 2026<br>
+Fazenda Brasilanda — Patricia Kompier | Rio Verde, GO | HTML 2 de 5 — Simulador Interativo
+</div>
+</div>
+</div>
+
+</div><!-- fim .ct -->
+
+<!-- ==================== MOTOR JAVASCRIPT ==================== -->
+<script>
+// =====================================================
+// CONSTANTES BASE
+// =====================================================
+const PATRIMONIO = 21100000; // R$ 21,1M patrimonio
+const CDI = 14.25; // CDI atual
+const DIAS_MES = 30.4;
+
+// =====================================================
+// CENARIOS PRE-DEFINIDOS
+// =====================================================
+const SCENARIOS = {
+  atual: {
+    preco: 2.41, bonus: 0, vl: 850, pvl: 37.9, tanque: 40000,
+    racao: 24.50, sobras: 10, func: 47, cfunc: 6000, cfix: 180000, deprec: 405000,
+    label: '📍 Atual (Fev/26)'
+  },
+  pessimista: {
+    preco: 2.10, bonus: 0, vl: 750, pvl: 35.0, tanque: 40000,
+    racao: 28.00, sobras: 12, func: 47, cfunc: 6200, cfix: 195000, deprec: 405000,
+    label: '🔴 Pessimista'
+  },
+  conservador: {
+    preco: 2.50, bonus: 0.03, vl: 780, pvl: 38.5, tanque: 40000,
+    racao: 23.50, sobras: 7, func: 42, cfunc: 6000, cfix: 175000, deprec: 405000,
+    label: '🟡 Conservador'
+  },
+  base: {
+    preco: 2.65, bonus: 0.08, vl: 820, pvl: 40.8, tanque: 60000,
+    racao: 23.00, sobras: 4, func: 34, cfunc: 6000, cfix: 165000, deprec: 405000,
+    label: '🔵 Base (Plano 12m)'
+  },
+  otimista: {
+    preco: 2.85, bonus: 0.12, vl: 900, pvl: 42.5, tanque: 60000,
+    racao: 22.00, sobras: 3, func: 34, cfunc: 6000, cfix: 160000, deprec: 405000,
+    label: '🟢 Otimista'
+  },
+  moonshot: {
+    preco: 3.10, bonus: 0.15, vl: 1050, pvl: 45.0, tanque: 80000,
+    racao: 21.00, sobras: 3, func: 36, cfunc: 6500, cfix: 200000, deprec: 420000,
+    label: '🚀 Moonshot'
+  }
+};
+
+// =====================================================
+// LOAD SCENARIO
+// =====================================================
+function loadScenario(key) {
+  const s = SCENARIOS[key];
+  if (!s) return;
+
+  document.getElementById('sl-preco').value = s.preco;
+  document.getElementById('sl-bonus').value = s.bonus;
+  document.getElementById('sl-vl').value = s.vl;
+  document.getElementById('sl-pvl').value = s.pvl;
+  document.getElementById('sl-tanque').value = s.tanque;
+  document.getElementById('sl-racao').value = s.racao;
+  document.getElementById('sl-sobras').value = s.sobras;
+  document.getElementById('sl-func').value = s.func;
+  document.getElementById('sl-cfunc').value = s.cfunc;
+  document.getElementById('sl-cfix').value = s.cfix;
+  document.getElementById('sl-deprec').value = s.deprec;
+
+  // Highlight button
+  document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  calc();
+}
+
+// =====================================================
+// FORMAT HELPERS
+// =====================================================
+function fmtR(v) {
+  if (Math.abs(v) >= 1000000) return (v < 0 ? '-' : '') + 'R$ ' + (Math.abs(v) / 1000000).toFixed(2).replace('.', ',') + 'M';
+  if (Math.abs(v) >= 1000) return (v < 0 ? '-' : '') + 'R$ ' + (Math.abs(v) / 1000).toFixed(0) + 'k';
+  return 'R$ ' + v.toFixed(0);
+}
+function fmtR2(v) {
+  return 'R$ ' + v.toFixed(2).replace('.', ',');
+}
+function fmtN(v) {
+  return v.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+}
+function fmtPct(v) {
+  return v.toFixed(1).replace('.', ',') + '%';
+}
+
+// =====================================================
+// MAIN CALC ENGINE
+// =====================================================
+function calc() {
+  // Read inputs
+  const preco = parseFloat(document.getElementById('sl-preco').value);
+  const bonus = parseFloat(document.getElementById('sl-bonus').value);
+  const vl = parseInt(document.getElementById('sl-vl').value);
+  const pvl = parseFloat(document.getElementById('sl-pvl').value);
+  const tanque = parseInt(document.getElementById('sl-tanque').value);
+  const racao = parseFloat(document.getElementById('sl-racao').value);
+  const sobras = parseFloat(document.getElementById('sl-sobras').value);
+  const func = parseInt(document.getElementById('sl-func').value);
+  const cfunc = parseFloat(document.getElementById('sl-cfunc').value);
+  const cfix = parseFloat(document.getElementById('sl-cfix').value);
+  const deprec = parseFloat(document.getElementById('sl-deprec').value);
+
+  // ---- CALCULOS ----
+  const prodBruta = vl * pvl; // L/dia bruto
+  const prodEfetiva = Math.min(prodBruta, tanque); // limitado pelo tanque
+  const prodMes = prodEfetiva * DIAS_MES;
+  const tanqueLimitou = prodBruta > tanque;
+
+  // Receita
+  const recLeite = prodMes * preco;
+  const recBonus = prodMes * bonus;
+  const recTotal = recLeite + recBonus;
+  const precoEfetivo = preco + bonus;
+
+  // Custos
+  const custoRacaoBase = vl * racao * DIAS_MES;
+  const custoSobras = custoRacaoBase * (sobras / 100);
+  const custoRacaoTotal = custoRacaoBase + custoSobras;
+  const custoMO = func * cfunc;
+  const custoCOE = custoRacaoTotal + custoMO + cfix;
+  const custoCT = custoCOE + deprec;
+
+  // IOFC
+  const iofc = recTotal - custoRacaoTotal;
+  const iofcVlDia = iofc / (vl * DIAS_MES);
+
+  // Margens
+  const margemCOE = recTotal - custoCOE;
+  const resultado = recTotal - custoCT;
+  const margemPct = (resultado / recTotal) * 100;
+
+  // Eficiencia
+  const lpf = prodEfetiva / func;
+  const roaAnual = ((resultado * 12) / PATRIMONIO) * 100;
+  const bepCT = custoCT / (precoEfetivo * DIAS_MES);
+  const moPctRec = (custoMO / recTotal) * 100;
+
+  // COE/L e CT/L
+  const coeL = custoCOE / prodMes;
+  const ctL = custoCT / prodMes;
+
+  // ---- UPDATE SLIDER VALUES ----
+  document.getElementById('val-preco').textContent = fmtR2(preco);
+  document.getElementById('val-bonus').textContent = fmtR2(bonus);
+  document.getElementById('val-vl').textContent = fmtN(vl);
+  document.getElementById('val-pvl').textContent = pvl.toFixed(1).replace('.', ',');
+  document.getElementById('val-tanque').textContent = fmtN(tanque);
+  document.getElementById('val-racao').textContent = fmtR2(racao);
+  document.getElementById('val-sobras').textContent = sobras.toFixed(1).replace('.', ',') + '%';
+  document.getElementById('val-func').textContent = func;
+  document.getElementById('val-cfunc').textContent = 'R$ ' + fmtN(cfunc);
+  document.getElementById('val-cfix').textContent = fmtR(cfix);
+  document.getElementById('val-deprec').textContent = fmtR(deprec);
+
+  // ---- UPDATE RESULTS PANEL ----
+  const rp = document.getElementById('results-panel');
+  const resColor = resultado >= 0 ? (resultado > 500000 ? 'var(--gn)' : 'var(--yl)') : 'var(--rd)';
+  const resClass = resultado >= 0 ? 'pos' : 'neg';
+  const roaColor = roaAnual > CDI ? 'var(--gn)' : (roaAnual > 0 ? 'var(--yl)' : 'var(--rd)');
+  const roaClass = roaAnual > CDI ? 'pos' : (roaAnual > 0 ? 'warn' : 'neg');
+
+  rp.innerHTML = `
+    <div class="d" style="border:2px solid ${resColor};background:linear-gradient(135deg,${resultado >= 0 ? 'rgba(16,185,129,.04)' : 'rgba(239,68,68,.04)'},rgba(17,24,39,1));position:sticky;top:20px">
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px">RESULTADO LIQUIDO MENSAL</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:48px;font-weight:900;color:${resColor};line-height:1">${fmtR(resultado)}</div>
+        <div style="font-size:11px;color:${resColor};margin-top:4px;font-weight:600">${fmtR2(resultado / prodMes)}/litro | Margem ${margemPct.toFixed(1).replace('.',',')}%</div>
+        ${tanqueLimitou ? '<div style="font-size:10px;color:var(--rd);margin-top:6px;padding:4px 10px;background:rgba(239,68,68,.1);border-radius:6px;display:inline-block">⚠️ TANQUE LIMITANDO! Perda de ' + fmtN(Math.round(prodBruta - tanque)) + ' L/dia</div>' : ''}
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+        <div class="res-card ${resClass}">
+          <div class="res-label" style="color:var(--t3)">Resultado/Ano</div>
+          <div class="res-value" style="color:${resColor}">${fmtR(resultado * 12)}</div>
+        </div>
+        <div class="res-card ${roaClass}">
+          <div class="res-label" style="color:var(--t3)">ROA Anual</div>
+          <div class="res-value" style="color:${roaColor}">${fmtPct(roaAnual)}</div>
+          <div class="res-sub">${roaAnual > CDI ? '✅ > CDI' : '❌ < CDI ' + CDI + '%'}</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+        <div class="res-card">
+          <div class="res-label" style="color:var(--gn)">Receita/Mes</div>
+          <div class="res-value" style="color:var(--gn);font-size:18px">${fmtR(recTotal)}</div>
+          <div class="res-sub">${fmtN(Math.round(prodEfetiva))} L/dia × ${fmtR2(precoEfetivo)}</div>
+        </div>
+        <div class="res-card">
+          <div class="res-label" style="color:var(--or)">CT/Mes</div>
+          <div class="res-value" style="color:var(--or);font-size:18px">${fmtR(custoCT)}</div>
+          <div class="res-sub">${fmtR2(ctL)}/litro</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px">
+        <div class="res-card">
+          <div class="res-label" style="color:var(--t3)">Producao</div>
+          <div class="res-value" style="font-size:16px;color:var(--bl)">${fmtN(Math.round(prodEfetiva))}</div>
+          <div class="res-sub">L/dia</div>
+        </div>
+        <div class="res-card">
+          <div class="res-label" style="color:var(--t3)">COE/L</div>
+          <div class="res-value" style="font-size:16px;color:var(--yl)">${fmtR2(coeL)}</div>
+          <div class="res-sub">Marg. ${fmtR2(precoEfetivo - coeL)}/L</div>
+        </div>
+        <div class="res-card">
+          <div class="res-label" style="color:var(--t3)">CT/L</div>
+          <div class="res-value" style="font-size:16px;color:var(--or)">${fmtR2(ctL)}</div>
+          <div class="res-sub">Marg. ${fmtR2(precoEfetivo - ctL)}/L</div>
+        </div>
+      </div>
+
+      <!-- GAUGE FHS ESTIMADO -->
+      <div style="text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--bdr)">
+        <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Farm Health Score Estimado</div>
+        ${buildGauge(estimateFHS(prodEfetiva, pvl, roaAnual, lpf, sobras, moPctRec))}
+      </div>
+    </div>
+  `;
+
+  // ---- UPDATE DRE TABLE ----
+  setDRE('dre-rec', recTotal, precoEfetivo, 100);
+  setDRE('dre-leite', recLeite, preco, (recLeite / recTotal) * 100);
+  setDRE('dre-bonus', recBonus, bonus, (recBonus / recTotal) * 100);
+  setDRE('dre-rac', custoRacaoTotal, custoRacaoTotal / prodMes, (custoRacaoTotal / recTotal) * 100);
+  setDRE('dre-iofc', iofc, iofc / prodMes, (iofc / recTotal) * 100);
+  setDRE('dre-mo', custoMO, custoMO / prodMes, (custoMO / recTotal) * 100);
+  setDRE('dre-fix', cfix, cfix / prodMes, (cfix / recTotal) * 100);
+  setDRE('dre-coe', custoCOE, coeL, (custoCOE / recTotal) * 100);
+  setDRE('dre-mcoe', margemCOE, margemCOE / prodMes, (margemCOE / recTotal) * 100);
+  setDRE('dre-dep', deprec, deprec / prodMes, (deprec / recTotal) * 100);
+  setDRE('dre-ct', custoCT, ctL, (custoCT / recTotal) * 100);
+  setDRE('dre-res', resultado, resultado / prodMes, margemPct);
+
+  // Color result row
+  const resRow = document.getElementById('dre-res-row');
+  resRow.style.background = resultado >= 0 ? 'rgba(16,185,129,.06)' : 'rgba(239,68,68,.06)';
+  document.getElementById('dre-res').style.color = resColor;
+  document.getElementById('dre-res-l').style.color = resColor;
+  document.getElementById('dre-res-pct').style.color = resColor;
+
+  // ---- COST BAR ----
+  const totalCosts = custoRacaoTotal + custoMO + cfix + deprec;
+  setPctBar('bar-racao', custoRacaoTotal, totalCosts, 'Racao ' + fmtPct((custoRacaoTotal / totalCosts) * 100));
+  setPctBar('bar-mo', custoMO, totalCosts, 'MO ' + fmtPct((custoMO / totalCosts) * 100));
+  setPctBar('bar-fix', cfix, totalCosts, 'Fixo ' + fmtPct((cfix / totalCosts) * 100));
+  setPctBar('bar-dep', deprec, totalCosts, 'D+CO ' + fmtPct((deprec / totalCosts) * 100));
+  document.getElementById('bar-racao-pct').textContent = '🟡 Racao: ' + fmtR(custoRacaoTotal) + ' (' + fmtPct((custoRacaoTotal / totalCosts) * 100) + ')';
+  document.getElementById('bar-mo-pct').textContent = '🩷 MO: ' + fmtR(custoMO) + ' (' + fmtPct((custoMO / totalCosts) * 100) + ')';
+  document.getElementById('bar-fix-pct').textContent = '🟠 Fixo: ' + fmtR(cfix) + ' (' + fmtPct((cfix / totalCosts) * 100) + ')';
+  document.getElementById('bar-dep-pct').textContent = '🔴 Deprec: ' + fmtR(deprec) + ' (' + fmtPct((deprec / totalCosts) * 100) + ')';
+
+  // ---- EFFICIENCY CARDS ----
+  setEffCard('eff-lpf', 'eff-lpf-v', lpf, 1176, fmtN(Math.round(lpf)));
+  setEffCard('eff-iofc', 'eff-iofc-v', iofcVlDia, 40, fmtR2(iofcVlDia));
+  setEffCard('eff-roa', 'eff-roa-v', roaAnual, CDI, fmtPct(roaAnual));
+  document.getElementById('eff-bep-v').textContent = fmtN(Math.round(bepCT));
+  document.getElementById('eff-bep-sub').textContent = bepCT < prodEfetiva ? '✅ Abaixo prod.' : '❌ Acima prod.!';
+  const bepCard = document.getElementById('eff-bep');
+  bepCard.className = 'res-card ' + (bepCT < prodEfetiva ? 'pos' : 'neg');
+  setEffCard('eff-mo-pct', 'eff-mopct-v', -moPctRec, -8, fmtPct(moPctRec));
+
+  // ---- COMPARATOR COLUMN ----
+  document.getElementById('cp-preco').textContent = fmtR2(preco);
+  document.getElementById('cp-vl').textContent = fmtN(vl);
+  document.getElementById('cp-pvl').textContent = pvl.toFixed(1).replace('.', ',');
+  document.getElementById('cp-prod').textContent = fmtN(Math.round(prodEfetiva));
+  document.getElementById('cp-func').textContent = func;
+  document.getElementById('cp-sobras').textContent = fmtPct(sobras);
+  document.getElementById('cp-rec').textContent = fmtR(recTotal);
+  document.getElementById('cp-rec').style.color = resColor;
+  document.getElementById('cp-ct').textContent = fmtR(custoCT);
+  document.getElementById('cp-res').textContent = fmtR(resultado);
+  document.getElementById('cp-res').style.color = resColor;
+  document.getElementById('cp-roa').textContent = fmtPct(roaAnual);
+  document.getElementById('cp-roa').style.color = roaColor;
+  document.getElementById('cp-lpf').textContent = fmtN(Math.round(lpf));
+
+  // ---- SENSITIVITY TABLE ----
+  buildSensTable(preco, pvl, vl, tanque, racao, sobras, func, cfunc, cfix, deprec, bonus);
+
+  // ---- MONTE CARLO ----
+  runMonteCarlo(preco, bonus, vl, pvl, tanque, racao, sobras, func, cfunc, cfix, deprec);
+
+  // ---- WHAT-IF ----
+  calcWhatIf(preco, bonus, vl, pvl, tanque, racao, sobras, func, cfunc, cfix, deprec, resultado);
+}
+
+// =====================================================
+// HELPER: Set DRE cell
+// =====================================================
+function setDRE(prefix, val, perL, pctRec) {
+  document.getElementById(prefix).textContent = fmtR(val);
+  document.getElementById(prefix + '-l').textContent = fmtR2(perL);
+  if (document.getElementById(prefix + '-pct'))
+    document.getElementById(prefix + '-pct').textContent = fmtPct(pctRec);
+}
+
+// =====================================================
+// HELPER: Cost bar segment
+// =====================================================
+function setPctBar(id, val, total, label) {
+  const pct = (val / total) * 100;
+  const el = document.getElementById(id);
+  el.style.width = pct + '%';
+  el.textContent = pct > 10 ? label : '';
+}
+
+// =====================================================
+// HELPER: Efficiency card coloring
+// =====================================================
+function setEffCard(cardId, valId, val, target, display) {
+  document.getElementById(valId).textContent = display;
+  const card = document.getElementById(cardId);
+  document.getElementById(valId).style.color = val >= target ? 'var(--gn)' : (val >= target * 0.8 ? 'var(--yl)' : 'var(--rd)');
+  card.className = 'res-card ' + (val >= target ? 'pos' : (val >= target * 0.8 ? 'warn' : 'neg'));
+}
+
+// =====================================================
+// FHS ESTIMATOR
+// =====================================================
+function estimateFHS(prod, pvl, roa, lpf, sobras, moPct) {
+  let score = 0;
+  // Financeiro (25pts)
+  if (roa > 50) score += 25; else if (roa > 30) score += 22; else if (roa > CDI) score += 18;
+  else if (roa > 0) score += 12; else score += 5;
+  // Producao (20pts)
+  if (prod > 50000) score += 20; else if (prod > 40000) score += 17; else if (prod > 35000) score += 14;
+  else if (prod > 30000) score += 10; else score += 6;
+  // Prod/VL (15pts)
+  if (pvl > 42) score += 15; else if (pvl > 40) score += 13; else if (pvl > 38) score += 10;
+  else if (pvl > 35) score += 7; else score += 4;
+  // MO (10pts)
+  if (lpf > 1200) score += 10; else if (lpf > 1000) score += 8; else if (lpf > 800) score += 6;
+  else if (lpf > 600) score += 4; else score += 2;
+  // Sobras (10pts)
+  if (sobras <= 4) score += 10; else if (sobras <= 6) score += 8; else if (sobras <= 8) score += 5;
+  else if (sobras <= 10) score += 3; else score += 1;
+  // MO % (10pts)
+  if (moPct < 8) score += 10; else if (moPct < 12) score += 7; else if (moPct < 15) score += 4; else score += 2;
+  // Bonus fixo qualidade e reproducao (10pts placeholder)
+  score += 6;
+  return Math.min(100, Math.max(0, score));
+}
+
+// =====================================================
+// GAUGE BUILDER
+// =====================================================
+function buildGauge(score) {
+  const color = score >= 75 ? '#10b981' : (score >= 60 ? '#3b82f6' : (score >= 45 ? '#f59e0b' : '#ef4444'));
+  const label = score >= 75 ? 'EXCELENTE' : (score >= 60 ? 'BOM' : (score >= 45 ? 'REGULAR' : 'FRACO'));
+  const angle = (score / 100) * 180;
+  const rad = 80;
+  const cx = 100, cy = 100;
+  // Arc from 180deg to (180-angle)deg
+  const startAngle = Math.PI;
+  const endAngle = Math.PI - (angle * Math.PI / 180);
+  const x1 = cx + rad * Math.cos(startAngle);
+  const y1 = cy + rad * Math.sin(startAngle);
+  const x2 = cx + rad * Math.cos(endAngle);
+  const y2 = cy + rad * Math.sin(endAngle);
+  const largeArc = angle > 180 ? 1 : 0;
+
+  return `
+    <svg class="gauge-svg" viewBox="0 0 200 120">
+      <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-bg"/>
+      <path d="M ${x1} ${y1} A ${rad} ${rad} 0 ${largeArc} 1 ${x2} ${y2}" class="gauge-fill" style="stroke:${color}"/>
+      <text x="100" y="90" text-anchor="middle" class="gauge-text" style="font-size:32px;fill:${color}">${score}</text>
+      <text x="100" y="110" text-anchor="middle" class="gauge-label" style="fill:${color};font-weight:700">${label}</text>
+    </svg>
+  `;
+}
+
+// =====================================================
+// SENSITIVITY TABLE
+// =====================================================
+function buildSensTable(curPreco, curPvl, vl, tanque, racao, sobras, func, cfunc, cfix, deprec, bonus) {
+  // Price range: -0.45 to +0.45 in 7 steps
+  const priceSteps = [-0.45, -0.30, -0.15, 0, +0.15, +0.30, +0.45];
+  const pvlSteps = [-6, -4, -2, 0, +2, +4, +6];
+
+  // Headers
+  for (let i = 0; i < 7; i++) {
+    const p = curPreco + priceSteps[i];
+    const el = document.getElementById('sh' + (i + 1));
+    el.textContent = 'R$ ' + p.toFixed(2).replace('.', ',');
+    el.style.color = priceSteps[i] === 0 ? 'var(--pr)' : 'var(--t3)';
+    el.style.fontWeight = priceSteps[i] === 0 ? '800' : '600';
+  }
+
+  // Body
+  const tbody = document.getElementById('sens-body');
+  tbody.innerHTML = '';
+
+  for (let r = 0; r < 7; r++) {
+    const pv = curPvl + pvlSteps[r];
+    if (pv < 10) continue;
+    const tr = document.createElement('tr');
+    const isCurRow = pvlSteps[r] === 0;
+    if (isCurRow) tr.style.background = 'rgba(139,92,246,.04)';
+
+    const tdLabel = document.createElement('td');
+    tdLabel.style.fontWeight = '700';
+    tdLabel.style.color = isCurRow ? 'var(--pr)' : 'var(--t2)';
+    tdLabel.textContent = pv.toFixed(1).replace('.', ',') + ' L/VL';
+    tr.appendChild(tdLabel);
+
+    for (let c = 0; c < 7; c++) {
+      const p = curPreco + priceSteps[c];
+      const prod = Math.min(vl * pv, tanque);
+      const pm = prod * DIAS_MES;
+      const rec = pm * (p + bonus);
+      const cRac = vl * racao * DIAS_MES * (1 + sobras / 100);
+      const cMo = func * cfunc;
+      const ct = cRac + cMo + cfix + deprec;
+      const res = rec - ct;
+
+      const td = document.createElement('td');
+      td.className = 'nm';
+      td.style.textAlign = 'center';
+      td.style.fontSize = '10px';
+
+      const isCur = priceSteps[c] === 0 && pvlSteps[r] === 0;
+
+      if (res >= 0) {
+        td.style.color = res > 500000 ? 'var(--gn)' : 'var(--em)';
+        td.style.background = isCur ? 'rgba(139,92,246,.12)' : 'rgba(16,185,129,.04)';
+      } else {
+        td.style.color = 'var(--rd)';
+        td.style.background = isCur ? 'rgba(139,92,246,.12)' : 'rgba(239,68,68,.04)';
+      }
+
+      td.style.fontWeight = isCur ? '900' : '500';
+      td.textContent = (isCur ? '⬤ ' : '') + fmtR(res);
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+}
+
+// =====================================================
+// MONTE CARLO (Simplified 1000 runs)
+// =====================================================
+function runMonteCarlo(preco, bonus, vl, pvl, tanque, racao, sobras, func, cfunc, cfix, deprec) {
+  const N = 1000;
+  const results = [];
+
+  for (let i = 0; i < N; i++) {
+    const rPreco = preco * (1 + gaussRand() * 0.15);
+    const rPvl = pvl * (1 + gaussRand() * 0.10);
+    const rRacao = racao * (1 + gaussRand() * 0.10);
+    const rVl = vl * (1 + gaussRand() * 0.05);
+    const rSobras = Math.max(1, sobras * (1 + gaussRand() * 0.20));
+
+    const prod = Math.min(rVl * rPvl, tanque);
+    const pm = prod * DIAS_MES;
+    const rec = pm * (rPreco + bonus);
+    const cRac = rVl * rRacao * DIAS_MES * (1 + rSobras / 100);
+    const cMo = func * cfunc;
+    const ct = cRac + cMo + cfix + deprec;
+    results.push(rec - ct);
+  }
+
+  results.sort((a, b) => a - b);
+
+  const p5 = results[Math.floor(N * 0.05)];
+  const p25 = results[Math.floor(N * 0.25)];
+  const p50 = results[Math.floor(N * 0.50)];
+  const p75 = results[Math.floor(N * 0.75)];
+  const p95 = results[Math.floor(N * 0.95)];
+  const mean = results.reduce((a, b) => a + b, 0) / N;
+  const probLoss = results.filter(r => r < 0).length / N * 100;
+
+  document.getElementById('mc-p5-v').textContent = fmtR(p5);
+  document.getElementById('mc-p25-v').textContent = fmtR(p25);
+  document.getElementById('mc-p50-v').textContent = fmtR(p50);
+  document.getElementById('mc-p75-v').textContent = fmtR(p75);
+  document.getElementById('mc-p95-v').textContent = fmtR(p95);
+  document.getElementById('mc-prob-loss').textContent = fmtPct(probLoss);
+  document.getElementById('mc-var').textContent = fmtR(p5);
+  document.getElementById('mc-mean').textContent = fmtR(mean);
+
+  // Color cards
+  colorMC('mc-p5', p5);
+  colorMC('mc-p25', p25);
+  colorMC('mc-p50', p50);
+  colorMC('mc-p75', p75);
+  colorMC('mc-p95', p95);
+}
+
+function colorMC(id, val) {
+  const el = document.getElementById(id);
+  el.className = 'res-card ' + (val >= 0 ? 'pos' : 'neg');
+}
+
+function gaussRand() {
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+
+// =====================================================
+// WHAT-IF ANALYSIS
+// =====================================================
+function calcWhatIf(preco, bonus, vl, pvl, tanque, racao, sobras, func, cfunc, cfix, deprec, resAtual) {
+  function simResult(p, b, v, pv, t, r, s, f, cf, cfx, d) {
+    const prod = Math.min(v * pv, t);
+    const pm = prod * DIAS_MES;
+    const rec = pm * (p + b);
+    const cRac = v * r * DIAS_MES * (1 + s / 100);
+    const cMo = f * cf;
+    const ct = cRac + cMo + cfx + d;
+    return rec - ct;
+  }
+
+  // 1. Preco -0.30
+  const wf1 = simResult(preco - 0.30, bonus, vl, pvl, tanque, racao, sobras, func, cfunc, cfix, deprec);
+  setWF('wf-preco-down', wf1, resAtual, 'Resultado cairia ' + fmtR(Math.abs(wf1 - resAtual)) + '/mes');
+
+  // 2. Preco +0.30
+  const wf2 = simResult(preco + 0.30, bonus, vl, pvl, tanque, racao, sobras, func, cfunc, cfix, deprec);
+  setWF('wf-preco-up', wf2, resAtual, 'Resultado subiria ' + fmtR(Math.abs(wf2 - resAtual)) + '/mes');
+
+  // 3. Manter cluster D (115 vacas a mais, media cai ~1.2L)
+  const wf3 = simResult(preco, bonus, vl + 115, pvl - 1.2, tanque, racao, sobras, func + 3, cfunc, cfix, deprec);
+  setWF('wf-no-desc', wf3, resAtual, 'Diferenca: ' + fmtR(wf3 - resAtual) + '/mes (custo de NAO agir)');
+
+  // 4. Prod/vaca +5L
+  const wf4 = simResult(preco, bonus, vl, pvl + 5, tanque, racao * 1.08, sobras, func, cfunc, cfix, deprec);
+  setWF('wf-prod-up', wf4, resAtual, 'Com +8% custo racao. Ganho liquido: ' + fmtR(wf4 - resAtual) + '/mes');
+
+  // 5. Milho +25%
+  const wf5 = simResult(preco, bonus, vl, pvl, tanque, racao * 1.15, sobras, func, cfunc, cfix, deprec);
+  setWF('wf-milho-up', wf5, resAtual, 'Impacto: ' + fmtR(wf5 - resAtual) + '/mes. Hedge protegeria.');
+
+  // 6. Todas as 10 acoes (cenario base)
+  const wf6 = simResult(2.65, 0.08, 820, 40.8, 60000, 23.0, 4, 34, 6000, 165000, 405000);
+  setWF('wf-all', wf6, resAtual, 'Delta vs atual: +' + fmtR(wf6 - resAtual) + '/mes');
+}
+
+function setWF(id, val, ref, desc) {
+  const el = document.getElementById(id);
+  const dEl = document.getElementById(id + '-d');
+  el.textContent = fmtR(val) + '/mes';
+  el.style.color = val >= 0 ? (val > ref ? 'var(--gn)' : 'var(--yl)') : 'var(--rd)';
+  dEl.textContent = desc;
+}
+
+// =====================================================
+// INIT
+// =====================================================
+document.addEventListener('DOMContentLoaded', function() {
+  calc();
+
+  // Fade-in animation
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('v'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+});
+</script>
+
+</body>
+</html>

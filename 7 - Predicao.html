@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — Dashboards Preditivos | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+:root{--bg:#0a0e1a;--card:#1a2236;--bdr:#2a3654;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899;--gBl:linear-gradient(135deg,#3b82f6,#06b6d4);--gGn:linear-gradient(135deg,#10b981,#34d399);--gRd:linear-gradient(135deg,#ef4444,#f97316);--gYl:linear-gradient(135deg,#f59e0b,#fbbf24);--gPr:linear-gradient(135deg,#8b5cf6,#a78bfa);--gCy:linear-gradient(135deg,#06b6d4,#22d3ee);--gPk:linear-gradient(135deg,#ec4899,#f472b6);--sh:0 4px 20px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+.hd{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid var(--bdr);padding:36px 0;position:relative;overflow:hidden}
+.hd::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ec4899,#8b5cf6,#3b82f6,#06b6d4,#10b981)}
+.hc{max-width:1400px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.ht{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.hlg{display:flex;align-items:center;gap:10px}
+.hlg-i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff}
+.hlg-t{font-size:21px;font-weight:900}.hlg-t span{color:var(--gn)}
+.hlg-s{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px}
+.hbd{display:inline-flex;align-items:center;gap:6px;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;color:var(--pk);text-transform:uppercase;letter-spacing:1.5px}
+.hd h1{font-size:34px;font-weight:900;letter-spacing:-1px;margin-bottom:5px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd h2{font-size:16px;font-weight:400;color:var(--t2);margin-bottom:18px}
+.hm{display:flex;gap:20px;flex-wrap:wrap}
+.hm-i{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3)}.hm-i span{color:var(--t2);font-weight:600}
+.ct{max-width:1400px;margin:0 auto;padding:36px 40px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px}
+.kpi{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:20px;text-align:center;transition:all .3s}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.kpi-v{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:800}
+.kpi-l{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.kpi-u{font-size:10px;color:var(--t2);margin-top:2px}
+.kpi-b{font-size:9px;color:var(--t3);margin-top:7px;padding-top:7px;border-top:1px solid var(--bdr)}
+.kpi-c{font-size:10px;font-weight:700;margin-top:3px}
+.dg{display:grid;gap:20px}.dg2{grid-template-columns:1fr 1fr}
+.d{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:24px;transition:all .3s}
+.d:hover{border-color:rgba(139,92,246,.3);box-shadow:var(--sh);transform:translateY(-2px)}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.dt{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.db{font-size:9px;padding:2px 8px;border-radius:50px;font-weight:700}
+.di{font-size:10px;color:var(--t3);font-weight:600}
+.dk{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.dki{flex:1;min-width:75px;text-align:center;padding:10px 5px;background:rgba(255,255,255,.02);border-radius:8px;border:1px solid rgba(255,255,255,.04)}
+.dkv{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800}
+.dkl{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.dks{font-size:8px;color:var(--t3);margin-top:1px}
+.bg{margin-bottom:10px}
+.bl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+.bn{font-weight:600}.bv{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px}
+.bt{width:100%;height:22px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden}
+.bf{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:9px;font-weight:600;color:rgba(255,255,255,.85);min-width:2%}
+.pb{position:relative;height:28px;background:rgba(255,255,255,.04);border-radius:7px;overflow:visible;margin:6px 0}
+.pf{height:100%;border-radius:7px;display:flex;align-items:center;padding-left:8px;font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+.pt{position:absolute;top:-2px;bottom:-2px;width:3px;z-index:2;border-radius:2px}
+.pt::after{content:attr(data-l);position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:7px;font-weight:700;white-space:nowrap;color:var(--t2)}
+.spk{display:flex;align-items:flex-end;gap:3px;height:65px;margin:10px 0}
+.spk-b{flex:1;border-radius:3px 3px 0 0;min-width:6px;transition:height .5s;position:relative}
+.spk-b:hover{opacity:.85}
+.spk-b::after{content:attr(data-v);position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:7px;font-weight:700;color:var(--t2);opacity:0;transition:opacity .3s}
+.spk-b:hover::after{opacity:1}
+.mt{width:100%;font-size:11px;border-collapse:collapse;margin-top:12px}
+.mt th{text-align:left;padding:6px 8px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.mt td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.03)}
+.mt tr:last-child td{border-bottom:none}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+.nt{font-size:10px;color:var(--t2);padding:8px 12px;border-radius:8px;margin-top:10px}
+.al{border-radius:12px;padding:18px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
+.al-i{font-size:20px;flex-shrink:0;margin-top:2px}
+.al-c{flex:1}.al-t{font-size:13px;font-weight:700;margin-bottom:3px}
+.al-x{font-size:11px;color:var(--t2);line-height:1.6}
+.al-v{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;margin-top:5px}
+.cx{display:flex;align-items:center;gap:6px;margin-bottom:12px;padding:8px 12px;background:rgba(236,72,153,.06);border:1px solid rgba(236,72,153,.15);border-radius:8px;font-size:10px;color:var(--pk);font-weight:600;flex-wrap:wrap}
+.cx span{background:rgba(236,72,153,.15);padding:2px 8px;border-radius:4px;font-weight:700;font-size:9px}
+.tl{display:flex;gap:0;margin:16px 0;position:relative}
+.tl::before{content:'';position:absolute;top:50%;left:0;right:0;height:3px;background:var(--bdr);z-index:0}
+.tl-i{flex:1;text-align:center;position:relative;z-index:1}
+.tl-d{width:14px;height:14px;border-radius:50%;margin:0 auto 6px;border:2px solid}
+.tl-m{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px}
+.tl-v{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;margin-top:2px}
+.ft{border-top:1px solid var(--bdr);margin-top:36px;padding:44px 40px}
+.fc{max-width:1400px;margin:0 auto}
+.fd{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:24px 0}
+.cc{background:linear-gradient(135deg,#111827,#1a2236);border:1px solid var(--bdr);border-radius:18px;padding:30px;display:flex;gap:28px;align-items:center;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#3b82f6,#8b5cf6)}
+.cp{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 8px 20px rgba(59,130,246,.3)}
+.ci{flex:1}.cl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gn);margin-bottom:5px}
+.cn{font-size:20px;font-weight:900;margin-bottom:10px}
+.ccs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cci{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2);background:rgba(255,255,255,.04);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.cci a{color:var(--bl);text-decoration:none}
+.cb{font-size:11px;color:var(--t3);line-height:1.8;border-top:1px solid var(--bdr);padding-top:10px;font-style:italic}
+.fb{text-align:center;padding-top:20px;color:var(--t3);font-size:10px}.fb strong{color:var(--t2)}
+@media(max-width:1024px){.dg2{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.hd h1{font-size:24px}.ct{padding:20px}.cc{flex-direction:column;text-align:center}.ccs{justify-content:center}.tl{flex-wrap:wrap;gap:8px}}
+@media(max-width:768px){.ht{flex-direction:column}.hm{flex-direction:column;gap:6px}}
+.fi{opacity:0;transform:translateY(18px);transition:all .6s ease}.fi.v{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="hd">
+<div class="hc">
+<div class="ht">
+<div class="hlg"><div class="hlg-i">R</div><div><div class="hlg-t">RURAL <span>IN</span></div><div class="hlg-s">Gestao Inteligente no Agro</div></div></div>
+<div class="hbd">Dashboards Preditivos - 6 Paineis</div>
+</div>
+<h1>FAZENDA BRASILANDA - PROJECOES PREDITIVAS</h1>
+<h2>Patricia Kompier - Cenarios Futuros, Projecoes de Resultado, Custo, Producao e ROI</h2>
+<div class="hm">
+<div class="hm-i">Base: <span>Jan-Fev / 2026</span></div>
+<div class="hm-i">Horizonte: <span>12 meses (Mar/26 - Fev/27)</span></div>
+<div class="hm-i">Cenarios: <span>Pessimista, Conservador, Otimista</span></div>
+<div class="hm-i">Rebanho: <span>Jan 1.454 / Fev 1.446 | VL: 859 / 841</span></div>
+<div class="hm-i">Equipe: <span>Jan 45 / Fev 47 func</span></div>
+<div class="hm-i">Area: <span>60 ha (confinamento)</span></div>
+<div class="hm-i">Local: <span>Rio Verde - GO</span></div>
+</div>
+</div>
+</div>
+
+<div class="ct">
+
+<!-- KPIs TOPO -->
+<div class="kpis fi">
+<div class="kpi" style="border-left:4px solid var(--bl)">
+<div class="kpi-l">Resultado Atual / Mes</div>
+<div class="kpi-v" style="color:var(--bl)">R$ 661k</div>
+<div class="kpi-u">saldo operacional (Fev)</div>
+<div class="kpi-b">Margem Fev: R$ 0,74/L | Preco: R$ 2,80</div>
+</div>
+<div class="kpi" style="border-left:4px solid var(--yl)">
+<div class="kpi-l">Projecao +6 Meses</div>
+<div class="kpi-v" style="color:var(--yl)">R$ 950k</div>
+<div class="kpi-u">cenario conservador</div>
+<div class="kpi-c" style="color:var(--yl)">+44% vs atual</div>
+<div class="kpi-b">C/ acoes parciais</div>
+</div>
+<div class="kpi" style="border-left:4px solid var(--gn)">
+<div class="kpi-l">Projecao +12 Meses</div>
+<div class="kpi-v" style="color:var(--gn)">R$ 1,35M</div>
+<div class="kpi-u">cenario otimista</div>
+<div class="kpi-c" style="color:var(--gn)">+104% vs atual</div>
+<div class="kpi-b">C/ todas as acoes</div>
+</div>
+<div class="kpi" style="border-left:4px solid var(--em)">
+<div class="kpi-l">Resultado Anual Potencial</div>
+<div class="kpi-v" style="color:var(--em)">R$ 14,8M</div>
+<div class="kpi-u">cenario otimista</div>
+<div class="kpi-c" style="color:var(--em)">vs R$ 6,4M sem acao</div>
+<div class="kpi-b">+131% de ganho</div>
+</div>
+</div>
+
+<!-- 6 DASHBOARDS PREDITIVOS -->
+<div class="dg dg2 fi">
+
+<!-- PRED-01: 3 Cenarios de Resultado -->
+<div class="d" style="border-color:rgba(139,92,246,.25)">
+<div class="dh"><div class="dt">3 Cenarios de Resultado - Proximos 12 Meses <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">ESTRATEGICO</span></div><div class="di">PRED-01</div></div>
+<div class="cx"><span>CENARIO A</span> Pessimista <span>CENARIO B</span> Conservador <span>CENARIO C</span> Otimista</div>
+
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:10px">Resultado Anual por Cenario</div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Otimista (todas as acoes)</span><span class="bv" style="color:var(--gn)">R$ 14,8M/ano</span></div><div class="bt"><div class="bf" style="width:100%;background:var(--gGn)">R$ 14,8M</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--yl)">Conservador (acoes parciais)</span><span class="bv" style="color:var(--yl)">R$ 10,4M/ano</span></div><div class="bt"><div class="bf" style="width:70.3%;background:var(--gYl)">R$ 10,4M</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Pessimista (sem acao)</span><span class="bv" style="color:var(--rd)">R$ 6,4M/ano</span></div><div class="bt"><div class="bf" style="width:43.2%;background:var(--gRd)">R$ 6,4M</div></div></div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="color:var(--rd)">Pessimista</th><th style="color:var(--yl)">Conservador</th><th style="color:var(--gn)">Otimista</th></tr>
+<tr><td>Prenhez</td><td class="nm" style="color:var(--rd)">10% (mantem)</td><td class="nm" style="color:var(--yl)">16%</td><td class="nm" style="color:var(--gn)">22%</td></tr>
+<tr><td>Descarte</td><td class="nm" style="color:var(--rd)">43% (mantem)</td><td class="nm" style="color:var(--yl)">35%</td><td class="nm" style="color:var(--gn)">28%</td></tr>
+<tr><td>Sobras</td><td class="nm" style="color:var(--rd)">10% (mantem)</td><td class="nm" style="color:var(--yl)">6%</td><td class="nm" style="color:var(--gn)">4%</td></tr>
+<tr><td>Funcionarios</td><td class="nm">47 (mantem)</td><td class="nm">40</td><td class="nm" style="color:var(--gn)">34</td></tr>
+<tr><td>Producao/Dia</td><td class="nm">31.500 L</td><td class="nm">36.000 L</td><td class="nm" style="color:var(--gn)">41.200 L</td></tr>
+<tr><td>Preco/Litro</td><td class="nm" style="color:var(--rd)">R$ 2,50</td><td class="nm">R$ 2,80</td><td class="nm" style="color:var(--gn)">R$ 2,90</td></tr>
+<tr><td>Custo/Litro</td><td class="nm" style="color:var(--rd)">R$ 2,00</td><td class="nm">R$ 1,72</td><td class="nm" style="color:var(--gn)">R$ 1,52</td></tr>
+<tr style="background:rgba(139,92,246,.04)"><td><strong>Resultado/Mes</strong></td><td class="nm" style="color:var(--rd)"><strong>R$ 533k</strong></td><td class="nm" style="color:var(--yl)"><strong>R$ 870k</strong></td><td class="nm" style="color:var(--gn)"><strong>R$ 1.233k</strong></td></tr>
+<tr style="background:rgba(139,92,246,.06)"><td><strong>Resultado/Ano</strong></td><td class="nm" style="color:var(--rd)"><strong>R$ 6,4M</strong></td><td class="nm" style="color:var(--yl)"><strong>R$ 10,4M</strong></td><td class="nm" style="color:var(--gn)"><strong>R$ 14,8M</strong></td></tr>
+</table>
+
+<div class="nt" style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12)">
+<strong>Diferenca entre fazer e nao fazer:</strong> R$ 8,4M/ano (Otimista - Pessimista). Cada mes de atraso na implementacao das acoes = ~R$ 700k de receita perdida que nao volta. Preco base atualizado: R$ 2,80/L (Fev/26).
+</div>
+</div>
+
+<!-- PRED-02: Projecao Custo/Litro -->
+<div class="d">
+<div class="dh"><div class="dt">Projecao do Custo/Litro - 6 Meses</div><div class="di">PRED-02</div></div>
+<div class="cx"><span>CUSTO</span> Projecao de reducao com implementacao das acoes corretivas</div>
+
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--bl)">R$1,83</div><div class="dkl">Atual (Media Bim)</div><div class="dks">Jan R$1,73 | Fev R$1,93</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">R$2,00</div><div class="dkl">Sem Acao</div><div class="dks">Custo sobe</div></div>
+<div class="dki"><div class="dkv" style="color:var(--yl)">R$1,72</div><div class="dkl">C/ Acoes Parciais</div></div>
+<div class="dki"><div class="dkv" style="color:var(--gn)">R$1,52</div><div class="dkl">C/ Todas Acoes</div></div>
+</div>
+
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:8px">Evolucao do Custo/Litro - 6 Meses (cenario otimista)</div>
+<div class="spk">
+<div class="spk-b" style="height:91.5%;background:var(--bl)" data-v="R$1,83"></div>
+<div class="spk-b" style="height:89%;background:var(--bl)" data-v="R$1,80"></div>
+<div class="spk-b" style="height:85%;background:var(--cy)" data-v="R$1,74"></div>
+<div class="spk-b" style="height:81%;background:var(--cy)" data-v="R$1,68"></div>
+<div class="spk-b" style="height:76%;background:var(--gn)" data-v="R$1,60"></div>
+<div class="spk-b" style="height:70%;background:var(--gn)" data-v="R$1,52"></div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:8px;color:var(--t3)"><span>Atual</span><span>+1m</span><span>+2m</span><span>+3m</span><span>+4m</span><span>+6m</span></div>
+
+<div style="margin-top:16px;font-size:11px;font-weight:700;color:var(--t2);margin-bottom:10px">Decomposicao da Reducao</div>
+<table class="mt">
+<tr><th>Acao</th><th>Reducao no Custo/L</th><th>Custo Resultante</th></tr>
+<tr><td>Reduzir Sobras (10->4%)</td><td class="nm" style="color:var(--gn)">-R$ 0,08</td><td class="nm">R$ 1,75</td></tr>
+<tr><td>Reduzir MO (47->34)</td><td class="nm" style="color:var(--gn)">-R$ 0,08</td><td class="nm">R$ 1,67</td></tr>
+<tr><td>Mais Vacas Lactacao (+prod)</td><td class="nm" style="color:var(--gn)">-R$ 0,10</td><td class="nm">R$ 1,57</td></tr>
+<tr><td>Negociar Insumos</td><td class="nm" style="color:var(--gn)">-R$ 0,05</td><td class="nm" style="color:var(--gn)">R$ 1,52</td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td><strong>Total Reducao</strong></td><td class="nm" style="color:var(--gn)"><strong>-R$ 0,31/L</strong></td><td class="nm" style="color:var(--gn)"><strong>R$ 1,52/L</strong></td></tr>
+</table>
+
+<div class="bg" style="margin-top:14px"><div class="bl"><span class="bn" style="color:var(--rd)">Sem acao (custo sobe)</span><span class="bv" style="color:var(--rd)">R$ 2,00</span></div><div class="bt"><div class="bf" style="width:100%;background:var(--gRd)">R$ 2,00</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--or)">Fev/26 (pior mes)</span><span class="bv" style="color:var(--or)">R$ 1,93</span></div><div class="bt"><div class="bf" style="width:96.5%;background:linear-gradient(90deg,#f97316,#fb923c)">R$ 1,93</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--bl)">Media bimestral</span><span class="bv" style="color:var(--bl)">R$ 1,83</span></div><div class="bt"><div class="bf" style="width:91.5%;background:var(--gBl)">R$ 1,83</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Com todas as acoes</span><span class="bv" style="color:var(--gn)">R$ 1,52</span></div><div class="bt"><div class="bf" style="width:76%;background:var(--gGn)">R$ 1,52</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Top BR</span><span class="bv">R$ 1,30</span></div><div class="bt"><div class="bf" style="width:65%;background:rgba(16,185,129,.12)">R$ 1,30</div></div></div>
+</div>
+
+<!-- PRED-03: Impacto Reproducao na Producao -->
+<div class="d" style="border-color:rgba(16,185,129,.2)">
+<div class="dh"><div class="dt">Impacto da Reproducao na Producao - 12 Meses</div><div class="di">PRED-03</div></div>
+<div class="cx"><span>REPRODUCAO</span> -> <span>VACAS LACTACAO</span> -> <span>PRODUCAO</span> -> <span>RECEITA</span></div>
+
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--rd)">850</div><div class="dkl">Vacas Lact. Atual</div><div class="dks">Jan 859 | Fev 841</div></div>
+<div class="dki"><div class="dkv" style="color:var(--yl)">~940</div><div class="dkl">+6 Meses</div></div>
+<div class="dki"><div class="dkv" style="color:var(--gn)">~1.085</div><div class="dkl">+12 Meses</div></div>
+<div class="dki"><div class="dkv" style="color:var(--gn)">+28%</div><div class="dkl">Prod. Diaria</div></div>
+</div>
+
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:8px">Evolucao da Producao Diaria (litros) - Preco: R$ 2,80/L</div>
+<div class="spk" style="height:75px">
+<div class="spk-b" style="height:74%;background:var(--bl)" data-v="32.232"></div>
+<div class="spk-b" style="height:76%;background:var(--bl)" data-v="33.000"></div>
+<div class="spk-b" style="height:78%;background:var(--bl)" data-v="33.800"></div>
+<div class="spk-b" style="height:80%;background:var(--cy)" data-v="34.800"></div>
+<div class="spk-b" style="height:82%;background:var(--cy)" data-v="35.500"></div>
+<div class="spk-b" style="height:84%;background:var(--cy)" data-v="36.500"></div>
+<div class="spk-b" style="height:86%;background:var(--gn)" data-v="37.400"></div>
+<div class="spk-b" style="height:88%;background:var(--gn)" data-v="38.200"></div>
+<div class="spk-b" style="height:91%;background:var(--gn)" data-v="39.200"></div>
+<div class="spk-b" style="height:93%;background:var(--em)" data-v="40.000"></div>
+<div class="spk-b" style="height:96%;background:var(--em)" data-v="40.800"></div>
+<div class="spk-b" style="height:100%;background:var(--em)" data-v="41.200"></div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:8px;color:var(--t3)"><span>Atual</span><span>+2m</span><span>+4m</span><span>+6m</span><span>+8m</span><span>+10m</span><span>+12m</span></div>
+
+<table class="mt">
+<tr><th>Fase</th><th>Prenhez</th><th>Vacas Lact.</th><th>Producao/Dia</th><th>Receita/Mes</th><th>Receita Extra</th></tr>
+<tr style="background:rgba(59,130,246,.03)"><td>Atual</td><td class="nm">10,3%</td><td class="nm">850</td><td class="nm">32.232 L</td><td class="nm">R$ 2,71M</td><td>-</td></tr>
+<tr><td>+3 meses</td><td class="nm" style="color:var(--yl)">13%</td><td class="nm">~895</td><td class="nm">34.000 L</td><td class="nm">R$ 2,86M</td><td class="nm" style="color:var(--yl)">+R$ 148k</td></tr>
+<tr><td>+6 meses</td><td class="nm" style="color:var(--yl)">16%</td><td class="nm">~940</td><td class="nm">35.700 L</td><td class="nm">R$ 3,00M</td><td class="nm" style="color:var(--yl)">+R$ 291k</td></tr>
+<tr><td>+9 meses</td><td class="nm" style="color:var(--gn)">18%</td><td class="nm">~1.010</td><td class="nm">38.400 L</td><td class="nm">R$ 3,23M</td><td class="nm" style="color:var(--gn)">+R$ 517k</td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td><strong>+12 meses</strong></td><td class="nm" style="color:var(--gn)"><strong>22%</strong></td><td class="nm" style="color:var(--gn)"><strong>~1.085</strong></td><td class="nm" style="color:var(--gn)"><strong>41.200 L</strong></td><td class="nm" style="color:var(--gn)"><strong>R$ 3,46M</strong></td><td class="nm" style="color:var(--gn)"><strong>+R$ 752k</strong></td></tr>
+</table>
+
+<div style="margin-top:14px;text-align:center;padding:12px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:10px">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Ganho Acumulado em 12 Meses (so com melhoria reprodutiva, a R$ 2,80/L)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:var(--gn)">+R$ 4,4M em receita adicional</div>
+</div>
+</div>
+
+<!-- PRED-04: ROI das Acoes Corretivas -->
+<div class="d" style="border-color:rgba(16,185,129,.25)">
+<div class="dh"><div class="dt">ROI das Acoes Corretivas - Ranking por Retorno <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">DECISAO</span></div><div class="di">PRED-04</div></div>
+
+<table class="mt">
+<tr><th>#</th><th>Acao</th><th>Investimento</th><th>Ganho/Mes</th><th>ROI Mensal</th><th>Payback</th><th>Facilidade</th></tr>
+<tr style="background:rgba(16,185,129,.04)"><td>1</td><td><strong>Antecipar Alimentacao L1-2</strong></td><td class="nm" style="color:var(--gn)">R$ 0</td><td class="nm" style="color:var(--gn)">R$ 38k</td><td class="nm" style="color:var(--gn)">Infinito</td><td class="nm" style="color:var(--gn)">Imediato</td><td style="color:var(--gn)">Facil</td></tr>
+<tr style="background:rgba(16,185,129,.03)"><td>2</td><td><strong>Reduzir Sobras (10->4%)</strong></td><td class="nm">R$ 5k</td><td class="nm" style="color:var(--gn)">R$ 97k</td><td class="nm" style="color:var(--gn)">1.940%</td><td class="nm" style="color:var(--gn)">2 dias</td><td style="color:var(--gn)">Facil</td></tr>
+<tr style="background:rgba(16,185,129,.03)"><td>3</td><td><strong>IATF + Treinar IA</strong></td><td class="nm">R$ 15k</td><td class="nm" style="color:var(--gn)">R$ 165k</td><td class="nm" style="color:var(--gn)">1.100%</td><td class="nm" style="color:var(--gn)">3 dias</td><td style="color:var(--yl)">Medio</td></tr>
+<tr><td>4</td><td><strong>Bonificacao Qualidade</strong></td><td class="nm">R$ 10k</td><td class="nm" style="color:var(--gn)">R$ 95k</td><td class="nm" style="color:var(--gn)">950%</td><td class="nm" style="color:var(--gn)">3 dias</td><td style="color:var(--yl)">Medio</td></tr>
+<tr><td>5</td><td><strong>Resfriamento (calor)</strong></td><td class="nm">R$ 100k</td><td class="nm" style="color:var(--gn)">R$ 60k</td><td class="nm" style="color:var(--yl)">60%</td><td class="nm" style="color:var(--yl)">50 dias</td><td style="color:var(--yl)">Medio</td></tr>
+<tr><td>6</td><td><strong>Redimensionar MO (47->34)</strong></td><td class="nm">R$ 180k</td><td class="nm" style="color:var(--gn)">R$ 78k</td><td class="nm" style="color:var(--yl)">43,3%</td><td class="nm" style="color:var(--yl)">2,3 meses</td><td style="color:var(--yl)">Medio</td></tr>
+<tr><td>7</td><td><strong>Automacao parcial</strong></td><td class="nm">R$ 350k</td><td class="nm" style="color:var(--gn)">R$ 50k</td><td class="nm" style="color:var(--yl)">14,3%</td><td class="nm">7 meses</td><td style="color:var(--rd)">Dificil</td></tr>
+</table>
+
+<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+<div style="text-align:center;padding:12px;background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:10px">
+<div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Invest. Total</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--or)">R$ 660k</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:10px">
+<div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Ganho Total/Mes</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--gn)">R$ 583k</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px">
+<div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Payback Geral</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--gn)">34 dias</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12)">
+<strong>Investir R$ 660k e recuperar em 34 dias.</strong> Depois disso, sao R$ 583k/mes de ganho liquido permanente. Em 12 meses = R$ 6,99M de retorno sobre R$ 660k investidos = <strong>ROI de 1.059%</strong>.
+</div>
+</div>
+
+<!-- PRED-05: Sensibilidade ao Preco do Milho -->
+<div class="d">
+<div class="dh"><div class="dt">Sensibilidade ao Preco do Milho - Risco de Custo</div><div class="di">PRED-05</div></div>
+<div class="cx"><span>MILHO</span> Principal materia-prima. Variacao impacta diretamente o COE.</div>
+
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--bl)">R$ 55</div><div class="dkl">Milho Atual (sc)</div></div>
+<div class="dki"><div class="dkv" style="color:var(--bl)">R$ 766k</div><div class="dkl">Custo Racao/Mes</div></div>
+<div class="dki"><div class="dkv" style="color:var(--or)">45,5%</div><div class="dkl">% do COE</div></div>
+</div>
+
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:10px">Custo Mensal de Racao por Cenario de Preco do Milho</div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Milho -15% (R$ 47/sc)</span><span class="bv" style="color:var(--gn)">R$ 651k</span></div><div class="bt"><div class="bf" style="width:70.8%;background:var(--gGn)">R$ 651k - Economia R$ 115k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Milho -10% (R$ 50/sc)</span><span class="bv" style="color:var(--gn)">R$ 689k</span></div><div class="bt"><div class="bf" style="width:74.9%;background:rgba(16,185,129,.4)">R$ 689k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--bl)">Milho Estavel (R$ 55/sc)</span><span class="bv" style="color:var(--bl)">R$ 766k</span></div><div class="bt"><div class="bf" style="width:83.3%;background:var(--gBl)">R$ 766k - Atual</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--yl)">Milho +10% (R$ 60/sc)</span><span class="bv" style="color:var(--yl)">R$ 826k</span></div><div class="bt"><div class="bf" style="width:89.8%;background:var(--gYl)">R$ 826k - +R$ 60k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--or)">Milho +20% (R$ 66/sc)</span><span class="bv" style="color:var(--or)">R$ 886k</span></div><div class="bt"><div class="bf" style="width:96.3%;background:linear-gradient(90deg,#f97316,#fb923c)">R$ 886k - +R$ 120k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Milho +30% (R$ 72/sc)</span><span class="bv" style="color:var(--rd)">R$ 920k</span></div><div class="bt"><div class="bf" style="width:100%;background:var(--gRd)">R$ 920k - +R$ 154k</div></div></div>
+
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin:16px 0 10px">Impacto no Resultado Mensal (base preco leite R$ 2,80/L)</div>
+<table class="mt">
+<tr><th>Cenario Milho</th><th>Preco/sc</th><th>Custo Racao/Mes</th><th>Impacto no Saldo</th><th>Margem</th></tr>
+<tr style="background:rgba(16,185,129,.03)"><td style="color:var(--gn)">Queda 15%</td><td class="nm">R$ 47</td><td class="nm">R$ 651k</td><td class="nm" style="color:var(--gn)">+R$ 115k</td><td class="nm" style="color:var(--gn)">32,4%</td></tr>
+<tr><td>Estavel</td><td class="nm">R$ 55</td><td class="nm">R$ 766k</td><td>Base</td><td class="nm">28,0%</td></tr>
+<tr><td style="color:var(--yl)">Alta 10%</td><td class="nm">R$ 60</td><td class="nm">R$ 826k</td><td class="nm" style="color:var(--rd)">-R$ 60k</td><td class="nm" style="color:var(--yl)">25,2%</td></tr>
+<tr style="background:rgba(239,68,68,.03)"><td style="color:var(--rd)">Alta 30%</td><td class="nm">R$ 72</td><td class="nm">R$ 920k</td><td class="nm" style="color:var(--rd)">-R$ 154k</td><td class="nm" style="color:var(--rd)">21,0%</td></tr>
+</table>
+
+<div class="nt" style="background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.12)">
+<strong>Estrategia:</strong> Travar contratos futuros de milho quando preco menor que R$ 55/sc. Cada 10% de alta = ~R$ 60k/mes a mais de custo. Diversificar com coprodutos (DDG, polpa citrica, caroco de algodao) reduz exposicao ao milho. Com preco do leite a R$ 2,80 a margem e mais robusta que no cenario anterior (R$ 2,41).
+</div>
+</div>
+
+<!-- PRED-06: Linha do Tempo - 12 Meses -->
+<div class="d" style="border-color:rgba(16,185,129,.3)">
+<div class="dh"><div class="dt">Linha do Tempo - Resultado Mensal 12 Meses <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">ROADMAP</span></div><div class="di">PRED-06</div></div>
+
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--bl)">R$661k</div><div class="dkl">Atual/Mes (Fev)</div></div>
+<div class="dki"><div class="dkv" style="color:var(--yl)">R$950k</div><div class="dkl">+6 Meses</div></div>
+<div class="dki"><div class="dkv" style="color:var(--gn)">R$1,35M</div><div class="dkl">+12 Meses</div></div>
+<div class="dki"><div class="dkv" style="color:var(--em)">+104%</div><div class="dkl">Crescimento</div></div>
+</div>
+
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:8px">Evolucao Projetada do Resultado Mensal (R$ mil)</div>
+<div class="spk" style="height:80px">
+<div class="spk-b" style="height:49%;background:var(--bl)" data-v="661k"></div>
+<div class="spk-b" style="height:52%;background:var(--bl)" data-v="700k"></div>
+<div class="spk-b" style="height:55%;background:var(--bl)" data-v="740k"></div>
+<div class="spk-b" style="height:59%;background:var(--cy)" data-v="790k"></div>
+<div class="spk-b" style="height:62%;background:var(--cy)" data-v="840k"></div>
+<div class="spk-b" style="height:66%;background:var(--cy)" data-v="890k"></div>
+<div class="spk-b" style="height:70%;background:var(--gn)" data-v="950k"></div>
+<div class="spk-b" style="height:75%;background:var(--gn)" data-v="1.010k"></div>
+<div class="spk-b" style="height:80%;background:var(--gn)" data-v="1.080k"></div>
+<div class="spk-b" style="height:85%;background:var(--em)" data-v="1.150k"></div>
+<div class="spk-b" style="height:91%;background:var(--em)" data-v="1.230k"></div>
+<div class="spk-b" style="height:96%;background:var(--em)" data-v="1.290k"></div>
+<div class="spk-b" style="height:100%;background:var(--gn)" data-v="1.350k"></div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:8px;color:var(--t3)"><span>Atual</span><span>+3m</span><span>+6m</span><span>+9m</span><span>+12m</span></div>
+
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin:16px 0 10px">Timeline de Implementacao</div>
+<div class="tl">
+<div class="tl-i"><div class="tl-d" style="background:var(--bl);border-color:var(--bl)"></div><div class="tl-m">Mes 0</div><div class="tl-v" style="color:var(--bl)">R$ 661k</div></div>
+<div class="tl-i"><div class="tl-d" style="background:var(--cy);border-color:var(--cy)"></div><div class="tl-m">Mes 1-3</div><div class="tl-v" style="color:var(--cy)">R$ 790k</div></div>
+<div class="tl-i"><div class="tl-d" style="background:var(--yl);border-color:var(--yl)"></div><div class="tl-m">Mes 4-6</div><div class="tl-v" style="color:var(--yl)">R$ 950k</div></div>
+<div class="tl-i"><div class="tl-d" style="background:var(--gn);border-color:var(--gn)"></div><div class="tl-m">Mes 7-9</div><div class="tl-v" style="color:var(--gn)">R$ 1.100k</div></div>
+<div class="tl-i"><div class="tl-d" style="background:var(--em);border-color:var(--em)"></div><div class="tl-m">Mes 10-12</div><div class="tl-v" style="color:var(--em)">R$ 1.350k</div></div>
+</div>
+
+<table class="mt">
+<tr><th>Fase</th><th>Acoes Implementadas</th><th>Resultado/Mes</th><th>Ganho vs Atual</th></tr>
+<tr style="background:rgba(59,130,246,.03)"><td style="color:var(--bl)"><strong>Atual</strong></td><td style="font-size:10px">Sem alteracoes (Fev/26 base)</td><td class="nm" style="color:var(--bl)">R$ 661k</td><td>-</td></tr>
+<tr><td style="color:var(--cy)"><strong>Mes 1-3</strong></td><td style="font-size:10px">Sobras, horario, inicio IATF</td><td class="nm" style="color:var(--cy)">R$ 700-790k</td><td class="nm" style="color:var(--cy)">+R$ 39-129k</td></tr>
+<tr><td style="color:var(--yl)"><strong>Mes 4-6</strong></td><td style="font-size:10px">Prenhez melhora, descarte cai, MO reduz</td><td class="nm" style="color:var(--yl)">R$ 840-950k</td><td class="nm" style="color:var(--yl)">+R$ 179-289k</td></tr>
+<tr><td style="color:var(--gn)"><strong>Mes 7-9</strong></td><td style="font-size:10px">Mais vacas em lactacao, bonificacao qualidade</td><td class="nm" style="color:var(--gn)">R$ 1.010k-1.100k</td><td class="nm" style="color:var(--gn)">+R$ 349-439k</td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td style="color:var(--em)"><strong>Mes 10-12</strong></td><td style="font-size:10px">Resultado pleno, todas as acoes maduras</td><td class="nm" style="color:var(--em)">R$ 1.230-1.350k</td><td class="nm" style="color:var(--em)">+R$ 569-689k</td></tr>
+</table>
+
+<div style="margin-top:16px;text-align:center;padding:18px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(52,211,153,.08));border:1px solid rgba(16,185,129,.25);border-radius:12px">
+<div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px">Resultado Anual Projetado - Com Todas as Acoes Implementadas</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:900;color:var(--gn);margin:8px 0">R$ 11,7M - R$ 14,8M</div>
+<div style="font-size:13px;color:var(--t2)">vs. Atual projetado sem acao: R$ 6,4M/ano</div>
+<div style="font-size:12px;color:var(--em);font-weight:800;margin-top:6px">Ganho liquido: +R$ 5,3M a +R$ 8,4M / ano (+83% a +131%)</div>
+</div>
+</div>
+
+</div>
+
+<!-- RESUMO FINAL -->
+<div style="margin-top:36px" class="fi">
+<div style="font-size:20px;font-weight:800;margin-bottom:20px">Resumo Executivo - Plano de Acao em 4 Fases</div>
+
+<div class="al" style="background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.15)">
+<div class="al-i">1</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--bl)">FASE 1 - Imediato (Mes 1-3) | "Quick Wins"</div>
+<div class="al-x"><strong>Custo zero a baixo.</strong> Reorganizar turnos para alimentar lotes 1-2 antes das 07:00. Ajustar oferta diaria para reduzir sobras de 10% para 5%. Iniciar protocolo IATF com equipe existente (47 func). Solicitar relatorios de qualidade do laticinio.</div>
+<div class="al-v" style="color:var(--gn)">Investimento: R$ 20k | Ganho: R$ 135k/mes | Resultado: R$ 790k/mes</div>
+</div>
+</div>
+
+<div class="al" style="background:rgba(6,182,212,.05);border:1px solid rgba(6,182,212,.15)">
+<div class="al-i">2</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--cy)">FASE 2 - Curto Prazo (Mes 4-6) | "Consolidacao"</div>
+<div class="al-x"><strong>Investimento moderado.</strong> Prenhez comeca a melhorar (13->16%). Iniciar redimensionamento de MO de 47 para 40 (nao repor vagas, turnover 0% facilita). Negociar bonificacao de qualidade. Reduzir sobras para 4%. Instalar resfriamento nos galpoes.</div>
+<div class="al-v" style="color:var(--gn)">Investimento: R$ 290k | Ganho: R$ 350k/mes | Resultado: R$ 950k/mes</div>
+</div>
+</div>
+
+<div class="al" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15)">
+<div class="al-i">3</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--gn)">FASE 3 - Medio Prazo (Mes 7-9) | "Aceleracao"</div>
+<div class="al-x"><strong>Colhendo resultados.</strong> Mais vacas em lactacao (940->1.010). DEL caindo. Descarte reduzindo. MO otimizada (~36-38 func). Bonificacao de qualidade ativa. Custo/litro caindo para R$ 1,60.</div>
+<div class="al-v" style="color:var(--gn)">Ganho: R$ 450k/mes | Resultado: R$ 1.100k/mes</div>
+</div>
+</div>
+
+<div class="al" style="background:rgba(52,211,153,.05);border:1px solid rgba(52,211,153,.15)">
+<div class="al-i">4</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--em)">FASE 4 - Resultado Pleno (Mes 10-12) | "Maturidade"</div>
+<div class="al-x"><strong>Todas as acoes em velocidade de cruzeiro.</strong> Prenhez ~22%. ~1.085 vacas em lactacao. Descarte ~28%. MO em ~34 func. Custo/L em R$ 1,52. Producao ~41.200 L/dia. Bonificacao ativa. Confinamento em 60 ha operando no maximo.</div>
+<div class="al-v" style="color:var(--em)">Resultado: R$ 1.230k - R$ 1.350k/mes = R$ 14,8M/ano</div>
+</div>
+</div>
+</div>
+
+<!-- GRANDE CONCLUSAO -->
+<div style="margin-top:36px" class="fi">
+<div class="d" style="border:2px solid rgba(16,185,129,.3);background:linear-gradient(135deg,#111827,#1a2236)">
+<div style="text-align:center;margin-bottom:24px">
+<div style="font-size:28px;font-weight:900;margin-bottom:4px">A FAZENDA BRASILANDA TEM TUDO PARA SER TOP</div>
+<div style="font-size:14px;color:var(--t2)">Genetica excelente | Nutricao boa | Confinamento em 60 ha (ELITE) | Gestao atenta</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px">
+<div style="text-align:center;padding:16px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15);border-radius:12px">
+<div style="font-size:9px;color:var(--rd);text-transform:uppercase;letter-spacing:1px;font-weight:700">Sem Acao</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:var(--rd)">R$ 6,4M</div>
+<div style="font-size:10px;color:var(--t3)">/ano</div>
+</div>
+<div style="text-align:center;padding:16px;background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);border-radius:12px">
+<div style="font-size:9px;color:var(--yl);text-transform:uppercase;letter-spacing:1px;font-weight:700">Acoes Parciais</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:var(--yl)">R$ 10,4M</div>
+<div style="font-size:10px;color:var(--t3)">/ano (+63%)</div>
+</div>
+<div style="text-align:center;padding:16px;background:rgba(16,185,129,.08);border:2px solid rgba(16,185,129,.3);border-radius:12px">
+<div style="font-size:9px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">Todas as Acoes</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:var(--gn)">R$ 14,8M</div>
+<div style="font-size:10px;color:var(--em)">/ano (+131%)</div>
+</div>
+</div>
+
+<div style="text-align:center;padding:16px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.2);border-radius:12px">
+<div style="font-size:10px;color:var(--pr);text-transform:uppercase;letter-spacing:1px;font-weight:700">A diferenca entre fazer e nao fazer</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:46px;font-weight:900;color:var(--pr);margin:6px 0">R$ 8,4 Milhoes / ano</div>
+<div style="font-size:12px;color:var(--t2)">Cada mes sem agir = <strong style="color:var(--rd)">~R$ 700 mil de receita perdida</strong> que nunca mais volta</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="ft">
+<div class="fc">
+<div class="cc">
+<div class="cp">SS</div>
+<div class="ci">
+<div class="cl">Analise e Construcao</div>
+<div class="cn">Dr. Sidney Souza</div>
+<div class="ccs">
+<div class="cci">E-mail: <a href="mailto:sidneyagro@gmail.com">sidneyagro@gmail.com</a></div>
+<div class="cci">Fone: <a href="tel:+5564992266886">(64) 9 9226-6886</a></div>
+<div class="cci">Insta: <a href="https://instagram.com/ruralin.ai" target="_blank">@ruralin.ai</a></div>
+</div>
+<div class="cb"><strong>*Nota:</strong> Sidney Souza e Doutor em Agronomia, Mestre em Administracao, especialista em economia agricola e financas do agronegocio. Com formacao em Administracao e Economia, e fundador da <strong>Rural IN - Gestao Inteligente com Tecnologia no Agro</strong>, Consultor, Professor e Palestrante. Atua ha mais de 25 anos no desenvolvimento de estrategias, analise de mercado e gestao da informacao e do conhecimento, auxiliando produtores(as) em decisoes e reestruturacao segura em cenarios de volatilidade e risco.</div>
+</div>
+</div>
+<div class="fd"></div>
+<div style="display:flex;justify-content:center;margin-bottom:12px"><div style="display:inline-flex;align-items:center;gap:8px"><div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff">R</div><div style="font-size:17px;font-weight:900;color:#94a3b8">RURAL <span style="color:#10b981">IN</span></div></div></div>
+<div class="fb">
+<p><strong>FAZENDA BRASILANDA - Patricia Kompier</strong></p>
+<p>Dashboards Preditivos - 6 Paineis de Projecao | Pecuaria de Leite | Confinamento 60 ha</p>
+<p>Periodo Base: Janeiro e Fevereiro / 2026 | Horizonte: 12 meses | Atualizado em: 11/03/2026</p>
+<p style="margin-top:8px">Dados oficiais + Modelos preditivos | Benchmarks: Embrapa, Rehagro, MilkPoint, SENAR</p>
+<p style="margin-top:3px">Rebanho: Jan 1.454 / Fev 1.446 | VL: 859 / 841 | Equipe: 45 / 47 | Preco: R$ 2,80/L</p>
+<p style="margin-top:5px;font-size:9px">2026 Rural IN - Gestao Inteligente com Tecnologia no Agro. Todos os direitos reservados.</p>
+</div>
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fi').forEach(function(e){o.observe(e)});
+});
+</script>
+</body>
+</html>

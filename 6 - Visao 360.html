@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — VISÃO 360° Completa | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+:root{--bg:#0a0e1a;--card:#111827;--card2:#1a2236;--bdr:#1e293b;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;padding:30px 20px}
+.wrap{max-width:720px;margin:0 auto}
+
+.header{text-align:center;margin-bottom:32px;padding:32px 24px;background:linear-gradient(135deg,rgba(17,24,39,.95),rgba(26,34,54,.9));border:1px solid var(--bdr);border-radius:20px;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#ef4444,#f97316,#f59e0b,#10b981,#06b6d4,#3b82f6,#8b5cf6)}
+.header-logo{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cy);font-weight:700;margin-bottom:4px}
+.header-title{font-size:26px;font-weight:900;background:linear-gradient(135deg,#f1f5f9,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.header-sub{font-size:13px;color:var(--t2);font-weight:500;margin-bottom:18px}
+
+.hk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.hk{padding:10px 6px;background:rgba(255,255,255,.03);border:1px solid var(--bdr);border-radius:8px;text-align:center}
+.hk-label{font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.hk-val{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--t1);margin-top:2px}
+.hk-sub{font-size:7px;color:var(--t3);margin-top:1px}
+
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:28px;margin-bottom:24px;position:relative;overflow:hidden}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+.ct-main{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ct-icon{font-size:18px}
+.ct-title{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.ct-badge{font-size:8px;padding:3px 10px;border-radius:50px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.ct-ref{font-size:10px;color:var(--t3);font-weight:600}
+
+.kpi-row{display:grid;gap:10px;margin-bottom:22px}
+.kpi-row-2{grid-template-columns:1fr 1fr}
+.kpi-row-3{grid-template-columns:1fr 1fr 1fr}
+.kpi-row-4{grid-template-columns:1fr 1fr 1fr 1fr}
+.kpi-row-5{grid-template-columns:1fr 1fr 1fr 1fr 1fr}
+.kpi-box{text-align:center;padding:14px 8px;border-radius:10px;border:1px solid var(--bdr);background:rgba(255,255,255,.02)}
+.kpi-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;line-height:1.2}
+.kpi-sub{font-size:8px;color:var(--t3);margin-top:2px}
+.kpi-label{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:4px;font-weight:600}
+
+.sec-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.04)}
+.sep{height:1px;background:rgba(255,255,255,.04);margin:18px 0}
+
+.bb{margin-bottom:10px}
+.bb-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.bb-name{font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px}
+.bb-val{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px}
+.bb-track{width:100%;height:28px;background:rgba(255,255,255,.03);border-radius:8px;overflow:hidden;position:relative}
+.bb-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:10px;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);min-width:2%;transition:width .6s ease}
+
+.tbl{width:100%;font-size:11px;border-collapse:collapse;margin-top:10px}
+.tbl th{text-align:left;padding:8px 10px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.tbl td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.03)}
+.tbl tr:last-child td{border-bottom:none}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+
+.note{font-size:10px;padding:12px 14px;border-radius:8px;margin-top:14px;line-height:1.7;display:flex;gap:8px;align-items:flex-start}
+.note-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+
+.mx-cell{padding:10px;border-radius:8px;border:1px solid var(--bdr);background:rgba(255,255,255,.02);font-size:9px;line-height:1.5}
+.mx-header{font-weight:800;font-size:10px;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+
+.timeline-item{display:flex;gap:14px;margin-bottom:16px;position:relative}
+.timeline-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.timeline-line{position:absolute;left:5px;top:16px;bottom:-16px;width:2px;background:var(--bdr)}
+.timeline-content{flex:1}
+.timeline-period{font-size:10px;font-weight:800;margin-bottom:2px}
+.timeline-text{font-size:10px;color:var(--t2);line-height:1.6}
+
+@media(max-width:768px){body{padding:16px}.kpi-row-3,.kpi-row-4,.kpi-row-5{grid-template-columns:1fr 1fr}.hk-grid{grid-template-columns:1fr 1fr}.card{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- HEADER PRINCIPAL — VISÃO 360° -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="header">
+<div class="header-logo">Rural IN — Inteligência Pecuária</div>
+<div class="header-title">🔄 VISÃO 360° — Fazenda Brasilanda</div>
+<div class="header-sub">Cruzamento Total dos 4 Blocos de Análise | Jan-Fev 2026</div>
+
+<div style="display:inline-flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;justify-content:center">
+<span style="padding:4px 12px;border-radius:20px;font-size:9px;font-weight:700;background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">🥛 PRODUÇÃO</span>
+<span style="padding:4px 12px;border-radius:20px;font-size:9px;font-weight:700;background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">🐄 REBANHO</span>
+<span style="padding:4px 12px;border-radius:20px;font-size:9px;font-weight:700;background:rgba(249,115,22,.15);color:var(--or);border:1px solid rgba(249,115,22,.3)">💰 FINANCEIRO</span>
+<span style="padding:4px 12px;border-radius:20px;font-size:9px;font-weight:700;background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">👥 RH</span>
+</div>
+
+<div class="hk-grid">
+<div class="hk">
+<div class="hk-label">📅 Período</div>
+<div class="hk-val">Jan-Fev 2026</div>
+</div>
+<div class="hk">
+<div class="hk-label">🐄 Rebanho Médio</div>
+<div class="hk-val">1.450 cab</div>
+<div class="hk-sub">Jan 1.454 | Fev 1.446</div>
+</div>
+<div class="hk">
+<div class="hk-label">🥛 Vacas Lactação</div>
+<div class="hk-val">Jan 859 | Fev 841</div>
+<div class="hk-sub">Média: 850 VL</div>
+</div>
+<div class="hk">
+<div class="hk-label">🥛 Produção Diária</div>
+<div class="hk-val">32.535 → 31.929</div>
+<div class="hk-sub">L/dia Jan → Fev</div>
+</div>
+<div class="hk">
+<div class="hk-label">📊 Prod. Mensal</div>
+<div class="hk-val">1.008.588 → 894.029</div>
+<div class="hk-sub">L/mês | −11,4%</div>
+</div>
+<div class="hk">
+<div class="hk-label">🥛 L/VL/Dia</div>
+<div class="hk-val">37,9 → 38,0</div>
+<div class="hk-sub">Estável — Excelente</div>
+</div>
+<div class="hk">
+<div class="hk-label">👥 Equipe</div>
+<div class="hk-val">45 → 47 func</div>
+<div class="hk-sub">+5 adm | 0 deslig | Turn 0%</div>
+</div>
+<div class="hk">
+<div class="hk-label">💰 Folha MO</div>
+<div class="hk-val">R$ 339.848 → R$ 280.240</div>
+<div class="hk-sub">−17,5% | Custo/L: R$ 0,34→0,31</div>
+</div>
+<div class="hk">
+<div class="hk-label">💲 Preço Leite</div>
+<div class="hk-val">R$ 2,72 → R$ 2,80</div>
+<div class="hk-sub">+2,9%</div>
+</div>
+<div class="hk">
+<div class="hk-label">📈 Receita Leite</div>
+<div class="hk-val">R$ 2,74M → R$ 2,50M</div>
+<div class="hk-sub">−8,8% (volume caiu)</div>
+</div>
+<div class="hk">
+<div class="hk-label">💰 COE</div>
+<div class="hk-val">R$ 1,77M → R$ 1,84M</div>
+<div class="hk-sub">COE/L: R$ 1,76 → R$ 2,06</div>
+</div>
+<div class="hk">
+<div class="hk-label">📊 Margem s/Leite</div>
+<div class="hk-val">R$ 0,96 → R$ 0,74</div>
+<div class="hk-sub">R$/L | Margem caiu 22,9%</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOCO 1 — KPIs MASTER RESUMIDOS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(6,182,212,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#06b6d4,#3b82f6,#8b5cf6)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">🎯</span>
+<span class="ct-title">KPIs Master — Semáforo Geral</span>
+</div>
+<span class="ct-ref">V360-01</span>
+</div>
+
+<div class="sec-title">Indicadores-Chave — Status Jan→Fev</div>
+
+<table class="tbl">
+<tr>
+<th>BLOCO</th>
+<th>INDICADOR</th>
+<th style="text-align:center">JAN</th>
+<th style="text-align:center">FEV</th>
+<th style="text-align:center">VAR.</th>
+<th style="text-align:center">STATUS</th>
+</tr>
+<!-- PRODUÇÃO -->
+<tr style="background:rgba(16,185,129,.03)">
+<td rowspan="4"><strong style="color:var(--gn)">🥛 PROD.</strong></td>
+<td>Produção Total (L/mês)</td>
+<td class="nm" style="text-align:center">1.008.588</td>
+<td class="nm" style="text-align:center">894.029</td>
+<td class="nm" style="text-align:center;color:var(--yl)">−11,4%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+<tr style="background:rgba(16,185,129,.03)">
+<td>L/VL/Dia</td>
+<td class="nm" style="text-align:center">37,9</td>
+<td class="nm" style="text-align:center">38,0</td>
+<td class="nm" style="text-align:center;color:var(--gn)">+0,3%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr style="background:rgba(16,185,129,.03)">
+<td>Vacas Lactação</td>
+<td class="nm" style="text-align:center">859</td>
+<td class="nm" style="text-align:center">841</td>
+<td class="nm" style="text-align:center;color:var(--yl)">−2,1%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+<tr style="background:rgba(16,185,129,.03)">
+<td>Horário 1ª Alim (L1-2)</td>
+<td class="nm" style="text-align:center">08:52</td>
+<td class="nm" style="text-align:center">08:40</td>
+<td class="nm" style="text-align:center;color:var(--gn)">−12min</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rd)"></span></td>
+</tr>
+<!-- REBANHO -->
+<tr style="background:rgba(59,130,246,.03)">
+<td rowspan="3"><strong style="color:var(--bl)">🐄 REB.</strong></td>
+<td>Rebanho Total</td>
+<td class="nm" style="text-align:center">1.454</td>
+<td class="nm" style="text-align:center">1.446</td>
+<td class="nm" style="text-align:center">−0,5%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr style="background:rgba(59,130,246,.03)">
+<td>Novilhas Prenhas</td>
+<td class="nm" style="text-align:center">246</td>
+<td class="nm" style="text-align:center">255</td>
+<td class="nm" style="text-align:center;color:var(--gn)">+3,7%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr style="background:rgba(59,130,246,.03)">
+<td>Nascimentos/mês</td>
+<td class="nm" style="text-align:center">35</td>
+<td class="nm" style="text-align:center">37</td>
+<td class="nm" style="text-align:center;color:var(--gn)">+5,7%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<!-- FINANCEIRO -->
+<tr style="background:rgba(249,115,22,.03)">
+<td rowspan="4"><strong style="color:var(--or)">💰 FIN.</strong></td>
+<td>Receita Leite</td>
+<td class="nm" style="text-align:center">R$ 2,74M</td>
+<td class="nm" style="text-align:center">R$ 2,50M</td>
+<td class="nm" style="text-align:center;color:var(--yl)">−8,8%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+<tr style="background:rgba(249,115,22,.03)">
+<td>COE Total</td>
+<td class="nm" style="text-align:center">R$ 1,77M</td>
+<td class="nm" style="text-align:center">R$ 1,84M</td>
+<td class="nm" style="text-align:center;color:var(--rd)">+4,0%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rd)"></span></td>
+</tr>
+<tr style="background:rgba(249,115,22,.03)">
+<td>COE/L</td>
+<td class="nm" style="text-align:center">R$ 1,76</td>
+<td class="nm" style="text-align:center">R$ 2,06</td>
+<td class="nm" style="text-align:center;color:var(--rd)">+17,0%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rd)"></span></td>
+</tr>
+<tr style="background:rgba(249,115,22,.03)">
+<td>Margem s/Leite (R$/L)</td>
+<td class="nm" style="text-align:center">R$ 0,96</td>
+<td class="nm" style="text-align:center">R$ 0,74</td>
+<td class="nm" style="text-align:center;color:var(--rd)">−22,9%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rd)"></span></td>
+</tr>
+<!-- RH -->
+<tr style="background:rgba(139,92,246,.03)">
+<td rowspan="4"><strong style="color:var(--pr)">👥 RH</strong></td>
+<td>Funcionários</td>
+<td class="nm" style="text-align:center">45</td>
+<td class="nm" style="text-align:center">47</td>
+<td class="nm" style="text-align:center">+4,4%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+<tr style="background:rgba(139,92,246,.03)">
+<td>Folha MO/mês</td>
+<td class="nm" style="text-align:center">R$ 339.848</td>
+<td class="nm" style="text-align:center">R$ 280.240</td>
+<td class="nm" style="text-align:center;color:var(--gn)">−17,5%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr style="background:rgba(139,92,246,.03)">
+<td>Custo MO/L</td>
+<td class="nm" style="text-align:center">R$ 0,34</td>
+<td class="nm" style="text-align:center">R$ 0,31</td>
+<td class="nm" style="text-align:center;color:var(--gn)">−7,1%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span></td>
+</tr>
+<tr style="background:rgba(139,92,246,.03)">
+<td>L/func/dia</td>
+<td class="nm" style="text-align:center">723</td>
+<td class="nm" style="text-align:center">679</td>
+<td class="nm" style="text-align:center;color:var(--yl)">−6,1%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yl)"></span></td>
+</tr>
+</table>
+
+<!-- RESUMO SEMÁFORO -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px">
+<div style="text-align:center;padding:12px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:10px">
+<div style="font-size:20px;margin-bottom:2px">🟢</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">8</div>
+<div style="font-size:8px;color:var(--t3);font-weight:600">INDICADORES BOM</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:10px">
+<div style="font-size:20px;margin-bottom:2px">🟡</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--yl)">4</div>
+<div style="font-size:8px;color:var(--t3);font-weight:600">INDICADORES ATENÇÃO</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px">
+<div style="font-size:20px;margin-bottom:2px">🔴</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--rd)">3</div>
+<div style="font-size:8px;color:var(--t3);font-weight:600">INDICADORES CRÍTICO</div>
+</div>
+</div>
+
+<div class="note" style="background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.12)">
+<span class="note-icon">📊</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--cy)">Visão Geral:</strong> Produtividade por vaca estável (37,9→38,0 L/VL), RH melhorou significativamente (folha −17,5%, turnover 0%). <strong style="color:var(--rd)">Alertas:</strong> Volume total caiu (−11,4%), COE/L subiu 17% e margem encolheu 23%. O financeiro é o bloco mais pressionado.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOCO 2 — MATRIZ DE CRUZAMENTO ENTRE BLOCOS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(139,92,246,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#3b82f6,#10b981,#f97316)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">🔗</span>
+<span class="ct-title">Matriz de Cruzamento entre Blocos</span>
+</div>
+<span class="ct-ref">V360-02</span>
+</div>
+
+<div class="sec-title">Como cada bloco impacta os outros</div>
+
+<!-- PRODUÇÃO → OUTROS -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+<div class="mx-cell" style="border-color:rgba(16,185,129,.2)">
+<div class="mx-header" style="color:var(--gn)">🥛→💰 Produção → Financeiro</div>
+<div style="color:var(--t2)">Queda de 114.559 L/mês (−11,4%) = <strong style="color:var(--rd)">−R$ 320k receita</strong>. COE/L subiu de R$ 1,76 → R$ 2,06 por diluição. Cada 1.000 L/dia a mais = +R$ 84k/mês receita.</div>
+</div>
+<div class="mx-cell" style="border-color:rgba(16,185,129,.2)">
+<div class="mx-header" style="color:var(--gn)">🥛→👥 Produção → RH</div>
+<div style="color:var(--t2)">L/func caiu 723→679 (−6,1%). Mesmo assim, acima da meta (600). <strong style="color:var(--gn)">Custo MO/L melhorou</strong> porque folha caiu mais (−17,5%) que produção (−11,4%).</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+<div class="mx-cell" style="border-color:rgba(59,130,246,.2)">
+<div class="mx-header" style="color:var(--bl)">🐄→🥛 Rebanho → Produção</div>
+<div style="color:var(--t2)">VL caiu 859→841 (−18 vacas = −2,1%). Impacto direto: <strong style="color:var(--rd)">−684 L/dia</strong> (18×38 L/VL). Novilhas prenhas subindo (246→255) = reposição futura garantida.</div>
+</div>
+<div class="mx-cell" style="border-color:rgba(59,130,246,.2)">
+<div class="mx-header" style="color:var(--bl)">🐄→💰 Rebanho → Financeiro</div>
+<div style="color:var(--t2)">Secas subiram 167→173 (+3,6%) = custo de manutenção sem receita. Nascimentos 35→37 = <strong style="color:var(--gn)">potencial de venda e reposição</strong>.</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+<div class="mx-cell" style="border-color:rgba(249,115,22,.2)">
+<div class="mx-header" style="color:var(--or)">💰→🥛 Financeiro → Produção</div>
+<div style="color:var(--t2)">COE subiu = <strong style="color:var(--rd)">investimento em nutrição precisa ser protegido</strong>. Cortar ração para economizar = risco de queda de produtividade. Margem encolhendo pressiona decisões.</div>
+</div>
+<div class="mx-cell" style="border-color:rgba(249,115,22,.2)">
+<div class="mx-header" style="color:var(--or)">💰→👥 Financeiro → RH</div>
+<div style="color:var(--t2)">Folha é 15,2% do COE (Fev). MO/L a R$ 0,31. Com redimensionamento (47→34 func) = economia <strong style="color:var(--gn)">R$ 78k/mês</strong> que alivia pressão do COE.</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+<div class="mx-cell" style="border-color:rgba(139,92,246,.2)">
+<div class="mx-header" style="color:var(--pr)">👥→🥛 RH → Produção</div>
+<div style="color:var(--t2)"><strong style="color:var(--rd)">Atraso de alimentação (08:40 nos L1-2)</strong> = perda de 0,5-1,0 L/VL/dia nos lotes mais produtivos. Impacto: R$ 25-50k/mês. Turnover 0% = equipe estável = bom para rotina.</div>
+</div>
+<div class="mx-cell" style="border-color:rgba(139,92,246,.2)">
+<div class="mx-header" style="color:var(--pr)">👥→💰 RH → Financeiro</div>
+<div style="color:var(--t2)">Folha caiu R$ 59.608/mês (−17,5%). <strong style="color:var(--gn)">Maior contribuição para alívio do COE.</strong> Cenário 2 (34 func) = potencial de −R$ 930k/ano em folha.</div>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- MAPA CAUSA-RAIZ -->
+<div class="sec-title">🔍 Mapa Causa-Raiz — Por que a margem caiu?</div>
+
+<div style="padding:20px;background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(249,115,22,.04));border:1px solid rgba(239,68,68,.15);border-radius:12px">
+
+<div style="text-align:center;margin-bottom:16px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--rd)">MARGEM CAIU 22,9% (R$ 0,96 → R$ 0,74/L)</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div style="padding:12px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.1);border-radius:8px">
+<div style="font-size:10px;font-weight:800;color:var(--rd);margin-bottom:6px">📉 LADO DA RECEITA</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.7">
+• VL caiu 859→841 (−18 vacas)<br>
+• Produção total −11,4% (−114k L/mês)<br>
+• Receita −R$ 240k/mês<br>
+• Preço subiu +2,9% mas não compensou
+</div>
+</div>
+<div style="padding:12px;background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.1);border-radius:8px">
+<div style="font-size:10px;font-weight:800;color:var(--or);margin-bottom:6px">📈 LADO DO CUSTO</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.7">
+• COE total subiu +4,0% (R$ 1,77M→R$ 1,84M)<br>
+• COE/L subiu +17% (diluição por menos volume)<br>
+• Nutrição e insumos pressionaram<br>
+• MO aliviou (−17,5%) mas não compensou
+</div>
+</div>
+</div>
+
+<div style="text-align:center;margin-top:14px;padding:10px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);border-radius:8px">
+<div style="font-size:10px;font-weight:800;color:var(--yl)">⚡ CONCLUSÃO CAUSA-RAIZ</div>
+<div style="font-size:9px;color:var(--t2);margin-top:4px">A margem caiu <strong>mais por perda de volume (receita)</strong> do que por aumento de custo. Recuperar VL (de 841 para 880+) e antecipar alimentação dos L1-2 são as duas alavancas de maior impacto imediato.</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOCO 3 — MATRIZ DE INTERDEPENDÊNCIAS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(6,182,212,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#06b6d4,#10b981,#f59e0b)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">⚡</span>
+<span class="ct-title">Interdependências — Efeito Dominó</span>
+</div>
+<span class="ct-ref">V360-03</span>
+</div>
+
+<div class="sec-title">Se melhorar X, o que acontece com Y?</div>
+
+<table class="tbl">
+<tr>
+<th>SE MELHORAR...</th>
+<th>IMPACTO DIRETO</th>
+<th style="text-align:right">VALOR ESTIMADO</th>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">+18 VL (841→859)</strong></td>
+<td>+684 L/dia → +19.152 L/mês</td>
+<td class="nm" style="text-align:right;color:var(--gn)">+R$ 53.626/mês</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">Alimentação L1-2 às 07:00</strong></td>
+<td>+0,5-1,0 L/VL/dia nos ~195 VL de alta</td>
+<td class="nm" style="text-align:right;color:var(--gn)">+R$ 25-50k/mês</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">Reduzir 47→34 func</strong></td>
+<td>−13 func × R$ 5.963/func</td>
+<td class="nm" style="text-align:right;color:var(--gn)">−R$ 78k/mês folha</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">+2.000 L/dia</strong></td>
+<td>+56.000 L/mês × R$ 2,80</td>
+<td class="nm" style="text-align:right;color:var(--gn)">+R$ 156.800/mês</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">COE/L voltar a R$ 1,76</strong></td>
+<td>Economia de R$ 0,30/L × 894k L</td>
+<td class="nm" style="text-align:right;color:var(--gn)">+R$ 268k/mês</td>
+</tr>
+<tr style="background:rgba(16,185,129,.04);border-top:2px solid var(--bdr)">
+<td colspan="2"><strong style="color:var(--gn)">TOTAL — SE TUDO FOR IMPLEMENTADO</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 500-575k/mês</strong></td>
+</tr>
+</table>
+
+<div class="note" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.12)">
+<span class="note-icon">💎</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--gn)">Potencial total: +R$ 6-7M/ano.</strong> As ações são sinérgicas — recuperar volume melhora diluição do COE/L, que melhora margem, que gera caixa para investir em automação e redução de quadro.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOCO 4 — CENÁRIOS PROJETADOS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(245,158,11,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f59e0b,#10b981)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">📈</span>
+<span class="ct-title">Cenários Projetados — Próximos 6 Meses</span>
+</div>
+<span class="ct-ref">V360-04</span>
+</div>
+
+<div class="sec-title">Projeção de 3 Cenários</div>
+
+<!-- CENÁRIO PESSIMISTA -->
+<div style="padding:16px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:12px;margin-bottom:14px">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+<span style="font-size:16px">🔴</span>
+<span style="font-size:13px;font-weight:800;color:var(--rd)">PESSIMISTA — Sem Ação</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">
+<div style="text-align:center;padding:8px;background:rgba(239,68,68,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">PRODUÇÃO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--rd)">28.000 L/d</div>
+<div style="font-size:7px;color:var(--t3)">VL cai p/ 800</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(239,68,68,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">COE/L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--rd)">R$ 2,30</div>
+<div style="font-size:7px;color:var(--t3)">Diluição piora</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(239,68,68,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">MARGEM/L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--rd)">R$ 0,50</div>
+<div style="font-size:7px;color:var(--t3)">Margem comprimida</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(239,68,68,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">RESULTADO/MÊS</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--rd)">R$ 420k</div>
+<div style="font-size:7px;color:var(--t3)">Margem absoluta cai</div>
+</div>
+</div>
+</div>
+
+<!-- CENÁRIO MODERADO -->
+<div style="padding:16px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.12);border-radius:12px;margin-bottom:14px">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+<span style="font-size:16px">🟡</span>
+<span style="font-size:13px;font-weight:800;color:var(--yl)">MODERADO — Ações Parciais</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">
+<div style="text-align:center;padding:8px;background:rgba(245,158,11,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">PRODUÇÃO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--yl)">33.000 L/d</div>
+<div style="font-size:7px;color:var(--t3)">VL volta a 870</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(245,158,11,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">COE/L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--yl)">R$ 1,85</div>
+<div style="font-size:7px;color:var(--t3)">Volume dilui custo</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(245,158,11,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">MARGEM/L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--yl)">R$ 0,95</div>
+<div style="font-size:7px;color:var(--t3)">Recupera Jan</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(245,158,11,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">RESULTADO/MÊS</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--yl)">R$ 940k</div>
+<div style="font-size:7px;color:var(--t3)">Volta ao nível Jan</div>
+</div>
+</div>
+</div>
+
+<!-- CENÁRIO OTIMISTA -->
+<div style="padding:16px;background:rgba(16,185,129,.04);border:2px solid rgba(16,185,129,.2);border-radius:12px;margin-bottom:14px">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+<span style="font-size:16px">🟢</span>
+<span style="font-size:13px;font-weight:800;color:var(--gn)">OTIMISTA — Ações Completas (6 meses)</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">
+<div style="text-align:center;padding:8px;background:rgba(16,185,129,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">PRODUÇÃO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--gn)">36.000 L/d</div>
+<div style="font-size:7px;color:var(--t3)">VL sobe p/ 900+</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(16,185,129,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">COE/L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--gn)">R$ 1,68</div>
+<div style="font-size:7px;color:var(--t3)">Diluição + otimização</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(16,185,129,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">MARGEM/L</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--gn)">R$ 1,12</div>
+<div style="font-size:7px;color:var(--t3)">Recorde</div>
+</div>
+<div style="text-align:center;padding:8px;background:rgba(16,185,129,.06);border-radius:6px">
+<div style="font-size:7px;color:var(--t3);font-weight:600">RESULTADO/MÊS</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:var(--gn)">R$ 1,21M</div>
+<div style="font-size:7px;color:var(--t3)">+64% vs Fev atual</div>
+</div>
+</div>
+</div>
+
+<!-- COMPARATIVO BARRAS -->
+<div class="sec-title">Margem Absoluta/Mês — Comparativo</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--bl)">Fev Atual</span><span class="bb-val" style="color:var(--bl)">R$ 661k</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:54.6%;background:linear-gradient(90deg,rgba(59,130,246,.55),rgba(59,130,246,.2))"><span style="font-size:9px;font-weight:700">R$ 661k (0,74/L)</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 Pessimista</span><span class="bb-val" style="color:var(--rd)">R$ 420k</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:34.7%;background:linear-gradient(90deg,rgba(239,68,68,.55),rgba(239,68,68,.2))"><span style="font-size:9px;font-weight:700">R$ 420k</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🟡 Moderado</span><span class="bb-val" style="color:var(--yl)">R$ 940k</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:77.7%;background:linear-gradient(90deg,rgba(245,158,11,.55),rgba(245,158,11,.2))"><span style="font-size:9px;font-weight:700">R$ 940k</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">🟢 Otimista</span><span class="bb-val" style="color:var(--gn)">R$ 1,21M 🏆</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.2))"><span style="font-size:9px;font-weight:700">R$ 1,21M/mês</span></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- STRESS TEST -->
+<div class="sec-title">🧪 Stress Test — Sensibilidade a Variáveis-Chave</div>
+
+<table class="tbl">
+<tr>
+<th>VARIÁVEL</th>
+<th style="text-align:center">SE PIORAR 10%</th>
+<th style="text-align:center">SE MELHORAR 10%</th>
+<th style="text-align:center">SENSIBILIDADE</th>
+</tr>
+<tr>
+<td>Preço do Leite (R$ 2,80)</td>
+<td class="nm" style="text-align:center;color:var(--rd)">−R$ 250k/mês</td>
+<td class="nm" style="text-align:center;color:var(--gn)">+R$ 250k/mês</td>
+<td style="text-align:center"><span style="color:var(--rd);font-weight:800;font-size:12px">🔴 ALTA</span></td>
+</tr>
+<tr>
+<td>Volume (894k L/mês)</td>
+<td class="nm" style="text-align:center;color:var(--rd)">−R$ 250k/mês</td>
+<td class="nm" style="text-align:center;color:var(--gn)">+R$ 250k/mês</td>
+<td style="text-align:center"><span style="color:var(--rd);font-weight:800;font-size:12px">🔴 ALTA</span></td>
+</tr>
+<tr>
+<td>COE Total (R$ 1,84M)</td>
+<td class="nm" style="text-align:center;color:var(--rd)">−R$ 184k/mês</td>
+<td class="nm" style="text-align:center;color:var(--gn)">+R$ 184k/mês</td>
+<td style="text-align:center"><span style="color:var(--or);font-weight:800;font-size:12px">🟠 MÉDIA-ALTA</span></td>
+</tr>
+<tr>
+<td>Folha MO (R$ 280k)</td>
+<td class="nm" style="text-align:center;color:var(--rd)">−R$ 28k/mês</td>
+<td class="nm" style="text-align:center;color:var(--gn)">+R$ 28k/mês</td>
+<td style="text-align:center"><span style="color:var(--yl);font-weight:800;font-size:12px">🟡 MÉDIA</span></td>
+</tr>
+<tr>
+<td>Nº Vacas Lactação (841)</td>
+<td class="nm" style="text-align:center;color:var(--rd)">−757 L/dia</td>
+<td class="nm" style="text-align:center;color:var(--gn)">+3.196 L/dia</td>
+<td style="text-align:center"><span style="color:var(--rd);font-weight:800;font-size:12px">🔴 ALTA</span></td>
+</tr>
+</table>
+
+<div class="note" style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12)">
+<span class="note-icon">⚠️</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--rd)">Maior vulnerabilidade:</strong> preço do leite e volume de produção. Uma queda de 10% em ambos simultaneamente = <strong>−R$ 500k/mês na margem</strong>. Proteger volume e buscar contratos com preço mínimo são prioridades estratégicas.
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOCO 5 — TIMELINE DE AÇÕES -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(59,130,246,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f59e0b,#3b82f6,#10b981)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">📅</span>
+<span class="ct-title">Timeline de Ações — Roadmap 6 Meses</span>
+</div>
+<span class="ct-ref">V360-05</span>
+</div>
+
+<!-- IMEDIATO -->
+<div class="timeline-item">
+<div class="timeline-dot" style="background:var(--rd)"></div>
+<div class="timeline-line"></div>
+<div class="timeline-content">
+<div class="timeline-period" style="color:var(--rd)">🔴 IMEDIATO — Março 2026</div>
+<div class="timeline-text">
+<strong>1.</strong> Antecipar alimentação dos Lotes 1, 2 e Pré-Parto para antes das 07:30 → <strong style="color:var(--gn)">+R$ 25-50k/mês</strong><br>
+<strong>2.</strong> Investigar causa da queda de VL (859→841) — verificar secagem, reprodução, descarte<br>
+<strong>3.</strong> Revisar composição de dieta dos lotes de alta para manter L/VL ≥ 38<br>
+<strong>4.</strong> Iniciar mapeamento de funções para redimensionamento de equipe
+</div>
+</div>
+</div>
+
+<!-- CURTO PRAZO -->
+<div class="timeline-item">
+<div class="timeline-dot" style="background:var(--or)"></div>
+<div class="timeline-line"></div>
+<div class="timeline-content">
+<div class="timeline-period" style="color:var(--or)">🟠 CURTO PRAZO — Abr-Mai 2026</div>
+<div class="timeline-text">
+<strong>5.</strong> Iniciar não-reposição de vagas (meta: 47→42 func) → <strong style="color:var(--gn)">−R$ 30k/mês</strong><br>
+<strong>6.</strong> Recuperar VL para 870+ (novilhas prenhas parindo = reposição natural)<br>
+<strong>7.</strong> Negociar contratos de leite com preço mínimo<br>
+<strong>8.</strong> Revisar fornecedores de insumos — buscar redução de 5% no COE
+</div>
+</div>
+</div>
+
+<!-- MÉDIO PRAZO -->
+<div class="timeline-item">
+<div class="timeline-dot" style="background:var(--yl)"></div>
+<div class="timeline-line"></div>
+<div class="timeline-content">
+<div class="timeline-period" style="color:var(--yl)">🟡 MÉDIO PRAZO — Jun-Jul 2026</div>
+<div class="timeline-text">
+<strong>9.</strong> Atingir 34.000+ L/dia (VL ~880, L/VL 39+)<br>
+<strong>10.</strong> Equipe em ~38 func → <strong style="color:var(--gn)">vacas/func ~23</strong><br>
+<strong>11.</strong> Investir em automação de alimentação (mixer automático)<br>
+<strong>12.</strong> COE/L meta: ≤ R$ 1,85
+</div>
+</div>
+</div>
+
+<!-- META 6 MESES -->
+<div class="timeline-item">
+<div class="timeline-dot" style="background:var(--gn)"></div>
+<div class="timeline-content">
+<div class="timeline-period" style="color:var(--gn)">🟢 META 6 MESES — Ago-Set 2026</div>
+<div class="timeline-text">
+<strong>13.</strong> 36.000 L/dia | 900+ VL | 40 L/VL/dia<br>
+<strong>14.</strong> Equipe 34 func | 25+ vac/func | MO/L ≤ R$ 0,23<br>
+<strong>15.</strong> COE/L ≤ R$ 1,70 | Margem ≥ R$ 1,10/L<br>
+<strong>16.</strong> Alimentação L1-2 antes das 07:00<br>
+<strong style="color:var(--gn)">→ Resultado: R$ 1,2M+/mês de margem</strong>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOCO 6 — PAINEL EXECUTIVO PARA PATRÍCIA -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(236,72,153,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ec4899,#8b5cf6,#3b82f6)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">👩‍💼</span>
+<span class="ct-title">Painel Executivo — Patrícia</span>
+<span class="ct-badge" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">DECISORA</span>
+</div>
+<span class="ct-ref">V360-06</span>
+</div>
+
+<div style="padding:16px;background:linear-gradient(135deg,rgba(236,72,153,.06),rgba(139,92,246,.04));border:1px solid rgba(236,72,153,.12);border-radius:12px;margin-bottom:18px">
+<div style="font-size:11px;font-weight:800;color:var(--pk);margin-bottom:8px">📋 RESUMO PARA TOMADA DE DECISÃO</div>
+<div style="font-size:10px;color:var(--t2);line-height:1.8">
+<strong>O que vai BEM:</strong> Produtividade/vaca excelente (38 L/VL), equipe estável (turnover 0%), folha caiu 17,5%, custo MO/L melhorando.<br>
+<strong style="color:var(--rd)">O que preocupa:</strong> Volume caiu 11,4%, COE/L subiu 17%, margem encolheu 23%, alimentação dos lotes de alta muito atrasada (08:40).<br>
+<strong style="color:var(--yl)">Decisão mais urgente:</strong> Antecipar alimentação dos lotes 1 e 2 + recuperar nº de VL.
+</div>
+</div>
+
+<!-- 3 PRIORIDADES -->
+<div class="sec-title">🎯 Top 3 Prioridades — Impacto Imediato</div>
+
+<div style="display:grid;gap:12px;margin-bottom:18px">
+
+<!-- PRIORIDADE 1 -->
+<div style="padding:16px;background:rgba(239,68,68,.04);border-left:4px solid var(--rd);border-radius:0 10px 10px 0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+<span style="font-size:12px;font-weight:800;color:var(--rd)">1️⃣ ANTECIPAR ALIMENTAÇÃO L1 e L2</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--gn)">+R$ 25-50k/mês</span>
+</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.6">
+Meta: antes das 07:30 (hoje: 08:38-08:42). ~195 vacas de alta produção recebem comida 1h40 atrasado. Custo: ZERO (apenas reorganização logística). <strong>ROI imediato.</strong>
+</div>
+</div>
+
+<!-- PRIORIDADE 2 -->
+<div style="padding:16px;background:rgba(249,115,22,.04);border-left:4px solid var(--or);border-radius:0 10px 10px 0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+<span style="font-size:12px;font-weight:800;color:var(--or)">2️⃣ RECUPERAR VL (841 → 870+)</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--gn)">+R$ 81k/mês</span>
+</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.6">
++29 VL × 38 L/dia × 30 dias × R$ 2,80 = +R$ 92k receita. Novilhas prenhas (255) estão parindo — monitorar transição para lactação. Reduzir período seco e intervalo entre partos.
+</div>
+</div>
+
+<!-- PRIORIDADE 3 -->
+<div style="padding:16px;background:rgba(16,185,129,.04);border-left:4px solid var(--gn);border-radius:0 10px 10px 0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+<span style="font-size:12px;font-weight:800;color:var(--gn)">3️⃣ REDIMENSIONAR EQUIPE (47→34)</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--gn)">−R$ 78k/mês</span>
+</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.6">
+Gradual em 6-12 meses via não-reposição. 34 func = 25 vac/func (meta boa). Custo MO/L cai para ~R$ 0,23 (nível Top BR). Economia anual: <strong>R$ 930k</strong>.
+</div>
+</div>
+</div>
+
+<!-- DESTAQUE FINAL -->
+<div style="padding:24px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(6,182,212,.05),rgba(59,130,246,.04));border:2px solid rgba(16,185,129,.25);border-radius:16px;text-align:center;margin-bottom:14px">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:6px">POTENCIAL TOTAL COM AS 3 PRIORIDADES</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:900;color:var(--gn);line-height:1.1;margin-bottom:6px">+R$ 180-210k/mês</div>
+<div style="font-size:12px;color:var(--t2);margin-bottom:14px">= <strong style="color:var(--gn)">+R$ 2,2M — R$ 2,5M/ano</strong> apenas com as ações prioritárias</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+<div style="padding:10px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--bdr)">
+<div style="font-size:8px;color:var(--t3);font-weight:600">INVESTIMENTO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--yl)">Baixo/Zero</div>
+<div style="font-size:7px;color:var(--t3)">Reorganização interna</div>
+</div>
+<div style="padding:10px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--bdr)">
+<div style="font-size:8px;color:var(--t3);font-weight:600">PRAZO P/ RESULTADO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--gn)">30-90 dias</div>
+<div style="font-size:7px;color:var(--t3)">Resultados rápidos</div>
+</div>
+<div style="padding:10px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--bdr)">
+<div style="font-size:8px;color:var(--t3);font-weight:600">RISCO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--gn)">Baixo</div>
+<div style="font-size:7px;color:var(--t3)">Ações conservadoras</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOCO 7 — CONCLUSÃO FINAL -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(6,182,212,.3)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#06b6d4,#3b82f6,#8b5cf6,#ec4899)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">🏁</span>
+<span class="ct-title">Conclusão — Visão 360° Consolidada</span>
+</div>
+<span class="ct-ref">V360-07</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+<div style="padding:14px;background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:10px;font-weight:800;color:var(--gn);margin-bottom:6px">✅ PONTOS FORTES</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.8">
+• Produtividade/vaca excelente: 38 L/VL/dia<br>
+• Turnover 0% — equipe estável<br>
+• Folha MO caiu 17,5% (−R$ 59.608)<br>
+• Custo MO/L melhorando (R$ 0,34→R$ 0,31)<br>
+• MO/COE entrou na faixa boa (15,2%)<br>
+• Novilhas prenhas crescendo (255)<br>
+• Nascimentos em alta (37/mês)<br>
+• Preço do leite subindo (+2,9%)
+</div>
+</div>
+<div style="padding:14px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12);border-radius:10px">
+<div style="font-size:10px;font-weight:800;color:var(--rd);margin-bottom:6px">⚠️ PONTOS DE ATENÇÃO</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.8">
+• Volume total caiu 11,4% (−114k L/mês)<br>
+• VL reduziu 859→841 (−18 vacas)<br>
+• COE/L subiu 17% (R$ 1,76→R$ 2,06)<br>
+• Margem encolheu 23% (R$ 0,96→R$ 0,74/L)<br>
+• Alimentação L1-2 às 08:40 (ideal: 07:00)<br>
+• Vacas/func baixo (17,9 vs meta 25)<br>
+• Secas aumentaram (167→173)<br>
+• Equipe possivelmente superdimensionada
+</div>
+</div>
+</div>
+
+<!-- NOTA FINAL -->
+<div style="padding:20px;background:linear-gradient(135deg,rgba(6,182,212,.08),rgba(59,130,246,.05));border:2px solid rgba(6,182,212,.2);border-radius:14px;text-align:center">
+<div style="font-size:12px;font-weight:800;color:var(--cy);margin-bottom:8px">💡 DIAGNÓSTICO CENTRAL</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8;max-width:580px;margin:0 auto">
+A Fazenda Brasilanda tem <strong style="color:var(--gn)">excelente eficiência por vaca</strong> e <strong style="color:var(--gn)">RH estável e em melhoria</strong>. O principal desafio é <strong style="color:var(--rd)">recuperar volume de produção</strong> (mais VL em lactação) para <strong style="color:var(--yl)">diluir os custos fixos</strong> e recompor a margem. As 3 ações prioritárias (alimentação, VL e equipe) podem gerar <strong style="color:var(--gn)">+R$ 2,2M/ano</strong> com investimento mínimo.
+</div>
+<div style="margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3)">
+Fazenda Brasilanda → De R$ 0,74/L → Meta R$ 1,12/L de margem em 6 meses
+</div>
+</div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div style="text-align:center;padding:28px 16px;margin-top:12px;border-top:1px solid var(--bdr)">
+<div style="font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;font-size:10px;color:var(--cy)">Rural IN — Inteligência Pecuária</div>
+<div style="font-size:9px;color:var(--t3);margin-bottom:4px">Fazenda Brasilanda | VISÃO 360° Completa | Jan-Fev 2026</div>
+<div style="font-size:8px;color:var(--t3)">Rebanho: Jan 1.454 | Fev 1.446 | VL: Jan 859 | Fev 841 | Equipe: Jan 45 | Fev 47 | Prod: Jan 1.008.588 L | Fev 894.029 L</div>
+<div style="font-size:8px;color:var(--t3);margin-top:4px">4 Blocos × 180+ indicadores cruzados | 7 painéis integrados | 3 cenários projetados</div>
+</div>
+
+</div><!-- fim .wrap -->
+</body>
+</html>

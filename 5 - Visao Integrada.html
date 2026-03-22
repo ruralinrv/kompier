@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — Dashboards Integrados | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+:root{--bg:#0a0e1a;--card:#1a2236;--bdr:#2a3654;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899;--gBl:linear-gradient(135deg,#3b82f6,#06b6d4);--gGn:linear-gradient(135deg,#10b981,#34d399);--gRd:linear-gradient(135deg,#ef4444,#f97316);--gYl:linear-gradient(135deg,#f59e0b,#fbbf24);--gPr:linear-gradient(135deg,#8b5cf6,#a78bfa);--gCy:linear-gradient(135deg,#06b6d4,#22d3ee);--gPk:linear-gradient(135deg,#ec4899,#f472b6);--sh:0 4px 20px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+.hd{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid var(--bdr);padding:36px 0;position:relative;overflow:hidden}
+.hd::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pr),var(--bl),var(--gn),var(--yl),var(--or),var(--rd),var(--pk))}
+.hc{max-width:1400px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.ht{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.hlg{display:flex;align-items:center;gap:10px}
+.hlg-i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff}
+.hlg-t{font-size:21px;font-weight:900}.hlg-t span{color:var(--gn)}
+.hlg-s{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px}
+.hbd{display:inline-flex;align-items:center;gap:6px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;color:var(--pr);text-transform:uppercase;letter-spacing:1.5px}
+.hd h1{font-size:34px;font-weight:900;letter-spacing:-1px;margin-bottom:5px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd h2{font-size:16px;font-weight:400;color:var(--t2);margin-bottom:18px}
+.hm{display:flex;gap:20px;flex-wrap:wrap}
+.hm-i{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3)}.hm-i span{color:var(--t2);font-weight:600}
+.ct{max-width:1400px;margin:0 auto;padding:36px 40px}
+.dg{display:grid;gap:20px}.dg2{grid-template-columns:1fr 1fr}
+.d{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:24px;transition:all .3s}
+.d:hover{border-color:rgba(139,92,246,.3);box-shadow:var(--sh);transform:translateY(-2px)}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.dt{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.db{font-size:9px;padding:2px 8px;border-radius:50px;font-weight:700}
+.di{font-size:10px;color:var(--t3);font-weight:600}
+.dk{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.dki{flex:1;min-width:75px;text-align:center;padding:10px 5px;background:rgba(255,255,255,.02);border-radius:8px;border:1px solid rgba(255,255,255,.04)}
+.dkv{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800}
+.dkl{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.dks{font-size:8px;color:var(--t3);margin-top:1px}
+.bg{margin-bottom:10px}
+.bl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+.bn{font-weight:600}.bv{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px}
+.bt{width:100%;height:22px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden}
+.bf{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:9px;font-weight:600;color:rgba(255,255,255,.85);min-width:2%}
+.pb{position:relative;height:28px;background:rgba(255,255,255,.04);border-radius:7px;overflow:visible;margin:6px 0}
+.pf{height:100%;border-radius:7px;display:flex;align-items:center;padding-left:8px;font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+.pt{position:absolute;top:-2px;bottom:-2px;width:3px;z-index:2;border-radius:2px}
+.pt::after{content:attr(data-l);position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:7px;font-weight:700;white-space:nowrap;color:var(--t2)}
+.mt{width:100%;font-size:11px;border-collapse:collapse;margin-top:12px}
+.mt th{text-align:left;padding:6px 8px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.mt td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.03)}
+.mt tr:last-child td{border-bottom:none}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+.nt{font-size:10px;color:var(--t2);padding:8px 12px;border-radius:8px;margin-top:10px}
+.al{border-radius:12px;padding:18px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
+.al-i{font-size:20px;flex-shrink:0;margin-top:2px}
+.al-c{flex:1}.al-t{font-size:13px;font-weight:700;margin-bottom:3px}
+.al-x{font-size:11px;color:var(--t2);line-height:1.6}
+.al-v{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;margin-top:5px}
+.cx{display:flex;align-items:center;gap:6px;margin-bottom:12px;padding:8px 12px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15);border-radius:8px;font-size:10px;color:var(--pr);font-weight:600;flex-wrap:wrap}
+.cx span{background:rgba(139,92,246,.15);padding:2px 8px;border-radius:4px;font-weight:700;font-size:9px}
+.ch{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:10px 0;font-size:11px}
+.ch-i{padding:5px 10px;border-radius:6px;font-weight:700;font-size:10px}
+.ch-a{color:var(--t3);font-size:14px}
+.ft{border-top:1px solid var(--bdr);margin-top:36px;padding:44px 40px}
+.fc{max-width:1400px;margin:0 auto}
+.fd{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:24px 0}
+.cc{background:linear-gradient(135deg,#111827,#1a2236);border:1px solid var(--bdr);border-radius:18px;padding:30px;display:flex;gap:28px;align-items:center;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#3b82f6,#8b5cf6)}
+.cp{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 8px 20px rgba(59,130,246,.3)}
+.ci{flex:1}.cl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gn);margin-bottom:5px}
+.cn{font-size:20px;font-weight:900;margin-bottom:10px}
+.ccs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cci{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2);background:rgba(255,255,255,.04);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.cci a{color:var(--bl);text-decoration:none}
+.cb{font-size:11px;color:var(--t3);line-height:1.8;border-top:1px solid var(--bdr);padding-top:10px;font-style:italic}
+.fb{text-align:center;padding-top:20px;color:var(--t3);font-size:10px}.fb strong{color:var(--t2)}
+@media(max-width:1024px){.dg2{grid-template-columns:1fr}.hd h1{font-size:24px}.ct{padding:20px}.cc{flex-direction:column;text-align:center}.ccs{justify-content:center}}
+@media(max-width:768px){.ht{flex-direction:column}.hm{flex-direction:column;gap:6px}}
+.fi{opacity:0;transform:translateY(18px);transition:all .6s ease}.fi.v{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="hd">
+<div class="hc">
+<div class="ht">
+<div class="hlg"><div class="hlg-i">R</div><div><div class="hlg-t">RURAL <span>IN</span></div><div class="hlg-s">Gestao Inteligente no Agro</div></div></div>
+<div class="hbd">Dashboards Integrados - 10 Paineis</div>
+</div>
+<h1>FAZENDA BRASILANDA - VISAO INTEGRADA</h1>
+<h2>Patricia Kompier - Cruzamento entre Pilares: RH x Nutricao x Financeiro x Producao x Reproducao</h2>
+<div class="hm">
+<div class="hm-i">Data: <span>Jan-Fev / 2026</span></div>
+<div class="hm-i">Paineis: <span>10 dashboards de cruzamento</span></div>
+<div class="hm-i">Rebanho: <span>Jan 1.454 / Fev 1.446 cab | VL: 859 / 841</span></div>
+<div class="hm-i">Producao: <span>Jan 32.535 / Fev 31.929 L/dia</span></div>
+<div class="hm-i">Equipe: <span>Jan 45 / Fev 47 funcionarios</span></div>
+<div class="hm-i">Area: <span>60 ha (50 pasto + 10 estrutura) | Confinamento</span></div>
+<div class="hm-i">Local: <span>Rio Verde - GO</span></div>
+</div>
+</div>
+</div>
+
+<div class="ct">
+<div class="dg dg2 fi">
+
+<!-- INT-01: Nutricao x Producao -->
+<div class="d" style="border-color:rgba(16,185,129,.25)">
+<div class="dh"><div class="dt">Nutricao x Producao - Conversao Alimentar</div><div class="di">INT-01</div></div>
+<div class="cx"><span>NUTRICAO</span> x <span>PRODUCAO</span> - Como a dieta se transforma em leite</div>
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--gn)">1,54</div><div class="dkl">EA (L/kgMS)</div><div class="dks">Meta: 1,55</div></div>
+<div class="dki"><div class="dkv" style="color:var(--bl)">24,6</div><div class="dkl">kg MS/vaca</div></div>
+<div class="dki"><div class="dkv" style="color:var(--gn)">38 L</div><div class="dkl">Prod/vaca</div><div class="dks">Jan 37,9 | Fev 38,0</div></div>
+<div class="dki"><div class="dkv" style="color:var(--gn)">R$0,80</div><div class="dkl">Custo Alim/L</div></div>
+</div>
+<div class="ch">
+<div class="ch-i" style="background:rgba(249,115,22,.1);color:var(--or)">24,6 kg MS</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(59,130,246,.1);color:var(--bl)">x EA 1,54</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(16,185,129,.1);color:var(--gn)">38 L leite</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(16,185,129,.15);color:var(--em)">R$ 106,40/dia</div>
+</div>
+<div class="bg"><div class="bl"><span class="bn">Custo Racao/Vaca/Dia</span><span class="bv" style="color:var(--or)">R$ 38,95</span></div><div class="bt"><div class="bf" style="width:36.6%;background:linear-gradient(90deg,#f97316,#fb923c)">R$ 38,95</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Receita Leite/Vaca/Dia</span><span class="bv" style="color:var(--gn)">R$ 106,40</span></div><div class="bt"><div class="bf" style="width:100%;background:var(--gGn)">R$ 106,40 (38L x R$ 2,80)</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--em)">IOFC (Receita - Racao)</span><span class="bv" style="color:var(--em)">R$ 67,45</span></div><div class="bt"><div class="bf" style="width:63.4%;background:var(--gGn)">R$ 67,45 - Excelente</div></div></div>
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12)">
+Para cada <strong>R$ 1,00 gasto em racao</strong> a fazenda gera <strong>R$ 2,73 em receita de leite</strong> (preco medio R$ 2,80/L). Retorno de 173%. A EA esta muito proxima da meta (1,54 vs 1,55). Produtividade individual estavel: Jan 37,9 | Fev 38,0 L/VL/dia.
+</div>
+</div>
+
+<!-- INT-02: Reproducao x Financeiro -->
+<div class="d" style="border-color:rgba(239,68,68,.3)">
+<div class="dh"><div class="dt">Reproducao x Financeiro - Custo do Gargalo <span class="db" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">MAIOR PERDA</span></div><div class="di">INT-02</div></div>
+<div class="cx"><span>REPRODUCAO</span> -> <span>PRODUCAO</span> -> <span>FINANCEIRO</span> - A cadeia de impacto</div>
+<div class="dk">
+<div class="dki" style="border-color:rgba(239,68,68,.2)"><div class="dkv" style="color:var(--rd)">10,3%</div><div class="dkl">Prenhez</div><div class="dks">Meta: 22%</div></div>
+<div class="dki" style="border-color:rgba(245,158,11,.2)"><div class="dkv" style="color:var(--yl)">186</div><div class="dkl">DEL</div><div class="dks">Meta: 160</div></div>
+<div class="dki" style="border-color:rgba(239,68,68,.2)"><div class="dkv" style="color:var(--rd)">58,6%</div><div class="dkl">% Lactacao</div><div class="dks">Jan 59% Fev 58,2%</div></div>
+<div class="dki" style="border-color:rgba(239,68,68,.2)"><div class="dkv" style="color:var(--rd)">R$165k</div><div class="dkl">Perda/Mes</div></div>
+</div>
+<div class="ch">
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd)">Prenhez 10,3%</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(245,158,11,.1);color:var(--yl)">DEL 186</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(249,115,22,.1);color:var(--or)">40% no 3o terco</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.15);color:var(--rd)">-R$ 165k/mes</div>
+</div>
+<table class="mt">
+<tr><th>Efeito em Cadeia</th><th>Situacao Atual</th><th>Se Prenhez = 22%</th><th>Ganho</th></tr>
+<tr><td>DEL Medio</td><td class="nm" style="color:var(--rd)">186 dias</td><td class="nm" style="color:var(--gn)">160 dias</td><td class="nm" style="color:var(--gn)">-26 dias</td></tr>
+<tr><td>Vacas em Lactacao</td><td class="nm">850 (58,6%)</td><td class="nm" style="color:var(--gn)">~1.085 (75%)</td><td class="nm" style="color:var(--gn)">+235 vacas</td></tr>
+<tr><td>Producao/Dia</td><td class="nm">32.232 L</td><td class="nm" style="color:var(--gn)">~41.230 L</td><td class="nm" style="color:var(--gn)">+8.998 L</td></tr>
+<tr><td>Receita Extra/Mes</td><td class="nm">-</td><td class="nm" style="color:var(--gn)">+R$ 750k</td><td class="nm" style="color:var(--gn)">+R$ 750k/mes</td></tr>
+<tr><td>Descarte (cai com reproducao)</td><td class="nm" style="color:var(--rd)">43%</td><td class="nm" style="color:var(--gn)">~28%</td><td class="nm" style="color:var(--gn)">-R$ 108k/mes</td></tr>
+</table>
+<div style="margin-top:14px;text-align:center;padding:14px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15);border-radius:10px">
+<div style="font-size:10px;color:var(--rd);font-weight:700">CUSTO TOTAL DO GARGALO REPRODUTIVO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:900;color:var(--rd)">R$ 130k - R$ 200k / mes</div>
+<div style="font-size:9px;color:var(--t3)">Menor producao + descarte elevado + reposicao cara</div>
+</div>
+</div>
+
+<!-- INT-03: RH x Nutricao -->
+<div class="d" style="border-color:rgba(249,115,22,.2)">
+<div class="dh"><div class="dt">RH x Nutricao - Horario de Alimentacao <span class="db" style="background:rgba(249,115,22,.15);color:var(--or);border:1px solid rgba(249,115,22,.3)">OPERACIONAL</span></div><div class="di">INT-03</div></div>
+<div class="cx"><span>RH (Equipe)</span> -> <span>NUTRICAO (Horario)</span> -> <span>PRODUCAO (Leite)</span> -> <span>FINANCEIRO (R$)</span></div>
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--rd)">08:40</div><div class="dkl">1a Alim L1-2</div><div class="dks">Fev (Jan: 08:52)</div></div>
+<div class="dki"><div class="dkv" style="color:var(--gn)">07:00</div><div class="dkl">Meta Ideal</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">+1h40</div><div class="dkl">Atraso</div></div>
+<div class="dki"><div class="dkv" style="color:var(--or)">R$38k</div><div class="dkl">Perda/Mes</div></div>
+</div>
+<div class="ch">
+<div class="ch-i" style="background:rgba(59,130,246,.1);color:var(--bl)">45->47 func</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(249,115,22,.1);color:var(--or)">Lote 1-2 come as 08:40</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd)">-0,5 a 1 L/vaca</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.15);color:var(--rd)">-R$ 38k/mes</div>
+</div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Lote 1 (98 vacas, alta prod.)</span><span class="bv" style="color:var(--rd)">08:38 (Fev)</span></div><div class="bt"><div class="bf" style="width:78%;background:var(--gRd)">1h38 de atraso! (Jan: 08:45)</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Lote 2 (96 vacas, alta prod.)</span><span class="bv" style="color:var(--rd)">08:42 (Fev)</span></div><div class="bt"><div class="bf" style="width:80%;background:var(--gRd)">1h42 de atraso! (Jan: 08:50)</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Meta ideal</span><span class="bv" style="color:var(--gn)">07:00</span></div><div class="bt"><div class="bf" style="width:45%;background:var(--gGn)">07:00</div></div></div>
+<div class="nt" style="background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.12)">
+<strong>Solucao de custo zero:</strong> reorganizar turnos para priorizar lotes de alta producao. 194 vacas comendo 1h40 antes = +97 a +194 L/dia = R$ 272 a R$ 543/dia = <strong>R$ 8k a R$ 16k/mes apenas com a mudanca de turno</strong>. Fev ja melhorou ~12 min vs Jan. Com ajuste completo: R$ 25-50k/mes.
+</div>
+</div>
+
+<!-- INT-04: Descarte x Financeiro -->
+<div class="d" style="border-color:rgba(239,68,68,.2)">
+<div class="dh"><div class="dt">Descarte x Financeiro - Custo de Reposicao</div><div class="di">INT-04</div></div>
+<div class="cx"><span>REPRODUCAO</span> -> <span>DESCARTE</span> -> <span>REPOSICAO</span> -> <span>FINANCEIRO</span></div>
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--rd)">43%</div><div class="dkl">Descarte/Ano</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">~440</div><div class="dkl">Vacas/Ano</div></div>
+<div class="dki"><div class="dkv" style="color:var(--or)">R$10k</div><div class="dkl">Custo/Novilha</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">R$4,4M</div><div class="dkl">Reposicao/Ano</div></div>
+</div>
+<div class="ch">
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd)">Prenhez 10,3%</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd)">Vaca nao emprenha</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(249,115,22,.1);color:var(--or)">Descarte 43%</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.15);color:var(--rd)">Comprar 440 novilhas</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.2);color:var(--rd)">R$ 4,4M/ano</div>
+</div>
+<table class="mt">
+<tr><th>Cenario</th><th>Descarte</th><th>Vacas/Ano</th><th>Custo Reposicao/Ano</th><th>Economia vs Atual</th></tr>
+<tr style="background:rgba(239,68,68,.04)"><td style="color:var(--rd)">Atual</td><td class="nm">43%</td><td class="nm">440</td><td class="nm" style="color:var(--rd)">R$ 4,40M</td><td>-</td></tr>
+<tr><td style="color:var(--gn)">Meta (28%)</td><td class="nm">28%</td><td class="nm">287</td><td class="nm">R$ 2,87M</td><td class="nm" style="color:var(--gn)">R$ 1,53M/ano</td></tr>
+<tr><td style="color:var(--gn)">Top (22%)</td><td class="nm">22%</td><td class="nm">225</td><td class="nm">R$ 2,25M</td><td class="nm" style="color:var(--gn)">R$ 2,15M/ano</td></tr>
+</table>
+<div class="nt" style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12)">
+Reduzir descarte de 43% para 28% = <strong>economia de R$ 127.500/mes</strong> (R$ 1,53M/ano) apenas em reposicao. Vacas que ficam mais tempo no rebanho sao mais produtivas (conhecem o sistema, estao adaptadas).
+</div>
+</div>
+
+<!-- INT-05: Nutricao x Saude - Transicao -->
+<div class="d">
+<div class="dh"><div class="dt">Nutricao x Saude - Transicao Problematica <span class="db" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">RISCO</span></div><div class="di">INT-05</div></div>
+<div class="cx"><span>NUTRICAO (Transicao)</span> -> <span>SAUDE</span> -> <span>REPRODUCAO</span> -> <span>PRODUCAO</span></div>
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--yl)">10,3</div><div class="dkl">CMS Pre (kg)</div><div class="dks">Meta: 12-14</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">19,9</div><div class="dkl">CMS Pos (kg)</div><div class="dks">Meta: 21+</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">19%</div><div class="dkl">Sobra Pos</div><div class="dks">Meta: 3-5%</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">20,4%</div><div class="dkl">DP Pre</div><div class="dks">Meta: 8% max</div></div>
+</div>
+<div class="ch">
+<div class="ch-i" style="background:rgba(245,158,11,.1);color:var(--yl)">CMS Pre baixo</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd)">CMS Pos cai</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd)">Balanco Energ. Negativo</div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.15);color:var(--rd)">Cetose / DA / Falha Reprod.</div>
+</div>
+<div class="bg"><div class="bl"><span class="bn">Pre-Parto</span><span class="bv" style="color:var(--yl)">10,3 kg</span></div><div class="pb"><div class="pf" style="width:73.6%;background:var(--gYl)">10,3 kg</div><div class="pt" style="left:100%;background:var(--gn)" data-l="Meta 14"></div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Pos-Parto</span><span class="bv" style="color:var(--rd)">19,9 kg</span></div><div class="pb"><div class="pf" style="width:66.3%;background:var(--gRd)">19,9 kg</div><div class="pt" style="left:80%;background:var(--gn)" data-l="Meta 24"></div></div></div>
+<div class="nt" style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12)">
+<strong>Ciclo vicioso:</strong> Pre-parto come pouco, rumen nao esta preparado, pos-parto nao consegue comer o suficiente, balanco energetico negativo severo, risco alto de cetose, deslocamento de abomaso, atraso na reproducao, DEL sobe, producao cai, prejuizo.
+</div>
+</div>
+
+<!-- INT-06: IOFC por Lote -->
+<div class="d" style="border-color:rgba(16,185,129,.2)">
+<div class="dh"><div class="dt">Producao x Economia - IOFC por Lote</div><div class="di">INT-06</div></div>
+<div class="cx"><span>PRODUCAO</span> x <span>NUTRICAO</span> -> <span>IOFC</span> - Qual lote gera mais retorno sobre a dieta? (Preco: R$ 2,80/L)</div>
+<table class="mt">
+<tr><th>Lote</th><th>L/Vaca/Dia</th><th>Custo Alim/Dia</th><th>Receita/Dia</th><th>IOFC/Dia</th><th>Status</th></tr>
+<tr><td><strong>Lote 1</strong></td><td class="nm">42</td><td class="nm">R$ 38,95</td><td class="nm">R$ 117,60</td><td class="nm" style="color:var(--gn)">R$ 78,65</td><td style="color:var(--gn)">Melhor</td></tr>
+<tr><td><strong>Lote 2</strong></td><td class="nm">40</td><td class="nm">R$ 38,06</td><td class="nm">R$ 112,00</td><td class="nm" style="color:var(--gn)">R$ 73,94</td><td style="color:var(--gn)">Otimo</td></tr>
+<tr><td><strong>Lote 3</strong></td><td class="nm">39</td><td class="nm">R$ 39,73</td><td class="nm">R$ 109,20</td><td class="nm" style="color:var(--gn)">R$ 69,47</td><td style="color:var(--gn)">Otimo</td></tr>
+<tr><td><strong>Lote 5</strong></td><td class="nm">36</td><td class="nm">R$ 36,50</td><td class="nm">R$ 100,80</td><td class="nm" style="color:var(--gn)">R$ 64,30</td><td style="color:var(--gn)">Bom</td></tr>
+<tr><td><strong>Lote P1</strong></td><td class="nm">34</td><td class="nm">R$ 34,09</td><td class="nm">R$ 95,20</td><td class="nm" style="color:var(--gn)">R$ 61,11</td><td style="color:var(--gn)">Bom</td></tr>
+<tr><td><strong>Lote 4</strong></td><td class="nm">32</td><td class="nm">R$ 30,79</td><td class="nm">R$ 89,60</td><td class="nm" style="color:var(--gn)">R$ 58,81</td><td style="color:var(--gn)">Bom</td></tr>
+<tr><td><strong>Lote 6</strong></td><td class="nm">28</td><td class="nm">R$ 26,95</td><td class="nm">R$ 78,40</td><td class="nm" style="color:var(--gn)">R$ 51,45</td><td style="color:var(--gn)">Bom</td></tr>
+<tr><td><strong>Pos-Parto</strong></td><td class="nm">32</td><td class="nm">R$ 33,14</td><td class="nm">R$ 89,60</td><td class="nm" style="color:var(--gn)">R$ 56,46</td><td style="color:var(--gn)">Bom</td></tr>
+</table>
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12)">
+<strong>Todos os lotes tem IOFC positivo!</strong> Isso e excelente. O Lote 1 e o campeao (R$ 78,65/vaca/dia com preco a R$ 2,80). A nutricao esta bem calibrada - o problema nao e conversao, e ter <strong>poucas vacas em lactacao</strong> (850 media vs meta 1.085).
+</div>
+</div>
+
+<!-- INT-07: Sobras x Custo -->
+<div class="d" style="border-color:rgba(239,68,68,.2)">
+<div class="dh"><div class="dt">Sobras x Custo - Desperdicio Total <span class="db" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">PERDA EVITAVEL</span></div><div class="di">INT-07</div></div>
+<div class="cx"><span>NUTRICAO (Sobras)</span> -> <span>FINANCEIRO (Custo)</span> - Dinheiro jogado no cocho e depois no lixo</div>
+<div class="dk">
+<div class="dki"><div class="dkv" style="color:var(--rd)">~10%</div><div class="dkl">Sobras Media</div><div class="dks">Meta: 3-5%</div></div>
+<div class="dki"><div class="dkv" style="color:var(--gn)">3-5%</div><div class="dkl">Meta</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">R$97k</div><div class="dkl">Desperdicio/Mes</div></div>
+<div class="dki"><div class="dkv" style="color:var(--rd)">R$1,2M</div><div class="dkl">Desperdicio/Ano</div></div>
+</div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Pos-Parto: 19%</span><span class="bv" style="color:var(--rd)">R$ 18.900/mes</span></div><div class="bt"><div class="bf" style="width:100%;background:var(--gRd)">19%</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Pre-Parto: 17,1%</span><span class="bv" style="color:var(--rd)">R$ 7.200/mes</span></div><div class="bt"><div class="bf" style="width:90%;background:var(--gRd)">17,1%</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--or)">Lote 3: 14,1%</span><span class="bv" style="color:var(--or)">R$ 16.100/mes</span></div><div class="bt"><div class="bf" style="width:74.2%;background:linear-gradient(90deg,#f97316,#fb923c)">14,1%</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Lote 4: 12,1%</span><span class="bv">R$ 9.700/mes</span></div><div class="bt"><div class="bf" style="width:63.7%;background:var(--gYl)">12,1%</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Lote 1: 11,9%</span><span class="bv">R$ 13.900/mes</span></div><div class="bt"><div class="bf" style="width:62.6%;background:var(--gYl)">11,9%</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Outros lotes</span><span class="bv">R$ 31.200/mes</span></div><div class="bt"><div class="bf" style="width:42%;background:rgba(148,163,184,.2)">6-11%</div></div></div>
+<div style="margin-top:14px;text-align:center;padding:14px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15);border-radius:10px">
+<div style="font-size:10px;color:var(--rd);font-weight:700">REDUZIR DE 10% PARA 4% NOS LOTES PRODUTIVOS</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:900;color:var(--gn)">Economia: R$ 60k - R$ 97k / mes</div>
+<div style="font-size:9px;color:var(--t3)">= R$ 720k - R$ 1,16M / ano</div>
+</div>
+</div>
+
+<!-- INT-08: Terra x Producao (60 ha - CONFINAMENTO) -->
+<div class="d" style="border-color:rgba(16,185,129,.3)">
+<div class="dh"><div class="dt">Terra x Producao - Ocupacao e Intensificacao <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">ELITE</span></div><div class="di">INT-08</div></div>
+<div class="cx"><span>TERRA (60 ha)</span> x <span>REBANHO</span> x <span>PRODUCAO</span> - Sistema: Confinamento | 50 ha pasto + 10 ha estrutura</div>
+<div class="dk">
+<div class="dki" style="border-color:rgba(16,185,129,.2)"><div class="dkv" style="color:var(--gn)">60</div><div class="dkl">Hectares Total</div><div class="dks">50 pasto + 10 estrutura</div></div>
+<div class="dki" style="border-color:rgba(16,185,129,.2)"><div class="dkv" style="color:var(--gn)">190.262</div><div class="dkl">L/Ha/Ano</div><div class="dks">Elite mundial</div></div>
+<div class="dki" style="border-color:rgba(16,185,129,.2)"><div class="dkv" style="color:var(--gn)">24,2</div><div class="dkl">Cab/Ha</div><div class="dks">Confinamento intensivo</div></div>
+<div class="dki" style="border-color:rgba(16,185,129,.2)"><div class="dkv" style="color:var(--gn)">14,2</div><div class="dkl">Vac Lact/Ha</div><div class="dks">Altissimo</div></div>
+</div>
+<div style="display:flex;gap:10px;margin-bottom:16px">
+<div style="flex:1;text-align:center;padding:10px;background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);border-radius:8px">
+<div style="font-size:8px;color:var(--t3);font-weight:600;text-transform:uppercase">Pastagem</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:800;color:var(--gn)">50 ha</div>
+<div style="font-size:8px;color:var(--t3)">83,3% da area</div>
+</div>
+<div style="flex:1;text-align:center;padding:10px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.12);border-radius:8px">
+<div style="font-size:8px;color:var(--t3);font-weight:600;text-transform:uppercase">Estrutura / Benfeitorias</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:800;color:var(--bl)">10 ha</div>
+<div style="font-size:8px;color:var(--t3)">16,7% da area</div>
+</div>
+<div style="flex:1;text-align:center;padding:10px;background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12);border-radius:8px">
+<div style="font-size:8px;color:var(--t3);font-weight:600;text-transform:uppercase">Area Total Leite</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:800;color:var(--pr)">60 ha</div>
+<div style="font-size:8px;color:var(--t3)">100% dedicada</div>
+</div>
+</div>
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:10px">L/Ha/Ano - Benchmark por Sistema</div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">FAZENDA BRASILANDA (Confinamento)</span><span class="bv" style="color:var(--gn)">190.262 L/ha/ano</span></div><div class="bt"><div class="bf" style="width:100%;background:var(--gGn)">190.262 - ELITE MUNDIAL</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Top Confinamento BR</span><span class="bv">120.000 - 200.000</span></div><div class="bt"><div class="bf" style="width:84%;background:rgba(16,185,129,.15)">Faixa top confinamento</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Confinamento Medio BR</span><span class="bv">60.000 - 100.000</span></div><div class="bt"><div class="bf" style="width:42%;background:rgba(148,163,184,.15)">Confinamento medio</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--t3)">Top Semi-Confinamento</span><span class="bv" style="color:var(--t3)">25.000 - 40.000</span></div><div class="bt"><div class="bf" style="width:17%;background:rgba(148,163,184,.1)">Semi-conf. top</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--t3)">Sistema a Pasto Top</span><span class="bv" style="color:var(--t3)">15.000 - 25.000</span></div><div class="bt"><div class="bf" style="width:10.5%;background:rgba(148,163,184,.08)">Pasto top</div></div></div>
+<div style="height:1px;background:rgba(255,255,255,.04);margin:16px 0"></div>
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:10px">Potencial - Se Reproducao Melhorar (850 -> 1.085 VL)</div>
+<table class="mt">
+<tr><th>Cenario</th><th>VL</th><th>Prod/Dia</th><th>L/Ha/Ano</th><th>Status</th></tr>
+<tr style="background:rgba(245,158,11,.03)"><td>Atual (media)</td><td class="nm">850</td><td class="nm">32.232 L</td><td class="nm" style="color:var(--gn)">190.262</td><td style="color:var(--gn)">Elite</td></tr>
+<tr><td>Meta (+VL)</td><td class="nm" style="color:var(--gn)">1.085</td><td class="nm" style="color:var(--gn)">41.230 L</td><td class="nm" style="color:var(--gn)">250.900</td><td style="color:var(--gn)">Classe mundial</td></tr>
+<tr><td>Ganho</td><td class="nm" style="color:var(--gn)">+235</td><td class="nm" style="color:var(--gn)">+8.998 L/dia</td><td class="nm" style="color:var(--gn)">+60.638</td><td>+31,9%</td></tr>
+</table>
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12)">
+<strong>A Fazenda Brasilanda ja opera no nivel ELITE de intensificacao</strong> - 190k L/ha/ano em apenas 60 ha (confinamento). O uso da terra NAO e gargalo. Com melhoria da reproducao (850 -> 1.085 VL), sobe para <strong>250.900 L/ha/ano</strong> sem precisar de mais 1 m2 de terra. A limitacao e reprodutiva, nao fundiaria.
+</div>
+</div>
+
+<!-- INT-09: Scorecard 9 Pilares -->
+<div class="d" style="border-color:rgba(139,92,246,.25)">
+<div class="dh"><div class="dt">Scorecard Geral - 9 Pilares da Fazenda <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">NOTA GERAL: 7,2</span></div><div class="di">INT-09</div></div>
+<div class="bg"><div class="bl"><span class="bn">Estrategia e Visao</span><span class="bv" style="color:var(--gn)">9,0 / 10</span></div><div class="bt"><div class="bf" style="width:90%;background:var(--gGn)">9,0 - Excelente visao de longo prazo</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Producao Individual</span><span class="bv" style="color:var(--gn)">8,5 / 10</span></div><div class="bt"><div class="bf" style="width:85%;background:var(--gGn)">8,5 - 38 L/vaca/dia, genetica top</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Intensificacao / Terra</span><span class="bv" style="color:var(--gn)">9,0 / 10</span></div><div class="bt"><div class="bf" style="width:90%;background:var(--gGn)">9,0 - 190k L/ha/ano, ELITE confinamento</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Economia / Margem</span><span class="bv" style="color:var(--bl)">7,8 / 10</span></div><div class="bt"><div class="bf" style="width:78%;background:var(--gBl)">7,8 - Margem caiu Fev (R$0,74/L), IOFC forte</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Nutricao / EA</span><span class="bv" style="color:var(--bl)">7,5 / 10</span></div><div class="bt"><div class="bf" style="width:75%;background:var(--gBl)">7,5 - EA 1,54, mas sobras altas</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Rebanho / Estrutura</span><span class="bv">7,0 / 10</span></div><div class="bt"><div class="bf" style="width:70%;background:var(--gBl)">7,0 - 58,6% lactacao (meta 75%)</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Organizacao / RH</span><span class="bv" style="color:var(--bl)">7,0 / 10</span></div><div class="bt"><div class="bf" style="width:70%;background:var(--gBl)">7,0 - Turnover 0%, folha caiu 17,5%</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Sanidade</span><span class="bv" style="color:var(--yl)">6,5 / 10</span></div><div class="bt"><div class="bf" style="width:65%;background:var(--gYl)">6,5 - Saude melhorou, transicao critica</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Reproducao</span><span class="bv" style="color:var(--rd)">4,0 / 10</span></div><div class="bt"><div class="bf" style="width:40%;background:var(--gRd)">4,0 - PRINCIPAL GARGALO</div></div></div>
+<div style="margin-top:14px;display:flex;gap:14px">
+<div style="flex:1;text-align:center;padding:12px;background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.15);border-radius:10px">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Nota Geral</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:900;color:var(--pr)">7,4</div>
+<div style="font-size:10px;color:var(--t2)">de 10,0 | Classificacao: BOM</div>
+</div>
+<div style="flex:1;text-align:center;padding:12px;background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:10px">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px">Nota Potencial (C/ Acoes)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:900;color:var(--gn)">8,9</div>
+<div style="font-size:10px;color:var(--t2)">de 10,0 | Classificacao: EXCELENTE</div>
+</div>
+</div>
+</div>
+
+<!-- INT-10: Ganho Potencial Consolidado -->
+<div class="d" style="border-color:rgba(16,185,129,.3)">
+<div class="dh"><div class="dt">Ganho Potencial Consolidado - Mapa de Oportunidades <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">ROADMAP</span></div><div class="di">INT-10</div></div>
+<div class="cx"><span>TODOS OS PILARES</span> -> Quanto a fazenda pode ganhar a mais por mes corrigindo cada ponto</div>
+<div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:10px">Ranking de Oportunidades - Por Impacto Financeiro Mensal</div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">#1 Reproducao (prenhez 10->22%)</span><span class="bv" style="color:var(--rd)">R$ 165k/mes</span></div><div class="bt"><div class="bf" style="width:100%;background:var(--gRd)">R$ 165k - Maior impacto</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">#2 Descarte (43->28%)</span><span class="bv" style="color:var(--rd)">R$ 108k/mes</span></div><div class="bt"><div class="bf" style="width:65.5%;background:linear-gradient(90deg,#ef4444,#fb923c)">R$ 108k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--or)">#3 Sobras (10->4%)</span><span class="bv" style="color:var(--or)">R$ 97k/mes</span></div><div class="bt"><div class="bf" style="width:58.8%;background:linear-gradient(90deg,#f97316,#fb923c)">R$ 97k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--pr)">#4 Qualidade Leite (bonific.)</span><span class="bv" style="color:var(--pr)">R$ 95k/mes</span></div><div class="bt"><div class="bf" style="width:57.6%;background:var(--gPr)">R$ 95k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--yl)">#5 Reduzir MO (47->34 func)</span><span class="bv" style="color:var(--yl)">R$ 78k/mes</span></div><div class="bt"><div class="bf" style="width:47.3%;background:var(--gYl)">R$ 78k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">#6 Horario Alimentacao</span><span class="bv">R$ 38k/mes</span></div><div class="bt"><div class="bf" style="width:23%;background:var(--gBl)">R$ 38k</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">#7 Transicao Pre/Pos</span><span class="bv">R$ 25k/mes</span></div><div class="bt"><div class="bf" style="width:15.2%;background:var(--gCy)">R$ 25k</div></div></div>
+<table class="mt">
+<tr><th>Oportunidade</th><th>Investimento</th><th>Ganho/Mes</th><th>Payback</th><th>Facilidade</th></tr>
+<tr><td>Antecipar Alimentacao</td><td class="nm" style="color:var(--gn)">R$ 0</td><td class="nm" style="color:var(--gn)">R$ 38k</td><td class="nm" style="color:var(--gn)">Imediato</td><td style="color:var(--gn)">Facil</td></tr>
+<tr><td>Reduzir Sobras</td><td class="nm">R$ 5k</td><td class="nm" style="color:var(--gn)">R$ 97k</td><td class="nm" style="color:var(--gn)">2 dias</td><td style="color:var(--gn)">Facil</td></tr>
+<tr><td>IATF + Manejar Reprod.</td><td class="nm">R$ 15k</td><td class="nm" style="color:var(--gn)">R$ 165k</td><td class="nm" style="color:var(--gn)">3 dias</td><td style="color:var(--yl)">Medio</td></tr>
+<tr><td>Bonific. Qualidade</td><td class="nm">R$ 10k</td><td class="nm" style="color:var(--gn)">R$ 95k</td><td class="nm" style="color:var(--gn)">3 dias</td><td style="color:var(--yl)">Medio</td></tr>
+<tr><td>Redimensionar MO (47->34)</td><td class="nm">R$ 180k</td><td class="nm" style="color:var(--gn)">R$ 78k</td><td class="nm" style="color:var(--yl)">2,3 meses</td><td style="color:var(--yl)">Medio</td></tr>
+<tr><td>Resfriamento (calor)</td><td class="nm">R$ 100k</td><td class="nm" style="color:var(--gn)">R$ 60k</td><td class="nm" style="color:var(--yl)">50 dias</td><td style="color:var(--yl)">Medio</td></tr>
+</table>
+<div style="margin-top:16px;text-align:center;padding:16px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(52,211,153,.08));border:1px solid rgba(16,185,129,.25);border-radius:12px">
+<div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px">Potencial Total de Ganho Mensal - Todas as Acoes</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:38px;font-weight:900;color:var(--gn)">R$ 530k - R$ 712k/mes</div>
+<div style="font-size:12px;color:var(--t2);margin-top:4px">+80% a +108% sobre o resultado atual</div>
+<div style="font-size:11px;color:var(--em);font-weight:700;margin-top:8px">Resultado potencial: R$ 1,17M - R$ 1,36M / mes = R$ 14M - R$ 16,3M / ano</div>
+</div>
+</div>
+
+</div>
+
+<!-- CADEIA DE IMPACTO VISUAL -->
+<div style="margin-top:36px" class="fi">
+<div style="font-size:20px;font-weight:800;margin-bottom:20px">Mapa de Conexoes - Como Cada Pilar Afeta o Outro</div>
+<div class="d">
+<div style="font-size:12px;font-weight:800;color:var(--t1);margin-bottom:14px">Cadeia Principal de Impacto (maior perda -> maior ganho)</div>
+<div class="ch" style="justify-content:center;margin:20px 0">
+<div class="ch-i" style="background:rgba(239,68,68,.15);color:var(--rd);font-size:12px;padding:10px 16px">REPRODUCAO<br><span style="font-size:9px">Prenhez 10,3%</span></div>
+<div class="ch-a" style="font-size:20px">-></div>
+<div class="ch-i" style="background:rgba(245,158,11,.1);color:var(--or);font-size:12px;padding:10px 16px">DESCARTE<br><span style="font-size:9px">43% ao ano</span></div>
+<div class="ch-a" style="font-size:20px">-></div>
+<div class="ch-i" style="background:rgba(245,158,11,.1);color:var(--yl);font-size:12px;padding:10px 16px">DEL ALTO<br><span style="font-size:9px">186 dias</span></div>
+<div class="ch-a" style="font-size:20px">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd);font-size:12px;padding:10px 16px">MENOS LEITE<br><span style="font-size:9px">-8.930 L/dia</span></div>
+<div class="ch-a" style="font-size:20px">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.15);color:var(--rd);font-size:12px;padding:10px 16px">PERDA<br><span style="font-size:9px">R$ 165k/mes</span></div>
+</div>
+
+<div style="font-size:12px;font-weight:800;color:var(--t1);margin:24px 0 14px">Cadeia Secundaria - Nutricao / RH</div>
+<div class="ch" style="justify-content:center;margin:16px 0">
+<div class="ch-i" style="background:rgba(59,130,246,.1);color:var(--bl);font-size:11px;padding:8px 12px">EQUIPE<br><span style="font-size:8px">45->47 func</span></div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(249,115,22,.1);color:var(--or);font-size:11px;padding:8px 12px">ALIMENTACAO<br><span style="font-size:8px">08:40 (meta 07:00)</span></div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd);font-size:11px;padding:8px 12px">SOBRAS 10%<br><span style="font-size:8px">Meta: 3-5%</span></div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd);font-size:11px;padding:8px 12px">-R$ 135k/mes<br><span style="font-size:8px">Horario + Sobras</span></div>
+</div>
+
+<div style="font-size:12px;font-weight:800;color:var(--t1);margin:24px 0 14px">Cadeia Terciaria - Transicao / Saude</div>
+<div class="ch" style="justify-content:center;margin:16px 0">
+<div class="ch-i" style="background:rgba(245,158,11,.1);color:var(--yl);font-size:11px;padding:8px 12px">PRE-PARTO<br><span style="font-size:8px">CMS 10,3 kg</span></div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd);font-size:11px;padding:8px 12px">POS-PARTO<br><span style="font-size:8px">CMS 19,9 kg</span></div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd);font-size:11px;padding:8px 12px">CETOSE/DA<br><span style="font-size:8px">Balanco negativo</span></div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.1);color:var(--rd);font-size:11px;padding:8px 12px">FALHA REPROD.<br><span style="font-size:8px">Nao emprenha</span></div>
+<div class="ch-a">-></div>
+<div class="ch-i" style="background:rgba(239,68,68,.15);color:var(--rd);font-size:11px;padding:8px 12px">DESCARTE<br><span style="font-size:8px">Vaca sai do rebanho</span></div>
+</div>
+</div>
+</div>
+
+<!-- ALERTAS -->
+<div style="margin-top:36px" class="fi">
+<div style="font-size:20px;font-weight:800;margin-bottom:20px">Conclusao Integrada - Top 3 Acoes Prioritarias</div>
+
+<div class="al" style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15)">
+<div class="al-i">1</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--rd)">PRIORIDADE #1 - Corrigir Reproducao (IATF intensivo)</div>
+<div class="al-x">Investir R$ 15k em protocolo IATF + treinamento da equipe. Subir prenhez de 10,3% para 18-22% em 6 meses. Impacto: mais vacas em lactacao (850 para 1.085), DEL menor, descarte menor, receita maior. E o domino que move todos os outros indicadores.</div>
+<div class="al-v" style="color:var(--gn)">Ganho: R$ 165k/mes | Payback: 3 dias | Impacto em 12 pilares</div>
+</div>
+</div>
+
+<div class="al" style="background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.15)">
+<div class="al-i">2</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--or)">PRIORIDADE #2 - Reduzir Sobras + Antecipar Alimentacao</div>
+<div class="al-x">Investir R$ 5k em monitoramento + custo zero na reorganizacao de turnos. Reduzir sobras de 10% para 4% e antecipar alimentacao dos lotes 1-2 para 07:00 (hoje 08:40, melhorou 12 min vs Jan). Ganho imediato, sem necessidade de esperar meses.</div>
+<div class="al-v" style="color:var(--gn)">Ganho: R$ 135k/mes | Payback: imediato a 2 dias</div>
+</div>
+</div>
+
+<div class="al" style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.15)">
+<div class="al-i">3</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--pr)">PRIORIDADE #3 - Redimensionar MO + Buscar Bonificacao de Qualidade</div>
+<div class="al-x">Plano de 6-12 meses para reduzir de <strong>47 para 34 funcionarios</strong> (via nao-reposicao + automacao parcial). Turnover 0% facilita o plano gradual. Paralelamente, solicitar relatorios de qualidade e negociar bonificacao de R$ 0,10/L com laticinio. Folha Fev ja caiu 17,5% - aproveitar o momento.</div>
+<div class="al-v" style="color:var(--gn)">Ganho: R$ 173k/mes (R$ 78k MO + R$ 95k qualidade) | Economia MO/ano: R$ 930k</div>
+</div>
+</div>
+
+<div style="margin-top:20px;text-align:center;padding:18px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(59,130,246,.06));border:1px solid rgba(16,185,129,.25);border-radius:14px">
+<div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px">Resultado Projetado - Com Implementacao das 3 Prioridades</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:900;color:var(--gn);margin:8px 0">R$ 1,1M - R$ 1,4M / mes</div>
+<div style="font-size:13px;color:var(--t2)">vs. Atual: ~R$ 661k/mes (Fev) - <strong style="color:var(--gn)">Crescimento de +66% a +112%</strong></div>
+<div style="font-size:11px;color:var(--em);font-weight:700;margin-top:8px">Projecao Anual: R$ 13,2M - R$ 16,8M</div>
+</div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="ft">
+<div class="fc">
+<div class="cc">
+<div class="cp">SS</div>
+<div class="ci">
+<div class="cl">Analise e Construcao</div>
+<div class="cn">Dr. Sidney Souza</div>
+<div class="ccs">
+<div class="cci">E-mail: <a href="mailto:sidneyagro@gmail.com">sidneyagro@gmail.com</a></div>
+<div class="cci">Fone: <a href="tel:+5564992266886">(64) 9 9226-6886</a></div>
+<div class="cci">Insta: <a href="https://instagram.com/ruralin.ai" target="_blank">@ruralin.ai</a></div>
+</div>
+<div class="cb"><strong>*Nota:</strong> Sidney Souza e Doutor em Agronomia, Mestre em Administracao, especialista em economia agricola e financas do agronegocio. Com formacao em Administracao e Economia, e fundador da <strong>Rural IN - Gestao Inteligente com Tecnologia no Agro</strong>, Consultor, Professor e Palestrante. Atua ha mais de 25 anos no desenvolvimento de estrategias, analise de mercado e gestao da informacao e do conhecimento, auxiliando produtores(as) em decisoes e reestruturacao segura em cenarios de volatilidade e risco.</div>
+</div>
+</div>
+<div class="fd"></div>
+<div style="display:flex;justify-content:center;margin-bottom:12px"><div style="display:inline-flex;align-items:center;gap:8px"><div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff">R</div><div style="font-size:17px;font-weight:900;color:#94a3b8">RURAL <span style="color:#10b981">IN</span></div></div></div>
+<div class="fb">
+<p><strong>FAZENDA BRASILANDA - Patricia Kompier</strong></p>
+<p>Dashboards Integrados - 10 Paineis de Cruzamento | Pecuaria de Leite | Confinamento</p>
+<p>Periodo: Janeiro e Fevereiro / 2026 | Atualizado em: 11/03/2026</p>
+<p style="margin-top:8px">Dados oficiais | Benchmarks: Embrapa, Rehagro, MilkPoint, SENAR</p>
+<p style="margin-top:3px">Rebanho: Jan 1.454 / Fev 1.446 | VL: Jan 859 / Fev 841 | Equipe: Jan 45 / Fev 47 | Area: 60 ha</p>
+<p style="margin-top:3px">Producao: Jan 1.008.588 L / Fev 894.029 L | Preco: R$ 2,72 -> R$ 2,80</p>
+<p style="margin-top:5px;font-size:9px">2026 Rural IN - Gestao Inteligente com Tecnologia no Agro. Todos os direitos reservados.</p>
+</div>
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fi').forEach(function(e){o.observe(e)});
+});
+</script>
+</body>
+</html>

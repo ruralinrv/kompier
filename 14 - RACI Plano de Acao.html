@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — Plano de Acao 12 Meses | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+:root{--bg:#0a0e1a;--card:#1a2236;--card2:#141c2f;--bdr:#2a3654;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899;--sh:0 4px 20px rgba(0,0,0,.3);
+--p1:#ef4444;--p2:#f97316;--p3:#f59e0b;--p4:#3b82f6;--p5:#8b5cf6;--p6:#06b6d4;--p7:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+
+/* HEADER */
+.hd{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid var(--bdr);padding:36px 0;position:relative;overflow:hidden}
+.hd::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--p1),var(--p2),var(--p3),var(--p4),var(--p5),var(--p6),var(--p7))}
+.hc{max-width:1400px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.ht{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.hlg{display:flex;align-items:center;gap:10px}
+.hlg-i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff}
+.hlg-t{font-size:21px;font-weight:900}.hlg-t span{color:var(--gn)}
+.hlg-s{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px}
+.hbd{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(59,130,246,.1));border:1px solid rgba(16,185,129,.3);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;color:var(--gn);text-transform:uppercase;letter-spacing:1.5px}
+.hd h1{font-size:34px;font-weight:900;letter-spacing:-1px;margin-bottom:5px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd h2{font-size:16px;font-weight:400;color:var(--t2);margin-bottom:18px}
+.hm{display:flex;gap:20px;flex-wrap:wrap}
+.hm-i{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3)}.hm-i span{color:var(--t2);font-weight:600}
+
+/* LAYOUT */
+.ct{max-width:1400px;margin:0 auto;padding:36px 40px}
+.st{font-size:22px;font-weight:900;margin:40px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.st:first-of-type{margin-top:0}
+.st-b{font-size:10px;padding:3px 12px;border-radius:50px;font-weight:700}
+.d{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:24px;transition:all .3s;margin-bottom:20px}
+.d:hover{border-color:rgba(16,185,129,.3);box-shadow:var(--sh)}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.dt{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.db{font-size:9px;padding:2px 8px;border-radius:50px;font-weight:700}
+.di{font-size:10px;color:var(--t3);font-weight:600}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+.nt{font-size:10px;color:var(--t2);padding:8px 12px;border-radius:8px;margin-top:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+
+/* PROGRESS BAR */
+.prog{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-top:4px}
+.prog-fill{height:100%;border-radius:3px;transition:width 1s ease}
+.prog-lg{height:10px;border-radius:5px}
+
+/* TABLE */
+.mt{width:100%;font-size:11px;border-collapse:collapse;margin-top:12px}
+.mt th{text-align:left;padding:8px 10px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0;background:var(--card);z-index:5}
+.mt td{padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.03)}
+.mt tr:hover{background:rgba(255,255,255,.02)}
+
+/* TIMELINE */
+.tl{position:relative;padding-left:40px;margin:20px 0}
+.tl::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--p1),var(--p2),var(--p3),var(--p4),var(--p5),var(--p6),var(--p7));border-radius:3px}
+.tl-item{position:relative;margin-bottom:24px;padding:20px;background:var(--card);border:1px solid var(--bdr);border-radius:12px;transition:all .3s}
+.tl-item:hover{border-color:rgba(16,185,129,.3);box-shadow:var(--sh);transform:translateX(4px)}
+.tl-dot{position:absolute;left:-32px;top:24px;width:14px;height:14px;border-radius:50%;border:3px solid var(--bg);z-index:2}
+.tl-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:currentColor}
+.tl-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.tl-fase{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
+.tl-title{font-size:16px;font-weight:800;margin-bottom:4px}
+.tl-period{font-size:10px;color:var(--t3);font-weight:600}
+.tl-body{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.tl-action{display:flex;align-items:flex-start;gap:6px;font-size:10px;color:var(--t2);padding:6px 8px;background:rgba(255,255,255,.02);border-radius:6px;border:1px solid rgba(255,255,255,.04)}
+.tl-action-n{width:18px;height:18px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;flex-shrink:0}
+.tl-kpi{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.tl-kpi:last-child{border-bottom:none}
+.tl-kpi-l{font-size:9px;color:var(--t3)}
+.tl-kpi-v{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+
+/* GANTT CHART CSS */
+.gantt{width:100%;overflow-x:auto;margin:16px 0}
+.gantt-table{width:100%;border-collapse:collapse;min-width:900px}
+.gantt-table th{padding:8px 6px;font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--bdr);text-align:center;font-weight:600}
+.gantt-table th:first-child{text-align:left;width:22%}
+.gantt-table td{padding:4px 2px;border-bottom:1px solid rgba(255,255,255,.02);text-align:center;position:relative}
+.gantt-table td:first-child{text-align:left;font-size:9px;font-weight:600;padding-left:8px}
+.gantt-bar{height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;color:rgba(255,255,255,.9);transition:all .3s;cursor:pointer;position:relative}
+.gantt-bar:hover{filter:brightness(1.2);transform:scaleY(1.15)}
+.gantt-bar-tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1e293b;border:1px solid var(--bdr);border-radius:6px;padding:6px 10px;font-size:8px;color:var(--t2);white-space:nowrap;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.gantt-bar:hover .gantt-bar-tip{display:block}
+.gantt-milestone{width:12px;height:12px;background:var(--gn);transform:rotate(45deg);margin:0 auto;border:2px solid rgba(255,255,255,.3)}
+
+/* PHASE CARDS */
+.ph-card{border-radius:14px;padding:0;overflow:hidden;transition:all .4s}
+.ph-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.ph-head{padding:18px 20px 12px;position:relative}
+.ph-head::after{content:'';position:absolute;bottom:0;left:20px;right:20px;height:1px;background:rgba(255,255,255,.08)}
+.ph-num{position:absolute;top:14px;right:16px;font-size:36px;font-weight:900;opacity:.12}
+.ph-emoji{font-size:24px;margin-bottom:4px}
+.ph-name{font-size:15px;font-weight:800;margin-bottom:2px}
+.ph-period{font-size:9px;opacity:.7}
+.ph-body{padding:14px 18px}
+.ph-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.ph-row:last-child{border-bottom:none}
+.ph-row-l{font-size:9px;color:rgba(255,255,255,.6)}
+.ph-row-v{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+.ph-foot{padding:12px 18px;border-top:1px solid rgba(255,255,255,.06);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+
+/* SCORE RING */
+.ring{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ring-inner{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;text-align:center}
+.ring-label{font-size:7px;display:block;margin-top:-2px;opacity:.7}
+
+/* FOOTER */
+.ft{border-top:1px solid var(--bdr);margin-top:36px;padding:44px 40px}
+.fc{max-width:1400px;margin:0 auto}
+.fd{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:24px 0}
+.cc{background:linear-gradient(135deg,#111827,#1a2236);border:1px solid var(--bdr);border-radius:18px;padding:30px;display:flex;gap:28px;align-items:center;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--p1),var(--p3),var(--p4),var(--p7))}
+.cp{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#10b981,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 8px 20px rgba(16,185,129,.3)}
+.ci{flex:1}.cl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gn);margin-bottom:5px}
+.cn{font-size:20px;font-weight:900;margin-bottom:10px}
+.ccs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cci{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2);background:rgba(255,255,255,.04);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.cb{font-size:11px;color:var(--t3);line-height:1.8;border-top:1px solid var(--bdr);padding-top:10px;font-style:italic}
+.fb{text-align:center;padding-top:20px;color:var(--t3);font-size:10px}.fb strong{color:var(--t2)}
+
+/* ANIMATION */
+.fi{opacity:0;transform:translateY(18px);transition:all .6s ease}.fi.v{opacity:1;transform:translateY(0)}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:8px 18px;border:1px solid var(--bdr);border-radius:8px;font-size:11px;font-weight:700;color:var(--t3);cursor:pointer;transition:all .3s;background:rgba(255,255,255,.02)}
+.tab:hover{border-color:var(--gn);color:var(--gn)}
+.tab.active{background:rgba(16,185,129,.1);border-color:var(--gn);color:var(--gn)}
+.tab-content{display:none}.tab-content.active{display:block}
+
+@media(max-width:1024px){.g2,.g3,.g4{grid-template-columns:1fr}.hd h1{font-size:24px}.ct{padding:20px}.cc{flex-direction:column;text-align:center}.ccs{justify-content:center}.tl-body{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hd">
+<div class="hc">
+<div class="ht">
+<div class="hlg"><div class="hlg-i">R</div><div><div class="hlg-t">RURAL <span>IN</span></div><div class="hlg-s">Gestao Inteligente no Agro</div></div></div>
+<div class="hbd">Plano de Acao 12 Meses</div>
+</div>
+<h1>ROADMAP ESTRATEGICO 2026-2027</h1>
+<h2>De 850 vacas dispersas para 700 vacas otimizadas — R$ 3,19M de impacto no Ano 1</h2>
+<div class="hm">
+<div class="hm-i">Inicio: <span>Marco/2026</span></div>
+<div class="hm-i">Conclusao: <span>Fevereiro/2027</span></div>
+<div class="hm-i">Fases: <span>4 fases — 7 frentes de acao</span></div>
+<div class="hm-i">Meta IOFC: <span>R$ 587k → R$ 815k/mes (+39%)</span></div>
+</div>
+</div>
+</div>
+
+<!-- CONTEUDO -->
+<div class="ct">
+
+<!-- ==================== SECAO 1: VISAO GERAL DO PLANO ==================== -->
+<div class="st fi">Visao Geral do Plano <span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">PRODUTO #6</span><span class="st-b" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">12 MESES</span></div>
+
+<!-- 4 FASES OVERVIEW -->
+<div class="g4 fi">
+
+<!-- FASE 1 -->
+<div class="ph-card" style="background:linear-gradient(160deg,rgba(239,68,68,.12),rgba(239,68,68,.02));border:2px solid rgba(239,68,68,.3)">
+<div class="ph-head">
+<div class="ph-num" style="color:var(--p1)">01</div>
+<div class="ph-emoji">🚨</div>
+<div class="ph-name" style="color:var(--p1)">FASE 1 — EMERGENCIA</div>
+<div class="ph-period" style="color:var(--t2)">Mes 1-2 (Mar-Abr/2026)</div>
+</div>
+<div class="ph-body">
+<div class="ph-row"><span class="ph-row-l">Foco principal</span><span class="ph-row-v" style="color:var(--p1)">Descarte D</span></div>
+<div class="ph-row"><span class="ph-row-l">Vacas impactadas</span><span class="ph-row-v">115 + 120</span></div>
+<div class="ph-row"><span class="ph-row-l">Investimento</span><span class="ph-row-v" style="color:var(--gn)">R$ 0</span></div>
+<div class="ph-row"><span class="ph-row-l">Retorno esperado</span><span class="ph-row-v" style="color:var(--gn)">R$ 451k</span></div>
+<div class="ph-row"><span class="ph-row-l">Risco</span><span class="ph-row-v" style="color:var(--gn)">Baixo</span></div>
+</div>
+<div class="ph-foot" style="background:rgba(239,68,68,.06);color:var(--p1)">🎯 Meta: eliminar prejuizo D + triagem C</div>
+</div>
+
+<!-- FASE 2 -->
+<div class="ph-card" style="background:linear-gradient(160deg,rgba(245,158,11,.12),rgba(245,158,11,.02));border:2px solid rgba(245,158,11,.3)">
+<div class="ph-head">
+<div class="ph-num" style="color:var(--p3)">02</div>
+<div class="ph-emoji">⚡</div>
+<div class="ph-name" style="color:var(--p3)">FASE 2 — ESTABILIZACAO</div>
+<div class="ph-period" style="color:var(--t2)">Mes 3-5 (Mai-Jul/2026)</div>
+</div>
+<div class="ph-body">
+<div class="ph-row"><span class="ph-row-l">Foco principal</span><span class="ph-row-v" style="color:var(--p3)">Reprod. + Saude</span></div>
+<div class="ph-row"><span class="ph-row-l">Vacas impactadas</span><span class="ph-row-v">525</span></div>
+<div class="ph-row"><span class="ph-row-l">Investimento</span><span class="ph-row-v" style="color:var(--yl)">R$ 85k</span></div>
+<div class="ph-row"><span class="ph-row-l">Retorno esperado</span><span class="ph-row-v" style="color:var(--gn)">R$ 340k</span></div>
+<div class="ph-row"><span class="ph-row-l">Risco</span><span class="ph-row-v" style="color:var(--yl)">Medio</span></div>
+</div>
+<div class="ph-foot" style="background:rgba(245,158,11,.06);color:var(--p3)">🎯 Meta: +85 prenhezes + CCS < 250k</div>
+</div>
+
+<!-- FASE 3 -->
+<div class="ph-card" style="background:linear-gradient(160deg,rgba(59,130,246,.12),rgba(59,130,246,.02));border:2px solid rgba(59,130,246,.3)">
+<div class="ph-head">
+<div class="ph-num" style="color:var(--p4)">03</div>
+<div class="ph-emoji">📈</div>
+<div class="ph-name" style="color:var(--p4)">FASE 3 — ACELERACAO</div>
+<div class="ph-period" style="color:var(--t2)">Mes 6-9 (Ago-Nov/2026)</div>
+</div>
+<div class="ph-body">
+<div class="ph-row"><span class="ph-row-l">Foco principal</span><span class="ph-row-v" style="color:var(--p4)">Migracao B→A</span></div>
+<div class="ph-row"><span class="ph-row-l">Vacas impactadas</span><span class="ph-row-v">260 + novilhas</span></div>
+<div class="ph-row"><span class="ph-row-l">Investimento</span><span class="ph-row-v" style="color:var(--yl)">R$ 120k</span></div>
+<div class="ph-row"><span class="ph-row-l">Retorno esperado</span><span class="ph-row-v" style="color:var(--gn)">R$ 680k</span></div>
+<div class="ph-row"><span class="ph-row-l">Risco</span><span class="ph-row-v" style="color:var(--yl)">Medio</span></div>
+</div>
+<div class="ph-foot" style="background:rgba(59,130,246,.06);color:var(--p4)">🎯 Meta: 65 vacas B viram A + reposicao</div>
+</div>
+
+<!-- FASE 4 -->
+<div class="ph-card" style="background:linear-gradient(160deg,rgba(16,185,129,.12),rgba(16,185,129,.02));border:2px solid rgba(16,185,129,.3)">
+<div class="ph-head">
+<div class="ph-num" style="color:var(--p7)">04</div>
+<div class="ph-emoji">🏆</div>
+<div class="ph-name" style="color:var(--p7)">FASE 4 — CONSOLIDACAO</div>
+<div class="ph-period" style="color:var(--t2)">Mes 10-12 (Dez/26-Fev/27)</div>
+</div>
+<div class="ph-body">
+<div class="ph-row"><span class="ph-row-l">Foco principal</span><span class="ph-row-v" style="color:var(--p7)">Genetica + Escala</span></div>
+<div class="ph-row"><span class="ph-row-l">Vacas impactadas</span><span class="ph-row-v">700 (rebanho novo)</span></div>
+<div class="ph-row"><span class="ph-row-l">Investimento</span><span class="ph-row-v" style="color:var(--yl)">R$ 95k</span></div>
+<div class="ph-row"><span class="ph-row-l">Retorno esperado</span><span class="ph-row-v" style="color:var(--gn)">R$ 1,72M</span></div>
+<div class="ph-row"><span class="ph-row-l">Risco</span><span class="ph-row-v" style="color:var(--gn)">Baixo</span></div>
+</div>
+<div class="ph-foot" style="background:rgba(16,185,129,.06);color:var(--p7)">🎯 Meta: IOFC R$ 815k/mes estabilizado</div>
+</div>
+
+</div>
+
+<!-- BARRA DE PROGRESSO GERAL -->
+<div class="d fi" style="border:2px solid rgba(16,185,129,.3)">
+<div class="dh"><div class="dt">📊 Evolucao Financeira Projetada — 12 Meses <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">PROJECAO</span></div></div>
+
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin-bottom:16px">
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p1),#991b1b);border-radius:3px 3px 0 0;height:72%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Mar</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">587k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p1),#b91c1c);border-radius:3px 3px 0 0;height:78%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Abr</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">638k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p2),var(--p1));border-radius:3px 3px 0 0;height:80%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Mai</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">652k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p3),var(--p2));border-radius:3px 3px 0 0;height:82%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Jun</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">668k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p3),#b45309);border-radius:3px 3px 0 0;height:84%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Jul</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">690k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p4),var(--p3));border-radius:3px 3px 0 0;height:87%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Ago</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">715k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p4),#1d4ed8);border-radius:3px 3px 0 0;height:89%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Set</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">735k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p5),var(--p4));border-radius:3px 3px 0 0;height:91%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Out</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">750k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p5),var(--p6));border-radius:3px 3px 0 0;height:93%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Nov</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">768k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p6),var(--p7));border-radius:3px 3px 0 0;height:95%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Dez</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">785k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--p7),#059669);border-radius:3px 3px 0 0;height:97%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Jan</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">800k</div>
+</div>
+<div style="text-align:center">
+<div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,#059669,#047857);border-radius:3px 3px 0 0;height:100%"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:2px">Fev</div>
+<div style="font-size:7px;color:var(--gn);font-weight:700">815k</div>
+</div>
+</div>
+
+<!-- Summary row -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
+<div style="text-align:center;padding:12px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15);border-radius:8px">
+<div style="font-size:7px;color:var(--p1);text-transform:uppercase;letter-spacing:1px;font-weight:700">FASE 1 (M1-2)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">+R$ 451k</div>
+<div style="font-size:7px;color:var(--t3)">Descarte + venda</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.15);border-radius:8px">
+<div style="font-size:7px;color:var(--p3);text-transform:uppercase;letter-spacing:1px;font-weight:700">FASE 2 (M3-5)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">+R$ 340k</div>
+<div style="font-size:7px;color:var(--t3)">Reprod. + saude</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.15);border-radius:8px">
+<div style="font-size:7px;color:var(--p4);text-transform:uppercase;letter-spacing:1px;font-weight:700">FASE 3 (M6-9)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">+R$ 680k</div>
+<div style="font-size:7px;color:var(--t3)">Migracao B→A</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:8px">
+<div style="font-size:7px;color:var(--p7);text-transform:uppercase;letter-spacing:1px;font-weight:700">FASE 4 (M10-12)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">+R$ 1,72M</div>
+<div style="font-size:7px;color:var(--t3)">Consolidacao</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12)">
+<strong style="color:var(--gn)">Leitura:</strong> O grafico mostra o IOFC mensal crescendo de R$ 587k para R$ 815k em 12 meses (+39%). A maior parte do ganho vem do descarte do Cluster D (Fase 1) e da migracao B→A (Fase 3). <strong>Investimento total: R$ 300k. Retorno total Ano 1: R$ 3,19M. ROI: 10,6x.</strong>
+</div>
+</div>
+
+<!-- ==================== SECAO 2: GANTT CHART ==================== -->
+<div class="st fi">Cronograma Gantt — 7 Frentes de Acao <span class="st-b" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">GANTT</span></div>
+
+<div class="d fi" style="border:2px solid rgba(139,92,246,.3)">
+<div class="dh"><div class="dt">📅 Gantt Visual — Todas as Frentes em 12 Meses <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">TIMELINE</span></div><div class="di">Hover nas barras para detalhes</div></div>
+
+<div class="gantt">
+<table class="gantt-table">
+<thead>
+<tr>
+<th>Frente de Acao</th>
+<th>Mar</th><th>Abr</th><th>Mai</th><th>Jun</th><th>Jul</th><th>Ago</th><th>Set</th><th>Out</th><th>Nov</th><th>Dez</th><th>Jan</th><th>Fev</th>
+</tr>
+</thead>
+<tbody>
+<!-- Frente 1: Descarte Cluster D -->
+<tr>
+<td style="color:var(--p1)">🚫 1. Descarte Cluster D</td>
+<td colspan="2"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--p1),#b91c1c)">110 vacas<div class="gantt-bar-tip">Venda 110 vacas D para abate<br>Receita: R$ 330k | Econ: R$ 121k/m</div></div></td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+<!-- Frente 2: Triagem Cluster C -->
+<tr>
+<td style="color:var(--p2)">⚠️ 2. Triagem Cluster C</td>
+<td colspan="1"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--p2),#ea580c);height:18px;font-size:6px">Triagem<div class="gantt-bar-tip">Separar 120 vazias > 200 DEL<br>Classificar: IATF vs descarte</div></div></td>
+<td colspan="2"><div class="gantt-bar" style="background:linear-gradient(90deg,#ea580c,var(--p3));height:18px;font-size:6px">IATF+Tto<div class="gantt-bar-tip">IATF intensivo + tratamento mastite<br>Meta: 30-40 prenhezes</div></div></td>
+<td colspan="1"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--p3),#ca8a04);height:18px;font-size:6px">Reavalia<div class="gantt-bar-tip">Reavaliar quem nao emprenhou<br>Descartar ~40 vacas restantes</div></div></td>
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+<!-- Frente 3: Reproducao B+C -->
+<tr>
+<td style="color:var(--p3)">🧬 3. Programa Reprod. B+C</td>
+<td></td>
+<td colspan="4"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--p3),var(--p4))">255 vacas — IATF ciclos 1, 2, 3<div class="gantt-bar-tip">3 ciclos IATF em B+C vacias<br>Meta: +85 prenhezes | Invest: R$ 45k</div></div></td>
+<td colspan="3"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--p4),var(--p5));opacity:.7;font-size:6px">Manutencao<div class="gantt-bar-tip">Repasse IATF + confirmacao prenhez<br>Vacas que nao pegaram: avaliar</div></div></td>
+<td></td><td></td><td></td><td></td>
+</tr>
+<!-- Frente 4: Saude / CCS -->
+<tr>
+<td style="color:var(--cy)">🩺 4. Programa Saude/CCS</td>
+<td colspan="1"><div class="gantt-bar" style="background:var(--cy);height:18px;font-size:6px">Cultura<div class="gantt-bar-tip">Cultura de leite 100 vacas C com CCS>400k<br>Identificar patogenos</div></div></td>
+<td colspan="3"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--cy),#0891b2)">Tratamento + Protocolo mastite<div class="gantt-bar-tip">Protocolo tto por patogeno<br>Meta: CCS tanque < 250k</div></div></td>
+<td colspan="8"><div class="gantt-bar" style="background:linear-gradient(90deg,#0891b2,var(--p7));opacity:.6;font-size:6px">Monitoramento continuo quinzenal<div class="gantt-bar-tip">CMT quinzenal + CCS individual mensal<br>Manter CCS tanque < 200k</div></div></td>
+</tr>
+<!-- Frente 5: Nutricao por lote -->
+<tr>
+<td style="color:var(--p4)">🥛 5. Nutricao por Cluster</td>
+<td colspan="2"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--p4),#2563eb);height:18px;font-size:6px">Reformulacao<div class="gantt-bar-tip">Dieta A (premium), B (transicao), C (basica)<br>Negociar insumos | Invest: R$ 25k</div></div></td>
+<td colspan="10"><div class="gantt-bar" style="background:linear-gradient(90deg,#2563eb,var(--p7));opacity:.6;font-size:6px">Execucao + ajustes mensais por lote<div class="gantt-bar-tip">Ajuste fino mensal por resultado<br>Acompanhar eficiencia alimentar</div></div></td>
+</tr>
+<!-- Frente 6: Genetica/Reposicao -->
+<tr>
+<td style="color:var(--p5)">🧫 6. Genetica & Reposicao</td>
+<td></td><td></td>
+<td colspan="2"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--p5),#7c3aed);height:18px;font-size:6px">OPU/FTET<div class="gantt-bar-tip">Top 50 Cluster A como doadoras<br>OPU + FTET + sexado femea | R$ 80k</div></div></td>
+<td colspan="4"><div class="gantt-bar" style="background:linear-gradient(90deg,#7c3aed,var(--p6))">Gestacao receptoras + compra novilhas<div class="gantt-bar-tip">Gestacao 9 meses das receptoras<br>Compra 80-100 novilhas reposicao</div></div></td>
+<td colspan="4"><div class="gantt-bar" style="background:linear-gradient(90deg,var(--p6),var(--p7));opacity:.7;font-size:6px">Entrada novilhas + monitoramento<div class="gantt-bar-tip">Novilhas entram no rebanho<br>150 cabecas de reposicao total</div></div></td>
+</tr>
+<!-- Frente 7: Gestao / Dados -->
+<tr>
+<td style="color:var(--p7)">📊 7. Gestao por Dados</td>
+<td colspan="12"><div class="gantt-bar" style="background:linear-gradient(90deg,rgba(16,185,129,.3),rgba(16,185,129,.5),rgba(16,185,129,.3));border:1px solid rgba(16,185,129,.3);font-size:6px">Re-clusterizacao mensal + dashboard KPI + reuniao resultados<div class="gantt-bar-tip">K-Means mensal | Dashboard IOFC em tempo real<br>Reuniao mensal de resultados | Ajuste de rota</div></div></td>
+</tr>
+<!-- MILESTONES -->
+<tr style="background:rgba(16,185,129,.02)">
+<td style="font-size:8px;color:var(--gn);font-weight:800">🏁 MARCOS</td>
+<td><div class="gantt-milestone" title="Inicio descarte D"></div></td>
+<td></td>
+<td><div class="gantt-milestone" title="1o ciclo IATF"></div></td>
+<td></td>
+<td><div class="gantt-milestone" title="CCS < 250k"></div></td>
+<td></td>
+<td><div class="gantt-milestone" title="65 vacas B→A"></div></td>
+<td></td>
+<td></td>
+<td><div class="gantt-milestone" title="Novilhas entram"></div></td>
+<td></td>
+<td><div class="gantt-milestone" title="IOFC 815k ✅"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px">
+<div style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)"><div style="width:14px;height:8px;border-radius:2px;background:var(--p1)"></div>Descarte</div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)"><div style="width:14px;height:8px;border-radius:2px;background:var(--p2)"></div>Triagem</div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)"><div style="width:14px;height:8px;border-radius:2px;background:var(--p3)"></div>Reproducao</div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)"><div style="width:14px;height:8px;border-radius:2px;background:var(--cy)"></div>Saude</div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)"><div style="width:14px;height:8px;border-radius:2px;background:var(--p4)"></div>Nutricao</div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)"><div style="width:14px;height:8px;border-radius:2px;background:var(--p5)"></div>Genetica</div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)"><div style="width:14px;height:8px;border-radius:2px;background:var(--p7)"></div>Gestao</div>
+<div style="display:flex;align-items:center;gap:4px;font-size:8px;color:var(--t3)"><div style="width:10px;height:10px;background:var(--gn);transform:rotate(45deg);border-radius:1px"></div>Marco</div>
+</div>
+</div>
+
+<!-- ==================== SECAO 3: TIMELINE DETALHADA ==================== -->
+<div class="st fi">Timeline Detalhada por Fase <span class="st-b" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">DETALHE</span></div>
+
+<!-- FASE 1 DETALHADA -->
+<div class="tl fi">
+
+<div class="tl-item" style="border-left:3px solid var(--p1)">
+<div class="tl-dot" style="background:var(--p1);color:var(--p1)"></div>
+<div class="tl-head">
+<div>
+<div class="tl-fase" style="color:var(--p1)">FASE 1 — EMERGENCIA</div>
+<div class="tl-title">Descarte do Cluster D + Triagem do C</div>
+<div class="tl-period">Mes 1-2 | Marco a Abril 2026</div>
+</div>
+<div style="text-align:right">
+<div style="font-size:8px;color:var(--t3)">Investimento</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">R$ 0</div>
+<div style="font-size:8px;color:var(--t3)">Retorno: R$ 451k</div>
+</div>
+</div>
+
+<div class="tl-body">
+<div>
+<div style="font-size:9px;color:var(--p1);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">ACOES</div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(239,68,68,.15);color:var(--p1)">1</div><div><strong>Semana 1:</strong> Separar 110 vacas D — preparar documentacao venda</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(239,68,68,.15);color:var(--p1)">2</div><div><strong>Semana 1-2:</strong> Negociar com frigorificos — cotacao minima R$ 3.000/cab</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(239,68,68,.15);color:var(--p1)">3</div><div><strong>Semana 2:</strong> Embarque e venda das 110 vacas D</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(245,158,11,.15);color:var(--p3)">4</div><div><strong>Semana 3:</strong> Triagem Cluster C — listar 120 vazias > 200 DEL</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(245,158,11,.15);color:var(--p3)">5</div><div><strong>Semana 3-4:</strong> Cultura de leite nas 100 vacas C com CCS > 400k</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">6</div><div><strong>Semana 4:</strong> Reorganizar lotes: A premium / B pico+fim / C isolado</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">7</div><div><strong>Mes 2:</strong> Renegociar volume de racao (-8%) com fornecedores</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">8</div><div><strong>Mes 2:</strong> Implantar dashboard IOFC individual — monitoramento diario</div></div>
+</div>
+<div>
+<div style="font-size:9px;color:var(--p1);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">KPIs DE SAIDA</div>
+<div class="tl-kpi"><span class="tl-kpi-l">Vacas descartadas</span><span class="tl-kpi-v" style="color:var(--gn)">110 vacas</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Receita venda</span><span class="tl-kpi-v" style="color:var(--gn)">R$ 330k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Economia racao/mes</span><span class="tl-kpi-v" style="color:var(--gn)">R$ 121k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Rebanho ativo</span><span class="tl-kpi-v">740 VL</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">IOFC projetado mes 2</span><span class="tl-kpi-v" style="color:var(--gn)">R$ 638k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">CCS tanque projetado</span><span class="tl-kpi-v" style="color:var(--gn)">< 250k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Lotes reorganizados</span><span class="tl-kpi-v" style="color:var(--gn)">3 lotes</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Dashboard implantado</span><span class="tl-kpi-v" style="color:var(--gn)">✅</span></div>
+
+<div style="margin-top:10px;padding:10px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:6px">
+<div style="font-size:9px;color:var(--p1);font-weight:700">⚠️ RISCOS DA FASE 1</div>
+<div style="font-size:9px;color:var(--t2);margin-top:4px">• Preco de venda abaixo de R$ 3k/cab (mitigacao: cotar 3+ frigorificos)<br>• Resistencia emocional ao descarte (mitigacao: mostrar numeros do prejuizo)<br>• Tempo de resposta da triagem C (mitigacao: ja iniciar cultura de leite)</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FASE 2 DETALHADA -->
+<div class="tl-item" style="border-left:3px solid var(--p3)">
+<div class="tl-dot" style="background:var(--p3);color:var(--p3)"></div>
+<div class="tl-head">
+<div>
+<div class="tl-fase" style="color:var(--p3)">FASE 2 — ESTABILIZACAO</div>
+<div class="tl-title">Reproducao Intensiva + Controle de Saude</div>
+<div class="tl-period">Mes 3-5 | Maio a Julho 2026</div>
+</div>
+<div style="text-align:right">
+<div style="font-size:8px;color:var(--t3)">Investimento</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--yl)">R$ 85k</div>
+<div style="font-size:8px;color:var(--t3)">Retorno: R$ 340k</div>
+</div>
+</div>
+
+<div class="tl-body">
+<div>
+<div style="font-size:9px;color:var(--p3);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">ACOES</div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(245,158,11,.15);color:var(--p3)">1</div><div><strong>Mes 3:</strong> 1° ciclo IATF — 255 vacas vazias de B+C (invest: R$ 30k)</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(245,158,11,.15);color:var(--p3)">2</div><div><strong>Mes 3:</strong> Inicio tratamento mastite baseado em cultura — 100 vacas C</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(245,158,11,.15);color:var(--p3)">3</div><div><strong>Mes 4:</strong> Diagnostico prenhez 1° ciclo — DG 30 dias</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(245,158,11,.15);color:var(--p3)">4</div><div><strong>Mes 4:</strong> 2° ciclo IATF — repasse das que nao pegaram (invest: R$ 20k)</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(245,158,11,.15);color:var(--p3)">5</div><div><strong>Mes 4-5:</strong> Reformular dieta por lote: A premium, B transicao, C basica</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(245,158,11,.15);color:var(--p3)">6</div><div><strong>Mes 5:</strong> 3° ciclo IATF + DG 2° ciclo (invest: R$ 15k)</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(239,68,68,.15);color:var(--p1)">7</div><div><strong>Mes 5:</strong> Descartar ~40 vacas C que nao emprenharam em 3 ciclos</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">8</div><div><strong>Mes 5:</strong> Re-clusterizacao — atualizar posicao de cada vaca</div></div>
+</div>
+<div>
+<div style="font-size:9px;color:var(--p3);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">KPIs DE SAIDA</div>
+<div class="tl-kpi"><span class="tl-kpi-l">Prenhezes novas (3 ciclos)</span><span class="tl-kpi-v" style="color:var(--gn)">+85</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">TX concepcao IATF</span><span class="tl-kpi-v" style="color:var(--gn)">38-42%</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">CCS tanque</span><span class="tl-kpi-v" style="color:var(--gn)">< 220k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Vacas C descartadas</span><span class="tl-kpi-v" style="color:var(--yl)">~40</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Rebanho ativo</span><span class="tl-kpi-v">700 VL</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">IOFC projetado mes 5</span><span class="tl-kpi-v" style="color:var(--gn)">R$ 690k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Investimento acumulado</span><span class="tl-kpi-v" style="color:var(--yl)">R$ 85k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Retorno acumulado</span><span class="tl-kpi-v" style="color:var(--gn)">R$ 791k</span></div>
+
+<div style="margin-top:10px;padding:10px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.12);border-radius:6px">
+<div style="font-size:9px;color:var(--p3);font-weight:700">⚠️ RISCOS DA FASE 2</div>
+<div style="font-size:9px;color:var(--t2);margin-top:4px">• TX concepcao abaixo de 30% (mitigacao: protocolo J-Synch ou Double Ovsynch)<br>• Mastite recorrente em C (mitigacao: secagem precoce + terapia seca)<br>• Custo IATF acima do orcado (mitigacao: negociar pacote com veterinario)</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FASE 3 DETALHADA -->
+<div class="tl-item" style="border-left:3px solid var(--p4)">
+<div class="tl-dot" style="background:var(--p4);color:var(--p4)"></div>
+<div class="tl-head">
+<div>
+<div class="tl-fase" style="color:var(--p4)">FASE 3 — ACELERACAO</div>
+<div class="tl-title">Migracao B→A + Genetica + Reposicao</div>
+<div class="tl-period">Mes 6-9 | Agosto a Novembro 2026</div>
+</div>
+<div style="text-align:right">
+<div style="font-size:8px;color:var(--t3)">Investimento</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--yl)">R$ 120k</div>
+<div style="font-size:8px;color:var(--t3)">Retorno: R$ 680k</div>
+</div>
+</div>
+
+<div class="tl-body">
+<div>
+<div style="font-size:9px;color:var(--p4);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">ACOES</div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">1</div><div><strong>Mes 6:</strong> Iniciar OPU/FTET com Top 50 doadoras Cluster A (invest: R$ 80k)</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">2</div><div><strong>Mes 6:</strong> Ajuste nutricional fino para Cluster B — meta: +3L/VL/dia</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">3</div><div><strong>Mes 7:</strong> Prospectar 80-100 novilhas de reposicao (genetica A, invest: R$ 40k)</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">4</div><div><strong>Mes 7-8:</strong> Monitoramento intensivo B — re-clusterizar top performers</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">5</div><div><strong>Mes 8:</strong> Confirmar migracao de ~40 vacas B → A (producao + prenhez + CCS)</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">6</div><div><strong>Mes 9:</strong> 2ª leva OPU doadoras + confirmar prenhez receptoras</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(59,130,246,.15);color:var(--p4)">7</div><div><strong>Mes 9:</strong> Avaliacao C restante — descartar quem nao evoluiu</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">8</div><div><strong>Mes 9:</strong> Reuniao de resultados — relatorio completo 9 meses</div></div>
+</div>
+<div>
+<div style="font-size:9px;color:var(--p4);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">KPIs DE SAIDA</div>
+<div class="tl-kpi"><span class="tl-kpi-l">Vacas B migradas p/ A</span><span class="tl-kpi-v" style="color:var(--gn)">~65</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Cluster A total</span><span class="tl-kpi-v" style="color:var(--gn)">~265 VL</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Embrioes produzidos</span><span class="tl-kpi-v" style="color:var(--gn)">120-180</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Novilhas adquiridas</span><span class="tl-kpi-v" style="color:var(--gn)">80-100</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Media producao/VL</span><span class="tl-kpi-v" style="color:var(--gn)">41,5 L/dia</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">CCS tanque</span><span class="tl-kpi-v" style="color:var(--gn)">< 200k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">IOFC projetado mes 9</span><span class="tl-kpi-v" style="color:var(--gn)">R$ 768k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Retorno acumulado</span><span class="tl-kpi-v" style="color:var(--gn)">R$ 1,47M</span></div>
+
+<div style="margin-top:10px;padding:10px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:6px">
+<div style="font-size:9px;color:var(--p4);font-weight:700">⚠️ RISCOS DA FASE 3</div>
+<div style="font-size:9px;color:var(--t2);margin-top:4px">• Migracao B→A menor que projetada (mitigacao: intensificar nutricao + conforto)<br>• Custo novilhas acima do orcado (mitigacao: leiloes + parcerias criadores)<br>• Perda embrionaria OPU (mitigacao: laboratorio de referencia)</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FASE 4 DETALHADA -->
+<div class="tl-item" style="border-left:3px solid var(--p7)">
+<div class="tl-dot" style="background:var(--p7);color:var(--p7)"></div>
+<div class="tl-head">
+<div>
+<div class="tl-fase" style="color:var(--p7)">FASE 4 — CONSOLIDACAO</div>
+<div class="tl-title">Escala, Genetica de Longo Prazo & Excelencia</div>
+<div class="tl-period">Mes 10-12 | Dezembro 2026 a Fevereiro 2027</div>
+</div>
+<div style="text-align:right">
+<div style="font-size:8px;color:var(--t3)">Investimento</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--yl)">R$ 95k</div>
+<div style="font-size:8px;color:var(--t3)">Retorno: R$ 1,72M</div>
+</div>
+</div>
+
+<div class="tl-body">
+<div>
+<div style="font-size:9px;color:var(--p7);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">ACOES</div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">1</div><div><strong>Mes 10:</strong> Entrada das primeiras novilhas de reposicao (~50 cabecas)</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">2</div><div><strong>Mes 10:</strong> Clusterizacao final — posicionar todas no modelo otimizado</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">3</div><div><strong>Mes 11:</strong> Entrada 2ª leva novilhas (~50 cabecas) + novilhas OPU nascendo</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">4</div><div><strong>Mes 11:</strong> Definir programa genetico 2027: touros provados p/ Cluster A</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">5</div><div><strong>Mes 12:</strong> Auditoria completa de KPIs — comparar com baseline Mar/2026</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">6</div><div><strong>Mes 12:</strong> Planejamento Ano 2 — meta: IOFC R$ 1M+/mes</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">7</div><div><strong>Mes 12:</strong> Apresentacao resultados p/ proprietaria Patricia Kompier</div></div>
+<div class="tl-action"><div class="tl-action-n" style="background:rgba(16,185,129,.15);color:var(--p7)">8</div><div><strong>Mes 12:</strong> Fechar contrato consultoria Ano 2 — Rural IN</div></div>
+</div>
+<div>
+<div style="font-size:9px;color:var(--p7);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">KPIs FINAIS — FEV/2027</div>
+<div class="tl-kpi"><span class="tl-kpi-l">Rebanho total</span><span class="tl-kpi-v" style="color:var(--gn)">700 VL</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Cluster A</span><span class="tl-kpi-v" style="color:var(--gn)">265 (37,9%)</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Cluster D</span><span class="tl-kpi-v" style="color:var(--gn)">35 (5,0%)</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Media producao/VL</span><span class="tl-kpi-v" style="color:var(--gn)">42,1 L/dia</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">IOFC mensal</span><span class="tl-kpi-v" style="color:var(--gn)">R$ 815k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">CCS tanque</span><span class="tl-kpi-v" style="color:var(--gn)">< 180k</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">TX prenhez rebanho</span><span class="tl-kpi-v" style="color:var(--gn)">> 55%</span></div>
+<div class="tl-kpi"><span class="tl-kpi-l">Retorno total Ano 1</span><span class="tl-kpi-v" style="color:var(--gn);font-size:14px;font-weight:900">R$ 3,19M</span></div>
+
+<div style="margin-top:10px;padding:10px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.2);border-radius:6px">
+<div style="font-size:9px;color:var(--p7);font-weight:700">🏆 VISAO DO SUCESSO</div>
+<div style="font-size:9px;color:var(--t2);margin-top:4px">Em Fev/2027 a Fazenda Brasilanda tera <strong>150 vacas a menos</strong> mas <strong>R$ 228k/mes a mais de IOFC</strong>. O rebanho sera mais jovem, mais produtivo, mais saudavel e geneticamente superior. Cada vaca restante sera uma maquina de gerar lucro.</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- fim .tl -->
+<!-- ==================== SECAO 4: ORCAMENTO DETALHADO ==================== -->
+<div class="st fi">Orcamento Detalhado — Investimento vs Retorno <span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">FINANCEIRO</span></div>
+
+<div class="d fi" style="border:2px solid rgba(16,185,129,.3)">
+<div class="dh"><div class="dt">💰 Fluxo de Caixa do Projeto — 12 Meses <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">CASH FLOW</span></div><div class="di">Todos os valores em Reais (R$) | Base: precos Mar/2026</div></div>
+
+<div style="overflow-x:auto">
+<table class="mt" style="font-size:9px">
+<thead>
+<tr>
+<th style="width:22%;position:sticky;left:0;background:var(--card);z-index:6">Item</th>
+<th style="text-align:center;color:var(--p1);width:13%">Fase 1<br><span style="font-size:7px;font-weight:400">M1-2</span></th>
+<th style="text-align:center;color:var(--p3);width:13%">Fase 2<br><span style="font-size:7px;font-weight:400">M3-5</span></th>
+<th style="text-align:center;color:var(--p4);width:13%">Fase 3<br><span style="font-size:7px;font-weight:400">M6-9</span></th>
+<th style="text-align:center;color:var(--p7);width:13%">Fase 4<br><span style="font-size:7px;font-weight:400">M10-12</span></th>
+<th style="text-align:center;color:var(--gn);width:13%">TOTAL<br><span style="font-size:7px;font-weight:400">12 meses</span></th>
+<th style="text-align:center;width:13%">% do Total</th>
+</tr>
+</thead>
+<tbody>
+<!-- INVESTIMENTOS (SAIDAS) -->
+<tr style="background:rgba(239,68,68,.03)"><td colspan="7" style="font-weight:800;color:var(--rd);padding:10px;font-size:9px;text-transform:uppercase;letter-spacing:1px">📤 INVESTIMENTOS (SAIDAS)</td></tr>
+
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">IATF — Protocolos + semen</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 65k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 15k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 10k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 90k</td><td class="nm" style="text-align:center">30,0%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">OPU/FTET — Embrioes + receptoras</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 80k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 25k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 105k</td><td class="nm" style="text-align:center">35,0%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Tratamento mastite — cultura + medicamentos</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 15k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 5k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 3k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 23k</td><td class="nm" style="text-align:center">7,7%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Nutricao — gordura protegida + aditivos</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 5k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 12k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 15k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 32k</td><td class="nm" style="text-align:center">10,7%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Novilhas reposicao (80-100 cab)</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 35k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 35k</td><td class="nm" style="text-align:center">11,7%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Infraestrutura (ventilacao, cama, sombra)</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 8k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 7k</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 15k</td><td class="nm" style="text-align:center">5,0%</td></tr>
+
+<tr style="background:rgba(239,68,68,.04)"><td style="font-weight:900;position:sticky;left:0;background:var(--card);color:var(--rd)">TOTAL INVESTIMENTOS</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:12px">R$ 0</td><td class="nm" style="text-align:center;color:var(--rd);font-weight:900;font-size:12px">R$ 85k</td><td class="nm" style="text-align:center;color:var(--rd);font-weight:900;font-size:12px">R$ 120k</td><td class="nm" style="text-align:center;color:var(--rd);font-weight:900;font-size:12px">R$ 95k</td><td class="nm" style="text-align:center;color:var(--rd);font-weight:900;font-size:14px">R$ 300k</td><td class="nm" style="text-align:center;font-weight:900">100%</td></tr>
+
+<!-- RETORNOS (ENTRADAS) -->
+<tr style="background:rgba(16,185,129,.03)"><td colspan="7" style="font-weight:800;color:var(--gn);padding:10px;font-size:9px;text-transform:uppercase;letter-spacing:1px">📥 RETORNOS (ENTRADAS)</td></tr>
+
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Receita venda descarte D (110 cab)</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 330k</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 330k</td><td class="nm" style="text-align:center">10,3%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Receita venda descarte C (40 cab)</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 100k</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 100k</td><td class="nm" style="text-align:center">3,1%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Economia racao (menos vacas improdutivas)</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 121k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 180k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 240k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 180k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 721k</td><td class="nm" style="text-align:center">22,6%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Ganho IOFC migracao B→A (65 vacas)</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 285k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 285k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 570k</td><td class="nm" style="text-align:center">17,9%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Ganho CCS tanque (bonus qualidade)</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 0</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 60k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 120k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 120k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 300k</td><td class="nm" style="text-align:center">9,4%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Ganho producao (+nutricao +conforto)</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 35k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 105k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 140k</td><td class="nm" style="text-align:center">4,4%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Valor genetico bezerras OPU (futuro)</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 230k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 230k</td><td class="nm" style="text-align:center">7,2%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Reducao mao-de-obra (menos manejo D)</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 0</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 25k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 50k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 50k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 125k</td><td class="nm" style="text-align:center">3,9%</td></tr>
+<tr><td style="font-weight:600;position:sticky;left:0;background:var(--card)">Reducao descarte involuntario (saude)</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center">—</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 0</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 75k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 75k</td><td class="nm" style="text-align:center">2,4%</td></tr>
+
+<tr style="background:rgba(16,185,129,.04)"><td style="font-weight:900;position:sticky;left:0;background:var(--card);color:var(--gn)">TOTAL RETORNOS</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:12px">R$ 451k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:12px">R$ 365k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:12px">R$ 730k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:12px">R$ 1.045k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:14px">R$ 2,59M</td><td class="nm" style="text-align:center;font-weight:900">—</td></tr>
+
+<!-- RESULTADO -->
+<tr style="background:rgba(255,255,255,.03)"><td colspan="7" style="height:1px"></td></tr>
+<tr style="background:rgba(16,185,129,.06)"><td style="font-weight:900;position:sticky;left:0;background:var(--card);font-size:13px;color:var(--gn)">RESULTADO LIQUIDO</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:14px">+R$ 451k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:14px">+R$ 280k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:14px">+R$ 610k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:14px">+R$ 950k</td><td class="nm" style="text-align:center;font-weight:900;font-size:16px;color:var(--gn)">+R$ 2,29M</td><td class="nm" style="text-align:center;font-weight:900;color:var(--gn)">ROI 7,6x</td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td style="font-weight:800;position:sticky;left:0;background:var(--card);color:var(--t2)">RESULTADO ACUMULADO</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:800">R$ 451k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:800">R$ 731k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:800">R$ 1,34M</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:800">R$ 2,29M</td><td class="nm" style="text-align:center;font-weight:900;font-size:14px;color:var(--gn)">R$ 2,29M</td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- PAYBACK -->
+<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:10px">
+<div style="font-size:8px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">Investimento Total</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--rd)">R$ 300k</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:10px">
+<div style="font-size:8px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">Retorno Total</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--gn)">R$ 2,59M</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.3);border-radius:10px">
+<div style="font-size:8px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">ROI do Projeto</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--gn)">763%</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.3);border-radius:10px">
+<div style="font-size:8px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">Payback</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--gn)">0 dias</div>
+<div style="font-size:7px;color:var(--t3)">Fase 1 ja paga tudo</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12)">
+<strong style="color:var(--gn)">Payback zero:</strong> A Fase 1 (descarte D) gera R$ 451k SEM nenhum investimento. Isso ja cobre os R$ 300k de investimento das Fases 2-4. <strong>Ou seja: o projeto se paga antes mesmo de comecar a investir.</strong>
+</div>
+</div>
+
+<!-- ==================== SECAO 5: DRE PROJETADA ==================== -->
+<div class="st fi">DRE Projetada — Antes vs Depois <span class="st-b" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">P&L</span></div>
+
+<div class="g2 fi">
+
+<!-- DRE ANTES -->
+<div class="d" style="border-left:4px solid var(--rd)">
+<div class="dh"><div class="dt" style="color:var(--rd)">📊 DRE ATUAL — Mar/2026 <span class="db" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">ANTES</span></div></div>
+
+<table class="mt" style="font-size:10px">
+<tr><td style="font-weight:600">Rebanho em lactacao</td><td class="nm" style="text-align:right">850 VL</td></tr>
+<tr><td style="font-weight:600">Media producao/VL/dia</td><td class="nm" style="text-align:right">37,9 L</td></tr>
+<tr><td style="font-weight:600">Producao total diaria</td><td class="nm" style="text-align:right">32.215 L</td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr><td style="font-weight:700;color:var(--gn)">Receita leite/mes</td><td class="nm" style="text-align:right;color:var(--gn);font-weight:800">R$ 2.362k</td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Preco medio/litro</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 2,41</td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr><td style="font-weight:700;color:var(--rd)">(-) Custo racao/mes</td><td class="nm" style="text-align:right;color:var(--rd);font-weight:800">R$ 1.560k</td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Custo racao/VL/dia</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 60,36</td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr style="background:rgba(59,130,246,.03)"><td style="font-weight:800;color:var(--bl)">(=) IOFC Mensal</td><td class="nm" style="text-align:right;color:var(--bl);font-weight:900;font-size:14px">R$ 587k</td></tr>
+<tr><td style="font-weight:600;padding-left:16px">IOFC/VL/dia</td><td class="nm" style="text-align:right">R$ 22,70</td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr><td style="font-weight:700;color:var(--rd)">(-) Custos fixos/mes</td><td class="nm" style="text-align:right;color:var(--rd)">R$ 406k</td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Mao-de-obra</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 180k</td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Energia/combustivel</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 65k</td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Sanidade + reprod</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 48k</td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Depreciacao + outros</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 113k</td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td style="font-weight:900;color:var(--gn);font-size:12px">(=) LUCRO LIQUIDO/MES</td><td class="nm" style="text-align:right;color:var(--gn);font-weight:900;font-size:16px">R$ 181k</td></tr>
+<tr><td style="font-weight:600">Margem liquida</td><td class="nm" style="text-align:right;color:var(--yl)">7,7%</td></tr>
+</table>
+</div>
+
+<!-- DRE DEPOIS -->
+<div class="d" style="border-left:4px solid var(--gn);border:2px solid rgba(16,185,129,.3)">
+<div class="dh"><div class="dt" style="color:var(--gn)">📊 DRE PROJETADA — Fev/2027 <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">DEPOIS</span></div></div>
+
+<table class="mt" style="font-size:10px">
+<tr><td style="font-weight:600">Rebanho em lactacao</td><td class="nm" style="text-align:right">700 VL <span style="color:var(--gn);font-size:8px">(-18%)</span></td></tr>
+<tr><td style="font-weight:600">Media producao/VL/dia</td><td class="nm" style="text-align:right">42,1 L <span style="color:var(--gn);font-size:8px">(+11%)</span></td></tr>
+<tr><td style="font-weight:600">Producao total diaria</td><td class="nm" style="text-align:right">29.470 L <span style="color:var(--rd);font-size:8px">(-9%)</span></td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr><td style="font-weight:700;color:var(--gn)">Receita leite/mes</td><td class="nm" style="text-align:right;color:var(--gn);font-weight:800">R$ 2.275k <span style="color:var(--yl);font-size:8px">(-4%)</span></td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Preco medio/litro</td><td class="nm" style="text-align:right;color:var(--gn)">R$ 2,54 <span style="font-size:8px">(+bonus CCS)</span></td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr><td style="font-weight:700;color:var(--rd)">(-) Custo racao/mes</td><td class="nm" style="text-align:right;color:var(--gn);font-weight:800">R$ 1.220k <span style="color:var(--gn);font-size:8px">(-22%)</span></td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Custo racao/VL/dia</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 57,30 <span style="color:var(--gn);font-size:8px">(-5%)</span></td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr style="background:rgba(16,185,129,.05)"><td style="font-weight:800;color:var(--gn)">(=) IOFC Mensal</td><td class="nm" style="text-align:right;color:var(--gn);font-weight:900;font-size:14px">R$ 815k <span style="font-size:10px">(+39%)</span></td></tr>
+<tr><td style="font-weight:600;padding-left:16px">IOFC/VL/dia</td><td class="nm" style="text-align:right;color:var(--gn)">R$ 38,30 <span style="font-size:8px">(+69%)</span></td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr><td style="font-weight:700;color:var(--rd)">(-) Custos fixos/mes</td><td class="nm" style="text-align:right;color:var(--gn)">R$ 355k <span style="color:var(--gn);font-size:8px">(-13%)</span></td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Mao-de-obra</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 165k <span style="color:var(--gn);font-size:8px">(-8%)</span></td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Energia/combustivel</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 55k <span style="color:var(--gn);font-size:8px">(-15%)</span></td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Sanidade + reprod</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 35k <span style="color:var(--gn);font-size:8px">(-27%)</span></td></tr>
+<tr><td style="font-weight:600;padding-left:16px">Depreciacao + outros</td><td class="nm" style="text-align:right;color:var(--t3)">R$ 100k <span style="color:var(--gn);font-size:8px">(-12%)</span></td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="2" style="height:1px"></td></tr>
+<tr style="background:rgba(16,185,129,.06)"><td style="font-weight:900;color:var(--gn);font-size:12px">(=) LUCRO LIQUIDO/MES</td><td class="nm" style="text-align:right;color:var(--gn);font-weight:900;font-size:16px">R$ 460k <span style="font-size:10px">(+154%)</span></td></tr>
+<tr><td style="font-weight:600">Margem liquida</td><td class="nm" style="text-align:right;color:var(--gn);font-weight:800">20,2% <span style="font-size:8px">(+163%)</span></td></tr>
+</table>
+</div>
+</div>
+
+<!-- COMPARATIVO VISUAL -->
+<div class="d fi" style="border:2px solid rgba(139,92,246,.3)">
+<div class="dh"><div class="dt">📈 Comparativo Visual — Antes vs Depois <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">DELTA</span></div></div>
+
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px">
+
+<div style="text-align:center;padding:14px 8px;background:rgba(255,255,255,.02);border-radius:10px;border:1px solid rgba(255,255,255,.05)">
+<div style="font-size:8px;color:var(--t3);margin-bottom:6px">Rebanho</div>
+<div style="display:flex;justify-content:center;align-items:center;gap:4px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--rd);text-decoration:line-through">850</span>
+<span style="font-size:10px;color:var(--t3)">→</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">700</span>
+</div>
+<div style="font-size:8px;color:var(--gn);font-weight:700;margin-top:2px">-18%</div>
+<div class="prog"><div class="prog-fill" style="width:82%;background:var(--gn)"></div></div>
+</div>
+
+<div style="text-align:center;padding:14px 8px;background:rgba(255,255,255,.02);border-radius:10px;border:1px solid rgba(255,255,255,.05)">
+<div style="font-size:8px;color:var(--t3);margin-bottom:6px">Prod/VL/dia</div>
+<div style="display:flex;justify-content:center;align-items:center;gap:4px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--rd);text-decoration:line-through">37,9</span>
+<span style="font-size:10px;color:var(--t3)">→</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">42,1</span>
+</div>
+<div style="font-size:8px;color:var(--gn);font-weight:700;margin-top:2px">+11%</div>
+<div class="prog"><div class="prog-fill" style="width:100%;background:var(--gn)"></div></div>
+</div>
+
+<div style="text-align:center;padding:14px 8px;background:rgba(255,255,255,.02);border-radius:10px;border:1px solid rgba(255,255,255,.05)">
+<div style="font-size:8px;color:var(--t3);margin-bottom:6px">IOFC/mes</div>
+<div style="display:flex;justify-content:center;align-items:center;gap:4px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--rd);text-decoration:line-through">587k</span>
+<span style="font-size:10px;color:var(--t3)">→</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">815k</span>
+</div>
+<div style="font-size:8px;color:var(--gn);font-weight:700;margin-top:2px">+39%</div>
+<div class="prog"><div class="prog-fill" style="width:100%;background:var(--gn)"></div></div>
+</div>
+
+<div style="text-align:center;padding:14px 8px;background:rgba(255,255,255,.02);border-radius:10px;border:1px solid rgba(255,255,255,.05)">
+<div style="font-size:8px;color:var(--t3);margin-bottom:6px">Custo racao</div>
+<div style="display:flex;justify-content:center;align-items:center;gap:4px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--rd);text-decoration:line-through">1,56M</span>
+<span style="font-size:10px;color:var(--t3)">→</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">1,22M</span>
+</div>
+<div style="font-size:8px;color:var(--gn);font-weight:700;margin-top:2px">-22%</div>
+<div class="prog"><div class="prog-fill" style="width:78%;background:var(--gn)"></div></div>
+</div>
+
+<div style="text-align:center;padding:14px 8px;background:rgba(16,185,129,.04);border-radius:10px;border:2px solid rgba(16,185,129,.2)">
+<div style="font-size:8px;color:var(--gn);margin-bottom:6px;font-weight:700">LUCRO/MES</div>
+<div style="display:flex;justify-content:center;align-items:center;gap:4px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--rd);text-decoration:line-through">181k</span>
+<span style="font-size:10px;color:var(--t3)">→</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">460k</span>
+</div>
+<div style="font-size:8px;color:var(--gn);font-weight:700;margin-top:2px">+154%</div>
+<div class="prog"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,var(--gn),var(--em))"></div></div>
+</div>
+
+<div style="text-align:center;padding:14px 8px;background:rgba(16,185,129,.04);border-radius:10px;border:2px solid rgba(16,185,129,.2)">
+<div style="font-size:8px;color:var(--gn);margin-bottom:6px;font-weight:700">MARGEM</div>
+<div style="display:flex;justify-content:center;align-items:center;gap:4px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--rd);text-decoration:line-through">7,7%</span>
+<span style="font-size:10px;color:var(--t3)">→</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--gn)">20,2%</span>
+</div>
+<div style="font-size:8px;color:var(--gn);font-weight:700;margin-top:2px">+163%</div>
+<div class="prog"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,var(--gn),var(--em))"></div></div>
+</div>
+
+</div>
+
+<div class="nt" style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12)">
+<strong style="color:var(--pr)">Destaque:</strong> A receita cai apenas 4% (menos vacas), mas o lucro sobe 154%. Isso porque eliminamos vacas que custavam mais do que produziam. <strong>O segredo nao e produzir mais leite — e produzir leite com LUCRO.</strong>
+</div>
+</div>
+
+<!-- ==================== SECAO 6: ANALISE DE SENSIBILIDADE ==================== -->
+<div class="st fi">Analise de Sensibilidade — Cenarios <span class="st-b" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">RISK</span></div>
+
+<div class="d fi" style="border:2px solid rgba(245,158,11,.3)">
+<div class="dh"><div class="dt">⚖️ 3 Cenarios — O Que Acontece Se... <span class="db" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">STRESS TEST</span></div><div class="di">Pessimista | Realista (base) | Otimista</div></div>
+
+<div style="overflow-x:auto">
+<table class="mt" style="font-size:10px">
+<thead>
+<tr>
+<th style="width:25%">Variavel</th>
+<th style="text-align:center;color:var(--rd);width:25%">😟 PESSIMISTA</th>
+<th style="text-align:center;color:var(--bl);width:25%">😐 REALISTA (Base)</th>
+<th style="text-align:center;color:var(--gn);width:25%">😃 OTIMISTA</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:rgba(255,255,255,.02)"><td colspan="4" style="font-weight:800;color:var(--yl);padding:8px;font-size:9px;text-transform:uppercase;letter-spacing:1px">PREMISSAS</td></tr>
+<tr><td style="font-weight:600">Preco leite (R$/L)</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 2,20</td><td class="nm" style="text-align:center;color:var(--bl)">R$ 2,41</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 2,65</td></tr>
+<tr><td style="font-weight:600">TX concepcao IATF</td><td class="nm" style="text-align:center;color:var(--rd)">28%</td><td class="nm" style="text-align:center;color:var(--bl)">38%</td><td class="nm" style="text-align:center;color:var(--gn)">48%</td></tr>
+<tr><td style="font-weight:600">Migracao B→A</td><td class="nm" style="text-align:center;color:var(--rd)">35 vacas (13%)</td><td class="nm" style="text-align:center;color:var(--bl)">65 vacas (25%)</td><td class="nm" style="text-align:center;color:var(--gn)">90 vacas (35%)</td></tr>
+<tr><td style="font-weight:600">Custo racao (variacao)</td><td class="nm" style="text-align:center;color:var(--rd)">+15%</td><td class="nm" style="text-align:center;color:var(--bl)">0%</td><td class="nm" style="text-align:center;color:var(--gn)">-5%</td></tr>
+<tr><td style="font-weight:600">Bonus CCS (R$/L)</td><td class="nm" style="text-align:center;color:var(--rd)">R$ 0,02</td><td class="nm" style="text-align:center;color:var(--bl)">R$ 0,05</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 0,08</td></tr>
+<tr><td style="font-weight:600">Perda embrionaria OPU</td><td class="nm" style="text-align:center;color:var(--rd)">40%</td><td class="nm" style="text-align:center;color:var(--bl)">25%</td><td class="nm" style="text-align:center;color:var(--gn)">15%</td></tr>
+
+<tr style="background:rgba(255,255,255,.02)"><td colspan="4" style="font-weight:800;color:var(--gn);padding:8px;font-size:9px;text-transform:uppercase;letter-spacing:1px">RESULTADOS</td></tr>
+<tr><td style="font-weight:600">IOFC mensal (Fev/27)</td><td class="nm" style="text-align:center;color:var(--yl)">R$ 680k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 815k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 965k</td></tr>
+<tr><td style="font-weight:600">Lucro liquido/mes</td><td class="nm" style="text-align:center;color:var(--yl)">R$ 310k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 460k</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 610k</td></tr>
+<tr><td style="font-weight:600">Retorno total Ano 1</td><td class="nm" style="text-align:center;color:var(--yl)">R$ 1,65M</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 2,29M</td><td class="nm" style="text-align:center;color:var(--gn)">R$ 3,42M</td></tr>
+<tr style="background:rgba(16,185,129,.03)"><td style="font-weight:900">ROI</td><td class="nm" style="text-align:center;color:var(--yl);font-weight:900;font-size:14px">450%</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:14px">763%</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:14px">1.040%</td></tr>
+<tr style="background:rgba(16,185,129,.03)"><td style="font-weight:900">Margem liquida</td><td class="nm" style="text-align:center;color:var(--yl);font-weight:800">14,8%</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:800">20,2%</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:800">25,1%</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="nt" style="background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.12)">
+<strong style="color:var(--yl)">Conclusao da sensibilidade:</strong> Mesmo no cenario PESSIMISTA (preco do leite caindo, racao subindo, reproducao abaixo do esperado), o projeto ainda entrega <strong>ROI de 450% e lucro de R$ 310k/mes</strong>. Nao existe cenario em que o projeto de prejuizo. <strong>O risco de NAO executar e muito maior que o risco de executar.</strong>
+</div>
+</div>
+
+<!-- ==================== SECAO 7: KPIs MENSAIS ==================== -->
+<div class="st fi">Painel de KPIs Mensais — Acompanhamento <span class="st-b" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">DASHBOARD</span></div>
+
+<div class="d fi">
+<div class="dh"><div class="dt">📉 Projecao de KPIs Mes a Mes — 12 Meses <span class="db" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">TRACKING</span></div><div class="di">Metas mensais para acompanhamento da equipe</div></div>
+
+<div style="overflow-x:auto">
+<table class="mt" style="font-size:8px;min-width:1100px">
+<thead>
+<tr>
+<th style="position:sticky;left:0;background:var(--card);z-index:6;width:14%">KPI</th>
+<th style="text-align:center;color:var(--p1)">Mar</th>
+<th style="text-align:center;color:var(--p1)">Abr</th>
+<th style="text-align:center;color:var(--p3)">Mai</th>
+<th style="text-align:center;color:var(--p3)">Jun</th>
+<th style="text-align:center;color:var(--p3)">Jul</th>
+<th style="text-align:center;color:var(--p4)">Ago</th>
+<th style="text-align:center;color:var(--p4)">Set</th>
+<th style="text-align:center;color:var(--p4)">Out</th>
+<th style="text-align:center;color:var(--p4)">Nov</th>
+<th style="text-align:center;color:var(--p7)">Dez</th>
+<th style="text-align:center;color:var(--p7)">Jan</th>
+<th style="text-align:center;color:var(--p7)">Fev</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">VL em lactacao</td><td class="nm" style="text-align:center;color:var(--p1)">740</td><td class="nm" style="text-align:center">735</td><td class="nm" style="text-align:center">720</td><td class="nm" style="text-align:center">710</td><td class="nm" style="text-align:center">700</td><td class="nm" style="text-align:center">695</td><td class="nm" style="text-align:center">695</td><td class="nm" style="text-align:center">698</td><td class="nm" style="text-align:center">700</td><td class="nm" style="text-align:center">700</td><td class="nm" style="text-align:center">700</td><td class="nm" style="text-align:center;color:var(--gn)">700</td></tr>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">Prod/VL/dia (L)</td><td class="nm" style="text-align:center">38,5</td><td class="nm" style="text-align:center">38,8</td><td class="nm" style="text-align:center">39,2</td><td class="nm" style="text-align:center">39,6</td><td class="nm" style="text-align:center">40,0</td><td class="nm" style="text-align:center">40,5</td><td class="nm" style="text-align:center">40,8</td><td class="nm" style="text-align:center">41,2</td><td class="nm" style="text-align:center">41,5</td><td class="nm" style="text-align:center">41,7</td><td class="nm" style="text-align:center">41,9</td><td class="nm" style="text-align:center;color:var(--gn)">42,1</td></tr>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">Prod total (L/dia)</td><td class="nm" style="text-align:center">28.490</td><td class="nm" style="text-align:center">28.518</td><td class="nm" style="text-align:center">28.224</td><td class="nm" style="text-align:center">28.116</td><td class="nm" style="text-align:center">28.000</td><td class="nm" style="text-align:center">28.148</td><td class="nm" style="text-align:center">28.356</td><td class="nm" style="text-align:center">28.758</td><td class="nm" style="text-align:center">29.050</td><td class="nm" style="text-align:center">29.190</td><td class="nm" style="text-align:center">29.330</td><td class="nm" style="text-align:center;color:var(--gn)">29.470</td></tr>
+<tr style="background:rgba(16,185,129,.02)"><td style="font-weight:800;position:sticky;left:0;background:var(--card);color:var(--gn)">IOFC (R$/mes)</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:800">638k</td><td class="nm" style="text-align:center;color:var(--gn)">638k</td><td class="nm" style="text-align:center;color:var(--gn)">652k</td><td class="nm" style="text-align:center;color:var(--gn)">668k</td><td class="nm" style="text-align:center;color:var(--gn)">690k</td><td class="nm" style="text-align:center;color:var(--gn)">715k</td><td class="nm" style="text-align:center;color:var(--gn)">735k</td><td class="nm" style="text-align:center;color:var(--gn)">750k</td><td class="nm" style="text-align:center;color:var(--gn)">768k</td><td class="nm" style="text-align:center;color:var(--gn)">785k</td><td class="nm" style="text-align:center;color:var(--gn)">800k</td><td class="nm" style="text-align:center;color:var(--gn);font-weight:900;font-size:10px">815k</td></tr>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">CCS tanque (×1000)</td><td class="nm" style="text-align:center;color:var(--yl)">255</td><td class="nm" style="text-align:center;color:var(--yl)">240</td><td class="nm" style="text-align:center;color:var(--gn)">225</td><td class="nm" style="text-align:center;color:var(--gn)">210</td><td class="nm" style="text-align:center;color:var(--gn)">200</td><td class="nm" style="text-align:center;color:var(--gn)">195</td><td class="nm" style="text-align:center;color:var(--gn)">190</td><td class="nm" style="text-align:center;color:var(--gn)">185</td><td class="nm" style="text-align:center;color:var(--gn)">185</td><td class="nm" style="text-align:center;color:var(--gn)">182</td><td class="nm" style="text-align:center;color:var(--gn)">180</td><td class="nm" style="text-align:center;color:var(--gn)">178</td></tr>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">% Prenhas</td><td class="nm" style="text-align:center">38%</td><td class="nm" style="text-align:center">39%</td><td class="nm" style="text-align:center">42%</td><td class="nm" style="text-align:center">45%</td><td class="nm" style="text-align:center">48%</td><td class="nm" style="text-align:center">50%</td><td class="nm" style="text-align:center">51%</td><td class="nm" style="text-align:center">52%</td><td class="nm" style="text-align:center">53%</td><td class="nm" style="text-align:center">54%</td><td class="nm" style="text-align:center">55%</td><td class="nm" style="text-align:center;color:var(--gn)">56%</td></tr>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">Cluster A (%)</td><td class="nm" style="text-align:center">28%</td><td class="nm" style="text-align:center">29%</td><td class="nm" style="text-align:center">30%</td><td class="nm" style="text-align:center">31%</td><td class="nm" style="text-align:center">32%</td><td class="nm" style="text-align:center">33%</td><td class="nm" style="text-align:center">34%</td><td class="nm" style="text-align:center">35%</td><td class="nm" style="text-align:center">36%</td><td class="nm" style="text-align:center">37%</td><td class="nm" style="text-align:center">37%</td><td class="nm" style="text-align:center;color:var(--gn)">38%</td></tr>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">Cluster D (%)</td><td class="nm" style="text-align:center;color:var(--gn)">1%</td><td class="nm" style="text-align:center;color:var(--gn)">2%</td><td class="nm" style="text-align:center">3%</td><td class="nm" style="text-align:center">3%</td><td class="nm" style="text-align:center">4%</td><td class="nm" style="text-align:center">4%</td><td class="nm" style="text-align:center">5%</td><td class="nm" style="text-align:center">5%</td><td class="nm" style="text-align:center">5%</td><td class="nm" style="text-align:center">5%</td><td class="nm" style="text-align:center">5%</td><td class="nm" style="text-align:center;color:var(--gn)">5%</td></tr>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">Gordura media (%)</td><td class="nm" style="text-align:center">3,65</td><td class="nm" style="text-align:center">3,67</td><td class="nm" style="text-align:center">3,68</td><td class="nm" style="text-align:center">3,70</td><td class="nm" style="text-align:center">3,72</td><td class="nm" style="text-align:center">3,74</td><td class="nm" style="text-align:center">3,75</td><td class="nm" style="text-align:center">3,77</td><td class="nm" style="text-align:center">3,78</td><td class="nm" style="text-align:center">3,79</td><td class="nm" style="text-align:center">3,80</td><td class="nm" style="text-align:center;color:var(--gn)">3,82</td></tr>
+<tr><td style="font-weight:700;position:sticky;left:0;background:var(--card)">Proteina media (%)</td><td class="nm" style="text-align:center">3,24</td><td class="nm" style="text-align:center">3,25</td><td class="nm" style="text-align:center">3,26</td><td class="nm" style="text-align:center">3,27</td><td class="nm" style="text-align:center">3,28</td><td class="nm" style="text-align:center">3,29</td><td class="nm" style="text-align:center">3,30</td><td class="nm" style="text-align:center">3,31</td><td class="nm" style="text-align:center">3,32</td><td class="nm" style="text-align:center">3,33</td><td class="nm" style="text-align:center">3,34</td><td class="nm" style="text-align:center;color:var(--gn)">3,35</td></tr>
+<tr style="background:rgba(255,255,255,.02)"><td style="font-weight:800;position:sticky;left:0;background:var(--card);color:var(--pr)">Fase</td><td colspan="2" style="text-align:center;font-size:7px;font-weight:800;color:var(--p1);background:rgba(239,68,68,.04)">🚨 FASE 1</td><td colspan="3" style="text-align:center;font-size:7px;font-weight:800;color:var(--p3);background:rgba(245,158,11,.04)">⚡ FASE 2</td><td colspan="4" style="text-align:center;font-size:7px;font-weight:800;color:var(--p4);background:rgba(59,130,246,.04)">📈 FASE 3</td><td colspan="3" style="text-align:center;font-size:7px;font-weight:800;color:var(--p7);background:rgba(16,185,129,.04)">🏆 FASE 4</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="nt" style="background:rgba(6,182,212,.05);border:1px solid rgba(6,182,212,.12)">
+<strong style="color:var(--cy)">Como usar esta tabela:</strong> Imprima e cole na parede do escritorio da fazenda. <strong>Todo mes, compare o resultado real com a meta.</strong> Se algum KPI estiver abaixo da meta, acione o plano B imediatamente (descrito na analise de sensibilidade). O sucesso do projeto depende de monitoramento MENSAL.
+</div>
+</div>
+
+<!-- ==================== SECAO 8: MAPA DE RESPONSAVEIS ==================== -->
+<div class="st fi">Mapa de Responsaveis & Governanca <span class="st-b" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">RACI</span></div>
+
+<div class="d fi">
+<div class="dh"><div class="dt">👥 Matriz RACI — Quem Faz O Que <span class="db" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">GOVERNANCA</span></div><div class="di">R = Responsavel | A = Aprovador | C = Consultado | I = Informado</div></div>
+
+<div style="overflow-x:auto">
+<table class="mt" style="font-size:9px">
+<thead>
+<tr>
+<th style="width:28%">Atividade</th>
+<th style="text-align:center;width:14%">Patricia<br><span style="font-size:7px;font-weight:400">Proprietaria</span></th>
+<th style="text-align:center;width:14%">Gerente<br><span style="font-size:7px;font-weight:400">Fazenda</span></th>
+<th style="text-align:center;width:14%">Veterinario<br><span style="font-size:7px;font-weight:400">Reproducao</span></th>
+<th style="text-align:center;width:14%">Nutricionista<br><span style="font-size:7px;font-weight:400">Dieta</span></th>
+<th style="text-align:center;width:16%">Rural IN<br><span style="font-size:7px;font-weight:400">Consultoria</span></th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="font-weight:600">Descarte Cluster D</td><td style="text-align:center"><span style="background:rgba(16,185,129,.15);color:var(--gn);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">A</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td></tr>
+<tr><td style="font-weight:600">Triagem Cluster C</td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td><td style="text-align:center"><span style="background:rgba(16,185,129,.15);color:var(--gn);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">A</span></td></tr>
+<tr><td style="font-weight:600">Programa IATF (B+C)</td><td style="text-align:center"><span style="background:rgba(16,185,129,.15);color:var(--gn);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">A</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td></tr>
+<tr><td style="font-weight:600">Programa saude/CCS</td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td></tr>
+<tr><td style="font-weight:600">Nutricao por cluster</td><td style="text-align:center"><span style="background:rgba(16,185,129,.15);color:var(--gn);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">A</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td></tr>
+<tr><td style="font-weight:600">OPU/FTET genetica</td><td style="text-align:center"><span style="background:rgba(16,185,129,.15);color:var(--gn);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">A</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td></tr>
+<tr><td style="font-weight:600">Compra novilhas reposicao</td><td style="text-align:center"><span style="background:rgba(16,185,129,.15);color:var(--gn);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">A</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td></tr>
+<tr style="background:rgba(16,185,129,.03)"><td style="font-weight:700;color:var(--gn)">Re-clusterizacao mensal</td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td><td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">C</span></td><td style="text-align:center"><span style="background:rgba(139,92,246,.1);color:var(--t3);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">I</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td></tr>
+<tr style="background:rgba(16,185,129,.03)"><td style="font-weight:700;color:var(--gn)">Reuniao mensal resultados</td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td><td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:2px 6px;border-radius:4px;font-weight:800;font-size:8px">R</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- REUNIOES -->
+<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+<div style="padding:14px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:8px">
+<div style="font-size:9px;color:var(--p1);font-weight:700;text-transform:uppercase;margin-bottom:6px">📅 Reuniao Semanal (Fase 1)</div>
+<div style="font-size:10px;color:var(--t2)"><strong>Quando:</strong> Toda segunda, 7h30<br><strong>Duracao:</strong> 30 min<br><strong>Pauta:</strong> Progresso descarte, triagem C, reorganizacao lotes<br><strong>Quem:</strong> Gerente + Rural IN</div>
+</div>
+<div style="padding:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:8px">
+<div style="font-size:9px;color:var(--p4);font-weight:700;text-transform:uppercase;margin-bottom:6px">📅 Reuniao Quinzenal (Fase 2-3)</div>
+<div style="font-size:10px;color:var(--t2)"><strong>Quando:</strong> 1° e 15° de cada mes, 8h<br><strong>Duracao:</strong> 1h<br><strong>Pauta:</strong> KPIs, IATF, CCS, nutricao, migracao<br><strong>Quem:</strong> Todos os envolvidos</div>
+</div>
+<div style="padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:8px">
+<div style="font-size:9px;color:var(--p7);font-weight:700;text-transform:uppercase;margin-bottom:6px">📅 Reuniao Mensal Estrategica</div>
+<div style="font-size:10px;color:var(--t2)"><strong>Quando:</strong> Ultimo dia util do mes, 14h<br><strong>Duracao:</strong> 2h<br><strong>Pauta:</strong> DRE, IOFC, clusters, decisoes proximos 30 dias<br><strong>Quem:</strong> Patricia + todos</div>
+</div>
+</div>
+</div>
+<!-- ==================== SECAO 9: SCORECARDS POR FASE ==================== -->
+<div class="st fi">Scorecards — Metas & Criterios de Sucesso <span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">SCORE</span></div>
+
+<div class="g2 fi">
+
+<!-- SCORECARD FASE 1 -->
+<div class="d" style="border-top:4px solid var(--p1)">
+<div class="dh"><div class="dt">🚨 Scorecard Fase 1 <span class="db" style="background:rgba(239,68,68,.15);color:var(--p1);border:1px solid rgba(239,68,68,.3)">M1-2</span></div></div>
+
+<div style="display:grid;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">Descarte D concluido</div><div style="font-size:8px;color:var(--t3)">110 vacas vendidas para abate</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0%</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">Receita venda ≥ R$ 300k</div><div style="font-size:8px;color:var(--t3)">Preco minimo R$ 2.700/cab</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0%</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--yl)">
+<div><div style="font-size:10px;font-weight:700">Triagem C finalizada</div><div style="font-size:8px;color:var(--t3)">120 vazias listadas + cultura leite</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--yl)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0%</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--bl)">
+<div><div style="font-size:10px;font-weight:700">Lotes reorganizados</div><div style="font-size:8px;color:var(--t3)">A premium / B pico+fim / C isolado</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--bl)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0%</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--pr)">
+<div><div style="font-size:10px;font-weight:700">Dashboard IOFC implantado</div><div style="font-size:8px;color:var(--t3)">Monitoramento diario funcionando</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--pr)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0%</span>
+</div>
+</div>
+</div>
+
+<div style="margin-top:12px;padding:10px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:9px;color:var(--p1);font-weight:700">NOTA MINIMA P/ AVANCAR</span>
+<div style="display:flex;align-items:center;gap:6px">
+<div style="width:50px;height:50px;border-radius:50%;border:3px solid var(--p1);display:flex;align-items:center;justify-content:center">
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--p1)">4/5</span>
+</div>
+<span style="font-size:8px;color:var(--t3)">80% das metas<br>para ir a Fase 2</span>
+</div>
+</div>
+</div>
+
+<!-- SCORECARD FASE 2 -->
+<div class="d" style="border-top:4px solid var(--p3)">
+<div class="dh"><div class="dt">⚡ Scorecard Fase 2 <span class="db" style="background:rgba(245,158,11,.15);color:var(--p3);border:1px solid rgba(245,158,11,.3)">M3-5</span></div></div>
+
+<div style="display:grid;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">≥ 85 prenhezes novas</div><div style="font-size:8px;color:var(--t3)">3 ciclos IATF em B+C vazias</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0/85</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">CCS tanque < 220k</div><div style="font-size:8px;color:var(--t3)">Tratamento mastite + descarte altas CCS</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">290k</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--yl)">
+<div><div style="font-size:10px;font-weight:700">~40 vacas C descartadas</div><div style="font-size:8px;color:var(--t3)">Quem nao emprenhou em 3 ciclos</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--yl)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0/40</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--bl)">
+<div><div style="font-size:10px;font-weight:700">Dieta reformulada por lote</div><div style="font-size:8px;color:var(--t3)">A premium / B transicao / C basica</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--bl)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0%</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--pr)">
+<div><div style="font-size:10px;font-weight:700">IOFC mensal ≥ R$ 690k</div><div style="font-size:8px;color:var(--t3)">+18% vs baseline de R$ 587k</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--pr)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">587k</span>
+</div>
+</div>
+</div>
+
+<div style="margin-top:12px;padding:10px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.12);border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:9px;color:var(--p3);font-weight:700">NOTA MINIMA P/ AVANCAR</span>
+<div style="display:flex;align-items:center;gap:6px">
+<div style="width:50px;height:50px;border-radius:50%;border:3px solid var(--p3);display:flex;align-items:center;justify-content:center">
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--p3)">4/5</span>
+</div>
+<span style="font-size:8px;color:var(--t3)">80% das metas<br>para ir a Fase 3</span>
+</div>
+</div>
+</div>
+
+<!-- SCORECARD FASE 3 -->
+<div class="d" style="border-top:4px solid var(--p4)">
+<div class="dh"><div class="dt">📈 Scorecard Fase 3 <span class="db" style="background:rgba(59,130,246,.15);color:var(--p4);border:1px solid rgba(59,130,246,.3)">M6-9</span></div></div>
+
+<div style="display:grid;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">≥ 65 vacas B migraram p/ A</div><div style="font-size:8px;color:var(--t3)">Producao + prenhez + CCS compativel</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0/65</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">OPU: ≥ 120 embrioes viáveis</div><div style="font-size:8px;color:var(--t3)">Top 50 doadoras Cluster A</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0/120</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--bl)">
+<div><div style="font-size:10px;font-weight:700">≥ 80 novilhas adquiridas</div><div style="font-size:8px;color:var(--t3)">Genetica alta, preco ≤ R$ 4.500/cab</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--bl)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">0/80</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--cy)">
+<div><div style="font-size:10px;font-weight:700">CCS tanque < 200k</div><div style="font-size:8px;color:var(--t3)">Monitoramento quinzenal estavel</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--cy)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">220k</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--pr)">
+<div><div style="font-size:10px;font-weight:700">IOFC mensal ≥ R$ 768k</div><div style="font-size:8px;color:var(--t3)">+31% vs baseline de R$ 587k</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--pr)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">690k</span>
+</div>
+</div>
+</div>
+
+<div style="margin-top:12px;padding:10px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:9px;color:var(--p4);font-weight:700">NOTA MINIMA P/ AVANCAR</span>
+<div style="display:flex;align-items:center;gap:6px">
+<div style="width:50px;height:50px;border-radius:50%;border:3px solid var(--p4);display:flex;align-items:center;justify-content:center">
+<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:900;color:var(--p4)">3/5</span>
+</div>
+<span style="font-size:8px;color:var(--t3)">60% das metas<br>para ir a Fase 4</span>
+</div>
+</div>
+</div>
+
+<!-- SCORECARD FASE 4 -->
+<div class="d" style="border-top:4px solid var(--p7)">
+<div class="dh"><div class="dt">🏆 Scorecard Fase 4 <span class="db" style="background:rgba(16,185,129,.15);color:var(--p7);border:1px solid rgba(16,185,129,.3)">M10-12</span></div></div>
+
+<div style="display:grid;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">Rebanho estabilizado em 700 VL</div><div style="font-size:8px;color:var(--t3)">Novilhas entraram + reposicao completa</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">695</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">Cluster A ≥ 37% do rebanho</div><div style="font-size:8px;color:var(--t3)">~265 vacas na elite produtiva</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">36%</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">Cluster D ≤ 5% do rebanho</div><div style="font-size:8px;color:var(--t3)">~35 vacas (descarte continuo mantido)</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">5%</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border-left:3px solid var(--gn)">
+<div><div style="font-size:10px;font-weight:700">Media ≥ 42 L/VL/dia</div><div style="font-size:8px;color:var(--t3)">+11% vs baseline de 37,9 L</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:var(--gn)"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">41,5</span>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(16,185,129,.04);border-radius:6px;border-left:3px solid var(--gn);border:1px solid rgba(16,185,129,.15)">
+<div><div style="font-size:10px;font-weight:700;color:var(--gn)">IOFC mensal ≥ R$ 815k</div><div style="font-size:8px;color:var(--gn)">+39% vs baseline — META FINAL</div></div>
+<div style="display:flex;align-items:center;gap:6px">
+<div class="prog" style="width:80px"><div class="prog-fill" style="width:0%;background:linear-gradient(90deg,var(--gn),var(--em))"></div></div>
+<span class="nm" style="font-size:9px;color:var(--t3)">768k</span>
+</div>
+</div>
+</div>
+
+<div style="margin-top:12px;padding:14px;background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(59,130,246,.06));border:2px solid rgba(16,185,129,.2);border-radius:8px;text-align:center">
+<div style="font-size:9px;color:var(--gn);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🏆 CRITERIO DE SUCESSO FINAL</div>
+<div style="font-size:14px;font-weight:900;color:var(--gn)">IOFC ≥ R$ 815k/mes + Margem ≥ 20% + CCS < 180k</div>
+<div style="font-size:9px;color:var(--t3);margin-top:2px">Se atingir 3/3, projeto encerrado com SUCESSO TOTAL</div>
+</div>
+</div>
+
+</div>
+
+<!-- ==================== SECAO 10: ANALISE DE RISCOS ==================== -->
+<div class="st fi">Mapa de Riscos & Planos de Contingencia <span class="st-b" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">RISCO</span></div>
+
+<div class="d fi" style="border:2px solid rgba(239,68,68,.3)">
+<div class="dh"><div class="dt">⚠️ 8 Riscos Mapeados + Plano B para Cada Um <span class="db" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">MITIGACAO</span></div></div>
+
+<div style="overflow-x:auto">
+<table class="mt" style="font-size:9px">
+<thead>
+<tr>
+<th style="width:4%">#</th>
+<th style="width:20%">Risco</th>
+<th style="width:8%;text-align:center">Prob.</th>
+<th style="width:8%;text-align:center">Impacto</th>
+<th style="width:8%;text-align:center">Score</th>
+<th style="width:26%">Plano B (Mitigacao)</th>
+<th style="width:13%">Gatilho</th>
+<th style="width:13%">Responsavel</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:rgba(239,68,68,.03)">
+<td class="nm" style="color:var(--rd)">1</td>
+<td style="font-weight:700;color:var(--rd)">Preco do leite cai > 15%</td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><span style="background:rgba(239,68,68,.15);color:var(--rd);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">ALTO</span></td>
+<td style="text-align:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(239,68,68,.15);border:2px solid var(--rd);display:flex;align-items:center;justify-content:center;margin:0 auto"><span class="nm" style="font-size:10px;color:var(--rd)">8</span></div></td>
+<td style="font-size:8px">Acelerar descarte de C improdutivas. Focar em solidos (gordura/proteina) p/ bonus qualidade. Reduzir custo racao 5%.</td>
+<td style="font-size:8px;color:var(--rd)">Preco < R$ 2,10/L por 2 meses</td>
+<td style="font-size:8px">Patricia + Rural IN</td>
+</tr>
+<tr>
+<td class="nm" style="color:var(--or)">2</td>
+<td style="font-weight:700;color:var(--or)">Custo racao sobe > 15%</td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(245,158,11,.15);border:2px solid var(--yl);display:flex;align-items:center;justify-content:center;margin:0 auto"><span class="nm" style="font-size:10px;color:var(--yl)">6</span></div></td>
+<td style="font-size:8px">Antecipar compra de milho (hedge). Usar silagem propria. Descartar C+D rapidamente para reduzir consumo total.</td>
+<td style="font-size:8px;color:var(--or)">Milho > R$ 80/sc por 30 dias</td>
+<td style="font-size:8px">Nutricionista + Gerente</td>
+</tr>
+<tr>
+<td class="nm" style="color:var(--yl)">3</td>
+<td style="font-weight:700">TX concepcao IATF < 30%</td>
+<td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">BAIXO</span></td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(245,158,11,.15);border:2px solid var(--yl);display:flex;align-items:center;justify-content:center;margin:0 auto"><span class="nm" style="font-size:10px;color:var(--yl)">5</span></div></td>
+<td style="font-size:8px">Trocar protocolo (J-Synch ou Double Ovsynch). Verificar BCS e nutricao. Avaliar touro/semen. Adicionar 4° ciclo IATF.</td>
+<td style="font-size:8px;color:var(--yl)">< 30% no 1° ciclo DG</td>
+<td style="font-size:8px">Veterinario</td>
+</tr>
+<tr>
+<td class="nm" style="color:var(--yl)">4</td>
+<td style="font-weight:700">Surto de mastite clinica</td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><span style="background:rgba(239,68,68,.15);color:var(--rd);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">ALTO</span></td>
+<td style="text-align:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(239,68,68,.15);border:2px solid var(--rd);display:flex;align-items:center;justify-content:center;margin:0 auto"><span class="nm" style="font-size:10px;color:var(--rd)">7</span></div></td>
+<td style="font-size:8px">Isolamento imediato. Cultura rapida (24h). Protocolo tto por patogeno. Secar vacas cronicas. Reforcar pre/pos-dipping.</td>
+<td style="font-size:8px;color:var(--rd)">CCS tanque > 300k ou > 10 casos/semana</td>
+<td style="font-size:8px">Veterinario + Gerente</td>
+</tr>
+<tr>
+<td class="nm" style="color:var(--bl)">5</td>
+<td style="font-weight:700">Migracao B→A < 35 vacas</td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(245,158,11,.15);border:2px solid var(--yl);display:flex;align-items:center;justify-content:center;margin:0 auto"><span class="nm" style="font-size:10px;color:var(--yl)">5</span></div></td>
+<td style="font-size:8px">Intensificar nutricao B. Adicionar gordura protegida + metionina. Melhorar conforto (ventilacao, cama). Estender prazo +3 meses.</td>
+<td style="font-size:8px;color:var(--bl)">< 25 migracoes ate Mes 8</td>
+<td style="font-size:8px">Nutricionista + Rural IN</td>
+</tr>
+<tr>
+<td class="nm" style="color:var(--bl)">6</td>
+<td style="font-weight:700">Perda embrionaria OPU > 40%</td>
+<td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">BAIXO</span></td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(59,130,246,.15);border:2px solid var(--bl);display:flex;align-items:center;justify-content:center;margin:0 auto"><span class="nm" style="font-size:10px;color:var(--bl)">4</span></div></td>
+<td style="font-size:8px">Trocar laboratorio/equipe OPU. Reavaliar receptoras (BCS, status sanitario). Considerar FTET convencional como alternativa.</td>
+<td style="font-size:8px;color:var(--bl)">< 80 embrioes viáveis na 1ª leva</td>
+<td style="font-size:8px">Veterinario</td>
+</tr>
+<tr>
+<td class="nm" style="color:var(--pr)">7</td>
+<td style="font-weight:700">Resistencia da equipe a mudancas</td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><span style="background:rgba(245,158,11,.15);color:var(--yl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">MEDIO</span></td>
+<td style="text-align:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(245,158,11,.15);border:2px solid var(--yl);display:flex;align-items:center;justify-content:center;margin:0 auto"><span class="nm" style="font-size:10px;color:var(--yl)">6</span></div></td>
+<td style="font-size:8px">Treinamento + comunicacao clara. Mostrar numeros do prejuizo. Programa de bonus por meta atingida. Lideranca pelo exemplo.</td>
+<td style="font-size:8px;color:var(--pr)">Atraso > 15 dias em qualquer frente</td>
+<td style="font-size:8px">Patricia + Gerente</td>
+</tr>
+<tr>
+<td class="nm" style="color:var(--gn)">8</td>
+<td style="font-weight:700">Novilhas reposicao caras/escassas</td>
+<td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">BAIXO</span></td>
+<td style="text-align:center"><span style="background:rgba(59,130,246,.15);color:var(--bl);padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700">BAIXO</span></td>
+<td style="text-align:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,.15);border:2px solid var(--gn);display:flex;align-items:center;justify-content:center;margin:0 auto"><span class="nm" style="font-size:10px;color:var(--gn)">3</span></div></td>
+<td style="font-size:8px">Antecipar prospecção. Parcerias com criadores regionais (GO/MG). Leiloes online. Usar recria propria (bezerras OPU).</td>
+<td style="font-size:8px;color:var(--gn)">Preco > R$ 5k/cab ou oferta < 50</td>
+<td style="font-size:8px">Gerente + Rural IN</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- HEAT MAP DE RISCO -->
+<div style="margin-top:16px">
+<div style="font-size:10px;font-weight:700;color:var(--t2);margin-bottom:8px">Mapa de Calor — Probabilidade × Impacto</div>
+<div style="display:grid;grid-template-columns:40px repeat(3,1fr);grid-template-rows:auto repeat(3,50px);gap:2px;max-width:500px">
+
+<!-- Header -->
+<div></div>
+<div style="text-align:center;font-size:8px;color:var(--gn);font-weight:700;padding:4px">BAIXO</div>
+<div style="text-align:center;font-size:8px;color:var(--yl);font-weight:700;padding:4px">MEDIO</div>
+<div style="text-align:center;font-size:8px;color:var(--rd);font-weight:700;padding:4px">ALTO</div>
+
+<!-- Alto impacto -->
+<div style="display:flex;align-items:center;justify-content:center;font-size:7px;color:var(--rd);font-weight:700;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg)">ALTO</div>
+<div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:4px;display:flex;align-items:center;justify-content:center"></div>
+<div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:2px">
+<span style="font-size:9px;font-weight:800;color:var(--rd)">R1</span>
+<span style="font-size:9px;font-weight:800;color:var(--rd)">R4</span>
+</div>
+<div style="background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);border-radius:4px;display:flex;align-items:center;justify-content:center"></div>
+
+<!-- Medio impacto -->
+<div style="display:flex;align-items:center;justify-content:center;font-size:7px;color:var(--yl);font-weight:700;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg)">MEDIO</div>
+<div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:2px">
+<span style="font-size:9px;font-weight:800;color:var(--bl)">R3</span>
+<span style="font-size:9px;font-weight:800;color:var(--bl)">R6</span>
+</div>
+<div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:4px;display:flex;align-items:center;justify-content:center;gap:2px">
+<span style="font-size:9px;font-weight:800;color:var(--yl)">R2</span>
+<span style="font-size:9px;font-weight:800;color:var(--yl)">R5</span>
+<span style="font-size:9px;font-weight:800;color:var(--yl)">R7</span>
+</div>
+<div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:4px;display:flex;align-items:center;justify-content:center"></div>
+
+<!-- Baixo impacto -->
+<div style="display:flex;align-items:center;justify-content:center;font-size:7px;color:var(--gn);font-weight:700;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg)">BAIXO</div>
+<div style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.1);border-radius:4px;display:flex;align-items:center;justify-content:center">
+<span style="font-size:9px;font-weight:800;color:var(--gn)">R8</span>
+</div>
+<div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);border-radius:4px;display:flex;align-items:center;justify-content:center"></div>
+<div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);border-radius:4px;display:flex;align-items:center;justify-content:center"></div>
+</div>
+<div style="font-size:7px;color:var(--t3);margin-top:4px;text-align:center;max-width:500px">← PROBABILIDADE →</div>
+</div>
+
+<div class="nt" style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12)">
+<strong style="color:var(--rd)">Riscos criticos (score ≥ 7):</strong> R1 (preco leite) e R4 (mastite). Ambos tem planos B claros e gatilhos definidos. <strong>Nenhum risco inviabiliza o projeto</strong> — mesmo no pior cenario (sensibilidade pessimista), o ROI ainda e de 450%.
+</div>
+</div>
+
+<!-- ==================== SECAO 11: FRAMEWORK DE DECISAO ==================== -->
+<div class="st fi">Framework de Decisao — Arvore de Decisao por Vaca <span class="st-b" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">DECISAO</span></div>
+
+<div class="d fi" style="border:2px solid rgba(139,92,246,.3)">
+<div class="dh"><div class="dt">🌳 Arvore de Decisao — O Que Fazer com Cada Vaca <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">FLOWCHART</span></div><div class="di">Use este framework na triagem mensal de cada vaca</div></div>
+
+<!-- DECISION TREE VISUAL -->
+<div style="display:grid;gap:0;justify-items:center;padding:10px 0">
+
+<!-- LEVEL 0 - ROOT -->
+<div style="padding:12px 28px;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(59,130,246,.15));border:2px solid rgba(139,92,246,.4);border-radius:12px;font-size:13px;font-weight:900;color:var(--pr);text-align:center">
+🐄 VACA INDIVIDUAL
+</div>
+<div style="width:2px;height:20px;background:rgba(139,92,246,.3)"></div>
+
+<!-- LEVEL 1 - PRODUCAO -->
+<div style="padding:10px 20px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.3);border-radius:10px;font-size:11px;font-weight:700;color:var(--bl);text-align:center;width:auto">
+📊 Producao > 30 L/dia?
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0;width:80%;max-width:700px">
+<!-- Left branch (SIM) -->
+<div style="display:flex;flex-direction:column;align-items:center">
+<div style="display:flex;align-items:flex-start;width:100%">
+<div style="flex:1;border-bottom:2px solid var(--gn);border-right:2px solid var(--gn);height:20px"></div>
+<div style="flex:1"></div>
+</div>
+<div style="font-size:9px;color:var(--gn);font-weight:800;margin:2px 0">✅ SIM</div>
+
+<div style="padding:8px 14px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:8px;font-size:10px;text-align:center;width:90%">
+<div style="font-weight:700;color:var(--gn)">CCS < 300k?</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0;width:100%">
+<div style="display:flex;flex-direction:column;align-items:center">
+<div style="display:flex;align-items:flex-start;width:100%">
+<div style="flex:1;border-bottom:2px solid var(--gn);border-right:2px solid var(--gn);height:14px"></div>
+<div style="flex:1"></div>
+</div>
+<div style="font-size:7px;color:var(--gn);font-weight:800">SIM</div>
+<div style="padding:6px 8px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:6px;font-size:8px;text-align:center;margin-top:2px">
+<div style="font-weight:700;color:var(--t2)">Prenha?</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;width:100%;margin-top:4px">
+<div style="padding:6px 4px;background:rgba(16,185,129,.12);border:2px solid var(--gn);border-radius:6px;text-align:center">
+<div style="font-size:7px;color:var(--gn);font-weight:900">SIM</div>
+<div style="font-size:8px;font-weight:800;color:var(--gn);margin-top:2px">🌟 A</div>
+<div style="font-size:6px;color:var(--t3)">Manter + OPU</div>
+</div>
+<div style="padding:6px 4px;background:rgba(59,130,246,.08);border:2px solid var(--bl);border-radius:6px;text-align:center">
+<div style="font-size:7px;color:var(--yl);font-weight:900">NAO</div>
+<div style="font-size:8px;font-weight:800;color:var(--bl);margin-top:2px">✅ A/B</div>
+<div style="font-size:6px;color:var(--t3)">IATF sexado</div>
+</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center">
+<div style="display:flex;align-items:flex-start;width:100%">
+<div style="flex:1"></div>
+<div style="flex:1;border-bottom:2px solid var(--yl);border-left:2px solid var(--yl);height:14px"></div>
+</div>
+<div style="font-size:7px;color:var(--yl);font-weight:800">NAO</div>
+<div style="padding:6px 4px;background:rgba(245,158,11,.08);border:2px solid var(--yl);border-radius:6px;text-align:center;margin-top:2px;width:90%">
+<div style="font-size:8px;font-weight:800;color:var(--yl)">⚠️ B/C</div>
+<div style="font-size:6px;color:var(--t3)">Cultura + tto<br>Se cronica → secar</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Right branch (NAO) -->
+<div style="display:flex;flex-direction:column;align-items:center">
+<div style="display:flex;align-items:flex-start;width:100%">
+<div style="flex:1"></div>
+<div style="flex:1;border-bottom:2px solid var(--rd);border-left:2px solid var(--rd);height:20px"></div>
+</div>
+<div style="font-size:9px;color:var(--rd);font-weight:800;margin:2px 0">❌ NAO</div>
+
+<div style="padding:8px 14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:8px;font-size:10px;text-align:center;width:90%">
+<div style="font-weight:700;color:var(--rd)">DEL < 150?</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0;width:100%">
+<div style="display:flex;flex-direction:column;align-items:center">
+<div style="display:flex;align-items:flex-start;width:100%">
+<div style="flex:1;border-bottom:2px solid var(--yl);border-right:2px solid var(--yl);height:14px"></div>
+<div style="flex:1"></div>
+</div>
+<div style="font-size:7px;color:var(--yl);font-weight:800">SIM</div>
+<div style="padding:6px 4px;background:rgba(245,158,11,.08);border:2px solid var(--yl);border-radius:6px;text-align:center;margin-top:2px;width:90%">
+<div style="font-size:8px;font-weight:800;color:var(--yl)">⚠️ C</div>
+<div style="font-size:6px;color:var(--t3)">Pode estar em<br>inicio de lactacao<br>Monitorar 60d</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center">
+<div style="display:flex;align-items:flex-start;width:100%">
+<div style="flex:1"></div>
+<div style="flex:1;border-bottom:2px solid var(--rd);border-left:2px solid var(--rd);height:14px"></div>
+</div>
+<div style="font-size:7px;color:var(--rd);font-weight:800">NAO</div>
+<div style="padding:6px 4px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:6px;font-size:8px;text-align:center;margin-top:2px;width:90%">
+<div style="font-weight:700;color:var(--t2)">Prenha?</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;width:100%;margin-top:4px">
+<div style="padding:6px 4px;background:rgba(245,158,11,.08);border:2px solid var(--or);border-radius:6px;text-align:center">
+<div style="font-size:7px;color:var(--yl);font-weight:900">SIM</div>
+<div style="font-size:8px;font-weight:800;color:var(--or);margin-top:2px">⚠️ C</div>
+<div style="font-size:6px;color:var(--t3)">Secar + parir<br>Reavaliar pos</div>
+</div>
+<div style="padding:6px 4px;background:rgba(239,68,68,.12);border:2px solid var(--rd);border-radius:6px;text-align:center">
+<div style="font-size:7px;color:var(--rd);font-weight:900">NAO</div>
+<div style="font-size:8px;font-weight:800;color:var(--rd);margin-top:2px">🚫 D</div>
+<div style="font-size:6px;color:var(--t3)">DESCARTE<br>IMEDIATO</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- REGRAS RAPIDAS -->
+<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div style="padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:8px">
+<div style="font-size:9px;color:var(--gn);font-weight:700;text-transform:uppercase;margin-bottom:8px">✅ REGRAS DE PERMANENCIA (Manter)</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.8">
+• Producao > 30 L/dia<br>
+• CCS individual < 300k (ideal < 200k)<br>
+• Prenha OU < 120 DEL vazias<br>
+• IOFC/dia > R$ 15,00<br>
+• ≤ 4ª lactacao (ideal 2ª-3ª)<br>
+• Persistencia > 85%
+</div>
+</div>
+<div style="padding:14px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15);border-radius:8px">
+<div style="font-size:9px;color:var(--rd);font-weight:700;text-transform:uppercase;margin-bottom:8px">🚫 REGRAS DE DESCARTE (Sair)</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.8">
+• Producao < 20 L/dia + DEL > 200<br>
+• CCS > 500k por 3 controles seguidos<br>
+• Vazia > 250 DEL (3+ ciclos IATF sem pegar)<br>
+• IOFC/dia negativo<br>
+• ≥ 6ª lactacao + qualquer flag negativa<br>
+• Mastite cronica (> 3 episodios/lactacao)
+</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12)">
+<strong style="color:var(--pr)">Como usar:</strong> Na re-clusterizacao mensal, passe CADA VACA por esta arvore de decisao. O resultado define se ela sobe, mantem ou desce de cluster. <strong>Decisao por dados, nao por emocao.</strong> Imprima e plastifique para uso no campo.
+</div>
+</div>
+
+<!-- ==================== SECAO 12: PROGRAMA DE BONUS ==================== -->
+<div class="st fi">Programa de Bonus por Resultados <span class="st-b" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">INCENTIVO</span></div>
+
+<div class="d fi" style="border:2px solid rgba(236,72,153,.3)">
+<div class="dh"><div class="dt">💎 Bonus Trimestral — Engajamento da Equipe <span class="db" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">GAMIFICACAO</span></div><div class="di">Para garantir execucao — vincule resultado a remuneracao variavel</div></div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+
+<!-- Q1 -->
+<div style="padding:16px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15);border-radius:10px;text-align:center">
+<div style="font-size:28px;margin-bottom:4px">🚨</div>
+<div style="font-size:10px;font-weight:800;color:var(--p1)">Q1 — EMERGENCIA</div>
+<div style="font-size:8px;color:var(--t3);margin-bottom:10px">Mar-Mai/2026</div>
+<div style="padding:8px;background:rgba(255,255,255,.03);border-radius:6px;margin-bottom:6px">
+<div style="font-size:8px;color:var(--t3)">Meta: Descarte D completo</div>
+<div style="font-size:8px;color:var(--t3)">+ CCS < 250k</div>
+</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">R$ 5k</div>
+<div style="font-size:8px;color:var(--t3)">por funcionario</div>
+</div>
+
+<!-- Q2 -->
+<div style="padding:16px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.15);border-radius:10px;text-align:center">
+<div style="font-size:28px;margin-bottom:4px">⚡</div>
+<div style="font-size:10px;font-weight:800;color:var(--p3)">Q2 — REPRODUCAO</div>
+<div style="font-size:8px;color:var(--t3);margin-bottom:10px">Jun-Ago/2026</div>
+<div style="padding:8px;background:rgba(255,255,255,.03);border-radius:6px;margin-bottom:6px">
+<div style="font-size:8px;color:var(--t3)">Meta: ≥ 85 prenhezes</div>
+<div style="font-size:8px;color:var(--t3)">+ IOFC ≥ R$ 700k</div>
+</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">R$ 7k</div>
+<div style="font-size:8px;color:var(--t3)">por funcionario</div>
+</div>
+
+<!-- Q3 -->
+<div style="padding:16px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.15);border-radius:10px;text-align:center">
+<div style="font-size:28px;margin-bottom:4px">📈</div>
+<div style="font-size:10px;font-weight:800;color:var(--p4)">Q3 — MIGRACAO</div>
+<div style="font-size:8px;color:var(--t3);margin-bottom:10px">Set-Nov/2026</div>
+<div style="padding:8px;background:rgba(255,255,255,.03);border-radius:6px;margin-bottom:6px">
+<div style="font-size:8px;color:var(--t3)">Meta: ≥ 50 vacas B→A</div>
+<div style="font-size:8px;color:var(--t3)">+ CCS < 200k</div>
+</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">R$ 8k</div>
+<div style="font-size:8px;color:var(--t3)">por funcionario</div>
+</div>
+
+<!-- Q4 -->
+<div style="padding:16px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:10px;text-align:center">
+<div style="font-size:28px;margin-bottom:4px">🏆</div>
+<div style="font-size:10px;font-weight:800;color:var(--p7)">Q4 — EXCELENCIA</div>
+<div style="font-size:8px;color:var(--t3);margin-bottom:10px">Dez/26-Fev/27</div>
+<div style="padding:8px;background:rgba(255,255,255,.03);border-radius:6px;margin-bottom:6px">
+<div style="font-size:8px;color:var(--t3)">Meta: IOFC ≥ R$ 815k</div>
+<div style="font-size:8px;color:var(--t3)">+ Margem ≥ 20%</div>
+</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">R$ 10k</div>
+<div style="font-size:8px;color:var(--t3)">por funcionario</div>
+</div>
+
+</div>
+
+<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div style="padding:14px;background:rgba(236,72,153,.04);border:1px solid rgba(236,72,153,.12);border-radius:8px">
+<div style="font-size:9px;color:var(--pk);font-weight:700;text-transform:uppercase;margin-bottom:6px">📋 REGRAS DO BONUS</div>
+<div style="font-size:9px;color:var(--t2);line-height:1.8">
+• Pago ao final de cada trimestre se metas atingidas<br>
+• Escalonado: 80% meta = 60% bonus | 100% = 100% | 120% = 130%<br>
+• Elegibilidade: todos os funcionarios da fazenda<br>
+• Super bonus (R$ 15k/func) se TODAS as 4 metas forem atingidas no ano<br>
+• Apuracao pela Rural IN com base nos dados de clusterizacao
+</div>
+</div>
+<div style="padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:8px">
+<div style="font-size:9px;color:var(--gn);font-weight:700;text-transform:uppercase;margin-bottom:6px">💰 IMPACTO FINANCEIRO DO BONUS</div>
+<div style="display:grid;gap:6px;margin-top:4px">
+<div style="display:flex;justify-content:space-between"><span style="font-size:9px;color:var(--t3)">Bonus total/ano (10 func.)</span><span class="nm" style="font-size:10px;color:var(--rd)">R$ 300k</span></div>
+<div style="display:flex;justify-content:space-between"><span style="font-size:9px;color:var(--t3)">Ganho gerado pelas metas</span><span class="nm" style="font-size:10px;color:var(--gn)">R$ 2,29M</span></div>
+<div style="display:flex;justify-content:space-between;padding-top:6px;border-top:1px solid rgba(255,255,255,.06)"><span style="font-size:9px;color:var(--gn);font-weight:700">Saldo liquido</span><span class="nm" style="font-size:12px;color:var(--gn);font-weight:900">R$ 1,99M</span></div>
+<div style="font-size:8px;color:var(--t3);margin-top:4px">O bonus custa 13% do ganho — investimento que garante execucao. Equipe motivada executa 3x mais rapido.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== SECAO 13: VISAO LONGO PRAZO ==================== -->
+<div class="st fi">Visao de Longo Prazo — Anos 2 e 3 <span class="st-b" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">FUTURO</span></div>
+
+<div class="d fi" style="border:2px solid rgba(6,182,212,.3);background:linear-gradient(135deg,rgba(6,182,212,.02),rgba(16,185,129,.02))">
+<div class="dh"><div class="dt">🔮 Projecao Estrategica 3 Anos — Fazenda Brasilanda 2026-2029 <span class="db" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">ESTRATEGIA</span></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px">
+
+<!-- ANO 1 -->
+<div style="padding:20px;background:linear-gradient(160deg,rgba(16,185,129,.08),rgba(16,185,129,.02));border:2px solid rgba(16,185,129,.3);border-radius:14px">
+<div style="text-align:center;margin-bottom:14px">
+<div style="font-size:36px;margin-bottom:4px">🎯</div>
+<div style="font-size:14px;font-weight:900;color:var(--gn)">ANO 1 — OTIMIZACAO</div>
+<div style="font-size:9px;color:var(--t3)">Mar/2026 → Fev/2027</div>
+<div style="font-size:8px;color:var(--gn);font-weight:700;margin-top:4px">EM EXECUCAO</div>
+</div>
+
+<div style="display:grid;gap:6px">
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Rebanho</span>
+<span class="nm" style="font-size:10px;font-weight:700">850 → 700 VL</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Prod/VL/dia</span>
+<span class="nm" style="font-size:10px;font-weight:700">37,9 → 42,1 L</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">IOFC/mes</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--gn)">R$ 587k → 815k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Lucro/mes</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--gn)">R$ 181k → 460k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Margem</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--gn)">7,7% → 20,2%</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">CCS tanque</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--gn)">290k → 178k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0">
+<span style="font-size:9px;color:var(--t3)">Cluster A %</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--gn)">24,7% → 37,9%</span>
+</div>
+</div>
+
+<div style="margin-top:12px;padding:10px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:6px;text-align:center">
+<div style="font-size:8px;color:var(--gn);font-weight:700">LUCRO ANUAL</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--gn)">R$ 4,1M</div>
+</div>
+</div>
+
+<!-- ANO 2 -->
+<div style="padding:20px;background:linear-gradient(160deg,rgba(59,130,246,.08),rgba(59,130,246,.02));border:2px solid rgba(59,130,246,.3);border-radius:14px">
+<div style="text-align:center;margin-bottom:14px">
+<div style="font-size:36px;margin-bottom:4px">📈</div>
+<div style="font-size:14px;font-weight:900;color:var(--bl)">ANO 2 — ESCALA</div>
+<div style="font-size:9px;color:var(--t3)">Mar/2027 → Fev/2028</div>
+<div style="font-size:8px;color:var(--bl);font-weight:700;margin-top:4px">PLANEJADO</div>
+</div>
+
+<div style="display:grid;gap:6px">
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Rebanho</span>
+<span class="nm" style="font-size:10px;font-weight:700">700 → 800 VL</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Prod/VL/dia</span>
+<span class="nm" style="font-size:10px;font-weight:700">42,1 → 44,5 L</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">IOFC/mes</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--bl)">R$ 815k → 1.050k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Lucro/mes</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--bl)">R$ 460k → 620k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Margem</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--bl)">20,2% → 22,5%</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">CCS tanque</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--bl)">178k → 155k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0">
+<span style="font-size:9px;color:var(--t3)">Cluster A %</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--bl)">37,9% → 45%</span>
+</div>
+</div>
+
+<div style="margin-top:12px;padding:10px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:6px;text-align:center">
+<div style="font-size:8px;color:var(--bl);font-weight:700">LUCRO ANUAL</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--bl)">R$ 7,4M</div>
+</div>
+</div>
+
+<!-- ANO 3 -->
+<div style="padding:20px;background:linear-gradient(160deg,rgba(139,92,246,.08),rgba(139,92,246,.02));border:2px solid rgba(139,92,246,.3);border-radius:14px">
+<div style="text-align:center;margin-bottom:14px">
+<div style="font-size:36px;margin-bottom:4px">🏆</div>
+<div style="font-size:14px;font-weight:900;color:var(--pr)">ANO 3 — EXCELENCIA</div>
+<div style="font-size:9px;color:var(--t3)">Mar/2028 → Fev/2029</div>
+<div style="font-size:8px;color:var(--pr);font-weight:700;margin-top:4px">VISAO</div>
+</div>
+
+<div style="display:grid;gap:6px">
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Rebanho</span>
+<span class="nm" style="font-size:10px;font-weight:700">800 → 900 VL</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Prod/VL/dia</span>
+<span class="nm" style="font-size:10px;font-weight:700">44,5 → 46,0 L</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">IOFC/mes</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--pr)">R$ 1.050k → 1.350k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Lucro/mes</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--pr)">R$ 620k → 850k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">Margem</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--pr)">22,5% → 25,0%</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+<span style="font-size:9px;color:var(--t3)">CCS tanque</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--pr)">155k → 130k</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:6px 0">
+<span style="font-size:9px;color:var(--t3)">Cluster A %</span>
+<span class="nm" style="font-size:10px;font-weight:700;color:var(--pr)">45% → 55%</span>
+</div>
+</div>
+
+<div style="margin-top:12px;padding:10px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15);border-radius:6px;text-align:center">
+<div style="font-size:8px;color:var(--pr);font-weight:700">LUCRO ANUAL</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:900;color:var(--pr)">R$ 10,2M</div>
+</div>
+</div>
+
+</div>
+
+<!-- GRAFICO 3 ANOS -->
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:16px">
+<div style="text-align:center">
+<div style="height:120px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--gn),#047857);border-radius:6px 6px 0 0;height:40%;transition:height 1s;position:relative">
+<div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--gn);white-space:nowrap">R$ 4,1M</div>
+</div>
+</div>
+<div style="font-size:9px;font-weight:700;color:var(--gn);margin-top:4px">Ano 1</div>
+</div>
+<div style="text-align:center">
+<div style="height:120px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--bl),#1d4ed8);border-radius:6px 6px 0 0;height:73%;transition:height 1s;position:relative">
+<div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--bl);white-space:nowrap">R$ 7,4M</div>
+</div>
+</div>
+<div style="font-size:9px;font-weight:700;color:var(--bl);margin-top:4px">Ano 2</div>
+</div>
+<div style="text-align:center">
+<div style="height:120px;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="background:linear-gradient(180deg,var(--pr),#6d28d9);border-radius:6px 6px 0 0;height:100%;transition:height 1s;position:relative">
+<div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--pr);white-space:nowrap">R$ 10,2M</div>
+</div>
+</div>
+<div style="font-size:9px;font-weight:700;color:var(--pr);margin-top:4px">Ano 3</div>
+</div>
+</div>
+
+<!-- TOTAL 3 ANOS -->
+<div style="text-align:center;padding:18px;background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(139,92,246,.06));border:2px solid rgba(16,185,129,.3);border-radius:12px">
+<div style="font-size:9px;color:var(--gn);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:4px">LUCRO ACUMULADO 3 ANOS</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:900;background:linear-gradient(135deg,var(--gn),var(--bl),var(--pr));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">R$ 21,7M</div>
+<div style="font-size:11px;color:var(--t2);margin-top:4px">De R$ 2,17M/ano (antes) para media de R$ 7,2M/ano — <strong style="color:var(--gn)">crescimento de 232%</strong></div>
+</div>
+
+<div class="nt" style="background:rgba(6,182,212,.05);border:1px solid rgba(6,182,212,.12)">
+<strong style="color:var(--cy)">Estrategia dos 3 anos:</strong> Ano 1 otimiza o existente (custo zero). Ano 2 escala com novilhas OPU entrando (+100 VL genetica A). Ano 3 atinge excelencia com 55% do rebanho no Cluster A e producao media de 46 L/VL/dia. <strong>Em 3 anos, a Fazenda Brasilanda pode ser referencia regional em eficiencia leiteira.</strong>
+</div>
+</div>
+
+<!-- ==================== SECAO 14: RESUMO EXECUTIVO FINAL ==================== -->
+<div class="st fi">Resumo Executivo Final — Uma Pagina <span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">SUMARIO</span></div>
+
+<div class="d fi" style="border:3px solid rgba(16,185,129,.4);background:linear-gradient(180deg,rgba(16,185,129,.03),var(--card))">
+<div style="text-align:center;margin-bottom:20px">
+<div style="font-size:28px;margin-bottom:6px">📋</div>
+<div style="font-size:20px;font-weight:900;color:var(--gn)">PLANO DE ACAO 12 MESES</div>
+<div style="font-size:13px;color:var(--t2)">Fazenda Brasilanda — Patricia Kompier | Rio Verde, GO</div>
+<div style="font-size:10px;color:var(--t3);margin-top:4px">Elaborado por Rural IN — Sidney Souza | Marco 2026</div>
+</div>
+
+<!-- SITUACAO ATUAL vs PROJETADA -->
+<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-bottom:20px">
+
+<div style="padding:16px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15);border-radius:10px">
+<div style="font-size:9px;color:var(--rd);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;text-align:center">SITUACAO ATUAL</div>
+<div style="display:grid;gap:4px;font-size:10px">
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Rebanho</span><span class="nm" style="font-weight:700">850 VL</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Producao</span><span class="nm" style="font-weight:700">37,9 L/VL/dia</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">IOFC</span><span class="nm" style="font-weight:700">R$ 587k/mes</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Lucro</span><span class="nm" style="font-weight:700">R$ 181k/mes</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Margem</span><span class="nm" style="font-weight:700;color:var(--rd)">7,7%</span></div>
+</div>
+</div>
+
+<div style="font-size:32px;color:var(--gn)">→</div>
+
+<div style="padding:16px;background:rgba(16,185,129,.04);border:2px solid rgba(16,185,129,.2);border-radius:10px">
+<div style="font-size:9px;color:var(--gn);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;text-align:center">META FEV/2027</div>
+<div style="display:grid;gap:4px;font-size:10px">
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Rebanho</span><span class="nm" style="font-weight:700;color:var(--gn)">700 VL (-18%)</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Producao</span><span class="nm" style="font-weight:700;color:var(--gn)">42,1 L/VL/dia (+11%)</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">IOFC</span><span class="nm" style="font-weight:700;color:var(--gn)">R$ 815k/mes (+39%)</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Lucro</span><span class="nm" style="font-weight:700;color:var(--gn)">R$ 460k/mes (+154%)</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Margem</span><span class="nm" style="font-weight:700;color:var(--gn)">20,2% (+163%)</span></div>
+</div>
+</div>
+</div>
+
+<!-- 4 FASES RESUMO -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px">
+<div style="padding:10px;border:1px solid rgba(239,68,68,.2);border-radius:8px;text-align:center;background:rgba(239,68,68,.02)">
+<div style="font-size:8px;color:var(--p1);font-weight:800;margin-bottom:2px">F1 EMERGENCIA</div>
+<div style="font-size:7px;color:var(--t3)">M1-2 | Invest: R$ 0</div>
+<div style="font-size:9px;font-weight:800;color:var(--t1);margin:4px 0">Descarte 110 D</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--gn)">+R$ 451k</div>
+</div>
+<div style="padding:10px;border:1px solid rgba(245,158,11,.2);border-radius:8px;text-align:center;background:rgba(245,158,11,.02)">
+<div style="font-size:8px;color:var(--p3);font-weight:800;margin-bottom:2px">F2 ESTABILIZACAO</div>
+<div style="font-size:7px;color:var(--t3)">M3-5 | Invest: R$ 85k</div>
+<div style="font-size:9px;font-weight:800;color:var(--t1);margin:4px 0">IATF + Saude</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--gn)">+R$ 340k</div>
+</div>
+<div style="padding:10px;border:1px solid rgba(59,130,246,.2);border-radius:8px;text-align:center;background:rgba(59,130,246,.02)">
+<div style="font-size:8px;color:var(--p4);font-weight:800;margin-bottom:2px">F3 ACELERACAO</div>
+<div style="font-size:7px;color:var(--t3)">M6-9 | Invest: R$ 120k</div>
+<div style="font-size:9px;font-weight:800;color:var(--t1);margin:4px 0">B→A + Genetica</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--gn)">+R$ 680k</div>
+</div>
+<div style="padding:10px;border:1px solid rgba(16,185,129,.2);border-radius:8px;text-align:center;background:rgba(16,185,129,.02)">
+<div style="font-size:8px;color:var(--p7);font-weight:800;margin-bottom:2px">F4 CONSOLIDACAO</div>
+<div style="font-size:7px;color:var(--t3)">M10-12 | Invest: R$ 95k</div>
+<div style="font-size:9px;font-weight:800;color:var(--t1);margin:4px 0">Escala + Excelencia</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--gn)">+R$ 1,72M</div>
+</div>
+</div>
+
+<!-- NUMEROS FINAIS -->
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px">
+<div style="text-align:center;padding:14px 8px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:8px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">Investimento</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--rd)">R$ 300k</div>
+</div>
+<div style="text-align:center;padding:14px 8px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:8px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">Retorno Bruto</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">R$ 2,59M</div>
+</div>
+<div style="text-align:center;padding:14px 8px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.3);border-radius:8px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">Lucro Liquido</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">R$ 2,29M</div>
+</div>
+<div style="text-align:center;padding:14px 8px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.3);border-radius:8px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">ROI</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">763%</div>
+</div>
+<div style="text-align:center;padding:14px 8px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.3);border-radius:8px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:1px;font-weight:700">Payback</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">0 DIAS</div>
+</div>
+</div>
+
+<!-- FRASE FINAL -->
+<div style="text-align:center;padding:20px;background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(59,130,246,.06));border:2px solid rgba(16,185,129,.2);border-radius:12px">
+<div style="font-size:18px;font-weight:900;color:var(--t1);line-height:1.5;max-width:800px;margin:0 auto">
+"Este plano transforma <span style="color:var(--rd)">850 vacas dispersas</span> em <span style="color:var(--gn)">700 maquinas de lucro</span>.<br>
+<span style="font-size:14px;color:var(--t2);font-weight:400">Menos vacas. Mais leite por vaca. Muito mais lucro por litro.</span>
+</div>
+<div style="margin-top:12px;font-size:11px;color:var(--t3)">
+O custo de NAO executar este plano: <strong style="color:var(--rd)">R$ 1,45M/ano de prejuizo com Cluster D</strong> + <strong style="color:var(--rd)">R$ 2,29M de lucro nao capturado</strong>.
+</div>
+<div style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);padding:8px 20px;border-radius:50px;font-size:12px;font-weight:800;color:var(--gn)">
+🚀 INICIO RECOMENDADO: SEMANA QUE VEM
+</div>
+</div>
+
+<!-- ASSINATURA -->
+<div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div style="text-align:center;padding:16px;border-top:2px solid rgba(16,185,129,.2)">
+<div style="font-size:10px;color:var(--t3);margin-bottom:20px">____________________________</div>
+<div style="font-size:11px;font-weight:800;color:var(--t1)">Patricia Kompier</div>
+<div style="font-size:9px;color:var(--t3)">Proprietaria — Fazenda Brasilanda</div>
+<div style="font-size:8px;color:var(--gn);font-weight:600;margin-top:2px">APROVADO EM: ___/___/2026</div>
+</div>
+<div style="text-align:center;padding:16px;border-top:2px solid rgba(16,185,129,.2)">
+<div style="font-size:10px;color:var(--t3);margin-bottom:20px">____________________________</div>
+<div style="font-size:11px;font-weight:800;color:var(--t1)">Sidney Souza</div>
+<div style="font-size:9px;color:var(--t3)">Consultor — Rural IN</div>
+<div style="font-size:8px;color:var(--gn);font-weight:600;margin-top:2px">ELABORADO EM: 12/03/2026</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="ft">
+<div class="fc">
+<div class="cc">
+<div class="cp">RI</div>
+<div class="ci">
+<div class="cl">Consultoria Rural IN</div>
+<div class="cn">Sidney Souza — Estrategista & Analista de Dados</div>
+<div class="ccs">
+<div class="cci">📅 Roadmap 12 Meses</div>
+<div class="cci">💰 ROI 763%</div>
+<div class="cci">📊 4 Fases / 7 Frentes</div>
+<div class="cci">🎯 R$ 2,29M Resultado</div>
+</div>
+<div class="cb">"Planejamento sem execucao e sonho. Execucao sem planejamento e caos. Este roadmap une os dois: cada acao tem data, responsavel, meta e plano B. O unico risco e nao comecar." — Plano de Acao Fazenda Brasilanda 2026-2027</div>
+</div>
+</div>
+<div class="fd"></div>
+<div class="fb">
+<strong>RURAL IN</strong> — Todos os direitos reservados © 2026<br>
+Fazenda Brasilanda — Patricia Kompier | Rio Verde, GO | HTML 4 de 5 — Plano de Acao 12 Meses
+</div>
+</div>
+</div>
+
+</div><!-- fim .ct -->
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // =====================================================
+  // INTERSECTION OBSERVER — FADE IN
+  // =====================================================
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('v');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.05,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.fi').forEach(el => observer.observe(el));
+
+  // =====================================================
+  // GANTT BAR HOVER
+  // =====================================================
+  document.querySelectorAll('.gantt-bar').forEach(bar => {
+    bar.addEventListener('mouseenter', function() {
+      this.style.filter = 'brightness(1.2)';
+      this.style.transform = 'scaleY(1.15)';
+      this.style.zIndex = '10';
+    });
+    bar.addEventListener('mouseleave', function() {
+      this.style.filter = 'brightness(1)';
+      this.style.transform = 'scaleY(1)';
+      this.style.zIndex = '1';
+    });
+  });
+
+  // =====================================================
+  // TIMELINE ITEM HOVER
+  // =====================================================
+  document.querySelectorAll('.tl-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateX(4px)';
+      this.style.boxShadow = '0 8px 30px rgba(0,0,0,.3)';
+    });
+    item.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateX(0)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  // =====================================================
+  // PHASE CARD HOVER
+  // =====================================================
+  document.querySelectorAll('.ph-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-3px)';
+      this.style.boxShadow = '0 10px 30px rgba(0,0,0,.3)';
+    });
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  // =====================================================
+  // PROGRESS BAR ANIMATION ON SCROLL
+  // =====================================================
+  const progObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bars = entry.target.querySelectorAll('.prog-fill');
+        bars.forEach(bar => {
+          const width = bar.style.width;
+          bar.style.width = '0';
+          setTimeout(() => { bar.style.width = width; }, 200);
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.d').forEach(d => progObserver.observe(d));
+
+  // =====================================================
+  // GANTT MILESTONE TOOLTIP
+  // =====================================================
+  document.querySelectorAll('.gantt-milestone').forEach(ms => {
+    ms.style.cursor = 'pointer';
+    ms.addEventListener('mouseenter', function() {
+      this.style.transform = 'rotate(45deg) scale(1.3)';
+      this.style.boxShadow = '0 0 12px rgba(16,185,129,.5)';
+    });
+    ms.addEventListener('mouseleave', function() {
+      this.style.transform = 'rotate(45deg) scale(1)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  // =====================================================
+  // RISK SCORE PULSE
+  // =====================================================
+  document.querySelectorAll('td > div[style*="border-radius:50%"]').forEach(ring => {
+    ring.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.2)';
+      this.style.boxShadow = '0 0 10px currentColor';
+    });
+    ring.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  // =====================================================
+  // TABS SYSTEM (for future use)
+  // =====================================================
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const group = this.closest('.tabs');
+      if (!group) return;
+      group.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      const target = this.getAttribute('data-target');
+      if (target) {
+        const container = group.nextElementSibling;
+        if (container) {
+          container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          const panel = container.querySelector('#' + target);
+          if (panel) panel.classList.add('active');
+        }
+      }
+    });
+  });
+
+  // =====================================================
+  // AUTO-PRINT OPTIMIZATION
+  // =====================================================
+  window.addEventListener('beforeprint', function() {
+    document.querySelectorAll('.fi').forEach(el => el.classList.add('v'));
+  });
+
+});
+
+// =====================================================
+// ADDITIONAL STYLES (injected)
+// =====================================================
+const extraStyles = document.createElement('style');
+extraStyles.textContent = `
+  /* Print styles */
+  @media print {
+    body { background: #fff !important; color: #111 !important; }
+    .d { break-inside: avoid; border-color: #ddd !important; }
+    .fi { opacity: 1 !important; transform: none !important; }
+    .hd { background: #f8f9fa !important; }
+    .ft { page-break-before: always; }
+    .gantt-bar-tip { display: none !important; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: rgba(255,255,255,.02); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.2); }
+
+  /* Table hover */
+  .mt tbody tr { transition: background .2s; }
+
+  /* Tooltip arrow */
+  .gantt-bar-tip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1e293b;
+  }
+
+  /* Responsive */
+  @media(max-width:768px) {
+    .g2, .g3, .g4 { grid-template-columns: 1fr; }
+    .hd h1 { font-size: 22px; }
+    .ct { padding: 16px; }
+    .tl { padding-left: 30px; }
+    .tl::before { left: 10px; }
+    .tl-dot { left: -26px; }
+    .tl-body { grid-template-columns: 1fr; }
+    .gantt { overflow-x: scroll; }
+  }
+`;
+document.head.appendChild(extraStyles);
+</script>
+
+</body>
+</html>

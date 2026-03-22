@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — Produção Complementar | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+:root{--bg:#0a0e1a;--card:#111827;--card2:#1a2236;--bdr:#1e293b;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899;--sh:0 4px 24px rgba(0,0,0,.4)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;padding:30px 40px}
+.wrap{max-width:680px;margin:0 auto}
+
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:28px;margin-bottom:24px;position:relative;overflow:hidden}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.ct-main{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ct-icon{font-size:18px}.ct-title{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.ct-badge{font-size:8px;padding:3px 10px;border-radius:50px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.ct-ref{font-size:10px;color:var(--t3);font-weight:600}
+
+.kpi-row{display:grid;gap:10px;margin-bottom:22px}
+.kpi-row-3{grid-template-columns:1fr 1fr 1fr}
+.kpi-row-4{grid-template-columns:1fr 1fr 1fr 1fr}
+.kpi-box{text-align:center;padding:14px 8px;border-radius:10px;border:1px solid var(--bdr);background:rgba(255,255,255,.02)}
+.kpi-val{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:900;line-height:1.2}
+.kpi-sub{font-size:8px;color:var(--t3);margin-top:2px}
+.kpi-label{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:4px;font-weight:600}
+
+.sec-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.04)}
+.sep{height:1px;background:rgba(255,255,255,.04);margin:18px 0}
+
+.bb{margin-bottom:10px}
+.bb-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.bb-name{font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px}
+.bb-val{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px}
+.bb-track{width:100%;height:28px;background:rgba(255,255,255,.03);border-radius:8px;overflow:hidden;position:relative}
+.bb-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:10px;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);min-width:2%;transition:width .6s ease}
+
+.tbl{width:100%;font-size:11px;border-collapse:collapse;margin-top:10px}
+.tbl th{text-align:left;padding:8px 10px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.tbl td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.03)}
+.tbl tr:last-child td{border-bottom:none}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+
+.note{font-size:10px;padding:12px 14px;border-radius:8px;margin-top:14px;line-height:1.7;display:flex;gap:8px;align-items:flex-start}
+.note-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+
+.spark-row{display:flex;align-items:flex-end;gap:2px;height:70px;padding:10px 0}
+.spark-bar{flex:1;border-radius:3px 3px 0 0;min-width:3px;transition:height .3s ease}
+.spark-labels{display:flex;justify-content:space-between;font-size:8px;color:var(--t3);margin-top:2px}
+
+@media(max-width:768px){body{padding:16px}.kpi-row-3,.kpi-row-4{grid-template-columns:1fr 1fr}.card{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PROD-01 — PRODUÇÃO DIÁRIA E MENSAL -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(6,182,212,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#06b6d4,#3b82f6)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">🥛</span>
+<span class="ct-title">Produção Diária e Mensal — Jan vs Fev</span>
+</div>
+<span class="ct-ref">PROD-01</span>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-row kpi-row-3">
+<div class="kpi-box" style="border-color:rgba(6,182,212,.25)">
+<div class="kpi-val" style="color:var(--cy)">32.233</div>
+<div class="kpi-label">L/DIA JAN</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(59,130,246,.25)">
+<div class="kpi-val" style="color:var(--bl)">30.145</div>
+<div class="kpi-label">L/DIA FEV</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(239,68,68,.25)">
+<div class="kpi-val" style="color:var(--rd)">-6,5%</div>
+<div class="kpi-label">VARIAÇÃO</div>
+</div>
+</div>
+
+<!-- VOLUME MENSAL TOTAL -->
+<div class="sec-title">Volume Mensal Total</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--cy)"><strong>Janeiro (31 dias)</strong></span><span class="bb-val" style="color:var(--cy)">999.223 L</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,#06b6d4,#22d3ee)"><span style="font-size:9px;font-weight:700">999.223 L</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--bl)"><strong>Fevereiro (28 dias)</strong></span><span class="bb-val" style="color:var(--bl)">844.060 L</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:84.5%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"><span style="font-size:9px;font-weight:700">844.060 L</span></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SPARKLINE JANEIRO -->
+<div class="sec-title">Produção Diária — Sparkline Janeiro (31 dias)</div>
+<div class="spark-row">
+<div class="spark-bar" style="height:90%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:88%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:92%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:87%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:91%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:93%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:86%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:89%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:94%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:88%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:70%;background:var(--or)"></div>
+<div class="spark-bar" style="height:72%;background:var(--or)"></div>
+<div class="spark-bar" style="height:90%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:92%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:87%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:91%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:93%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:86%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:90%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:68%;background:var(--or)"></div>
+<div class="spark-bar" style="height:71%;background:var(--or)"></div>
+<div class="spark-bar" style="height:89%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:92%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:91%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:88%;background:var(--cy)"></div>
+<div class="spark-bar" style="height:90%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:87%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:93%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:89%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:91%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:86%;background:var(--bl)"></div>
+</div>
+<div class="spark-labels"><span>01/Jan</span><span>10</span><span>20</span><span>31/Jan</span></div>
+
+<div class="sep"></div>
+
+<!-- SPARKLINE FEVEREIRO -->
+<div class="sec-title">Produção Diária — Sparkline Fevereiro (28 dias)</div>
+<div class="spark-row">
+<div class="spark-bar" style="height:88%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:91%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:86%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:90%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:87%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:92%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:85%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:69%;background:var(--or)"></div>
+<div class="spark-bar" style="height:67%;background:var(--or)"></div>
+<div class="spark-bar" style="height:88%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:86%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:84%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:90%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:87%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:85%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:82%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:86%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:83%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:88%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:84%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:87%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:85%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:83%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:86%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:89%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:84%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:87%;background:var(--bl)"></div>
+<div class="spark-bar" style="height:82%;background:var(--bl)"></div>
+</div>
+<div class="spark-labels"><span>01/Fev</span><span>10</span><span>20</span><span>28/Fev</span></div>
+
+<!-- NOTA -->
+<div class="note" style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12)">
+<span class="note-icon">📊</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--bl)">Fev teve 3 dias a menos que Jan</strong>, explicando parte da queda no volume total. A produção/vaca/dia se manteve estável em <strong>~37,9 L</strong>. Barras <span style="color:var(--or)">laranjas</span> = dias com queda > 5% da média (possíveis problemas de manejo, chuva ou falta de energia).
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PROD-02 — REPRODUÇÃO — PAINEL CRÍTICO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(239,68,68,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f97316)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">🔬</span>
+<span class="ct-title">Reprodução — Painel Crítico</span>
+<span class="ct-badge" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">PRINCIPAL GARGALO</span>
+</div>
+<span class="ct-ref">PROD-02</span>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-row kpi-row-4">
+<div class="kpi-box" style="border-color:rgba(239,68,68,.25)">
+<div class="kpi-val" style="color:var(--rd);font-size:20px">16,7%</div>
+<div class="kpi-label">TX PRENHEZ</div>
+<div class="kpi-sub">Meta: 22%</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(245,158,11,.25)">
+<div class="kpi-val" style="color:var(--yl);font-size:20px">46,3%</div>
+<div class="kpi-label">TX CONCEPÇÃO</div>
+<div class="kpi-sub">Meta: 42%</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(249,115,22,.25)">
+<div class="kpi-val" style="color:var(--or);font-size:20px">36,1%</div>
+<div class="kpi-label">TX SERVIÇO</div>
+<div class="kpi-sub">Meta: >50%</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(245,158,11,.25)">
+<div class="kpi-val" style="color:var(--yl);font-size:20px">187</div>
+<div class="kpi-label">DEL MÉDIO</div>
+<div class="kpi-sub">Meta: 160</div>
+</div>
+</div>
+
+<!-- TAXA DE PRENHEZ -->
+<div class="sec-title">Taxa de Prenhez — Real vs Benchmarks</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top Brasil</span><span class="bb-val" style="color:var(--yl)">28%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.5),rgba(245,158,11,.15))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta Boa</span><span class="bb-val">22%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:78.6%;background:rgba(148,163,184,.2)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">Média Nacional</span><span class="bb-val" style="color:var(--t3)">17%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:60.7%;background:rgba(148,163,184,.12)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">🟠 FAZENDA</span><span class="bb-val" style="color:var(--or)"><strong>16,7%</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:59.6%;background:linear-gradient(90deg,rgba(249,115,22,.6),rgba(249,115,22,.25))"><span style="font-size:9px;font-weight:800;background:rgba(249,115,22,.3);padding:1px 6px;border-radius:3px">16,7% — Abaixo da Média</span></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- TAXA DE CONCEPÇÃO -->
+<div class="sec-title">Taxa de Concepção — Real vs Benchmarks</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top</span><span class="bb-val" style="color:var(--yl)">55%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.5),rgba(245,158,11,.15))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta</span><span class="bb-val">42%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:76.4%;background:rgba(148,163,184,.2)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">🟢 FAZENDA</span><span class="bb-val" style="color:var(--gn)"><strong>46,3%</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:84.2%;background:linear-gradient(90deg,rgba(16,185,129,.6),rgba(16,185,129,.25))"><span style="font-size:9px;font-weight:800;background:rgba(16,185,129,.3);padding:1px 6px;border-radius:3px">46,3% — Acima da Meta ✓</span></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- TAXA DE SERVIÇO -->
+<div class="sec-title">Taxa de Serviço — Quanto MAIOR, melhor</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top</span><span class="bb-val" style="color:var(--yl)">70%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.5),rgba(245,158,11,.15))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta</span><span class="bb-val">50%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:71.4%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 FAZENDA</span><span class="bb-val" style="color:var(--rd)"><strong>36,1%</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:51.6%;background:linear-gradient(90deg,rgba(239,68,68,.6),rgba(239,68,68,.2))"><span style="font-size:9px;font-weight:800;background:rgba(239,68,68,.3);padding:1px 6px;border-radius:3px">36,1% — Gargalo Principal</span></div></div>
+</div>
+
+<div class="note" style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12)">
+<span class="note-icon">💡</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--bl)">A concepção é boa (46,3%), mas a taxa de serviço é o gargalo (36,1%).</strong> Isso significa que as vacas que são inseminadas estão emprenhando bem — o problema é que <strong>poucas vacas estão sendo inseminadas</strong>. Aumentar a detecção de cio ou intensificar IATF pode elevar a TP rapidamente.
+</div>
+</div>
+
+<!-- CUSTO DO GARGALO -->
+<div style="margin-top:22px;padding:22px;background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(249,115,22,.06));border:2px solid rgba(239,68,68,.25);border-radius:14px;text-align:center">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:8px">🔥 CUSTO DO GARGALO REPRODUTIVO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:900;color:var(--rd);line-height:1.1;margin-bottom:8px">R$ 130k — R$ 200k/mês</div>
+<div style="font-size:10px;color:var(--t2)">DEL alto + descarte elevado + menos vacas no pico de lactação</div>
+</div>
+
+</div>
+
+</div><!-- fim .wrap -->
+</body>
+</html>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PROD-03 — TAXA DE DESCARTE ANUAL -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(249,115,22,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f97316,#f59e0b)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">📋</span>
+<span class="ct-title">Taxa de Descarte Anual</span>
+<span class="ct-badge" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">ALTO</span>
+</div>
+<span class="ct-ref">PROD-03</span>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-row kpi-row-4">
+<div class="kpi-box" style="border-color:rgba(239,68,68,.25)">
+<div class="kpi-val" style="color:var(--rd);font-size:22px">38%</div>
+<div class="kpi-label">TAXA ATUAL</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(16,185,129,.2)">
+<div class="kpi-val" style="color:var(--gn);font-size:22px">28%</div>
+<div class="kpi-label">META</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(249,115,22,.2)">
+<div class="kpi-val" style="color:var(--or);font-size:22px">~326</div>
+<div class="kpi-label">VACAS/ANO</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(239,68,68,.25)">
+<div class="kpi-val" style="color:var(--rd);font-size:18px">R$3,9M</div>
+<div class="kpi-label">CUSTO REPOSIÇÃO</div>
+</div>
+</div>
+
+<!-- INFO BOX -->
+<div style="padding:12px 14px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12);border-radius:8px;margin-bottom:18px;font-size:10px;color:var(--t2);line-height:1.7">
+<strong style="color:var(--rd)">Descarte = Mortalidade (11,3%) + Vendas forçadas (~26,7%).</strong> O descarte involuntário está elevado — impulsionado por problemas reprodutivos, mortalidade por transição deficiente e problemas de casco/mastite. Cada vaca descartada custa <strong>R$ 12-18k</strong> em perda patrimonial + custo de reposição.
+</div>
+
+<!-- TAXA ANUAL — REAL vs BENCHMARKS -->
+<div class="sec-title">Taxa Anual — Real vs Benchmarks</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">🔴 Fazenda</span><span class="bb-val" style="color:var(--rd)"><strong>38%</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(239,68,68,.65),rgba(239,68,68,.25))"><span style="font-size:9px;font-weight:800;background:rgba(239,68,68,.35);padding:1px 6px;border-radius:3px">38% — ~326 vacas/ano</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">⚠ Limite Aceitável</span><span class="bb-val" style="color:var(--or)">35%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:92.1%;background:linear-gradient(90deg,rgba(249,115,22,.5),rgba(249,115,22,.15))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">Meta</span><span class="bb-val" style="color:var(--gn)">28%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:73.7%;background:linear-gradient(90deg,rgba(16,185,129,.5),rgba(16,185,129,.15))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top</span><span class="bb-val" style="color:var(--yl)">22%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:57.9%;background:linear-gradient(90deg,rgba(245,158,11,.5),rgba(245,158,11,.15))"></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- COMPOSIÇÃO DO DESCARTE -->
+<div class="sec-title">Composição do Descarte — Mortalidade + Venda Forçada</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+<div style="padding:14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);border-radius:10px;text-align:center">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:600">MORTALIDADE</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:900;color:var(--rd)">11,3%</div>
+<div style="font-size:9px;color:var(--t2);margin-top:2px">~97 vacas/ano | Meta: ≤5%</div>
+<div style="font-size:8px;color:var(--rd);font-weight:700;margin-top:4px">2,26× acima do ideal</div>
+</div>
+<div style="padding:14px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);border-radius:10px;text-align:center">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:600">VENDAS FORÇADAS</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:900;color:var(--or)">~26,7%</div>
+<div style="font-size:9px;color:var(--t2);margin-top:2px">~229 vacas/ano | Meta: ≤23%</div>
+<div style="font-size:8px;color:var(--or);font-weight:700;margin-top:4px">Repro + Casco + Mastite</div>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- CAUSAS PROVÁVEIS -->
+<div class="sec-title">Causas Prováveis do Descarte Elevado</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--rd)">📋 Problemas reprodutivos</span><span class="bb-val" style="color:var(--rd)">~40%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:40%;background:linear-gradient(90deg,rgba(239,68,68,.6),rgba(239,68,68,.2))"><span style="font-size:8px;font-weight:800;background:rgba(239,68,68,.35);padding:1px 6px;border-radius:3px">Maior causa</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">💀 Mortalidade (transição)</span><span class="bb-val" style="color:var(--or)">~30%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:30%;background:linear-gradient(90deg,rgba(249,115,22,.55),rgba(249,115,22,.2))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🦶 Problemas de casco</span><span class="bb-val" style="color:var(--yl)">~15%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:15%;background:linear-gradient(90deg,rgba(245,158,11,.55),rgba(245,158,11,.2))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--cy)">🦠 Mastite crônica</span><span class="bb-val" style="color:var(--cy)">~10%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:10%;background:linear-gradient(90deg,rgba(6,182,212,.5),rgba(6,182,212,.15))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">📉 Baixa produção + Outros</span><span class="bb-val" style="color:var(--t3)">~5%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:5%;background:rgba(148,163,184,.2)"></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- CENÁRIOS DE DESCARTE -->
+<div class="sec-title">Cenários de Redução do Descarte</div>
+
+<table class="tbl">
+<tr>
+<th>CENÁRIO</th>
+<th style="text-align:center">DESCARTE</th>
+<th style="text-align:center">VACAS/ANO</th>
+<th style="text-align:right">CUSTO REPOSIÇÃO</th>
+<th style="text-align:right">ECONOMIA VS ATUAL</th>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td><strong style="color:var(--rd)">Atual</strong></td>
+<td class="nm" style="text-align:center"><strong>38%</strong></td>
+<td class="nm" style="text-align:center">~326</td>
+<td class="nm" style="text-align:right"><strong>R$ 3,91M</strong></td>
+<td class="nm" style="text-align:right;color:var(--t3)">—</td>
+</tr>
+<tr>
+<td><strong style="color:var(--or)">Limite (35%)</strong></td>
+<td class="nm" style="text-align:center">35%</td>
+<td class="nm" style="text-align:center">~300</td>
+<td class="nm" style="text-align:right">R$ 3,60M</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 312k</strong></td>
+</tr>
+<tr style="background:rgba(16,185,129,.03)">
+<td><strong style="color:var(--gn)">Meta (28%)</strong></td>
+<td class="nm" style="text-align:center">28%</td>
+<td class="nm" style="text-align:center">~240</td>
+<td class="nm" style="text-align:right">R$ 2,88M</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 1,03M</strong></td>
+</tr>
+<tr>
+<td><strong style="color:var(--yl)">Top (22%)</strong></td>
+<td class="nm" style="text-align:center">22%</td>
+<td class="nm" style="text-align:center">~189</td>
+<td class="nm" style="text-align:right">R$ 2,27M</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 1,64M</strong></td>
+</tr>
+</table>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PROD-04 — ESTRUTURA DO REBANHO — COMPOSIÇÃO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(139,92,246,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#06b6d4,#10b981,#f59e0b)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">🐄</span>
+<span class="ct-title">Estrutura do Rebanho — Composição</span>
+</div>
+<span class="ct-ref">PROD-04</span>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-row kpi-row-3">
+<div class="kpi-box" style="border-color:rgba(139,92,246,.25)">
+<div class="kpi-val" style="color:var(--pr)">1.844</div>
+<div class="kpi-label">TOTAL CABEÇAS</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(6,182,212,.25)">
+<div class="kpi-val" style="color:var(--cy)">860</div>
+<div class="kpi-label">VACAS LACTAÇÃO</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(245,158,11,.25)">
+<div class="kpi-val" style="color:var(--yl)">47%</div>
+<div class="kpi-label">% LACTAÇÃO</div>
+<div class="kpi-sub">Meta: ≥55%</div>
+</div>
+</div>
+
+<!-- COMPOSIÇÃO DO REBANHO POR CATEGORIA -->
+<div class="sec-title">Composição do Rebanho por Categoria</div>
+
+<!-- Vacas em Lactação -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--cy)">🥛 Vacas em Lactação</span><span class="bb-val" style="color:var(--cy)">860 — 46,6%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:46.6%;background:linear-gradient(90deg,#06b6d4,#22d3ee)"><span style="font-size:9px;font-weight:700">860 cab (47%)</span></div></div>
+</div>
+
+<!-- Vacas Secas -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🛑 Vacas Secas</span><span class="bb-val" style="color:var(--yl)">284 — 15,4%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:15.4%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"><span style="font-size:9px;font-weight:700">284</span></div></div>
+</div>
+
+<!-- Novilhas Prenhas -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--pr)">🤰 Novilhas Prenhas</span><span class="bb-val" style="color:var(--pr)">312 — 16,9%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:16.9%;background:linear-gradient(90deg,#8b5cf6,#a78bfa)"><span style="font-size:9px;font-weight:700">312</span></div></div>
+</div>
+
+<!-- Novilhas Vazias -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--pk)">🐮 Novilhas Vazias</span><span class="bb-val" style="color:var(--pk)">218 — 11,8%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:11.8%;background:linear-gradient(90deg,#ec4899,#f472b6)"><span style="font-size:9px;font-weight:700">218</span></div></div>
+</div>
+
+<!-- Bezerras/Recria -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">🐄 Bezerras / Recria</span><span class="bb-val" style="color:var(--gn)">152 — 8,2%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:8.2%;background:linear-gradient(90deg,#10b981,#34d399)"><span style="font-size:9px;font-weight:700">152</span></div></div>
+</div>
+
+<!-- Machos -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">🐂 Machos</span><span class="bb-val" style="color:var(--t3)">18 — 1,0%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:2.5%;background:rgba(148,163,184,.3)"></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- % VACAS EM LACTAÇÃO vs BENCHMARK -->
+<div class="sec-title">% Vacas em Lactação vs Benchmark</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top</span><span class="bb-val" style="color:var(--yl)">65%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.5),rgba(245,158,11,.15))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta</span><span class="bb-val">55%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:84.6%;background:rgba(148,163,184,.2)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">Boa</span><span class="bb-val" style="color:var(--gn)">50%</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:76.9%;background:rgba(16,185,129,.2)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">⭐ Fazenda</span><span class="bb-val" style="color:var(--or)">47% ⚠</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:72.3%;background:linear-gradient(90deg,rgba(249,115,22,.55),rgba(249,115,22,.2))"><span style="font-size:9px;font-weight:800">47%</span></div></div>
+</div>
+
+<!-- NOTA -->
+<div class="note" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12)">
+<span class="note-icon">⚠️</span>
+<div style="color:var(--t2)">
+O ideal é <strong>≥55% do rebanho em lactação</strong>. Aumentar a taxa de prenhez é a chave para subir esse percentual — <strong>mais vacas prenhas → mais vacas parindo → mais vacas em lactação</strong>. Cada ponto percentual a mais = ~18 vacas em lactação = <strong>+R$ 680 L/dia = +R$ 49k/mês</strong>.
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- IMPACTO DA TAXA DE LACTAÇÃO NO FATURAMENTO -->
+<div class="sec-title">Impacto — Se % Lactação Subir</div>
+
+<table class="tbl">
+<tr>
+<th>% VL NO REBANHO</th>
+<th style="text-align:center">VACAS LACT.</th>
+<th style="text-align:center">PRODUÇÃO/DIA</th>
+<th style="text-align:right">RECEITA ADICIONAL/MÊS</th>
+</tr>
+<tr style="background:rgba(249,115,22,.04)">
+<td><strong style="color:var(--or)">47% (Atual)</strong></td>
+<td class="nm" style="text-align:center">860</td>
+<td class="nm" style="text-align:center">32.233 L</td>
+<td class="nm" style="text-align:right;color:var(--t3)">—</td>
+</tr>
+<tr>
+<td><strong>50%</strong></td>
+<td class="nm" style="text-align:center">922</td>
+<td class="nm" style="text-align:center">34.584 L</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 170k</strong></td>
+</tr>
+<tr style="background:rgba(16,185,129,.03)">
+<td><strong style="color:var(--gn)">55% (Meta)</strong></td>
+<td class="nm" style="text-align:center">1.014</td>
+<td class="nm" style="text-align:center">38.031 L</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 419k</strong></td>
+</tr>
+<tr>
+<td><strong style="color:var(--yl)">65% (Top)</strong></td>
+<td class="nm" style="text-align:center">1.199</td>
+<td class="nm" style="text-align:center">44.963 L</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 920k</strong></td>
+</tr>
+</table>
+
+<div class="note" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.12)">
+<span class="note-icon">💰</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--gn)">Ir de 47% para 55% de VL no rebanho = +R$ 5M de receita/ano</strong> — sem comprar uma única vaca. O caminho é via reprodução: mais vacas prenhas → mais parindo → mais em lactação.
+</div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PROD-05 — PRODUTIVIDADE — BENCHMARKS COMPLETOS -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(16,185,129,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#06b6d4,#3b82f6)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">📊</span>
+<span class="ct-title">Produtividade — Benchmarks Completos</span>
+</div>
+<span class="ct-ref">PROD-05</span>
+</div>
+
+<!-- ═══ L / VACA / DIA ═══ -->
+<div class="sec-title">L / Vaca / Dia</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top BR</span><span class="bb-val" style="color:var(--yl)">45 L</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.45),rgba(245,158,11,.12))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">⭐ Fazenda</span><span class="bb-val" style="color:var(--gn)"><strong>37,9 L</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:84.2%;background:linear-gradient(90deg,#10b981,#34d399)"><span style="font-size:9px;font-weight:800;background:rgba(16,185,129,.3);padding:1px 6px;border-radius:3px">37,9 — Excelente</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta</span><span class="bb-val">35 L</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:77.8%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">Média BR confinado</span><span class="bb-val" style="color:var(--t3)">30 L</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:66.7%;background:rgba(148,163,184,.1)"></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══ L / HECTARE / ANO ═══ -->
+<div class="sec-title">L / Hectare / Ano</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top BR</span><span class="bb-val" style="color:var(--yl)">40.000</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.45),rgba(245,158,11,.12))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta Boa</span><span class="bb-val">25.000</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:62.5%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">⭐ Fazenda</span><span class="bb-val" style="color:var(--gn)"><strong>23.750</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:59.4%;background:linear-gradient(90deg,#10b981,#34d399)"><span style="font-size:9px;font-weight:800">23.750</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">Média BR</span><span class="bb-val" style="color:var(--t3)">15.000</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:37.5%;background:rgba(148,163,184,.1)"></div></div>
+</div>
+
+<div class="note" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.1)">
+<span class="note-icon">✅</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--gn)">Acima da média nacional mas abaixo da meta.</strong> O caminho mais rápido para subir L/ha é aumentar o % de VL no rebanho (via reprodução) — a área já está ocupada, então o ganho vem de mais litros por hectare existente.
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══ L / FUNCIONÁRIO / DIA ═══ -->
+<div class="sec-title">L / Funcionário / Dia</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top BR</span><span class="bb-val" style="color:var(--yl)">800</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.45),rgba(245,158,11,.12))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">⭐ Fazenda</span><span class="bb-val" style="color:var(--gn)"><strong>645</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:80.6%;background:linear-gradient(90deg,#10b981,#34d399)"><span style="font-size:9px;font-weight:800;background:rgba(16,185,129,.3);padding:1px 6px;border-radius:3px">645 — Bom</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta Boa</span><span class="bb-val">600</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:75%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">Média BR</span><span class="bb-val" style="color:var(--t3)">400</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:50%;background:rgba(148,163,184,.1)"></div></div>
+</div>
+
+<div class="note" style="background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1)">
+<span class="note-icon">💡</span>
+<div style="color:var(--t2)">
+Com o redimensionamento de equipe (50→34), esse indicador subiria para <strong>~948 L/func/dia</strong> — ultrapassando o Top BR. Cada funcionário a menos economiza <strong>~R$ 4.500/mês</strong>.
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══ EFICIÊNCIA ALIMENTAR ═══ -->
+<div class="sec-title">Eficiência Alimentar (L/kg MS)</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top BR</span><span class="bb-val" style="color:var(--yl)">1,70</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.45),rgba(245,158,11,.12))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--gn)">⭐ Fazenda</span><span class="bb-val" style="color:var(--gn)"><strong>1,61</strong></span></div>
+<div class="bb-track"><div class="bb-fill" style="width:94.7%;background:linear-gradient(90deg,#10b981,#34d399)"><span style="font-size:9px;font-weight:800">1,61 — Bom</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta</span><span class="bb-val">1,55</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:91.2%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">Média BR</span><span class="bb-val" style="color:var(--t3)">1,30</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:76.5%;background:rgba(148,163,184,.1)"></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══ VACAS / FUNCIONÁRIO ═══ -->
+<div class="sec-title">Vacas / Funcionário</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">🏆 Top BR</span><span class="bb-val" style="color:var(--yl)">30</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:100%;background:linear-gradient(90deg,rgba(245,158,11,.45),rgba(245,158,11,.12))"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name">Meta</span><span class="bb-val">25</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:83.3%;background:rgba(148,163,184,.18)"></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--or)">⭐ Fazenda</span><span class="bb-val" style="color:var(--or)"><strong>17,2</strong> ⚠</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:57.3%;background:linear-gradient(90deg,rgba(249,115,22,.55),rgba(249,115,22,.2))"><span style="font-size:9px;font-weight:800">17,2 — Abaixo</span></div></div>
+</div>
+
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--t3)">Média BR</span><span class="bb-val" style="color:var(--t3)">15</span></div>
+<div class="bb-track"><div class="bb-fill" style="width:50%;background:rgba(148,163,184,.1)"></div></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══ TABELA RESUMO STATUS ═══ -->
+<div class="sec-title">Resumo de Status por Indicador</div>
+
+<table class="tbl">
+<tr>
+<th>INDICADOR</th>
+<th style="text-align:center">FAZENDA</th>
+<th style="text-align:center">META</th>
+<th style="text-align:center">TOP BR</th>
+<th style="text-align:center">STATUS</th>
+</tr>
+<tr>
+<td>L/Vaca/Dia</td>
+<td class="nm" style="text-align:center"><strong>37,9</strong></td>
+<td class="nm" style="text-align:center">35</td>
+<td class="nm" style="text-align:center">45</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span> <span style="font-size:9px;color:var(--gn);font-weight:700">Excelente</span></td>
+</tr>
+<tr>
+<td>L/ha/Ano</td>
+<td class="nm" style="text-align:center"><strong>23.750</strong></td>
+<td class="nm" style="text-align:center">25.000</td>
+<td class="nm" style="text-align:center">40.000</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span> <span style="font-size:9px;color:var(--gn);font-weight:700">Bom</span></td>
+</tr>
+<tr>
+<td>L/Func/Dia</td>
+<td class="nm" style="text-align:center"><strong>645</strong></td>
+<td class="nm" style="text-align:center">600</td>
+<td class="nm" style="text-align:center">800</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span> <span style="font-size:9px;color:var(--gn);font-weight:700">Bom</span></td>
+</tr>
+<tr>
+<td>EA (L/kgMS)</td>
+<td class="nm" style="text-align:center"><strong>1,61</strong></td>
+<td class="nm" style="text-align:center">1,55</td>
+<td class="nm" style="text-align:center">1,70</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gn)"></span> <span style="font-size:9px;color:var(--gn);font-weight:700">Bom</span></td>
+</tr>
+<tr>
+<td>Vacas/Func</td>
+<td class="nm" style="text-align:center;color:var(--or)"><strong>17,2</strong></td>
+<td class="nm" style="text-align:center">25</td>
+<td class="nm" style="text-align:center">30</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--or)"></span> <span style="font-size:9px;color:var(--or);font-weight:700">Atenção</span></td>
+</tr>
+<tr>
+<td>% Vacas Lact.</td>
+<td class="nm" style="text-align:center;color:var(--or)"><strong>47%</strong></td>
+<td class="nm" style="text-align:center">55%</td>
+<td class="nm" style="text-align:center">65%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--or)"></span> <span style="font-size:9px;color:var(--or);font-weight:700">Atenção</span></td>
+</tr>
+<tr>
+<td>Tx Prenhez</td>
+<td class="nm" style="text-align:center;color:var(--rd)"><strong>16,7%</strong></td>
+<td class="nm" style="text-align:center">22%</td>
+<td class="nm" style="text-align:center">28%</td>
+<td style="text-align:center"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rd)"></span> <span style="font-size:9px;color:var(--rd);font-weight:700">Crítico</span></td>
+</tr>
+</table>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PROD-06 — DEL, CURVA DE LACTAÇÃO E QUALIDADE DO LEITE -->
+<!-- ═══════════════════════════════════════ -->
+<div class="card" style="border-color:rgba(59,130,246,.2)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ec4899)"></div>
+
+<div class="ch">
+<div class="ct-main">
+<span class="ct-icon">📈</span>
+<span class="ct-title">DEL, Curva de Lactação e Qualidade do Leite</span>
+</div>
+<span class="ct-ref">PROD-06</span>
+</div>
+
+<!-- DEL -->
+<div style="font-size:12px;font-weight:700;color:var(--bl);margin-bottom:14px">Dias em Lactação (DEL)</div>
+
+<div class="kpi-row kpi-row-3">
+<div class="kpi-box" style="border-color:rgba(245,158,11,.25)">
+<div class="kpi-val" style="color:var(--yl)">187</div>
+<div class="kpi-label">DEL MÉDIO ATUAL</div>
+<div class="kpi-sub">Meta: 160</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(16,185,129,.2)">
+<div class="kpi-val" style="color:var(--gn)">160</div>
+<div class="kpi-label">DEL META</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(6,182,212,.2)">
+<div class="kpi-val" style="color:var(--cy)">150</div>
+<div class="kpi-label">DEL TOP</div>
+</div>
+</div>
+
+<!-- BARRA DEL -->
+<div class="bb">
+<div class="bb-header"><span class="bb-name" style="color:var(--yl)">Fazenda</span><span class="bb-val" style="color:var(--yl)">187 dias ⚠</span></div>
+<div class="bb-track" style="position:relative">
+<div class="bb-fill" style="width:93.5%;background:linear-gradient(90deg,rgba(16,185,129,.4),rgba(245,158,11,.4),rgba(239,68,68,.3))"><span style="font-size:9px;font-weight:800">187 DEL</span></div>
+<!-- Marcador META -->
+<div style="position:absolute;top:0;bottom:0;left:80%;width:2px;background:var(--gn);z-index:2"></div>
+<div style="position:absolute;top:-14px;left:78%;font-size:8px;color:var(--gn);font-weight:700">Meta 160</div>
+</div>
+</div>
+
+<div class="note" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12)">
+<span class="note-icon">⚠️</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--yl)">DEL alto = muitas vacas em final de lactação, produzindo menos.</strong> Consequência direta da baixa taxa de prenhez (16,7%) — vacas demoram para emprenhar e o rebanho "envelhece" na lactação. DEL 187 vs Meta 160 = <strong>rebanho 27 dias mais velho que o ideal</strong>.
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- DISTRIBUIÇÃO POR TERÇO -->
+<div class="sec-title">Distribuição Estimada por Terço de Lactação</div>
+
+<!-- 1º Terço -->
+<div class="bb">
+<div class="bb-header">
+<span class="bb-name" style="color:var(--gn)"><strong>1º Terço (0-100 DEL) — Pico</strong></span>
+<span class="bb-val" style="color:var(--gn)">~27%</span>
+</div>
+<div class="bb-track"><div class="bb-fill" style="width:27%;background:linear-gradient(90deg,#10b981,#34d399)"><span style="font-size:9px;font-weight:700">~232 vacas</span></div></div>
+</div>
+
+<!-- 2º Terço -->
+<div class="bb">
+<div class="bb-header">
+<span class="bb-name" style="color:var(--yl)"><strong>2º Terço (101-200 DEL) — Médio</strong></span>
+<span class="bb-val" style="color:var(--yl)">~35%</span>
+</div>
+<div class="bb-track"><div class="bb-fill" style="width:35%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"><span style="font-size:9px;font-weight:700">~301 vacas</span></div></div>
+</div>
+
+<!-- 3º Terço -->
+<div class="bb">
+<div class="bb-header">
+<span class="bb-name" style="color:var(--rd)"><strong>3º Terço (201+ DEL) — Queda</strong></span>
+<span class="bb-val" style="color:var(--rd)">~38%</span>
+</div>
+<div class="bb-track"><div class="bb-fill" style="width:38%;background:linear-gradient(90deg,#ef4444,#f87171)"><span style="font-size:9px;font-weight:700">~327 vacas</span></div></div>
+</div>
+
+<!-- DISTRIBUIÇÃO IDEAL vs ATUAL -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;margin-bottom:14px">
+<div style="padding:14px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.1);border-radius:10px;text-align:center">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:6px">ATUAL — 3º TERÇO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:var(--rd)">38%</div>
+<div style="font-size:9px;color:var(--t2);margin-top:2px">~327 vacas produzindo menos</div>
+</div>
+<div style="padding:14px;background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.1);border-radius:10px;text-align:center">
+<div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:6px">IDEAL — 3º TERÇO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:var(--gn)">≤25%</div>
+<div style="font-size:9px;color:var(--t2);margin-top:2px">~215 vacas — restante no pico</div>
+</div>
+</div>
+
+<div class="note" style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12)">
+<span class="note-icon">🔴</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--rd)">~38% do rebanho no 3º terço é alto.</strong> Ideal: ≤25%. Vacas no 3º terço produzem 20-30% menos que no pico. Melhorar a reprodução faz essas vacas secarem, parirem e voltarem ao 1º terço com produção alta. <strong>Cada 1% migrado do 3º para o 1º terço ≈ +R$ 15-20k/mês.</strong>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- CURVA DE LACTAÇÃO ESTIMADA -->
+<div class="sec-title">Curva de Lactação Estimada — Produção por DEL</div>
+
+<div style="display:flex;align-items:flex-end;gap:3px;height:110px;padding:10px 0">
+<!-- DEL 0-30 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:7px;color:var(--gn);font-weight:700">42L</span>
+<div style="width:100%;height:95px;background:linear-gradient(180deg,#10b981,#065f46);border-radius:4px 4px 0 0"></div>
+</div>
+<!-- DEL 31-60 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:7px;color:var(--gn);font-weight:700">46L</span>
+<div style="width:100%;height:105px;background:linear-gradient(180deg,#10b981,#065f46);border-radius:4px 4px 0 0"></div>
+</div>
+<!-- DEL 61-100 PICO -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:7px;color:var(--em);font-weight:800">48L★</span>
+<div style="width:100%;height:110px;background:linear-gradient(180deg,#34d399,#059669);border-radius:4px 4px 0 0;border:1px solid rgba(52,211,153,.4)"></div>
+</div>
+<!-- DEL 101-150 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:7px;color:var(--yl);font-weight:700">42L</span>
+<div style="width:100%;height:95px;background:linear-gradient(180deg,#f59e0b,#92400e);border-radius:4px 4px 0 0"></div>
+</div>
+<!-- DEL 151-200 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:7px;color:var(--yl);font-weight:700">37L</span>
+<div style="width:100%;height:84px;background:linear-gradient(180deg,#f59e0b,#92400e);border-radius:4px 4px 0 0"></div>
+</div>
+<!-- DEL 201-250 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:7px;color:var(--or);font-weight:700">31L</span>
+<div style="width:100%;height:70px;background:linear-gradient(180deg,#f97316,#9a3412);border-radius:4px 4px 0 0"></div>
+</div>
+<!-- DEL 251-305 -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:7px;color:var(--rd);font-weight:700">25L</span>
+<div style="width:100%;height:57px;background:linear-gradient(180deg,#ef4444,#7f1d1d);border-radius:4px 4px 0 0"></div>
+</div>
+<!-- DEL 305+ -->
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+<span style="font-size:7px;color:var(--rd);font-weight:700">18L</span>
+<div style="width:100%;height:41px;background:linear-gradient(180deg,#dc2626,#450a0a);border-radius:4px 4px 0 0"></div>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:7px;color:var(--t3);padding:0 4px;margin-bottom:6px">
+<span>0-30</span><span>31-60</span><span>61-100</span><span>101-150</span><span>151-200</span><span>201-250</span><span>251-305</span><span>305+</span>
+</div>
+<div style="text-align:center;font-size:8px;color:var(--t3);margin-top:4px">DEL (Dias em Lactação) → ★ Pico entre 61-100 DEL</div>
+
+<div class="sep"></div>
+
+<!-- QUALIDADE DO LEITE -->
+<div class="sec-title">Qualidade do Leite — Indicadores Disponíveis</div>
+
+<div class="kpi-row kpi-row-4">
+<div class="kpi-box" style="border-color:rgba(16,185,129,.2)">
+<div class="kpi-val" style="color:var(--gn);font-size:18px">R$ 2,41</div>
+<div class="kpi-label">PREÇO MÉDIO/L</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(148,163,184,.15)">
+<div class="kpi-val" style="color:var(--t3);font-size:18px">???</div>
+<div class="kpi-label">CCS (CÉL/ML)</div>
+<div class="kpi-sub">Sem dado</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(148,163,184,.15)">
+<div class="kpi-val" style="color:var(--t3);font-size:18px">???</div>
+<div class="kpi-label">CBT (UFC/ML)</div>
+<div class="kpi-sub">Sem dado</div>
+</div>
+<div class="kpi-box" style="border-color:rgba(148,163,184,.15)">
+<div class="kpi-val" style="color:var(--t3);font-size:18px">???</div>
+<div class="kpi-label">% GORDURA</div>
+<div class="kpi-sub">Sem dado</div>
+</div>
+</div>
+
+<!-- BONIFICAÇÃO POTENCIAL -->
+<div style="margin-top:14px;padding:16px;background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(6,182,212,.04));border:2px solid rgba(16,185,129,.2);border-radius:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+<div>
+<div style="font-size:12px;font-weight:800;color:var(--gn)">Bonificação Qualidade Potencial</div>
+<div style="display:inline-block;margin-top:4px;padding:3px 10px;border-radius:4px;background:rgba(16,185,129,.15);font-size:9px;font-weight:800;color:var(--gn)">Potencial</div>
+</div>
+<div style="text-align:right">
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--gn)">+R$ 0,10<span style="font-size:12px;color:var(--t3)">/L</span></div>
+<div style="font-size:9px;color:var(--t2)">R$ 95k/mês</div>
+</div>
+</div>
+</div>
+
+<!-- NOTA QUALIDADE -->
+<div class="note" style="background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.12)">
+<span class="note-icon">💡</span>
+<div style="color:var(--t2)">
+<strong style="color:var(--pr)">Dados de CCS, CBT, gordura e proteína não foram fornecidos.</strong> Se a fazenda obtiver bonificação de R$ 0,10/L por qualidade, o ganho seria de <strong>R$ 95.000/mês = R$ 1,14M/ano</strong>. Recomenda-se solicitar relatórios de qualidade ao laticínio para incluir na próxima análise.
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- IMPACTO COMBINADO DEL + QUALIDADE -->
+<div style="padding:22px;background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.06));border:2px solid rgba(59,130,246,.2);border-radius:14px">
+<div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;text-align:center;margin-bottom:14px">💎 IMPACTO COMBINADO — DEL + CURVA + QUALIDADE</div>
+
+<table class="tbl" style="margin:0">
+<tr>
+<th>ALAVANCA</th>
+<th style="text-align:right">GANHO POTENCIAL/ANO</th>
+</tr>
+<tr>
+<td>Reduzir DEL de 187→160 (mais vacas no pico)</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 720k</strong></td>
+</tr>
+<tr>
+<td>Migrar 13% do 3º terço → 1º terço</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 540k</strong></td>
+</tr>
+<tr>
+<td>Bonificação qualidade (+R$ 0,10/L)</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>+R$ 1,14M</strong></td>
+</tr>
+<tr style="border-top:2px solid var(--bdr)">
+<td><strong style="color:var(--bl)">TOTAL POTENCIAL</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn);font-size:14px"><strong>+R$ 2,4M/ano</strong></td>
+</tr>
+</table>
+</div>
+
+</div>
+
+</div><!-- fim .wrap -->
+</body>
+</html>

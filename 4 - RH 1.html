@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Brasilanda — Dashboard de RH | Rural IN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+:root{--bg:#0a0e1a;--card:#131a2e;--card2:#1a2236;--bdr:#2a3654;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--bl:#3b82f6;--cy:#06b6d4;--gn:#10b981;--em:#34d399;--yl:#f59e0b;--or:#f97316;--rd:#ef4444;--pr:#8b5cf6;--pk:#ec4899;--gBl:linear-gradient(135deg,#3b82f6,#06b6d4);--gGn:linear-gradient(135deg,#10b981,#34d399);--gRd:linear-gradient(135deg,#ef4444,#f97316);--gYl:linear-gradient(135deg,#f59e0b,#fbbf24);--gPr:linear-gradient(135deg,#8b5cf6,#a78bfa);--gCy:linear-gradient(135deg,#06b6d4,#22d3ee);--gPk:linear-gradient(135deg,#ec4899,#f472b6);--sh:0 4px 20px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6}
+.hd{background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);border-bottom:1px solid var(--bdr);padding:36px 0;position:relative;overflow:hidden}
+.hd::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4,#10b981,#f59e0b)}
+.hc{max-width:1400px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.ht{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.hlg{display:flex;align-items:center;gap:10px}
+.hlg-i{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff}
+.hlg-t{font-size:21px;font-weight:900}.hlg-t span{color:var(--pr)}
+.hlg-s{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:2px}
+.hbd{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(59,130,246,.1));border:1px solid rgba(139,92,246,.3);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;color:var(--pr);text-transform:uppercase;letter-spacing:1.5px}
+.hd h1{font-size:32px;font-weight:900;letter-spacing:-1px;margin-bottom:5px;background:linear-gradient(135deg,#f1f5f9,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd h2{font-size:15px;font-weight:400;color:var(--t2);margin-bottom:18px}
+.hm{display:flex;gap:20px;flex-wrap:wrap}
+.hm-i{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3)}.hm-i span{color:var(--t2);font-weight:600}
+.ct{max-width:1400px;margin:0 auto;padding:36px 40px}
+.st{font-size:22px;font-weight:900;margin:40px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:12px}
+.st:first-child{margin-top:0}
+.st-b{font-size:10px;padding:3px 12px;border-radius:50px;font-weight:700}
+.kp{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px}
+.kp-i{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:18px;position:relative;overflow:hidden;transition:all .3s}
+.kp-i:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.kp-l{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px}
+.kp-v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;margin-bottom:4px}
+.kp-d{font-size:10px;display:flex;align-items:center;gap:4px;font-weight:600}
+.kp-s{font-size:8px;color:var(--t3);margin-top:4px}
+.d{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:24px;transition:all .3s}
+.d:hover{border-color:rgba(139,92,246,.3);box-shadow:var(--sh);transform:translateY(-2px)}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.dt{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.db{font-size:9px;padding:2px 8px;border-radius:50px;font-weight:700}
+.di{font-size:10px;color:var(--t3);font-weight:600}
+.dg{display:grid;gap:20px}.dg2{grid-template-columns:1fr 1fr}.dg3{grid-template-columns:1fr 1fr 1fr}
+.bg{margin-bottom:8px}
+.bl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+.bn{font-weight:600}.bv{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px}
+.bt{width:100%;height:22px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden}
+.bf{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:9px;font-weight:600;color:rgba(255,255,255,.85);min-width:2%}
+.mt{width:100%;font-size:11px;border-collapse:collapse;margin-top:12px}
+.mt th{text-align:left;padding:7px 8px;color:var(--t3);font-weight:600;border-bottom:1px solid var(--bdr);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.mt td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.03)}
+.mt tr:last-child td{border-bottom:none}
+.mt tr:hover{background:rgba(255,255,255,.02)}
+.nm{font-family:'JetBrains Mono',monospace;font-weight:600}
+.nt{font-size:10px;color:var(--t2);padding:10px 14px;border-radius:8px;margin-top:12px;line-height:1.7}
+.al{border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start}
+.al-i{font-size:20px;flex-shrink:0;margin-top:2px}
+.al-c{flex:1}.al-t{font-size:13px;font-weight:700;margin-bottom:3px}
+.al-x{font-size:11px;color:var(--t2);line-height:1.6}
+.cx{display:flex;align-items:center;gap:6px;margin-bottom:14px;padding:8px 12px;border-radius:8px;font-size:10px;font-weight:600;flex-wrap:wrap}
+.cx span{padding:2px 8px;border-radius:4px;font-weight:700;font-size:9px}
+.obs{margin-top:16px;padding:14px 16px;border-radius:10px;border-left:4px solid var(--yl);background:rgba(245,158,11,.04)}
+.obs-t{font-size:11px;font-weight:800;color:var(--yl);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.obs-x{font-size:10px;color:var(--t2);line-height:1.7}
+.obs-r{border-left-color:var(--rd);background:rgba(239,68,68,.04)}.obs-r .obs-t{color:var(--rd)}
+.obs-g{border-left-color:var(--gn);background:rgba(16,185,129,.04)}.obs-g .obs-t{color:var(--gn)}
+.obs-b{border-left-color:var(--bl);background:rgba(59,130,246,.04)}.obs-b .obs-t{color:var(--bl)}
+.ft{border-top:1px solid var(--bdr);margin-top:36px;padding:44px 40px}
+.fc{max-width:1400px;margin:0 auto}
+.fd{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:24px 0}
+.cc{background:linear-gradient(135deg,#111827,#1a2236);border:1px solid var(--bdr);border-radius:18px;padding:30px;display:flex;gap:28px;align-items:center;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4)}
+.cp{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 8px 20px rgba(139,92,246,.3)}
+.ci{flex:1}.cl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--pr);margin-bottom:5px}
+.cn{font-size:20px;font-weight:900;margin-bottom:10px}
+.ccs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cci{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2);background:rgba(255,255,255,.04);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.cci a{color:var(--bl);text-decoration:none}
+.cb{font-size:11px;color:var(--t3);line-height:1.8;border-top:1px solid var(--bdr);padding-top:10px;font-style:italic}
+.fb{text-align:center;padding-top:20px;color:var(--t3);font-size:10px}.fb strong{color:var(--t2)}
+@media(max-width:1024px){.dg2,.dg3{grid-template-columns:1fr}.kp{grid-template-columns:repeat(3,1fr)}.hd h1{font-size:24px}.ct{padding:20px}.cc{flex-direction:column;text-align:center}.ccs{justify-content:center}}
+@media(max-width:768px){.ht{flex-direction:column}.hm{flex-direction:column;gap:6px}.kp{grid-template-columns:repeat(2,1fr)}}
+.fi{opacity:0;transform:translateY(18px);transition:all .6s ease}.fi.v{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ═══════ HEADER ═══════ -->
+<div class="hd">
+<div class="hc">
+<div class="ht">
+<div class="hlg"><div class="hlg-i">R</div><div><div class="hlg-t">RURAL <span>IN</span></div><div class="hlg-s">Gestão Inteligente no Agro</div></div></div>
+<div class="hbd">👥 Bloco 4 — Análise de Recursos Humanos</div>
+</div>
+<h1>FAZENDA BRASILANDA — RH</h1>
+<h2>Patricia Kompier — Quadro de Pessoal, Custo, Produtividade e Perfil da Equipe</h2>
+<div class="hm">
+<div class="hm-i">📅 Período: <span>Janeiro e Fevereiro / 2026</span></div>
+<div class="hm-i">👥 <span>45 (Jan) → 47 (Fev)</span> colaboradores CLT</div>
+<div class="hm-i">🐄 <span>~1.450 animais | ~850 vacas em lactação</span></div>
+<div class="hm-i">📍 <span>Rio Verde - GO</span></div>
+</div>
+</div>
+</div>
+
+<div class="ct">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- KPIs RESUMO EXECUTIVO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">📊 Resumo Executivo — Indicadores-Chave de RH <span class="st-b" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">VISÃO GERAL</span></div>
+
+<div class="kp fi">
+<div class="kp-i" style="border-color:rgba(139,92,246,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gPr);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Quadro de Pessoal</div>
+<div class="kp-v" style="color:var(--pr)">45→47</div>
+<div class="kp-d" style="color:var(--gn)">▲ +2 admissões <span style="color:var(--t3)">bimestre</span></div>
+<div class="kp-s">Zero desligamentos | Turnover: 0%</div>
+</div>
+<div class="kp-i" style="border-color:rgba(59,130,246,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gBl);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Vacas Lact. / Funcionário</div>
+<div class="kp-v" style="color:var(--bl)">18,8</div>
+<div class="kp-d" style="color:var(--gn)">🟢 Benchmark: 15-25</div>
+<div class="kp-s">Jan: 19,1 | Fev: 17,9 | Top BR: 25-40</div>
+</div>
+<div class="kp-i" style="border-color:rgba(16,185,129,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gGn);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Litros / Funcionário / Dia</div>
+<div class="kp-v" style="color:var(--gn)">700</div>
+<div class="kp-d" style="color:var(--gn)">🟢 Bench: 500-1.000</div>
+<div class="kp-s">Jan: 723 | Fev: 679 | Top: 1.000-1.500</div>
+</div>
+<div class="kp-i" style="border-color:rgba(245,158,11,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gYl);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Custo MO / Litro de Leite</div>
+<div class="kp-v" style="color:var(--yl)">R$ 0,28</div>
+<div class="kp-d" style="color:var(--gn)">🟢 Bench: R$ 0,20-0,40</div>
+<div class="kp-s">Jan: R$ 0,27 | Fev: R$ 0,29 | Eficiente</div>
+</div>
+<div class="kp-i" style="border-color:rgba(236,72,153,.25)">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gPk);border-radius:12px 12px 0 0"></div>
+<div class="kp-l">Folha Total Estimada / Mês</div>
+<div class="kp-v" style="color:var(--pk)">R$ 259k</div>
+<div class="kp-d" style="color:var(--t3)">Remun + Benef + Encargos</div>
+<div class="kp-s">~15% do COE | Bench: 15-25%</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO A — QUADRO DE PESSOAL E ESTRUTURA -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">👥 Bloco A — Quadro de Pessoal, Hierarquia e Custo <span class="st-b" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">RH-A</span></div>
+
+<div class="dg dg2 fi">
+
+<!-- ESTRUTURA HIERÁRQUICA -->
+<div class="d" style="border-color:rgba(139,92,246,.25)">
+<div class="dh"><div class="dt">🏗️ Estrutura Hierárquica e Composição por Cargo <span class="db" style="background:rgba(139,92,246,.15);color:var(--pr);border:1px solid rgba(139,92,246,.3)">ORGANOGRAMA</span></div><div class="di">RH-A1</div></div>
+<div class="cx" style="background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.12);color:var(--pr)"><span style="background:rgba(139,92,246,.15)">JAN/2026</span> 45 colaboradores CLT — todos com benefício cartão alimentação (R$ 510,50) + plano Unimed (50% empresa)</div>
+
+<table class="mt">
+<tr><th>Nível</th><th>Cargo</th><th style="text-align:center">Qtd</th><th style="text-align:right">Salário (R$)</th><th style="text-align:right">Sub-Total (R$)</th><th>% Folha</th></tr>
+
+<tr style="background:rgba(239,68,68,.04)"><td colspan="6" style="font-size:9px;font-weight:800;color:var(--rd)">🎯 GESTÃO / SUPERVISÃO</td></tr>
+<tr>
+<td style="font-size:9px;color:var(--rd)">Nível 1</td>
+<td><strong>Supervisor Pecuária F</strong></td>
+<td class="nm" style="text-align:center">1</td>
+<td class="nm" style="text-align:right">9.340,21</td>
+<td class="nm" style="text-align:right">9.340,21</td>
+<td class="nm">6,4%</td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--rd)">Nível 2</td>
+<td><strong>Supervisor Pecuária D</strong></td>
+<td class="nm" style="text-align:center">1</td>
+<td class="nm" style="text-align:right">7.719,18</td>
+<td class="nm" style="text-align:right">7.719,18</td>
+<td class="nm">5,3%</td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--or)">Nível 2</td>
+<td><strong>Coordenador de Obras</strong></td>
+<td class="nm" style="text-align:center">1</td>
+<td class="nm" style="text-align:right">7.578,82</td>
+<td class="nm" style="text-align:right">7.578,82</td>
+<td class="nm">5,2%</td>
+</tr>
+
+<tr style="background:rgba(59,130,246,.04)"><td colspan="6" style="font-size:9px;font-weight:800;color:var(--bl)">🔧 ENCARREGADOS / LÍDERES</td></tr>
+<tr>
+<td style="font-size:9px;color:var(--bl)">Nível 3</td>
+<td><strong>Encarregado Pecuária B</strong></td>
+<td class="nm" style="text-align:center">4</td>
+<td class="nm" style="text-align:right">4.521-5.490</td>
+<td class="nm" style="text-align:right">20.022,60</td>
+<td class="nm">13,8%</td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--bl)">Nível 3</td>
+<td><strong>Encarregado Pecuária C</strong></td>
+<td class="nm" style="text-align:center">1</td>
+<td class="nm" style="text-align:right">4.973,36</td>
+<td class="nm" style="text-align:right">4.973,36</td>
+<td class="nm">3,4%</td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--bl)">Nível 3</td>
+<td><strong>Encarregado Pecuária A</strong></td>
+<td class="nm" style="text-align:center">2</td>
+<td class="nm" style="text-align:right">4.110,22</td>
+<td class="nm" style="text-align:right">8.220,44</td>
+<td class="nm">5,7%</td>
+</tr>
+
+<tr style="background:rgba(16,185,129,.04)"><td colspan="6" style="font-size:9px;font-weight:800;color:var(--gn)">🐄 OPERAÇÃO DIRETA</td></tr>
+<tr>
+<td style="font-size:9px;color:var(--gn)">Nível 4</td>
+<td><strong>Operador Máq. Agrícola</strong></td>
+<td class="nm" style="text-align:center">3</td>
+<td class="nm" style="text-align:right">3.229,45</td>
+<td class="nm" style="text-align:right">9.688,35</td>
+<td class="nm">6,7%</td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--gn)">Nível 4</td>
+<td><strong>Trabalhador Pecuária C</strong></td>
+<td class="nm" style="text-align:center">3</td>
+<td class="nm" style="text-align:right">3.229,45</td>
+<td class="nm" style="text-align:right">9.688,35</td>
+<td class="nm">6,7%</td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--gn)">Nível 4</td>
+<td><strong>Trabalhador Pecuária B</strong></td>
+<td class="nm" style="text-align:center">7</td>
+<td class="nm" style="text-align:right">2.935,87</td>
+<td class="nm" style="text-align:right">20.551,09</td>
+<td class="nm">14,2%</td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--gn)">Nível 5</td>
+<td><strong>Trabalhador Pecuária A</strong></td>
+<td class="nm" style="text-align:center">18</td>
+<td class="nm" style="text-align:right">2.668,97</td>
+<td class="nm" style="text-align:right">48.041,46</td>
+<td class="nm"><strong>33,1%</strong></td>
+</tr>
+
+<tr style="background:rgba(148,163,184,.04)"><td colspan="6" style="font-size:9px;font-weight:800;color:var(--t2)">📋 ADMINISTRATIVO E SUPORTE</td></tr>
+<tr>
+<td style="font-size:9px">Nível 4</td>
+<td>Assistente Administrativo</td>
+<td class="nm" style="text-align:center">1</td>
+<td class="nm" style="text-align:right">2.990,24</td>
+<td class="nm" style="text-align:right">2.990,24</td>
+<td class="nm">2,1%</td>
+</tr>
+<tr>
+<td style="font-size:9px">Nível 5</td>
+<td>Auxiliar de Limpeza A</td>
+<td class="nm" style="text-align:center">1</td>
+<td class="nm" style="text-align:right">1.786,30</td>
+<td class="nm" style="text-align:right">1.786,30</td>
+<td class="nm">1,2%</td>
+</tr>
+<tr>
+<td style="font-size:9px">Nível 6</td>
+<td>Auxiliar Trab. Pecuária / Aux. Admin.</td>
+<td class="nm" style="text-align:center">2</td>
+<td class="nm" style="text-align:right">954,64</td>
+<td class="nm" style="text-align:right">1.909,28</td>
+<td class="nm">1,3%</td>
+</tr>
+
+<tr style="background:rgba(59,130,246,.06)"><td colspan="6" style="height:2px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(59,130,246,.04)">
+<td colspan="2"><strong>TOTAL</strong></td>
+<td class="nm" style="text-align:center"><strong>45</strong></td>
+<td class="nm" style="text-align:right"><strong>Média: R$ 3.221</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 144.949,54</strong></td>
+<td class="nm"><strong>100%</strong></td>
+</tr>
+</table>
+
+<div class="nt" style="background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.1)">
+🔬 <strong>Pirâmide Hierárquica:</strong> 3 gestores (6,7%) → 7 encarregados (15,6%) → 35 operação+suporte (77,8%). Relação <strong>1 líder : 5 operários</strong> — coerente com pecuária intensiva. Os 2 auxiliares (cadastros 369 e 418) recebem R$ 954,64 — provavelmente <strong>menores aprendizes ou meio período</strong> (salário abaixo do mínimo para jornada integral).
+</div>
+</div>
+
+<!-- CUSTO TOTAL MO -->
+<div class="d" style="border-color:rgba(245,158,11,.25)">
+<div class="dh"><div class="dt">💰 Custo Total de Mão de Obra — Estimativa Completa <span class="db" style="background:rgba(245,158,11,.15);color:var(--yl);border:1px solid rgba(245,158,11,.3)">CUSTO MO</span></div><div class="di">RH-A2</div></div>
+
+<table class="mt">
+<tr><th>Componente do Custo</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th>Obs.</th></tr>
+
+<tr style="background:rgba(139,92,246,.04)"><td colspan="4" style="font-size:9px;font-weight:800;color:var(--pr)">📋 FOLHA BRUTA</td></tr>
+<tr>
+<td>Remuneração Base (salários)</td>
+<td class="nm" style="text-align:right">R$ 144.949,54</td>
+<td class="nm" style="text-align:right">R$ 150.287,48</td>
+<td style="font-size:9px;color:var(--t3)">45 → 47 pessoas</td>
+</tr>
+<tr>
+<td>Cartão Alimentação</td>
+<td class="nm" style="text-align:right">R$ 22.972,50</td>
+<td class="nm" style="text-align:right">R$ 22.972,50</td>
+<td style="font-size:9px;color:var(--t3)">45 × R$ 510,50 (2 novos sem benefício)</td>
+</tr>
+<tr>
+<td>Plano Saúde Unimed (est. 50% emp.)</td>
+<td class="nm" style="text-align:right">~R$ 18.000</td>
+<td class="nm" style="text-align:right">~R$ 18.800</td>
+<td style="font-size:9px;color:var(--t3)">Est. R$ 400/vida × 50% = R$ 200/func.*</td>
+</tr>
+<tr style="background:rgba(245,158,11,.04)">
+<td><strong>Sub-Total Benefícios</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 40.972,50</strong></td>
+<td class="nm" style="text-align:right"><strong>R$ 41.772,50</strong></td>
+<td></td>
+</tr>
+
+<tr><td colspan="4" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(236,72,153,.04)"><td colspan="4" style="font-size:9px;font-weight:800;color:var(--pk)">📊 ENCARGOS ESTIMADOS</td></tr>
+<tr>
+<td>INSS Patronal (~28,8%)</td>
+<td class="nm" style="text-align:right">~R$ 41.745</td>
+<td class="nm" style="text-align:right">~R$ 43.283</td>
+<td style="font-size:9px;color:var(--t3)">20% INSS + 5,8% Terceiros + 3% RAT/SAT</td>
+</tr>
+<tr>
+<td>FGTS (8%)</td>
+<td class="nm" style="text-align:right">~R$ 11.596</td>
+<td class="nm" style="text-align:right">~R$ 12.023</td>
+<td></td>
+</tr>
+<tr>
+<td>Provisões (13º, Férias, 1/3)</td>
+<td class="nm" style="text-align:right">~R$ 18.833</td>
+<td class="nm" style="text-align:right">~R$ 19.526</td>
+<td style="font-size:9px;color:var(--t3)">~13% sobre bruto</td>
+</tr>
+<tr style="background:rgba(236,72,153,.04)">
+<td><strong>Sub-Total Encargos</strong></td>
+<td class="nm" style="text-align:right"><strong>~R$ 72.174</strong></td>
+<td class="nm" style="text-align:right"><strong>~R$ 74.832</strong></td>
+<td style="font-size:9px;color:var(--t3)">~49,8% sobre folha bruta</td>
+</tr>
+
+<tr><td colspan="4" style="height:2px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(59,130,246,.06)">
+<td><strong style="color:var(--bl)">CUSTO TOTAL MO / MÊS</strong></td>
+<td class="nm" style="text-align:right;color:var(--bl)"><strong>~R$ 258.096</strong></td>
+<td class="nm" style="text-align:right;color:var(--bl)"><strong>~R$ 266.892</strong></td>
+<td style="font-size:9px;color:var(--t3)">Sal + Benef + Encargos</td>
+</tr>
+<tr style="background:rgba(59,130,246,.04)">
+<td><strong>Custo Total MO / Ano (proj.)</strong></td>
+<td class="nm" style="text-align:right" colspan="2"><strong style="color:var(--bl)">~R$ 3.150.000</strong></td>
+<td></td>
+</tr>
+</table>
+
+<div style="font-size:7px;color:var(--t3);margin-top:6px">* Valor da mensalidade Unimed estimado (R$ 400/vida média). Valor real a confirmar. Encargos estimados em ~49,8% sobre folha bruta (regime CLT rural). Provisões incluem 13º (8,33%), Férias+1/3 (4,63%).</div>
+
+<!-- COMPOSIÇÃO VISUAL -->
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">
+<div style="text-align:center;padding:12px;background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--pr);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Salários</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--pr)">55,4%</div>
+<div style="font-size:8px;color:var(--t3)">R$ 145-150k/mês</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(236,72,153,.04);border:1px solid rgba(236,72,153,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--pk);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Encargos</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--pk)">27,7%</div>
+<div style="font-size:8px;color:var(--t3)">R$ 72-75k/mês</div>
+</div>
+<div style="text-align:center;padding:12px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--yl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Benefícios</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--yl)">15,9%</div>
+<div style="font-size:8px;color:var(--t3)">R$ 41-42k/mês</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.1)">
+🔬 <strong>Cruzamento com Bloco 1:</strong> O COE médio bimestral foi ~R$ 1,66M/mês. Se o custo de MO é ~R$ 262k/mês, a <strong>MO representa ~15,8% do COE</strong> — abaixo do benchmark de 15-25%. Isso confirma que a <strong>ração domina o COE (79%)</strong> e a <strong>MO é proporcionalmente eficiente</strong>. A fazenda opera com estrutura "lean" de pessoal.
+</div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO B — PERFIL DEMOGRÁFICO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">📊 Bloco B — Perfil Demográfico e Rotatividade <span class="st-b" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">RH-B</span></div>
+
+<div class="dg dg3 fi">
+
+<!-- GÊNERO -->
+<div class="d" style="border-color:rgba(236,72,153,.25)">
+<div class="dh"><div class="dt">♂️♀️ Gênero <span class="db" style="background:rgba(236,72,153,.15);color:var(--pk);border:1px solid rgba(236,72,153,.3)">GÊNERO</span></div><div class="di">RH-B1</div></div>
+
+<div class="bg"><div class="bl"><span class="bn">👨 Masculino</span><span class="bv" style="color:var(--bl)">35 (77,8%)</span></div><div class="bt"><div class="bf" style="width:77.8%;background:var(--gBl)">35</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">👩 Feminino</span><span class="bv" style="color:var(--pk)">10 (22,2%)</span></div><div class="bt"><div class="bf" style="width:22.2%;background:var(--gPk)">10</div></div></div>
+
+<div style="margin-top:10px;font-size:10px;color:var(--t2);line-height:1.7">
+<strong>Fev:</strong> +2 admissões (1♀ + 1♂) = 36M + 11F<br>
+<strong>Mulheres em operação pecuária:</strong> 8 de 10 — representatividade operacional positiva<br>
+<strong>Benchmark agro:</strong> Média 80-90% masculino — Brasilanda próxima da média
+</div>
+</div>
+
+<!-- FAIXA ETÁRIA -->
+<div class="d" style="border-color:rgba(6,182,212,.25)">
+<div class="dh"><div class="dt">🎂 Faixa Etária <span class="db" style="background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)">IDADE</span></div><div class="di">RH-B2</div></div>
+
+<div class="bg"><div class="bl"><span class="bn">16-20 anos</span><span class="bv">5 (11,1%)</span></div><div class="bt"><div class="bf" style="width:11.1%;background:rgba(6,182,212,.5)">5</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">21-25 anos</span><span class="bv" style="color:var(--cy)">8 (17,8%)</span></div><div class="bt"><div class="bf" style="width:17.8%;background:rgba(6,182,212,.6)">8</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--cy)">26-35 anos</span><span class="bv" style="color:var(--cy)"><strong>15 (33,3%)</strong></span></div><div class="bt"><div class="bf" style="width:33.3%;background:var(--gCy)"><strong>15</strong></div></div></div>
+<div class="bg"><div class="bl"><span class="bn">36-45 anos</span><span class="bv">11 (24,4%)</span></div><div class="bt"><div class="bf" style="width:24.4%;background:rgba(6,182,212,.4)">11</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">46+ anos</span><span class="bv">6 (13,3%)</span></div><div class="bt"><div class="bf" style="width:13.3%;background:rgba(6,182,212,.3)">6</div></div></div>
+
+<div style="margin-top:8px;font-size:10px;color:var(--t2)">
+<strong>Idade média:</strong> 33,1 anos | <strong>Mediana:</strong> 31 anos<br>
+<strong>Mais jovem:</strong> Tainá (17) | <strong>Mais velho:</strong> Rubens (68)<br>
+<strong>62% da equipe tem menos de 35 anos</strong> — equipe jovem
+</div>
+</div>
+
+<!-- ESCOLARIDADE -->
+<div class="d" style="border-color:rgba(16,185,129,.25)">
+<div class="dh"><div class="dt">🎓 Escolaridade <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">FORMAÇÃO</span></div><div class="di">RH-B3</div></div>
+
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">Superior Completo</span><span class="bv" style="color:var(--gn)">4 (8,9%)</span></div><div class="bt"><div class="bf" style="width:8.9%;background:var(--gGn)">4</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Superior Incompleto</span><span class="bv">2 (4,4%)</span></div><div class="bt"><div class="bf" style="width:4.4%;background:rgba(16,185,129,.4)">2</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--yl)">Ens. Médio Completo</span><span class="bv" style="color:var(--yl)"><strong>14 (31,1%)</strong></span></div><div class="bt"><div class="bf" style="width:31.1%;background:var(--gYl)"><strong>14</strong></div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Ens. Médio Incompleto</span><span class="bv">10 (22,2%)</span></div><div class="bt"><div class="bf" style="width:22.2%;background:rgba(245,158,11,.3)">10</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">Ens. Fund. Completo</span><span class="bv">4 (8,9%)</span></div><div class="bt"><div class="bf" style="width:8.9%;background:rgba(148,163,184,.3)">4</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">Ens. Fund. Incompleto</span><span class="bv" style="color:var(--rd)">11 (24,4%)</span></div><div class="bt"><div class="bf" style="width:24.4%;background:rgba(239,68,68,.3)">11</div></div></div>
+
+<div style="margin-top:8px;font-size:10px;color:var(--t2)">
+<strong>44,4%</strong> têm ensino médio completo ou superior<br>
+<strong>24,4%</strong> têm apenas fundamental incompleto<br>
+<strong>4 com superior:</strong> 2 supervisores + 1 trab. + 1 encarregado
+</div>
+</div>
+
+</div>
+
+<!-- TEMPO DE CASA E TURNOVER -->
+<div class="dg dg2 fi" style="margin-top:20px">
+
+<div class="d" style="border-color:rgba(59,130,246,.25)">
+<div class="dh"><div class="dt">⏳ Tempo de Casa e Senioridade <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">TEMPO</span></div><div class="di">RH-B4</div></div>
+
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--rd)">< 6 meses</span><span class="bv" style="color:var(--rd)"><strong>11 (24,4%)</strong></span></div><div class="bt"><div class="bf" style="width:24.4%;background:var(--gRd)"><strong>11</strong></div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--yl)">6 meses — 1 ano</span><span class="bv" style="color:var(--yl)">4 (8,9%)</span></div><div class="bt"><div class="bf" style="width:8.9%;background:var(--gYl)">4</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">1 — 2 anos</span><span class="bv">3 (6,7%)</span></div><div class="bt"><div class="bf" style="width:6.7%;background:rgba(148,163,184,.3)">3</div></div></div>
+<div class="bg"><div class="bl"><span class="bn">2 — 3 anos</span><span class="bv">5 (11,1%)</span></div><div class="bt"><div class="bf" style="width:11.1%;background:rgba(148,163,184,.35)">5</div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">3 — 5 anos</span><span class="bv" style="color:var(--gn)"><strong>12 (26,7%)</strong></span></div><div class="bt"><div class="bf" style="width:26.7%;background:var(--gGn)"><strong>12</strong></div></div></div>
+<div class="bg"><div class="bl"><span class="bn" style="color:var(--gn)">5+ anos</span><span class="bv" style="color:var(--gn)">10 (22,2%)</span></div><div class="bt"><div class="bf" style="width:22.2%;background:rgba(16,185,129,.5)">10</div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+<div style="text-align:center;padding:10px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--bl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Tempo Médio de Casa</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--bl)">3,2 anos</div>
+</div>
+<div style="text-align:center;padding:10px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.1);border-radius:8px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Mais Antigo</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:900;color:var(--gn)">11,1 anos</div>
+<div style="font-size:8px;color:var(--t3)">Claudemir — Supervisor D</div>
+</div>
+</div>
+
+<div class="nt" style="background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1)">
+⚠️ <strong>Alerta:</strong> <strong>24,4% da equipe (11 pessoas) tem menos de 6 meses de casa</strong> — indica contratações recentes em massa. Isso pode significar: alta rotatividade anterior (desligamentos que geraram necessidade de reposição), crescimento do rebanho, ou reestruturação da equipe. <strong>Questionar na reunião: qual foi o turnover dos últimos 12 meses?</strong>
+</div>
+</div>
+
+<!-- MOVIMENTAÇÃO -->
+<div class="d" style="border-color:rgba(16,185,129,.25)">
+<div class="dh"><div class="dt">🔄 Movimentação no Bimestre <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">TURNOVER</span></div><div class="di">RH-B5</div></div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th>Bimestre</th></tr>
+<tr>
+<td>Quadro Inicial</td>
+<td class="nm" style="text-align:right">42</td>
+<td class="nm" style="text-align:right">45</td>
+<td></td>
+</tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong style="color:var(--gn)">Admissões</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>3</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>2</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>5</strong></td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--t3);padding-left:20px">Edileide Rosa de Jesus (12/01)</td>
+<td class="nm" style="text-align:right;font-size:9px">Trab. Pec. A</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--t3);padding-left:20px">Jurany V. J. Costa (12/01)</td>
+<td class="nm" style="text-align:right;font-size:9px">Trab. Pec. A</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--t3);padding-left:20px">Leticia de Jesus S. (12/01)</td>
+<td class="nm" style="text-align:right;font-size:9px">Trab. Pec. A</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--t3);padding-left:20px">Lineide de Jesus O. (23/02)</td>
+<td></td>
+<td class="nm" style="text-align:right;font-size:9px">Trab. Pec. A</td>
+<td></td>
+</tr>
+<tr>
+<td style="font-size:9px;color:var(--t3);padding-left:20px">Moises Ferreira C. (04/03)*</td>
+<td></td>
+<td class="nm" style="text-align:right;font-size:9px">Trab. Pec. A</td>
+<td></td>
+</tr>
+<tr style="background:rgba(239,68,68,.04)">
+<td><strong style="color:var(--rd)">Desligamentos</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>0</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>0</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>0</strong></td>
+</tr>
+<tr>
+<td>Quadro Final</td>
+<td class="nm" style="text-align:right"><strong>45</strong></td>
+<td class="nm" style="text-align:right"><strong>47</strong></td>
+<td></td>
+</tr>
+<tr><td colspan="4" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(16,185,129,.04)">
+<td><strong>Turnover no Bimestre</strong></td>
+<td class="nm" style="text-align:right" colspan="2"><strong style="color:var(--gn)">0,0%</strong></td>
+<td style="font-size:9px;color:var(--gn)">✅ Excelente</td>
+</tr>
+</table>
+
+<div style="font-size:7px;color:var(--t3);margin-top:4px">* Moises admitido 04/03/2026 — consta na folha de Fev provavelmente por processo admissional iniciado em Fev. Lineide e Moises sem cartão alimentação (R$ 0) — provavelmente por serem recém-admitidos e o benefício iniciar no mês seguinte.</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.2);border-radius:10px">
+<div style="font-size:8px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Turnover Bimestral</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:900;color:var(--gn)">0,0%</div>
+<div style="font-size:8px;color:var(--t3)">Bench agro: 3-8%/bim. | ✅ Excelente</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(59,130,246,.06);border:2px solid rgba(59,130,246,.2);border-radius:10px">
+<div style="font-size:8px;color:var(--bl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Admissões = 100% Trab. Pec. A</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:900;color:var(--bl)">5 de 5</div>
+<div style="font-size:8px;color:var(--t3)">Todas operação base | Reposição ou expansão</div>
+</div>
+</div>
+
+<div class="obs obs-g" style="margin-top:14px">
+<div class="obs-t" style="color:var(--gn)">✅ PONTO POSITIVO — Zero Turnover no Bimestre</div>
+<div class="obs-x">
+Nenhum desligamento em Jan-Fev é um indicador <strong>muito positivo</strong> de estabilidade. Porém, é necessário contexto: <strong>o turnover histórico (últimos 12 meses) pode ser alto</strong> — os 11 colaboradores com < 6 meses de casa sugerem que houve reposições recentes. Turnover zero no bimestre pode significar que "a poeira baixou" após um período de ajustes.
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO C — PRODUTIVIDADE POR FUNCIONÁRIO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">📈 Bloco C — Produtividade da Mão de Obra <span class="st-b" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">RH-C</span></div>
+
+<div class="d fi" style="border-color:rgba(16,185,129,.25)">
+<div class="dh"><div class="dt">📈 Indicadores de Produtividade — MO vs Rebanho vs Produção <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">PRODUTIVIDADE</span></div><div class="di">RH-C1</div></div>
+<div class="cx" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.12);color:var(--gn)"><span style="background:rgba(16,185,129,.15)">INTEGRADO</span> Cruzamento do quadro de pessoal com dados de produção (Bloco 2) e financeiro (Bloco 1)</div>
+
+<table class="mt">
+<tr><th>Indicador de Produtividade</th><th style="text-align:right">Janeiro</th><th style="text-align:right">Fevereiro</th><th style="text-align:right">Média Bim.</th><th>Benchmark BR</th><th>Top 10%</th><th>Status</th></tr>
+
+<tr style="background:rgba(16,185,129,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--gn)">🐄 ANIMAIS / FUNCIONÁRIO</td></tr>
+<tr>
+<td><strong>Vacas Lactação / Funcionário</strong></td>
+<td class="nm" style="text-align:right">19,1</td>
+<td class="nm" style="text-align:right">17,9</td>
+<td class="nm" style="text-align:right"><strong>18,5</strong></td>
+<td class="nm" style="color:var(--t3)">12-20</td>
+<td class="nm" style="color:var(--gn)">25-40</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>Total Animais Adultos / Funcionário</td>
+<td class="nm" style="text-align:right">22,8</td>
+<td class="nm" style="text-align:right">21,6</td>
+<td class="nm" style="text-align:right"><strong>22,2</strong></td>
+<td class="nm" style="color:var(--t3)">15-25</td>
+<td class="nm" style="color:var(--gn)">30-50</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>Total Rebanho (c/ recria) / Funcionário</td>
+<td class="nm" style="text-align:right">40,7</td>
+<td class="nm" style="text-align:right">39,2</td>
+<td class="nm" style="text-align:right"><strong>39,9</strong></td>
+<td class="nm" style="color:var(--t3)">25-45</td>
+<td class="nm" style="color:var(--gn)">50-80</td>
+<td>🟡</td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(59,130,246,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--bl)">🥛 LITROS / FUNCIONÁRIO</td></tr>
+<tr>
+<td><strong style="color:var(--bl)">Litros / Funcionário / Dia</strong></td>
+<td class="nm" style="text-align:right;color:var(--bl)"><strong>723</strong></td>
+<td class="nm" style="text-align:right;color:var(--bl)"><strong>679</strong></td>
+<td class="nm" style="text-align:right;color:var(--bl)"><strong>700</strong></td>
+<td class="nm" style="color:var(--t3)">300-600</td>
+<td class="nm" style="color:var(--gn)">800-1.500</td>
+<td><strong>🟢</strong></td>
+</tr>
+<tr>
+<td>Litros / Funcionário / Mês</td>
+<td class="nm" style="text-align:right">22.413</td>
+<td class="nm" style="text-align:right">19.022</td>
+<td class="nm" style="text-align:right"><strong>20.718</strong></td>
+<td class="nm" style="color:var(--t3)">9.000-18.000</td>
+<td class="nm" style="color:var(--gn)">24.000-45.000</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>Litros / Funcionário / Ano (projeção)</td>
+<td class="nm" style="text-align:right" colspan="2">—</td>
+<td class="nm" style="text-align:right"><strong>~248.610</strong></td>
+<td class="nm" style="color:var(--t3)">108.000-216.000</td>
+<td class="nm" style="color:var(--gn)">288.000+</td>
+<td>🟢</td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(245,158,11,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--yl)">💰 RECEITA E CUSTO / FUNCIONÁRIO</td></tr>
+<tr>
+<td><strong>Receita Leite / Funcionário / Mês</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 54.088</td>
+<td class="nm" style="text-align:right;color:var(--gn)">R$ 46.003</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 50.046</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 20k-40k</td>
+<td class="nm" style="color:var(--gn)">R$ 50k-100k</td>
+<td><strong>🟢</strong></td>
+</tr>
+<tr>
+<td><strong>Custo MO / Funcionário / Mês (total)</strong></td>
+<td class="nm" style="text-align:right">R$ 5.736</td>
+<td class="nm" style="text-align:right">R$ 5.679</td>
+<td class="nm" style="text-align:right"><strong>R$ 5.707</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 4.000-6.000</td>
+<td class="nm" style="color:var(--t3)">R$ 5.000-8.000</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong style="color:var(--gn)">Receita / Custo MO (Multiplicador)</strong></td>
+<td class="nm" style="text-align:right;color:var(--gn)">9,4×</td>
+<td class="nm" style="text-align:right;color:var(--gn)">8,1×</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>8,8×</strong></td>
+<td class="nm" style="color:var(--t3)">4-7×</td>
+<td class="nm" style="color:var(--gn)">8-15×</td>
+<td><strong>🟢</strong></td>
+</tr>
+
+<tr><td colspan="7" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(239,68,68,.04)"><td colspan="7" style="font-size:10px;font-weight:800;color:var(--rd)">💲 CUSTO MO / LITRO E / VACA</td></tr>
+<tr>
+<td><strong style="color:var(--yl)">Custo MO / Litro de Leite</strong></td>
+<td class="nm" style="text-align:right">R$ 0,256</td>
+<td class="nm" style="text-align:right">R$ 0,299</td>
+<td class="nm" style="text-align:right;color:var(--yl)"><strong>R$ 0,277</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 0,20-0,40</td>
+<td class="nm" style="color:var(--gn)">R$ 0,15-0,25</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td><strong>Custo MO / Vaca Lactação / Mês</strong></td>
+<td class="nm" style="text-align:right">R$ 300</td>
+<td class="nm" style="text-align:right">R$ 317</td>
+<td class="nm" style="text-align:right"><strong>R$ 309</strong></td>
+<td class="nm" style="color:var(--t3)">R$ 250-500</td>
+<td class="nm" style="color:var(--gn)">R$ 200-350</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>% MO no Custo do Litro</td>
+<td class="nm" style="text-align:right">10,6%</td>
+<td class="nm" style="text-align:right">12,6%</td>
+<td class="nm" style="text-align:right"><strong>11,6%</strong></td>
+<td class="nm" style="color:var(--t3)">10-20%</td>
+<td class="nm" style="color:var(--gn)">8-12%</td>
+<td>🟢</td>
+</tr>
+</table>
+
+<!-- VISUAL PRODUTIVIDADE -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px">
+<div style="text-align:center;padding:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--bl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">L/Funcionário/Dia</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--bl)">700</div>
+<div style="font-size:8px;color:var(--t3)">Acima da média BR 🟢</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Receita/Func./Mês</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--gn)">R$ 50k</div>
+<div style="font-size:8px;color:var(--t3)">Top 10% BR 🟢</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--yl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Custo MO/Litro</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--yl)">R$ 0,28</div>
+<div style="font-size:8px;color:var(--t3)">Eficiente 🟢</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.12);border-radius:10px">
+<div style="font-size:7px;color:var(--pr);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Multiplicador Receita/MO</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:900;color:var(--pr)">8,8×</div>
+<div style="font-size:8px;color:var(--t3)">Cada R$ 1 de MO gera R$ 8,80 🟢</div>
+</div>
+</div>
+
+<!-- BENCHMARK COMPARATIVO -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">📊 Brasilanda vs Benchmarks — Produtividade da MO</div>
+
+<table class="mt">
+<tr><th>Indicador</th><th style="text-align:center">🏠 Brasilanda</th><th style="text-align:center">🇧🇷 Média BR</th><th style="text-align:center">🏅 Top 10% BR</th><th style="text-align:center">🏆 Top Mundial</th><th>Posição</th></tr>
+<tr>
+<td>L/Funcionário/Dia</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>700</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">200-400</td>
+<td class="nm" style="text-align:center;color:var(--gn)">800-1.200</td>
+<td class="nm" style="text-align:center;color:var(--gn)">1.500-3.000</td>
+<td style="text-align:center"><strong>🟢 Acima Média</strong></td>
+</tr>
+<tr>
+<td>Vacas Lact./Func.</td>
+<td class="nm" style="text-align:center"><strong>18,5</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">10-15</td>
+<td class="nm" style="text-align:center;color:var(--gn)">25-40</td>
+<td class="nm" style="text-align:center;color:var(--gn)">50-100</td>
+<td style="text-align:center">🟢 Acima Média</td>
+</tr>
+<tr>
+<td>Custo MO/Litro</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>R$ 0,28</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">R$ 0,30-0,60</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 0,15-0,25</td>
+<td class="nm" style="text-align:center;color:var(--gn)">R$ 0,10-0,20</td>
+<td style="text-align:center">🟢 Acima Média</td>
+</tr>
+<tr>
+<td>MO % do COE</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>15,8%</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">20-35%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">12-18%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">10-15%</td>
+<td style="text-align:center"><strong>🟢 Top 10%</strong></td>
+</tr>
+<tr>
+<td>Turnover Bimestral</td>
+<td class="nm" style="text-align:center;color:var(--gn)"><strong>0,0%</strong></td>
+<td class="nm" style="text-align:center;color:var(--t3)">5-15%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">< 3%</td>
+<td class="nm" style="text-align:center;color:var(--gn)">< 2%</td>
+<td style="text-align:center"><strong>🏆 Excepcional</strong></td>
+</tr>
+</table>
+
+<div class="nt" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);margin-top:14px">
+🔬 <strong>Síntese da Produtividade:</strong><br>
+A MO da Brasilanda é <strong>eficiente e acima da média brasileira</strong> em todos os indicadores. Cada funcionário gera ~R$ 50k/mês em receita de leite e custa ~R$ 5.700 — um <strong>multiplicador de 8,8×</strong>. O custo de MO por litro (R$ 0,28) está no <strong>quartil superior do BR</strong>. O turnover zero no bimestre é excepcional. A principal oportunidade: com <strong>melhoria reprodutiva (mais vacas em lactação), a produtividade por funcionário subiria automaticamente</strong> sem contratar ninguém — passando de 700 para 800-900 L/func./dia.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO D — CRUZAMENTO RH × PRODUÇÃO × FINANCEIRO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🔗 Bloco D — Cruzamento RH × Produção × Financeiro <span class="st-b" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">RH-D</span></div>
+
+<div class="d fi" style="border-color:rgba(59,130,246,.25)">
+<div class="dh"><div class="dt">🔗 Análise Integrada — O que a Estrutura de RH Revela <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">INTEGRADO</span></div><div class="di">RH-D1</div></div>
+
+<table class="mt">
+<tr><th>Indicador Integrado</th><th style="text-align:right">Valor Atual</th><th style="text-align:right">Se 1.000 V.L.*</th><th>Ganho</th><th>Ação</th></tr>
+
+<tr style="background:rgba(16,185,129,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--gn)">📈 CENÁRIO: AUMENTAR VACAS EM LACTAÇÃO SEM CONTRATAR</td></tr>
+<tr>
+<td>Vacas em Lactação</td>
+<td class="nm" style="text-align:right">850</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>1.000</strong></td>
+<td class="nm" style="color:var(--gn)">+17,6%</td>
+<td style="font-size:9px;color:var(--t2)">Via melhoria reprodutiva</td>
+</tr>
+<tr>
+<td>Produção Estimada (L/dia)</td>
+<td class="nm" style="text-align:right">32.233</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>37.920</strong></td>
+<td class="nm" style="color:var(--gn)">+5.687 L/dia</td>
+<td style="font-size:9px;color:var(--t2)">37,9 L/vaca lact./dia</td>
+</tr>
+<tr>
+<td><strong>L/Funcionário/Dia</strong></td>
+<td class="nm" style="text-align:right">700</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>807</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+15,3%</strong></td>
+<td style="font-size:9px;color:var(--gn)">Entra no Top 10% BR</td>
+</tr>
+<tr>
+<td><strong>Vacas Lact./Funcionário</strong></td>
+<td class="nm" style="text-align:right">18,5</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>21,3</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+15,1%</strong></td>
+<td style="font-size:9px;color:var(--gn)">Sem contratar ninguém</td>
+</tr>
+<tr>
+<td><strong>Receita Leite/Func./Mês</strong></td>
+<td class="nm" style="text-align:right">R$ 50.046</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 58.323</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>+R$ 8.277</strong></td>
+<td style="font-size:9px;color:var(--gn)">R$ 388k/mês de receita adicional</td>
+</tr>
+<tr>
+<td><strong>Custo MO/Litro</strong></td>
+<td class="nm" style="text-align:right">R$ 0,277</td>
+<td class="nm" style="text-align:right;color:var(--gn)"><strong>R$ 0,236</strong></td>
+<td class="nm" style="color:var(--gn)"><strong>−14,8%</strong></td>
+<td style="font-size:9px;color:var(--gn)">Diluição do custo fixo de MO</td>
+</tr>
+
+<tr><td colspan="5" style="height:1px;padding:0;background:var(--bdr)"></td></tr>
+<tr style="background:rgba(245,158,11,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--yl)">💡 ANÁLISE DA FAIXA SALARIAL</td></tr>
+<tr>
+<td>Salário médio geral</td>
+<td class="nm" style="text-align:right" colspan="2"><strong>R$ 3.221/mês</strong></td>
+<td></td>
+<td style="font-size:9px;color:var(--t3)">1,8× salário mínimo 2026 (est. R$ 1.770)</td>
+</tr>
+<tr>
+<td>Salário mediano (Trab. Pec. A)</td>
+<td class="nm" style="text-align:right" colspan="2"><strong>R$ 2.669/mês</strong></td>
+<td></td>
+<td style="font-size:9px;color:var(--t3)">1,5× salário mínimo | 40% da equipe</td>
+</tr>
+<tr>
+<td>Amplitude salarial (maior/menor)</td>
+<td class="nm" style="text-align:right" colspan="2"><strong>9,8×</strong></td>
+<td></td>
+<td style="font-size:9px;color:var(--t3)">R$ 954 → R$ 9.340 | Normal para agro</td>
+</tr>
+<tr>
+<td>Custo total/funcionário/mês (com encargos)</td>
+<td class="nm" style="text-align:right" colspan="2"><strong>R$ 5.707</strong></td>
+<td></td>
+<td style="font-size:9px;color:var(--t3)">1,77× o salário base médio</td>
+</tr>
+</table>
+
+<!-- RELAÇÃO FAMILIAR -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">👨‍👩‍👧‍👦 Observação — Possíveis Núcleos Familiares Identificados</div>
+
+<div style="padding:14px;background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.12);border-radius:10px">
+<div style="font-size:10px;color:var(--t2);line-height:1.8">
+Pelos sobrenomes e datas de admissão, identificamos possíveis <strong>núcleos familiares</strong> na equipe:<br><br>
+
+<strong>🔹 Família Gonçalves Cardoso:</strong> Claudemir (Supervisor D, desde 2014), Cledson (Encarregado B, desde 2020), Clécia (Aux. Limpeza, desde 2025) — provável pai e filhos ou irmãos<br>
+<strong>🔹 Família Oliveira Silva:</strong> Claudinei (Encarregado A), Dijalma (Trab. C), Darlan (Trab. A), Klebson (Auxiliar), Wilson (Trab. A) — 5 membros<br>
+<strong>🔹 Família Santos Silva:</strong> Fábio, Jair, Jean, Rosimar — 4 membros<br>
+<strong>🔹 Família Batista de França:</strong> Damião (Op. Máq., desde 2018), Mauro (Trab. C, desde 2022) — provável pai e filho ou irmãos<br>
+<strong>🔹 Família Silva Reis:</strong> Bruno (Trab. A), Karoline (Trab. A) — provável irmãos<br>
+<strong>🔹 Família Soares:</strong> Joaquim Carlos + Noeme Alves da Silva (admitidos no mesmo dia 10/05/2021) — provável casal<br><br>
+<strong>Estimativa:</strong> ~20 a 24 dos 45 colaboradores podem pertencer a ~6 núcleos familiares.<br>
+<strong>Impacto:</strong> Isso é <strong>comum e positivo</strong> em pecuária leiteira — famílias que moram na fazenda ou proximidades geram <strong>comprometimento, menor turnover e cultura compartilhada</strong>. Porém, cria <strong>risco de dependência</strong> (se um núcleo familiar sai, podem sair 3-5 pessoas de uma vez).
+</div>
+</div>
+
+<!-- SPAN OF CONTROL -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">🏗️ Análise de Span of Control (Amplitude de Controle)</div>
+
+<table class="mt">
+<tr><th>Nível</th><th>Função</th><th style="text-align:center">Qtd</th><th style="text-align:center">Subordinados Diretos (est.)</th><th style="text-align:center">Span</th><th>Benchmark</th><th>Status</th></tr>
+<tr>
+<td style="color:var(--rd)">N1</td>
+<td><strong>Supervisor F (Rânio)</strong></td>
+<td class="nm" style="text-align:center">1</td>
+<td class="nm" style="text-align:center">~44</td>
+<td class="nm" style="text-align:center"><strong>1:44</strong></td>
+<td class="nm" style="color:var(--t3)">1:6-10</td>
+<td>🟠</td>
+</tr>
+<tr>
+<td style="color:var(--rd)">N2</td>
+<td><strong>Supervisor D (Claudemir)</strong></td>
+<td class="nm" style="text-align:center">1</td>
+<td class="nm" style="text-align:center">~7 encarregados</td>
+<td class="nm" style="text-align:center"><strong>1:7</strong></td>
+<td class="nm" style="color:var(--gn)">1:6-10</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td style="color:var(--bl)">N3</td>
+<td><strong>Encarregados (7 total)</strong></td>
+<td class="nm" style="text-align:center">7</td>
+<td class="nm" style="text-align:center">~5 cada</td>
+<td class="nm" style="text-align:center"><strong>1:5</strong></td>
+<td class="nm" style="color:var(--gn)">1:5-8</td>
+<td>🟢</td>
+</tr>
+</table>
+
+<div style="font-size:8px;color:var(--t3);margin-top:4px">Estrutura hierárquica estimada. Organograma real a ser confirmado na reunião. Coord. de Obras (Rubens) está separado da hierarquia pecuária.</div>
+
+<div class="nt" style="background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.1);margin-top:14px">
+🔬 <strong>Leitura do Span:</strong> A estrutura de <strong>2 Supervisores → 7 Encarregados → 35 Operação</strong> é coerente para uma fazenda deste porte. O Supervisor F (Rânio, o mais bem remunerado com R$ 9.340) provavelmente responde diretamente à Patricia. O Coordenador de Obras (Rubens, R$ 7.579, 68 anos, desde 2019) provavelmente cuida de infraestrutura/manutenção e não está na linha hierárquica da produção leiteira.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOCO E — ALERTAS, DADOS A LEVANTAR, RESUMO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="st fi">🚨 Bloco E — Alertas, Observações e Resumo Executivo <span class="st-b" style="background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)">RH-E</span></div>
+
+<!-- ALERTAS -->
+<div class="al fi" style="background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(16,185,129,.02));border:1px solid rgba(16,185,129,.15)">
+<div class="al-i">🟢</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--gn)">POSITIVO — Estrutura de MO Eficiente e Estável</div>
+<div class="al-x">
+<strong>Turnover zero no bimestre</strong>, produtividade de 700 L/func./dia (acima da média BR), custo MO/litro de R$ 0,28 (competitivo), MO = 15,8% do COE (eficiente). Cada R$ 1 investido em MO gera R$ 8,80 em receita de leite. <strong>A equipe é lean e produtiva.</strong>
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(245,158,11,.02));border:1px solid rgba(245,158,11,.15)">
+<div class="al-i">🟡</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--yl)">ATENÇÃO — 24,4% da Equipe com < 6 Meses de Casa</div>
+<div class="al-x">
+<strong>11 de 45 colaboradores</strong> foram admitidos nos últimos 6 meses — indica rotatividade anterior significativa ou expansão recente. <strong>Colaboradores novos:</strong> menor experiência com o manejo específico da fazenda, maior chance de erros operacionais (pesagem de ração, identificação de problemas de saúde, manejo reprodutivo). <strong>Questionar:</strong> Houve programa de treinamento/onboarding? Qual foi o turnover nos 12 meses anteriores?
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(245,158,11,.02));border:1px solid rgba(245,158,11,.15)">
+<div class="al-i">🟡</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--yl)">ATENÇÃO — 2 Colaboradores com Remuneração de R$ 954,64 (Menores/Meio Período?)</div>
+<div class="al-x">
+<strong>Klebson Oliveira Silva</strong> (18 anos, Aux. Trab. Pecuária, desde Set/2023) e <strong>Tainá Costa Silva</strong> (17 anos, Aux. Administrativo, desde Jul/2025) recebem R$ 954,64 — abaixo do salário mínimo para jornada integral. <strong>Provável:</strong> contratos de meio período, jovem aprendiz, ou estagiários. <strong>Verificar:</strong> enquadramento legal (menor aprendiz tem regras específicas — Tainá tem 17 anos e entrou com 16). Klebson entrou com 16 anos também.
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(249,115,22,.02));border:1px solid rgba(249,115,22,.15)">
+<div class="al-i">🟠</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--or)">ATENÇÃO — Coordenador de Obras com 68 Anos e Fundamental Incompleto</div>
+<div class="al-x">
+<strong>Rubens Ferreira Maciel</strong> (68 anos, Coord. de Obras, R$ 7.579, desde Mai/2019) é o 3º maior salário da fazenda. Com 68 anos, pode se aposentar a qualquer momento. <strong>Risco:</strong> não há substituto aparente para a função — avaliar plano de sucessão. Além disso, é o único cargo de "Obras" — verificar se a função ainda se justifica ou se pode ser terceirizada.
+</div>
+</div>
+</div>
+
+<div class="al fi" style="background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(59,130,246,.02));border:1px solid rgba(59,130,246,.15)">
+<div class="al-i">🔵</div>
+<div class="al-c">
+<div class="al-t" style="color:var(--bl)">OPORTUNIDADE — Aumento de Produtividade sem Contratar</div>
+<div class="al-x">
+Se a fazenda aumentar de 850 para 1.000 vacas em lactação (via melhoria reprodutiva), a <strong>produtividade por funcionário sobe automaticamente 15%</strong> — de 700 para 807 L/func./dia — entrando no <strong>Top 10% BR</strong>. O custo de MO/litro cairia de R$ 0,28 para R$ 0,24. <strong>Essa é a forma mais eficiente de melhorar a produtividade de MO: não contratar mais gente, mas produzir mais com o mesmo time.</strong>
+</div>
+</div>
+</div>
+
+<!-- DADOS A LEVANTAR -->
+<div class="d fi" style="border-color:rgba(59,130,246,.3);margin-top:20px;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(59,130,246,.02))">
+<div class="dh"><div class="dt">📋 Dados a Levantar — Para Completar Análise de RH <span class="db" style="background:rgba(59,130,246,.15);color:var(--bl);border:1px solid rgba(59,130,246,.3)">PENDÊNCIA</span></div><div class="di">RH-PEND</div></div>
+
+<table class="mt">
+<tr><th style="width:30px">✅</th><th>Dado Necessário</th><th>Fonte</th><th>Impacto</th><th>Prioridade</th></tr>
+
+<tr style="background:rgba(239,68,68,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--rd)">🔴 ALTA</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Turnover últimos 12 meses</strong> — quantos saíram e por quê</td>
+<td style="font-size:9px;color:var(--t2)">RH / Patricia</td>
+<td style="font-size:9px;color:var(--t2)">Explica os 11 novatos e permite projetar custo de reposição</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Organograma real</strong> — quem reporta a quem, responsabilidades</td>
+<td style="font-size:9px;color:var(--t2)">Patricia / Rânio</td>
+<td style="font-size:9px;color:var(--t2)">Confirma span of control, identifica gargalos de gestão</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Distribuição da equipe por função/turno</strong> — ordenha, manejo, alimentação, recria</td>
+<td style="font-size:9px;color:var(--t2)">Supervisores</td>
+<td style="font-size:9px;color:var(--t2)">Permite calcular produtividade por função e identificar se há sub-alocação</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--rd);font-weight:700">ALTA</span></td>
+</tr>
+
+<tr style="background:rgba(245,158,11,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--yl)">🟡 MÉDIA</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Valor real do plano Unimed</strong> (mensalidade por faixa etária)</td>
+<td style="font-size:9px;color:var(--t2)">RH / Financeiro</td>
+<td style="font-size:9px;color:var(--t2)">Calibra custo real de benefícios (estimamos R$ 400/vida)</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Regime de trabalho</strong> — escala 6×1, 5×2, turnos de ordenha</td>
+<td style="font-size:9px;color:var(--t2)">RH</td>
+<td style="font-size:9px;color:var(--t2)">Permite avaliar horas extras, descanso, produtividade real</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Enquadramento de Klebson e Tainá</strong> — jovem aprendiz?</td>
+<td style="font-size:9px;color:var(--t2)">RH</td>
+<td style="font-size:9px;color:var(--t2)">Compliance trabalhista para menores</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Custo com horas extras</strong> — frequência e valor mensal</td>
+<td style="font-size:9px;color:var(--t2)">Folha de pagamento detalhada</td>
+<td style="font-size:9px;color:var(--t2)">Pode representar 10-20% adicional ao salário base</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--yl);font-weight:700">MÉDIA</span></td>
+</tr>
+
+<tr style="background:rgba(16,185,129,.04)"><td colspan="5" style="font-size:10px;font-weight:800;color:var(--gn)">🟢 COMPLEMENTAR</td></tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Programa de treinamento</strong> — existe? Frequência?</td>
+<td style="font-size:9px;color:var(--t2)">RH / Supervisores</td>
+<td style="font-size:9px;color:var(--t2)">11 novatos precisam de capacitação; impacta qualidade do manejo</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Plano de sucessão</strong> para cargos-chave (Rubens, Claudemir, Rânio)</td>
+<td style="font-size:9px;color:var(--t2)">Patricia / RH</td>
+<td style="font-size:9px;color:var(--t2)">Mitigar risco de perda de conhecimento em cargos críticos</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+<tr>
+<td style="text-align:center">☐</td>
+<td><strong>Moradia na fazenda</strong> — quantos moram no local?</td>
+<td style="font-size:9px;color:var(--t2)">Patricia</td>
+<td style="font-size:9px;color:var(--t2)">Impacta comprometimento, disponibilidade e custo de transporte</td>
+<td style="text-align:center"><span style="font-size:8px;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:var(--gn);font-weight:700">COMPL.</span></td>
+</tr>
+</table>
+</div>
+
+<!-- RESUMO EXECUTIVO FINAL -->
+<div class="d fi" style="border-color:rgba(16,185,129,.25);margin-top:20px;background:linear-gradient(135deg,rgba(16,185,129,.04),rgba(139,92,246,.04))">
+<div class="dh"><div class="dt">📋 Resumo Executivo — RH <span class="db" style="background:rgba(16,185,129,.15);color:var(--gn);border:1px solid rgba(16,185,129,.3)">RESUMO</span></div><div class="di">RH-RESUMO</div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div>
+<div style="font-size:11px;font-weight:800;color:var(--gn);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">✅ Pontos Fortes</div>
+<div style="font-size:11px;color:var(--t2);line-height:2">
+🏆 Turnover bimestral: 0% (Excepcional)<br>
+🟢 L/Func./Dia: 700 (Acima média BR)<br>
+🟢 Custo MO/Litro: R$ 0,28 (Competitivo)<br>
+🟢 MO % do COE: 15,8% (Top 10% BR)<br>
+🟢 Multiplicador: 8,8× (cada R$ 1 → R$ 8,80)<br>
+🟢 Receita/Func./Mês: R$ 50k (Top quartil)<br>
+🟢 Hierarquia adequada: 1:7 → 1:5<br>
+🟢 Equipe jovem (média 33 anos)<br>
+🟢 Núcleos familiares → comprometimento
+</div>
+</div>
+<div>
+<div style="font-size:11px;font-weight:800;color:var(--yl);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">⚠️ Pontos de Atenção</div>
+<div style="font-size:11px;color:var(--t2);line-height:2">
+🟡 24,4% com < 6 meses de casa (11 de 45)<br>
+🟡 Turnover anterior desconhecido<br>
+🟡 2 auxiliares com R$ 954 (verificar regime)<br>
+🟠 Coord. Obras: 68 anos, sem sucessor<br>
+🟡 24,4% com Fund. Incompleto<br>
+🟡 Sem dados de turnos/escalas/horas extras<br>
+🟡 Sem programa de treinamento confirmado<br>
+🟡 Risco familiar: ~6 núcleos (~20-24 pessoas)<br>
+🟡 Distribuição por função desconhecida
+</div>
+</div>
+</div>
+
+<div style="margin-top:16px;padding:16px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15);border-radius:12px">
+<div style="font-size:13px;font-weight:800;color:var(--pr);margin-bottom:8px">💎 Resumo em 1 Parágrafo</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+A Fazenda Brasilanda opera com <strong>45-47 colaboradores CLT</strong> numa estrutura lean e produtiva. Cada funcionário gera <strong>700 L/dia e R$ 50k/mês em receita de leite</strong>, com custo total de MO de ~R$ 262k/mês (<strong>15,8% do COE — Top 10% BR</strong>). O <strong>turnover no bimestre é zero</strong> e a equipe é jovem (média 33 anos). O principal risco é a <strong>alta concentração de colaboradores novos</strong> (24,4% com < 6 meses) que podem impactar a qualidade do manejo — e provavelmente já impactam (anomalias de pesagem, sobras inconsistentes). A grande oportunidade é que <strong>a melhoria reprodutiva (mais vacas em lactação) aumenta a produtividade de MO automaticamente</strong> de 700 para 807 L/func./dia sem contratar ninguém. <strong>A equipe está pronta para produzir mais — faltam as vacas no pico.</strong>
+</div>
+</div>
+
+<div style="margin-top:14px;padding:14px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:10px">
+<div style="font-size:11px;font-weight:800;color:var(--bl);margin-bottom:6px">📌 Consolidação do Projeto — Dashboards Entregues</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+<strong style="color:var(--gn)">✅ Bloco 1 — Financeiro:</strong> DRE, Custos, Endividamento, Fluxo de Caixa, Solvência, OPEX/CAPEX<br>
+<strong style="color:var(--gn)">✅ Bloco 2 — Produção:</strong> Rebanho, Produtividade, Reprodução, Saúde, Benchmarks, Projeção 12 meses<br>
+<strong style="color:var(--gn)">✅ Bloco 3 — Nutrição:</strong> Consumo, Eficiência, Custo/Litro, Sobras, Transição, Horário, Anomalias<br>
+<strong style="color:var(--gn)">✅ Bloco 4 — RH:</strong> Quadro, Custo, Produtividade, Perfil, Turnover, Famílias, Benchmarks<br>
+<strong style="color:var(--yl)">⏳ Bloco 5 — Integrados:</strong> Cruzamento final de todos os pilares (Próximo!)<br>
+<strong style="color:var(--t3)">⏳ Bloco 6 — Preditivos:</strong> Cenários, Stress Test, Projeção completa
+</div>
+</div>
+
+<!-- QUANTIFICAÇÃO ACUMULADA -->
+<div style="margin-top:18px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px">💰 Acumulado de Oportunidades Identificadas (Blocos 1-4)</div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+<div style="text-align:center;padding:14px;background:rgba(16,185,129,.06);border:2px solid rgba(16,185,129,.2);border-radius:12px">
+<div style="font-size:7px;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Bloco 2 — Reprodução</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--gn)">R$ 2,54M</div>
+<div style="font-size:8px;color:var(--t3)">Perdas evitáveis/ano</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(6,182,212,.06);border:2px solid rgba(6,182,212,.2);border-radius:12px">
+<div style="font-size:7px;color:var(--cy);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Bloco 3 — Nutrição</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--cy)">R$ 1,61M</div>
+<div style="font-size:8px;color:var(--t3)">Sobras + Transição + Horário</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(139,92,246,.06);border:2px solid rgba(139,92,246,.2);border-radius:12px">
+<div style="font-size:7px;color:var(--pr);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Bloco 4 — RH (Potencial)</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--pr)">+15,3%</div>
+<div style="font-size:8px;color:var(--t3)">Produtividade MO se 1.000 VL</div>
+</div>
+<div style="text-align:center;padding:14px;background:rgba(245,158,11,.06);border:2px solid rgba(245,158,11,.2);border-radius:12px">
+<div style="font-size:7px;color:var(--yl);text-transform:uppercase;letter-spacing:.5px;font-weight:700">Total Conservador</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:900;color:var(--yl)">R$ 3,0-3,6M</div>
+<div style="font-size:8px;color:var(--t3)">Ganhos/ano com ROI ~350%</div>
+</div>
+</div>
+</div>
+
+</div><!-- fim .ct -->
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="ft">
+<div class="fc">
+<div class="cc">
+<div class="cp">SS</div>
+<div class="ci">
+<div class="cl">Consultor de Análise de Dados & IA no Agro</div>
+<div class="cn">Sidney Souza</div>
+<div class="ccs">
+<div class="cci">📧 <a href="#">contato@ruralin.com.br</a></div>
+<div class="cci">📱 (64) 99999-0000</div>
+<div class="cci">📍 Rio Verde — GO</div>
+<div class="cci">🌐 Rural IN — Gestão Inteligente no Agro</div>
+</div>
+<div class="cb">
+Dashboard de RH — Bloco 4 de 6 | Fazenda Brasilanda — Patricia Kompier<br>
+Dados: Janeiro e Fevereiro/2026 | Gerado em Março/2026 | Próximo: Bloco 5 — Dashboard Integrado Final
+</div>
+</div>
+</div>
+<div class="fd"></div>
+<div class="fb">
+<strong>RURAL IN</strong> — Gestão Inteligente no Agro © 2026<br>
+Este relatório é confidencial e de uso exclusivo do cliente. Reprodução proibida sem autorização.
+</div>
+</div>
+</div>
+
+<script>
+const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
