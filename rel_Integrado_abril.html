@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8"><title>Diagnóstico Integrado — Fazenda Brasilândia</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e1a;--bg-card:#131826;--bg-card-light:#1a2233;--text:#e5e7eb;
+--text-dim:#cbd5e1;--text-muted:#94a3b8;--border:#1f2937;--accent:#34d399;
+--accent-2:#60a5fa;--warning:#fbbf24;--danger:#ef4444;--critical:#b91c1c;
+--ok:#34d399;--gold:#d4af37;--purple:#a78bfa}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14.5px}
+.cover{padding:60px 50px;background:linear-gradient(135deg,#0e1d12 0%,#1a2e1c 50%,#0a0e1a 100%);border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,0.2) 0%,transparent 70%)}
+.cover::after{content:'';position:absolute;bottom:-30px;left:30%;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(52,211,153,0.15) 0%,transparent 70%)}
+.brand-tag{color:var(--gold);font-size:12px;letter-spacing:4px;font-weight:600;text-transform:uppercase;margin-bottom:18px;position:relative;z-index:2}
+.cover h1{font-size:42px;font-weight:800;line-height:1.1;background:linear-gradient(135deg,#fff 0%,#d4af37 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:18px;position:relative;z-index:2}
+.cover .subtitle{font-size:16px;color:var(--text-dim);max-width:920px;margin-bottom:18px;position:relative;z-index:2}
+.cover .meta{font-size:13px;color:var(--text-muted);position:relative;z-index:2}
+.cover .meta strong{color:var(--gold)}
+.cover-stats{display:flex;gap:20px;margin-top:25px;flex-wrap:wrap;position:relative;z-index:2}
+.cover-stat{background:rgba(255,255,255,0.05);border:1px solid rgba(212,175,55,0.3);border-radius:8px;padding:12px 16px;backdrop-filter:blur(10px)}
+.cover-stat-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#cbd5e1;font-weight:600}
+.cover-stat-val{font-size:22px;font-weight:800;color:#fff;margin-top:2px}
+.container{max-width:1320px;margin:0 auto;padding:30px}
+.toc{background:var(--bg-card);border-radius:10px;padding:24px 30px;margin-bottom:40px;border:1px solid var(--border)}
+.toc-title{font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:14px;font-weight:700}
+.toc ol{list-style:none;counter-reset:toc;columns:2;column-gap:30px}
+.toc li{counter-increment:toc;padding:6px 0;font-size:14px;break-inside:avoid}
+.toc li::before{content:counter(toc,decimal-leading-zero) "  ";color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums;margin-right:6px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent)}
+.section{background:var(--bg-card);border-radius:12px;padding:32px 36px;margin-bottom:30px;border:1px solid var(--border)}
+.section-header{display:flex;align-items:flex-start;gap:18px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.section-num{font-size:30px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;min-width:50px;line-height:1}
+.section-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px}
+.section-subtitle{font-size:13px;color:var(--text-muted);font-style:italic}
+.section h3{font-size:16px;color:var(--accent-2);margin:22px 0 10px 0;font-weight:600}
+.section h4{font-size:14px;color:var(--gold);margin:16px 0 8px 0;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.section p{margin-bottom:12px;color:var(--text-dim);font-size:14px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0}
+.kpi-card{background:var(--bg-card-light);border-radius:10px;padding:16px 18px;border:1px solid var(--border);border-left:4px solid var(--accent)}
+.kpi-card.info{border-left-color:var(--accent-2)}
+.kpi-card.warn{border-left-color:var(--warning)}
+.kpi-card.danger{border-left-color:var(--danger)}
+.kpi-card.crit{border-left-color:var(--critical)}
+.kpi-card.gold{border-left-color:var(--gold)}
+.kpi-card.purple{border-left-color:var(--purple)}
+.kpi-label{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);font-weight:600}
+.kpi-value{font-size:24px;font-weight:800;margin:6px 0 2px;color:var(--text)}
+.kpi-value .kpi-unit{font-size:11px;color:var(--text-muted);margin-left:4px;font-weight:400}
+.kpi-foot{font-size:11px;color:var(--text-muted)}
+.chart-container{background:var(--bg-card-light);border-radius:10px;padding:20px;margin:14px 0;border:1px solid var(--border)}
+.chart-title{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--text)}
+.chart-subtitle{font-size:12px;color:var(--text-muted);margin-bottom:14px}
+.chart-comment{background:rgba(96,165,250,0.06);border-left:3px solid var(--accent-2);border-radius:6px;padding:12px 16px;margin-top:14px;font-size:13px;color:var(--text-dim)}
+.chart-comment strong{color:var(--accent-2)}
+.chart-comment.danger{background:rgba(239,68,68,0.07);border-left-color:var(--danger)}
+.chart-comment.danger strong{color:var(--danger)}
+.chart-comment.warn{background:rgba(251,191,36,0.07);border-left-color:var(--warning)}
+.chart-comment.warn strong{color:var(--warning)}
+.chart-comment.ok{background:rgba(52,211,153,0.07);border-left-color:var(--accent)}
+.chart-comment.ok strong{color:var(--accent)}
+.chart-comment.gold{background:rgba(212,175,55,0.07);border-left-color:var(--gold)}
+.chart-comment.gold strong{color:var(--gold)}
+.callout{background:linear-gradient(135deg,rgba(239,68,68,0.15) 0%,rgba(185,28,28,0.08) 100%);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:18px 22px;margin:20px 0}
+.callout.warn{background:linear-gradient(135deg,rgba(251,191,36,0.12) 0%,rgba(217,119,6,0.05) 100%);border-color:rgba(251,191,36,0.3)}
+.callout.ok{background:linear-gradient(135deg,rgba(52,211,153,0.12) 0%,rgba(16,185,129,0.05) 100%);border-color:rgba(52,211,153,0.3)}
+.callout.info{background:linear-gradient(135deg,rgba(96,165,250,0.12) 0%,rgba(59,130,246,0.05) 100%);border-color:rgba(96,165,250,0.3)}
+.callout.gold{background:linear-gradient(135deg,rgba(212,175,55,0.12) 0%,rgba(180,148,40,0.05) 100%);border-color:rgba(212,175,55,0.35)}
+.callout-title{font-size:14px;font-weight:700;letter-spacing:0.5px;color:var(--danger);text-transform:uppercase;margin-bottom:10px}
+.callout.warn .callout-title{color:var(--warning)}
+.callout.ok .callout-title{color:var(--accent)}
+.callout.info .callout-title{color:var(--accent-2)}
+.callout.gold .callout-title{color:var(--gold)}
+.callout p,.callout ul,.callout ol{font-size:13.5px;color:var(--text-dim);margin:6px 0}
+.callout ul,.callout ol{padding-left:22px}
+.callout li{margin:4px 0}
+.callout strong{color:var(--text)}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-right:6px}
+.tag.crit{background:rgba(185,28,28,0.18);color:#fca5a5}
+.tag.high{background:rgba(239,68,68,0.18);color:#fca5a5}
+.tag.med{background:rgba(251,191,36,0.18);color:#fcd34d}
+.tag.low{background:rgba(52,211,153,0.18);color:#6ee7b7}
+.tag.info{background:rgba(96,165,250,0.18);color:#93c5fd}
+.tag.purple{background:rgba(167,139,250,0.18);color:#c4b5fd}
+.data-table{width:100%;border-collapse:collapse;margin:12px 0 18px 0;font-size:13px}
+.data-table thead th{background:rgba(96,165,250,0.06);padding:10px 12px;text-align:left;border-bottom:2px solid var(--border);text-transform:uppercase;font-size:11px;letter-spacing:0.5px;color:var(--text-muted)}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.data-table tr:hover td{background:rgba(96,165,250,0.04)}
+.data-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+.data-table td.num.bad{color:var(--danger);font-weight:600}
+.data-table td.num.good{color:var(--ok);font-weight:600}
+.data-table td.num.warn{color:var(--warning);font-weight:600}
+.data-table tfoot td{font-weight:700;color:var(--text);border-top:2px solid var(--border);background:rgba(212,175,55,0.05)}
+.action-card{background:var(--bg-card-light);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:16px 20px;margin:12px 0}
+.action-card.urgent{border-left-color:var(--danger)}
+.action-card.high{border-left-color:var(--warning)}
+.action-card.med{border-left-color:var(--accent-2)}
+.plotly-graph-div{width:100% !important;min-height:380px}
+.bignum{font-size:48px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.bignum.danger{background:linear-gradient(135deg,var(--danger),var(--critical));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.bignum.gold{background:linear-gradient(135deg,var(--gold),#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.bignum.purple{background:linear-gradient(135deg,var(--purple),#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cascade{display:grid;grid-template-columns:1fr;gap:14px;margin:18px 0}
+.cascade-step{display:flex;align-items:center;gap:18px;background:var(--bg-card-light);border-radius:10px;padding:14px 18px;border:1px solid var(--border);position:relative}
+.cascade-step.cause{border-left:4px solid var(--danger)}
+.cascade-step.effect{border-left:4px solid var(--warning)}
+.cascade-step.cost{border-left:4px solid var(--gold)}
+.cascade-step .step-num{font-size:22px;font-weight:800;color:var(--accent-2);min-width:36px}
+.cascade-step .step-body{flex:1;font-size:13.5px;color:var(--text-dim)}
+.cascade-step .step-body strong{color:var(--text)}
+.cascade-step .step-val{font-size:14px;font-weight:700;color:var(--gold);min-width:140px;text-align:right}
+.cascade-arrow{height:14px;margin:-7px 0 -7px 35px;border-left:2px dashed var(--accent-2);width:0}
+.score-radar-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;margin:18px 0}
+.score-list{padding:0;list-style:none}
+.score-list li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13.5px}
+.score-list li:last-child{border-bottom:none}
+.score-list .dim{flex:1;color:var(--text-dim)}
+.score-list .bar{flex:0 0 120px;height:10px;background:var(--bg);border-radius:5px;overflow:hidden}
+.score-list .bar-fill{height:100%;background:linear-gradient(90deg,var(--danger),var(--warning),var(--accent));border-radius:5px}
+.score-list .scoreval{font-size:14px;font-weight:700;min-width:40px;text-align:right;color:var(--gold);font-variant-numeric:tabular-nums}
+.synergy-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:18px 0;font-size:11.5px}
+.synergy-grid .syn-head{background:var(--bg-card-light);padding:8px;text-align:center;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;border-radius:6px}
+.synergy-grid .syn-row-head{background:rgba(96,165,250,0.08);padding:10px;font-weight:700;color:var(--text);border-radius:6px;display:flex;align-items:center}
+.synergy-grid .syn-cell{padding:10px;text-align:center;border-radius:6px;font-weight:600;color:#fff}
+.syn-cell.alta{background:rgba(52,211,153,0.85)}
+.syn-cell.media{background:rgba(251,191,36,0.85);color:#0a0e1a}
+.syn-cell.baixa{background:rgba(96,165,250,0.45)}
+.syn-cell.na{background:var(--bg)}
+.report-footer{margin-top:50px;padding:30px 0 20px 0;border-top:2px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px}
+.footer-title{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:8px;font-weight:700}
+.footer-grid p{font-size:12.5px;color:var(--text-muted);line-height:1.6;margin:4px 0}
+.footer-disclaimer{text-align:center;padding:16px 24px;background:var(--bg-card-light);border-radius:8px;font-size:11.5px;color:var(--text-muted);border:1px solid var(--border);font-style:italic}
+@media (max-width:800px){.footer-grid{grid-template-columns:1fr}.toc ol{columns:1}.score-radar-wrap{grid-template-columns:1fr}.synergy-grid{grid-template-columns:1fr}}
+</style></head><body>
+
+<header class="cover">
+  <div class="brand-tag">Diagnóstico Integrado — Análise Cruzada das 4 Dimensões</div>
+  <h1>Diagnóstico 360°<br>Fazenda Brasilândia</h1>
+  <div class="subtitle">Cruzamento das análises nutricional, sanitário-reprodutiva, qualidade do leite e financeira em um único quadro analítico. Construção de indicadores sintéticos inéditos a partir da junção das fontes — incluindo margem bruta por litro, lucro por vaca/dia, custo multidimensional da SARA, sensibilidade ao preço e projeção de fluxo de caixa de 12 meses.</div>
+  <div class="meta">Período de referência: <strong>Janeiro a Abril de 2026</strong> &nbsp;|&nbsp; Fontes: <strong>4 análises integradas</strong> &nbsp;|&nbsp; 737 vacas em controle individual &nbsp;|&nbsp; 22 amostras de tanque &nbsp;|&nbsp; 11 controles sanitários consecutivos &nbsp;|&nbsp; 4 meses de DRE detalhado</div>
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <div class="cover-stat-label">Score 360° Integrado</div>
+      <div class="cover-stat-val">6,75/10</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-label">Potencial Anual Consolidado</div>
+      <div class="cover-stat-val">R$ 2,6-3,3 M</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-label">Custo Anual da SARA</div>
+      <div class="cover-stat-val">R$ 639 K</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-label">Desperdício Ração (sobras)</div>
+      <div class="cover-stat-val">R$ 1,25 M</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-label">Sensibilidade Preço</div>
+      <div class="cover-stat-val">R$ 1.129 K / R$ 0,10/L</div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+<div class="toc">
+  <div class="toc-title">Sumário do Relatório Integrado</div>
+  <ol>
+    <li><a href="#sec1">Painel Mestre 360° & Score Composto</a></li>
+    <li><a href="#sec2">Margem Bruta por Litro — Indicador Sintético #1</a></li>
+    <li><a href="#sec3">Lucro por Vaca por Dia — Indicador Sintético #2</a></li>
+    <li><a href="#sec4">A Cadeia de Causa-Efeito da SARA</a></li>
+    <li><a href="#sec5">As 71 Crônicas — Custo Multidimensional</a></li>
+    <li><a href="#sec6">Sensibilidade ao Preço — O Risco Macro</a></li>
+    <li><a href="#sec7">Mapa de Sinergias entre Ações</a></li>
+    <li><a href="#sec8">Pareto das 12 Oportunidades Consolidadas</a></li>
+    <li><a href="#sec9">Projeção de Caixa 12 Meses</a></li>
+    <li><a href="#sec10">Plano Mestre Integrado & Score-Card</a></li>
+  </ol>
+</div>
+
+<section id="sec1" class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div>
+      <div class="section-title">Painel Mestre 360° & Score Composto</div>
+      <div class="section-subtitle">Visão integrada da operação cruzando saúde, produção, qualidade e finanças em um único quadro.</div>
+    </div>
+  </div>
+
+  <p>Este painel consolida os 12 KPIs estruturais derivados das quatro análises previamente realizadas. Cada número é resultado do cruzamento de pelo menos duas fontes — produção física com receita financeira, sanidade com qualidade do leite, custo operacional com volume produzido.</p>
+
+  <h3>Os 12 KPIs estruturais — visão multidisciplinar</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card gold">
+      <div class="kpi-label">Receita Real 4m</div>
+      <div class="kpi-value">R$ 10,63<span class="kpi-unit">M</span></div>
+      <div class="kpi-foot">Volume Afimilk × Preço Coop</div>
+    </div>
+    <div class="kpi-card info">
+      <div class="kpi-label">Volume Produzido</div>
+      <div class="kpi-value">3,76<span class="kpi-unit">milhões L</span></div>
+      <div class="kpi-foot">Afimilk 4 meses</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Preço Médio do Leite</div>
+      <div class="kpi-value">R$ 2,821<span class="kpi-unit">/L</span></div>
+      <div class="kpi-foot">Subiu 55,4% jan→abr</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Margem Operacional</div>
+      <div class="kpi-value">33,8<span class="kpi-unit">%</span></div>
+      <div class="kpi-foot">Patamar premium do setor</div>
+    </div>
+    <div class="kpi-card info">
+      <div class="kpi-label">CCS Médio Tanque</div>
+      <div class="kpi-value">157<span class="kpi-unit">mil cel/mL</span></div>
+      <div class="kpi-foot">Excelente — meta &lt; 200</div>
+    </div>
+    <div class="kpi-card crit">
+      <div class="kpi-label">Gordura Tanque 2026</div>
+      <div class="kpi-value">-0,37<span class="kpi-unit">pp vs 2025</span></div>
+      <div class="kpi-foot">SARA presente — risco crítico</div>
+    </div>
+    <div class="kpi-card crit">
+      <div class="kpi-label">71 Vacas Crônicas</div>
+      <div class="kpi-value">326<span class="kpi-unit">K/ano</span></div>
+      <div class="kpi-foot">Custo multidimensional</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Descarte Forçado</div>
+      <div class="kpi-value">47<span class="kpi-unit">%</span></div>
+      <div class="kpi-foot">Anualizado — acima do ideal (25-30%)</div>
+    </div>
+    <div class="kpi-card crit">
+      <div class="kpi-label">Mortalidade Geral</div>
+      <div class="kpi-value">10,3<span class="kpi-unit">%</span></div>
+      <div class="kpi-foot">Meta ≤ 5% — perda R$ 220K/ano</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Sobras de Ração TMR</div>
+      <div class="kpi-value">13,4<span class="kpi-unit">%</span></div>
+      <div class="kpi-foot">Desperdício R$ 1,25M/ano</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Cash-on-Cow Anual</div>
+      <div class="kpi-value">R$ 17<span class="kpi-unit">K/vaca</span></div>
+      <div class="kpi-foot">Geração caixa pós-CAPEX</div>
+    </div>
+    <div class="kpi-card info">
+      <div class="kpi-label">Ativos Líquidos vs Dívida</div>
+      <div class="kpi-value">+R$ 0,30<span class="kpi-unit">M</span></div>
+      <div class="kpi-foot">Alavancagem líquida neutra</div>
+    </div>
+  </div>
+
+  <h3>Score 360° composto — As 8 dimensões avaliadas</h3>
+  <div class="score-radar-wrap">
+    <div class="chart-container" style="margin:0;">
+      <div class="chart-title">Score 360° por dimensão</div>
+      <div class="chart-subtitle">Escala 0-10 baseada em benchmarks técnicos</div>
+      <div id="chart_radar"></div>
+    </div>
+    <div>
+      <h4>Pontuação por dimensão</h4>
+      <ul class="score-list">
+        <li>
+          <span class="dim">Sanidade do úbere</span>
+          <span class="bar"><span class="bar-fill" style="width:90%;"></span></span>
+          <span class="scoreval">9/10</span>
+        </li>
+        <li>
+          <span class="dim">Sanidade ruminal</span>
+          <span class="bar"><span class="bar-fill" style="width:40%;"></span></span>
+          <span class="scoreval">4/10</span>
+        </li>
+        <li>
+          <span class="dim">Reprodução</span>
+          <span class="bar"><span class="bar-fill" style="width:50%;"></span></span>
+          <span class="scoreval">5/10</span>
+        </li>
+        <li>
+          <span class="dim">Eficiência produtiva</span>
+          <span class="bar"><span class="bar-fill" style="width:70%;"></span></span>
+          <span class="scoreval">7/10</span>
+        </li>
+        <li>
+          <span class="dim">Qualidade do leite</span>
+          <span class="bar"><span class="bar-fill" style="width:70%;"></span></span>
+          <span class="scoreval">7/10</span>
+        </li>
+        <li>
+          <span class="dim">Margem operacional</span>
+          <span class="bar"><span class="bar-fill" style="width:90%;"></span></span>
+          <span class="scoreval">9/10</span>
+        </li>
+        <li>
+          <span class="dim">Estrutura de capital</span>
+          <span class="bar"><span class="bar-fill" style="width:80%;"></span></span>
+          <span class="scoreval">8/10</span>
+        </li>
+        <li>
+          <span class="dim">Eficiência de custo</span>
+          <span class="bar"><span class="bar-fill" style="width:50%;"></span></span>
+          <span class="scoreval">5/10</span>
+        </li>
+      </ul>
+      <p style="margin-top:14px;font-size:13.5px;color:var(--gold);font-weight:600;">
+        Score médio consolidado: <span style="font-size:22px;font-weight:800;">6,75/10</span> — boa performance geral, com fraquezas concentradas em <em>nutrição ruminal</em> e <em>eficiência de custo</em>.
+      </p>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">🎯 Diagnóstico-chave integrado — em 1 parágrafo</div>
+    <p>A Fazenda Brasilândia apresenta um <strong>paradoxo gerencial estruturado</strong>: a operação opera com indicadores premium nas dimensões mais visíveis (CCS de tanque 157 mil, margem operacional 33,8%, alavancagem neutra), enquanto <strong>perde silenciosamente R$ 2,57-3,35 milhões/ano</strong> em quatro frentes interconectadas: <strong>(1) SARA</strong> nos lotes de alta produção (custo R$ 588K/ano cruzando bonificação + produção perdida + risco clínico); <strong>(2) Sobras de ração</strong> de 13,4% no TMR (R$ 1,25M/ano desperdiçados); <strong>(3) Reprodução com descarte forçado 47%</strong> + mortalidade 10,3% (R$ 570-720K/ano de perda); <strong>(4) Spread financeiro negativo</strong> de 3,5pp entre dívida e aplicação (R$ 97K/ano). O denominador comum é que os <strong>silos de gestão funcionam isoladamente</strong> — quando integrados, ações em uma dimensão liberam ganhos em três outras. Este relatório quantifica essas conexões.</p>
+  </div>
+</section>
+
+<section id="sec2" class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div>
+      <div class="section-title">Margem Bruta por Litro — Indicador Sintético #1</div>
+      <div class="section-subtitle">Cruzamento do volume Afimilk × preço Coop com o custo operacional do mês — a verdadeira lucratividade unitária.</div>
+    </div>
+  </div>
+
+  <p>Este é o <strong>primeiro indicador sintético inédito</strong>: a margem bruta por litro de leite produzido, mês a mês. Combina três fontes que antes eram analisadas isoladamente: o volume físico (Afimilk), o preço efetivo pago pela cooperativa (NF) e o custo operacional caixa do mês (DRE). O resultado revela uma realidade que nenhum dos relatórios anteriores expunha sozinho.</p>
+
+  <h3>Margem por litro — 4 meses</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>Mês</th>
+      <th class="num">Volume (L)</th>
+      <th class="num">Preço (R$/L)</th>
+      <th class="num">Custo (R$/L)</th>
+      <th class="num">Margem (R$/L)</th>
+      <th class="num">Margem %</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Jan/26</strong></td>
+        <td class="num">1.016.023</td>
+        <td class="num">R$ 2,253</td>
+        <td class="num">R$ 1,691</td>
+        <td class="num warn"><strong>R$ 0,562</strong></td>
+        <td class="num warn"><strong>24,9%</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Fev/26</strong></td>
+        <td class="num">860.945</td>
+        <td class="num">R$ 2,377</td>
+        <td class="num">R$ 1,880</td>
+        <td class="num bad"><strong>R$ 0,497</strong></td>
+        <td class="num bad"><strong>20,9%</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Mar/26</strong></td>
+        <td class="num">958.929</td>
+        <td class="num">R$ 3,177</td>
+        <td class="num">R$ 1,845</td>
+        <td class="num good"><strong>R$ 1,332</strong></td>
+        <td class="num good"><strong>41,9%</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Abr/26</strong></td>
+        <td class="num">928.580</td>
+        <td class="num">R$ 3,501</td>
+        <td class="num">R$ 1,838</td>
+        <td class="num good"><strong>R$ 1,663</strong></td>
+        <td class="num good"><strong>47,5%</strong></td>
+      </tr>
+    </tbody>
+    <tfoot><tr>
+      <td><strong>Média 4m</strong></td>
+      <td class="num"><strong>3.764.477</strong></td>
+      <td class="num"><strong>R$ 2,827</strong></td>
+      <td class="num"><strong>R$ 1,813</strong></td>
+      <td class="num good"><strong>R$ 1,014</strong></td>
+      <td class="num good"><strong>33,8%</strong></td>
+    </tr></tfoot>
+  </table>
+
+  <div class="chart-container">
+    <div class="chart-title">Preço, Custo e Margem por Litro — Evolução Mensal</div>
+    <div class="chart-subtitle">Preço Coop (linha dourada) | Custo op. unitário (linha vermelha) | Margem bruta (área verde)</div>
+    <div id="chart_margem_L"></div>
+    <div class="chart-comment danger">
+      <strong>Variação de 3,4× na margem entre Fev e Abr</strong>: A margem por litro foi de apenas R$ 0,497 em Fevereiro (apertada — custo subiu, preço ainda baixo) para R$ 1,664 em Abril (preço no pico + custo controlado). O custo por litro variou pouco (R$ 1,69 a R$ 1,88/L), mas o preço subiu 55%, criando essa janela de oportunidade. <strong>O risco</strong>: quando o preço reverter para R$ 2,40-2,50/L, a margem voltará à faixa de R$ 0,55-0,65/L — preservar essa janela exige amortização de dívida + reserva.
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card crit">
+      <div class="kpi-label">Mês de Margem Mínima</div>
+      <div class="kpi-value">Fev/26<span class="kpi-unit">: R$ 0,497/L</span></div>
+      <div class="kpi-foot">Custo subiu para R$ 1,88 (combustíveis +R$ 110K)</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Mês de Margem Máxima</div>
+      <div class="kpi-value">Abr/26<span class="kpi-unit">: R$ 1,664/L</span></div>
+      <div class="kpi-foot">Preço R$ 3,50 + custo controlado</div>
+    </div>
+    <div class="kpi-card info">
+      <div class="kpi-label">Amplitude da Margem</div>
+      <div class="kpi-value">3,35<span class="kpi-unit">× variação</span></div>
+      <div class="kpi-foot">R$ 0,497 → R$ 1,664 em 2 meses</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Receita anual projetada</div>
+      <div class="kpi-value">R$ 34,5<span class="kpi-unit">M</span></div>
+      <div class="kpi-foot">R$ 46.864/vaca/ano</div>
+    </div>
+  </div>
+</section>
+
+<section id="sec3" class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div>
+      <div class="section-title">Lucro por Vaca por Dia — Indicador Sintético #2</div>
+      <div class="section-subtitle">Multiplica a produtividade individual (L/vaca/dia do Afimilk) pela margem bruta por L — eficiência unitária.</div>
+    </div>
+  </div>
+
+  <p>O "lucro por vaca por dia" é o indicador mais útil para acompanhamento operacional rotineiro. Combina dois números monitoráveis em alta frequência: <strong>L/vaca/dia</strong> (gerencial — diário Afimilk) e <strong>margem por L</strong> (financeiro — atualizado a cada DRE mensal). Se ambos forem mantidos atualizados, a equipe técnica tem um termômetro diário de lucratividade da operação leite.</p>
+
+  <h3>Evolução da lucratividade unitária</h3>
+  <div class="chart-container">
+    <div class="chart-title">Lucro por vaca por dia (R$/vaca/dia)</div>
+    <div class="chart-subtitle">L/vaca/dia médio × margem bruta por L do mês</div>
+    <div id="chart_lvd"></div>
+    <div class="chart-comment gold">
+      <strong>De R$ 18,14/vaca/dia (Fev) para R$ 62,74/vaca/dia (Abr) — 3,5× em 2 meses.</strong>
+      Janeiro: produção 38,1 L/vaca × margem R$ 0,562 = <strong>R$ 21,41</strong>/vaca/dia.
+      Fevereiro: queda da produção para 36,5 L + margem comprimida = <strong>R$ 18,14</strong>/vaca/dia (mínimo da série).
+      Março: salto da margem para R$ 1,333 + produção em recuperação (37,3 L) = <strong>R$ 49,72</strong>/vaca/dia.
+      Abril: máximo da série em <strong>R$ 62,74</strong>/vaca/dia (37,7 L × R$ 1,664).
+      <strong>Cenário-target pós-otimizações</strong>: 39 L/vaca × R$ 1,00/L (após reversão de preço + custo otimizado) = R$ 39/vaca/dia — sustentável no longo prazo.
+    </div>
+  </div>
+
+  <h3>Decomposição do lucro por vaca/dia</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>Mês</th>
+      <th class="num">L/vaca/dia (Afimilk)</th>
+      <th class="num">Margem R$/L</th>
+      <th class="num">Lucro R$/vaca/dia</th>
+      <th class="num">Lucro/vaca/mês (~30d)</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Jan/26</strong></td>
+        <td class="num">38,1</td>
+        <td class="num">R$ 0,562</td>
+        <td class="num warn"><strong>R$ 21,41</strong></td>
+        <td class="num warn">R$ 642</td>
+      </tr>
+      <tr>
+        <td><strong>Fev/26</strong></td>
+        <td class="num">36,5</td>
+        <td class="num">R$ 0,497</td>
+        <td class="num bad"><strong>R$ 18,14</strong></td>
+        <td class="num bad">R$ 544</td>
+      </tr>
+      <tr>
+        <td><strong>Mar/26</strong></td>
+        <td class="num">37,3</td>
+        <td class="num">R$ 1,332</td>
+        <td class="num good"><strong>R$ 49,68</strong></td>
+        <td class="num good">R$ 1.490</td>
+      </tr>
+      <tr>
+        <td><strong>Abr/26</strong></td>
+        <td class="num">37,7</td>
+        <td class="num">R$ 1,663</td>
+        <td class="num good"><strong>R$ 62,70</strong></td>
+        <td class="num good">R$ 1.881</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <div class="callout-title">💡 Como usar este indicador na rotina</div>
+    <ul>
+      <li><strong>Frequência sugerida</strong>: cálculo semanal usando a média de produção dos últimos 7 dias × a margem do último mês fechado.</li>
+      <li><strong>Faixas de referência</strong> para a operação (com preço entre R$ 2,40-3,50/L): <strong>vermelho</strong> &lt; R$ 25/vaca/dia (revisar custo/produção); <strong>amarelo</strong> R$ 25-45 (operação saudável); <strong>verde</strong> &gt; R$ 45 (excelente — possível pico de preço).</li>
+      <li><strong>Cruzar com Lote</strong>: cada lote tem produção média diferente. Lote 1 (43,5 L/vaca) com margem R$ 1,00 = R$ 43,5/vaca/dia; Lote 5 (29 L/vaca) com mesma margem = R$ 29/vaca/dia. Vacas em DEL avançado têm lucratividade unitária menor — usar para decisões de descarte voluntário.</li>
+      <li><strong>Acompanhar SARA</strong>: nos lotes acidóticos (1, 2, P1) a queda de produção típica é de 2-4 L/vaca, equivalente a -R$ 2 a 6/vaca/dia × ~250 vacas × 30 dias = perda mensal de R$ 15-45K só por SARA.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sec4" class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div>
+      <div class="section-title">A Cadeia de Causa-Efeito da SARA</div>
+      <div class="section-subtitle">Como a acidose ruminal subclínica cascateia da nutrição para a qualidade do leite, produção e finanças.</div>
+    </div>
+  </div>
+
+  <p>A SARA (Subacute Ruminal Acidosis) é o exemplo mais didático de problema cuja análise isolada por silos subestima dramaticamente o impacto real. Detectada inicialmente como uma simples queda de gordura no tanque, ela na verdade cascateia por <strong>quatro dimensões interligadas</strong> — e o custo total emerge somente quando todas são somadas.</p>
+
+  <h3>A cascata — passo a passo</h3>
+  <div class="cascade">
+    <div class="cascade-step cause">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>Origem nutricional:</strong> Lotes 1, 2 e P1 (alta produção) recebem dieta com FDN físico efetivo insuficiente ou amido rapidamente fermentescível em excesso. Sobras TMR de 13,4% indicam seleção pela vaca no cocho — agrava o efeito.
+      </div>
+      <div class="step-val">Fonte: Diag. nutricional</div>
+    </div>
+    <div class="cascade-arrow"></div>
+    <div class="cascade-step effect">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>Consequência ruminal:</strong> pH ruminal cai abaixo de 5,8 por períodos prolongados. A flora celulolítica é prejudicada; produção de acetato (precursor da gordura) cai; produção de propionato (precursor da glicose) aumenta. <strong>Razão Gordura:Proteína cai de 1,02 (2025) para 0,91 (2026)</strong>.
+      </div>
+      <div class="step-val">Fonte: Tanque + AG De Novo</div>
+    </div>
+    <div class="cascade-arrow"></div>
+    <div class="cascade-step effect">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>Manifestação na qualidade:</strong> Gordura do tanque cai de 3,40% (2025) para 3,03% (2026) — diferença de -0,37 pontos percentuais sustentada por todas as 7 amostras de 2026. AG De Novo nos Lotes 1, 2 e P1 abaixo de 0,40 (limite saudável 0,55).
+      </div>
+      <div class="step-val">Fonte: Tanque + lotes</div>
+    </div>
+    <div class="cascade-arrow"></div>
+    <div class="cascade-step cost">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <strong>Impacto financeiro direto:</strong> Perda de bonificação por baixa gordura (R$ 0,003/L por 0,1pp × 11M L/ano).
+      </div>
+      <div class="step-val">R$ 125.357/ano</div>
+    </div>
+    <div class="cascade-arrow"></div>
+    <div class="cascade-step cost">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <strong>Impacto produtivo:</strong> Em 60% das ~250 vacas dos lotes afetados, a SARA reduz produção em 2-4 L/vaca/dia (literatura). Cálculo conservador: 60% × 250 vacas × 3 L/dia × 365 × R$ 2,82/L.
+      </div>
+      <div class="step-val">R$ 463.185/ano</div>
+    </div>
+    <div class="cascade-arrow"></div>
+    <div class="cascade-step cost">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <strong>Risco clínico associado:</strong> 2 casos de Deslocamento de Abomaso (DA) já registrados; laminite crônica em 30-60 dias após instalação; aumento do casqueamento (R$ 24K em 4 meses); imunossupressão (risco indireto sobre mastite).
+      </div>
+      <div class="step-val">R$ 50.000/ano (estimativa)</div>
+    </div>
+    <div class="cascade-arrow"></div>
+    <div class="cascade-step" style="border-left:4px solid #d4af37;background:rgba(212,175,55,0.08)">
+      <div class="step-num">Σ</div>
+      <div class="step-body">
+        <strong>CUSTO TOTAL ANUAL DA SARA (com cadeia completa):</strong> a leitura SOMENTE pela queda de gordura subestima o impacto real em <strong>5,1×</strong>.
+      </div>
+      <div class="step-val" style="color:#d4af37;font-size:18px;">R$ 638.542/ano</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Decomposição do custo anual da SARA</div>
+    <div class="chart-subtitle">Três componentes da cascata — somente o financeiro direto seria o primeiro detectado</div>
+    <div id="chart_sara_breakdown"></div>
+    <div class="chart-comment danger">
+      <strong>A análise isolada subestima em 5,1×.</strong>
+      Se cada dimensão (nutricional, qualidade, produção, sanitária, financeira) for analisada isoladamente, o "custo da SARA" identificado fica em apenas R$ 125K/ano (bonificação perdida). O <strong>custo real cruzado é R$ 639K/ano</strong> — uma diferença que justifica a urgência da intervenção e o investimento em diagnóstico ruminal (pH ruminal + Penn State Particle Separator + análise bromatológica).
+    </div>
+  </div>
+
+  <h3>Ações que rompem a cascata</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>Ação corretiva</th>
+      <th>Onde quebra a cadeia</th>
+      <th class="num">Custo</th>
+      <th class="num">Benefício esperado</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Penn State Particle Separator + análise bromatológica silagem</td><td>Passo 1 (origem nutricional)</td><td class="num">~R$ 3-5K</td><td class="num good">Habilita ações 2-3</td></tr>
+      <tr><td>Reformulação da dieta dos Lotes 1, 2, P1 (↑FDN físico, bicarbonato 200g/dia)</td><td>Passo 2 (rúmen)</td><td class="num">~R$ 80K/ano</td><td class="num good">+R$ 460K/ano (produção recuperada)</td></tr>
+      <tr><td>Empurramento de cocho mais frequente (a cada 2-3h)</td><td>Passo 1 (consumo)</td><td class="num">Operacional</td><td class="num good">Reduz seleção, aumenta FDN efetivo</td></tr>
+      <tr><td>Monitoramento mensal de AG De Novo no tanque</td><td>Passos 2-3 (detecção)</td><td class="num">Sem custo</td><td class="num good">Antecipa reversão da gordura</td></tr>
+      <tr><td>pH ruminal seriado em 6-10 vacas dos lotes-alvo</td><td>Passo 2 (diagnóstico)</td><td class="num">~R$ 1,5K</td><td class="num good">Confirma SARA &lt;5,8</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="sec5" class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div>
+      <div class="section-title">As 71 Vacas Crônicas — Custo Multidimensional</div>
+      <div class="section-subtitle">Análise integrada de como 71 animais (9% do rebanho) drenam recursos em três dimensões simultâneas.</div>
+    </div>
+  </div>
+
+  <p>O R406 identificou 71 vacas com 4 ou mais controles consecutivos de CCS &gt; 200 mil. Cada uma é um foco crônico de infecção. Mas o custo real só aparece quando se cruza: <strong>produção perdida</strong> (operacional), <strong>contaminação na ordenha</strong> (sanitário), <strong>tratamento sem retorno</strong> (financeiro) e <strong>ocupação de vaga produtiva</strong> (estratégico).</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card crit">
+      <div class="kpi-label">Produção Perdida/ano</div>
+      <div class="kpi-value">R$ 219<span class="kpi-unit">K</span></div>
+      <div class="kpi-foot">71 vacas × 3 L/dia × R$ 2,82/L × 365 dias</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Custo Tratamento/ano</div>
+      <div class="kpi-value">R$ 57<span class="kpi-unit">K</span></div>
+      <div class="kpi-foot">~4 ciclos × 71 vacas × R$ 200/ciclo</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Risco CCS Tanque</div>
+      <div class="kpi-value">R$ 50<span class="kpi-unit">K</span></div>
+      <div class="kpi-foot">Bonificação em risco se CCS subir &gt; 200</div>
+    </div>
+    <div class="kpi-card crit">
+      <div class="kpi-label">CUSTO TOTAL ANUAL</div>
+      <div class="kpi-value">R$ 326<span class="kpi-unit">K</span></div>
+      <div class="kpi-foot">Multidimensional cruzado</div>
+    </div>
+  </div>
+
+  <h3>Quatro dimensões do impacto</h3>
+  <div class="chart-container">
+    <div class="chart-title">Composição do custo anual das 71 vacas crônicas</div>
+    <div id="chart_cronicas"></div>
+    <div class="chart-comment warn">
+      <strong>R$ 326K/ano em custo direto, mas o impacto estratégico é maior:</strong> cada crônica ocupa uma vaga no rebanho que poderia abrigar uma novilha produtiva. Como a fazenda tem descarte forçado de 47% (alto), há demanda por vagas — descartar as crônicas ao secar libera espaço para novilhas em pico de produção (37+ L/dia vs 25 L/dia das crônicas). <strong>Ganho indireto adicional</strong>: substituir 50 crônicas por novilhas = +12 L/dia × 50 × 365 × R$ 2,82 = <strong>+R$ 618K/ano</strong> (não somado no quadro acima).
+    </div>
+  </div>
+
+  <h3>Decisão clínica — árvore integrada</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>Perfil da vaca crônica</th>
+      <th>Decisão técnica</th>
+      <th>Fonte da decisão</th>
+      <th>Vacas estimadas</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>NL ≥ 4 + DEL &gt; 250 + CCS &gt; 1000</td><td><span class="tag crit">Descarte ao secar</span></td><td>R406 + cronicidade</td><td class="num">~25 vacas</td></tr>
+      <tr><td>NL ≤ 2 + produção ≥ 35 kg/dia + CCS 500-1000</td><td><span class="tag info">Tratamento agressivo dirigido</span></td><td>R406 + R409 + produção</td><td class="num">~18 vacas</td></tr>
+      <tr><td>Infecção em quarto único (mapeamento)</td><td><span class="tag med">Secagem seletiva</span></td><td>R406 + diagnóstico CMT</td><td class="num">~15 vacas</td></tr>
+      <tr><td>2+ quartos comprometidos (Staph aureus provável)</td><td><span class="tag crit">Descarte</span></td><td>R406 + cultura microbiológica</td><td class="num">~10 vacas</td></tr>
+      <tr><td>DEL recente, alta produção, episódio único recorrente</td><td><span class="tag low">Cultura + reavaliação 60d</span></td><td>R406 + R409</td><td class="num">~3 vacas</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <div class="callout-title">🔬 Sinergia única — A decisão das 71 crônicas tem 4 efeitos simultâneos</div>
+    <ul>
+      <li><strong>Sanitário:</strong> elimina focos de contaminação na ordenha — protege a vitória sanitária 24→9% conquistada nos últimos 4 meses</li>
+      <li><strong>Produtivo:</strong> libera ~35 vagas (estimando descartes) que podem ser ocupadas por novilhas produtivas (+R$ 618K/ano)</li>
+      <li><strong>Financeiro:</strong> reduz tratamentos com baixo ROI (R$ 57K/ano) e estabiliza CCS de tanque (preserva bonificação)</li>
+      <li><strong>Reprodutivo:</strong> melhora indicadores do rebanho — reduz dias abertos médio e descarte forçado</li>
+    </ul>
+    <p><strong>Custo total cruzado</strong>: R$ 326K/ano sem considerar o benefício indireto da rotação por novilhas. Com este efeito incluído, a oportunidade chega a <strong>R$ 880-950K/ano</strong>.</p>
+  </div>
+</section>
+
+<section id="sec6" class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div>
+      <div class="section-title">Sensibilidade ao Preço — O Risco Macro Mais Subestimado</div>
+      <div class="section-subtitle">Análise de quanto a margem operacional se move com cada centavo no preço do leite.</div>
+    </div>
+  </div>
+
+  <p>O preço do leite é a única variável estrutural que <strong>nenhuma das outras três dimensões controla</strong>. Por isso, é também a de maior alavancagem: pequenas variações geram grandes impactos no resultado anual. Esta análise quantifica essa exposição.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card warn">
+      <div class="kpi-label">Volume Anual Projetado</div>
+      <div class="kpi-value">11,29<span class="kpi-unit">M L</span></div>
+      <div class="kpi-foot">Extrapolação 4m × 3</div>
+    </div>
+    <div class="kpi-card info">
+      <div class="kpi-label">Impacto por R$ 0,10/L</div>
+      <div class="kpi-value">R$ 1,13<span class="kpi-unit">M/ano</span></div>
+      <div class="kpi-foot">Volume anual × R$ 0,10</div>
+    </div>
+    <div class="kpi-card crit">
+      <div class="kpi-label">Cenário Reversão Total</div>
+      <div class="kpi-value">-R$ 4,62<span class="kpi-unit">M/ano</span></div>
+      <div class="kpi-foot">Se preço médio cair p/ R$ 2,40</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Manutenção do Pico</div>
+      <div class="kpi-value">+R$ 4,62<span class="kpi-unit">M/ano</span></div>
+      <div class="kpi-foot">Se sustentar preço atual</div>
+    </div>
+  </div>
+
+  <h3>Análise de cenários — Tornado de sensibilidade</h3>
+  <div class="chart-container">
+    <div class="chart-title">Impacto na margem anual por variável (R$ milhões/ano)</div>
+    <div class="chart-subtitle">Cada barra é o impacto isolado de uma variável (sem alterações nas demais)</div>
+    <div id="chart_tornado"></div>
+    <div class="chart-comment warn">
+      <strong>O preço do leite é, isoladamente, a variável de maior alavancagem.</strong>
+      Uma queda de R$ 0,42/L (reversão completa para média histórica) consome <strong>-R$ 4,6M/ano</strong> — número que faz qualquer outra otimização parecer secundária. Mas vale lembrar: a fazenda <em>não controla</em> o preço — controla custos, produtividade e estrutura. O preço alto deve ser visto como <em>janela de oportunidade</em> para preparar a operação para o cenário-base (reversão).
+      <br/><br/>
+      A segunda variável é a <strong>SARA corrigida + recuperação de produção</strong> (~+R$ 1,15M/ano combinando bonificação + L/vaca/dia), que SOMA com qualquer cenário de preço.
+    </div>
+  </div>
+
+  <h3>Cenários combinados — Receita anual projetada</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>Cenário</th>
+      <th class="num">Preço (R$/L)</th>
+      <th class="num">Custo (R$/L)</th>
+      <th class="num">Margem (R$/L)</th>
+      <th class="num">Margem %</th>
+      <th class="num">Receita anual</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Base atual (4m)</strong></td>
+        <td class="num">R$ 2,82</td>
+        <td class="num">R$ 1,81</td>
+        <td class="num good">R$ 1,01</td>
+        <td class="num good"><strong>35,8%</strong></td>
+        <td class="num">R$ 31,85M</td>
+      </tr>
+      <tr>
+        <td><strong>Reversão preço (R$ 2.40)</strong></td>
+        <td class="num">R$ 2,40</td>
+        <td class="num">R$ 1,81</td>
+        <td class="num bad">R$ 0,59</td>
+        <td class="num bad"><strong>24,6%</strong></td>
+        <td class="num">R$ 27,10M</td>
+      </tr>
+      <tr>
+        <td><strong>Custo ração +5%</strong></td>
+        <td class="num">R$ 2,82</td>
+        <td class="num">R$ 1,89</td>
+        <td class="num good">R$ 0,93</td>
+        <td class="num good"><strong>33,0%</strong></td>
+        <td class="num">R$ 31,85M</td>
+      </tr>
+      <tr>
+        <td><strong>SARA corrigida (+3 L/vaca)</strong></td>
+        <td class="num">R$ 2,82</td>
+        <td class="num">R$ 1,78</td>
+        <td class="num good">R$ 1,04</td>
+        <td class="num good"><strong>36,9%</strong></td>
+        <td class="num">R$ 33,00M</td>
+      </tr>
+      <tr>
+        <td><strong>Todas otimizações</strong></td>
+        <td class="num">R$ 2,82</td>
+        <td class="num">R$ 1,55</td>
+        <td class="num good">R$ 1,27</td>
+        <td class="num good"><strong>45,0%</strong></td>
+        <td class="num">R$ 33,00M</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout danger">
+    <div class="callout-title">⚠ Por que isto é o risco mais importante de gerenciar</div>
+    <p>A operação opera hoje em margem 35,8% — patamar excelente. Mas isso é <strong>parcialmente artificial</strong>: deriva do preço excepcional da entressafra. Se o preço retornar à média histórica (R$ 2,40/L), a margem cai para 24,6% — ainda saudável, mas mais apertada. <strong>Implicações práticas</strong>:</p>
+    <ul>
+      <li>Não tomar decisões estruturais (CAPEX, novas dívidas) assumindo margem 35%+ permanente</li>
+      <li>Usar a janela de receita extraordinária para reforçar estrutura (reserva + amortização)</li>
+      <li>Implementar as otimizações operacionais (SARA + ração + crônicas + descarte) AGORA, enquanto há margem de manobra</li>
+      <li>Construir a capacidade de operar lucrativamente em R$ 2,40/L: meta de custo ≤ R$ 1,70/L até Dez/2026</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sec7" class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div>
+      <div class="section-title">Mapa de Sinergias entre Ações</div>
+      <div class="section-subtitle">Quantificação dos efeitos colaterais positivos: quando resolver X também resolve Y e Z.</div>
+    </div>
+  </div>
+
+  <p>Este mapa quantifica a sinergia entre as 5 grandes ações priorizadas: cada ação produz <strong>efeitos primários</strong> na sua dimensão de origem e <strong>efeitos secundários</strong> em outras dimensões. Ignorar a sinergia leva a ROI subestimado e a sequenciamento sub-ótimo das ações.</p>
+
+  <h3>Matriz de sinergia — 5 ações × dimensões beneficiadas</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>Ação</th>
+      <th>Dimensões beneficiadas (intensidade da sinergia)</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Corrigir SARA</strong></td>
+        <td><span class="tag crit">Gordura tanque: Alta (+0.30pp)</span> <span class="tag crit">Produção L/vaca: Alta (+3L em 60% afetadas)</span> <span class="tag crit">Risco DA/laminite: Alta (preventiva)</span> <span class="tag med">Descarte: Média (-10-15%)</span> <span class="tag info">CCS: Baixa</span></td>
+      </tr>
+      <tr>
+        <td><strong>Decisão 71 crônicas</strong></td>
+        <td><span class="tag crit">CCS tanque: Alta (-30K cels)</span> <span class="tag crit">Bonificação leite: Alta</span> <span class="tag med">Volume produzido: Média (vagas para novilhas)</span> <span class="tag crit">Custo tratamento: Alta (-R$ 56K/ano)</span> <span class="tag info">Reprodução: Baixa</span></td>
+      </tr>
+      <tr>
+        <td><strong>Otimizar TMR (sobras)</strong></td>
+        <td><span class="tag crit">Custo ração: Alta (-R$ 940K/ano)</span> <span class="tag med">SARA: Média (qualidade ingestão)</span> <span class="tag crit">Margem operacional: Alta</span> <span class="tag crit">Sobra residual: Alta</span> <span class="tag info">Qualidade leite: Baixa</span></td>
+      </tr>
+      <tr>
+        <td><strong>Amortizar Patricia Inv.</strong></td>
+        <td><span class="tag crit">Spread financeiro: Alta (+R$ 97K/ano)</span> <span class="tag crit">Risco financeiro: Alta</span> <span class="tag med">Capital de giro: Média (reduz)</span> <span class="tag crit">Custo dívida: Alta</span> <span class="tag med">Margem líquida: Média</span></td>
+      </tr>
+      <tr>
+        <td><strong>Reduzir mortalidade</strong></td>
+        <td><span class="tag crit">Custo reposição: Alta (-R$ 220K/ano)</span> <span class="tag crit">Volume produzido: Alta</span> <span class="tag crit">CAPEX vacas novas: Alta</span> <span class="tag med">Genética: Média</span> <span class="tag crit">Imagem técnica: Alta</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>As 4 maiores sinergias quantificadas</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card crit">
+      <div class="kpi-label">SARA → Multi-dimensão</div>
+      <div class="kpi-value">R$ 588<span class="kpi-unit">K/ano</span></div>
+      <div class="kpi-foot">Gordura + produção + clínica</div>
+    </div>
+    <div class="kpi-card crit">
+      <div class="kpi-label">71 Crônicas → Multi-dimensão</div>
+      <div class="kpi-value">R$ 326<span class="kpi-unit">K/ano</span></div>
+      <div class="kpi-foot">CCS + tratamento + vagas (+R$ 618K indireto)</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Sobras ração → Multi-dimensão</div>
+      <div class="kpi-value">R$ 1.255<span class="kpi-unit">K/ano</span></div>
+      <div class="kpi-foot">Custo + SARA + sobra residual</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Mortalidade → Multi-dimensão</div>
+      <div class="kpi-value">R$ 220<span class="kpi-unit">K/ano</span></div>
+      <div class="kpi-foot">Reposição + volume + CAPEX</div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-title">🎯 Princípio de sequenciamento — Priorize ações de alta sinergia</div>
+    <p>Ações com efeitos em múltiplas dimensões têm <strong>ROI real maior</strong> que o calculado isoladamente. Sequência sugerida:</p>
+    <ol>
+      <li><strong>Primeiro:</strong> Corrigir SARA (5 dimensões impactadas) — sem isto, otimizar ração tem efeito limitado</li>
+      <li><strong>Em paralelo:</strong> Implementar decisão das 71 crônicas (4 dimensões) — protege o ganho sanitário em curso</li>
+      <li><strong>Em sequência:</strong> Renegociar ração + reduzir sobras (depende do diagnóstico nutricional do passo 1)</li>
+      <li><strong>Estrutural:</strong> Amortizar Patricia Investimento usando caixa do pico de preço</li>
+      <li><strong>Recorrente:</strong> Reduzir mortalidade via protocolo sanitário-reprodutivo</li>
+    </ol>
+  </div>
+</section>
+
+<section id="sec8" class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div>
+      <div class="section-title">Pareto das 12 Oportunidades Consolidadas</div>
+      <div class="section-subtitle">Ranking financeiro de todas as ações identificadas nas 4 análises, com origem cruzada e classificação por prioridade.</div>
+    </div>
+  </div>
+
+  <p>Esta é a visão consolidada de <strong>todo o potencial de otimização</strong> identificado nas quatro análises, organizadas em ordem decrescente de impacto financeiro anual. O total acumula R$ 2,57M a R$ 3,35M/ano — equivalente a <strong>0,0-0,0% da receita anual projetada</strong>.</p>
+
+  <h3>Tabela ranqueada — 12 oportunidades</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>#</th>
+      <th>Ação</th>
+      <th>Origem da análise</th>
+      <th class="num">R$ Min/ano</th>
+      <th class="num">R$ Max/ano</th>
+      <th>Prioridade</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>01</strong></td>
+        <td>Eliminar sobras de ração (TMR 13,4% → 5%)</td>
+        <td><em>Nutricional</em></td>
+        <td class="num good"><strong>R$ 752K</strong></td>
+        <td class="num good"><strong>R$ 940K</strong></td>
+        <td><span class="tag crit">CRÍTICA</span></td>
+      </tr>
+      <tr>
+        <td><strong>02</strong></td>
+        <td>Recuperar gordura (SARA Lotes 1,2,P1)</td>
+        <td><em>Cruzado SARA + nutricional</em></td>
+        <td class="num good"><strong>R$ 460K</strong></td>
+        <td class="num good"><strong>R$ 585K</strong></td>
+        <td><span class="tag crit">CRÍTICA</span></td>
+      </tr>
+      <tr>
+        <td><strong>03</strong></td>
+        <td>Reduzir descarte forçado 47% → 35%</td>
+        <td><em>Reprodutivo</em></td>
+        <td class="num good"><strong>R$ 350K</strong></td>
+        <td class="num good"><strong>R$ 500K</strong></td>
+        <td><span class="tag crit">CRÍTICA</span></td>
+      </tr>
+      <tr>
+        <td><strong>04</strong></td>
+        <td>Decisão das 71 vacas crônicas</td>
+        <td><em>Cruzado sanitário + financ.</em></td>
+        <td class="num good"><strong>R$ 270K</strong></td>
+        <td class="num good"><strong>R$ 350K</strong></td>
+        <td><span class="tag crit">CRÍTICA</span></td>
+      </tr>
+      <tr>
+        <td><strong>05</strong></td>
+        <td>Renegociar custo ração (-2 a 3pp)</td>
+        <td><em>Financeiro</em></td>
+        <td class="num good"><strong>R$ 187K</strong></td>
+        <td class="num good"><strong>R$ 280K</strong></td>
+        <td><span class="tag high">ALTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>06</strong></td>
+        <td>Reduzir mortalidade 10,3% → 6%</td>
+        <td><em>Sanitário-reprodutivo</em></td>
+        <td class="num good"><strong>R$ 165K</strong></td>
+        <td class="num good"><strong>R$ 220K</strong></td>
+        <td><span class="tag high">ALTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>07</strong></td>
+        <td>Migrar aplicações para CDI 100%</td>
+        <td><em>Financeiro</em></td>
+        <td class="num good"><strong>R$ 120K</strong></td>
+        <td class="num good"><strong>R$ 160K</strong></td>
+        <td><span class="tag high">ALTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>08</strong></td>
+        <td>Liquidar contrato Patricia Inv. (10,5%)</td>
+        <td><em>Financeiro</em></td>
+        <td class="num good"><strong>R$ 98K</strong></td>
+        <td class="num good"><strong>R$ 98K</strong></td>
+        <td><span class="tag high">ALTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>09</strong></td>
+        <td>Reduzir manutenção (-15%)</td>
+        <td><em>Financeiro</em></td>
+        <td class="num good"><strong>R$ 95K</strong></td>
+        <td class="num good"><strong>R$ 95K</strong></td>
+        <td><span class="tag med">MÉDIA</span></td>
+      </tr>
+      <tr>
+        <td><strong>10</strong></td>
+        <td>Otimização contrato InvestAgro</td>
+        <td><em>Financeiro</em></td>
+        <td class="num good"><strong>R$ 40K</strong></td>
+        <td class="num good"><strong>R$ 60K</strong></td>
+        <td><span class="tag med">MÉDIA</span></td>
+      </tr>
+      <tr>
+        <td><strong>11</strong></td>
+        <td>Recuperar 20 vacas críticas top CCS</td>
+        <td><em>Qualidade leite</em></td>
+        <td class="num good"><strong>R$ 18K</strong></td>
+        <td class="num good"><strong>R$ 36K</strong></td>
+        <td><span class="tag med">MÉDIA</span></td>
+      </tr>
+      <tr>
+        <td><strong>12</strong></td>
+        <td>Auditoria CCS Lote 5</td>
+        <td><em>Qualidade leite</em></td>
+        <td class="num good"><strong>R$ 15K</strong></td>
+        <td class="num good"><strong>R$ 25K</strong></td>
+        <td><span class="tag med">MÉDIA</span></td>
+      </tr>
+    </tbody>
+    <tfoot><tr>
+      <td colspan="3"><strong>TOTAL CONSOLIDADO</strong></td>
+      <td class="num good"><strong>R$ 2.570K</strong></td>
+      <td class="num good"><strong>R$ 3.349K</strong></td>
+      <td><strong>R$ 2,57-3,35M/ano</strong></td>
+    </tr></tfoot>
+  </table>
+
+  <h3>Visualização Pareto — Top 12 ações por impacto financeiro</h3>
+  <div class="chart-container">
+    <div class="chart-title">Oportunidades consolidadas ordenadas (R$ K/ano)</div>
+    <div class="chart-subtitle">Barras horizontais com faixa de min-max + linha cumulativa do total</div>
+    <div id="chart_pareto"></div>
+    <div class="chart-comment gold">
+      <strong>As 4 maiores ações concentram 71% do potencial</strong> (R$ 1,83-2,37M de R$ 2,57-3,35M).
+      Princípio de Pareto verificado: <strong>(1) Eliminar sobras de ração</strong> (R$ 752-940K), <strong>(2) Recuperar gordura via SARA</strong> (R$ 460-585K),
+      <strong>(3) Reduzir descarte forçado de 47% para 35%</strong> (R$ 350-500K), <strong>(4) Decisão das 71 crônicas</strong> (R$ 270-350K).
+      Focar nestas 4 frentes nos próximos 6 meses captura 70% do valor possível.
+    </div>
+  </div>
+
+  <h3>Composição por origem da análise</h3>
+  <div class="chart-container">
+    <div class="chart-title">Distribuição do potencial por dimensão de origem</div>
+    <div class="chart-subtitle">Mostra que a maior parte do potencial está em ações cruzadas (não em silos)</div>
+    <div id="chart_origem"></div>
+    <div class="chart-comment ok">
+      <strong>57% do potencial vem de ações com origem cruzada ou nutricional/reprodutiva</strong> — não da análise financeira isolada (que captura ~14%). Isso valida o investimento em análise integrada: <em>os maiores R$ estão em decisões zootécnicas e operacionais com forte impacto financeiro</em>, não em manobras puramente financeiras.
+    </div>
+  </div>
+</section>
+
+<section id="sec9" class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <div>
+      <div class="section-title">Projeção de Caixa 12 Meses (Mai/26 — Abr/27)</div>
+      <div class="section-subtitle">Cenário-base com premissas: reversão gradual de preço, volume estável, despesas operacionais constantes, parcela BB em Dez/26.</div>
+    </div>
+  </div>
+
+  <p>Esta projeção parte do saldo de R$ 6,43M em ativos líquidos (30/04/26) e estende 12 meses considerando: (a) curva de preço com reversão gradual de R$ 3,50 → R$ 2,40 entre Mai e Nov; (b) volume mensal estável em torno de 920-950K L; (c) despesa operacional média de R$ 1,75M/mês; (d) concentração de parcelas BB em Dez/26 (R$ 622K adicionais).</p>
+
+  <h3>Projeção mensal — Receita, despesa, caixa</h3>
+  <div class="chart-container">
+    <div class="chart-title">Fluxo de caixa projetado 12 meses</div>
+    <div class="chart-subtitle">Geração mensal (barras) + saldo acumulado (linha)</div>
+    <div id="chart_cashflow"></div>
+    <div class="chart-comment ok">
+      <strong>Saldo acumulado deve crescer de R$ 6,43M (atual) para ~R$ 15,42M em Abr/27</strong> — geração líquida de aproximadamente R$ 9,0M em 12 meses sem aplicar qualquer das otimizações identificadas neste relatório. Com as otimizações (R$ 2,57-3,35M adicionais ao ano), a posição em Abr/27 poderia chegar a <strong>R$ 11,5-12,5M</strong>, mais que dobrando o patrimônio líquido financeiro.
+    </div>
+  </div>
+
+  <h3>Tabela detalhada da projeção</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>Mês</th>
+      <th class="num">Preço (R$/L)</th>
+      <th class="num">Volume (L)</th>
+      <th class="num">Receita leite</th>
+      <th class="num">Despesa</th>
+      <th class="num">Caixa do mês</th>
+      <th class="num">Saldo acumulado</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Mai/26</strong></td>
+        <td class="num">R$ 3,50</td>
+        <td class="num">930.000</td>
+        <td class="num">R$ 3.255 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 1.505 K</strong></td>
+        <td class="num"><strong>R$ 7,94 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Jun/26</strong></td>
+        <td class="num">R$ 3,20</td>
+        <td class="num">920.000</td>
+        <td class="num">R$ 2.944 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 1.194 K</strong></td>
+        <td class="num"><strong>R$ 9,13 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Jul/26</strong></td>
+        <td class="num">R$ 2,90</td>
+        <td class="num">910.000</td>
+        <td class="num">R$ 2.639 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 889 K</strong></td>
+        <td class="num"><strong>R$ 10,02 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Ago/26</strong></td>
+        <td class="num">R$ 2,70</td>
+        <td class="num">900.000</td>
+        <td class="num">R$ 2.430 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 680 K</strong></td>
+        <td class="num"><strong>R$ 10,70 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Set/26</strong></td>
+        <td class="num">R$ 2,55</td>
+        <td class="num">920.000</td>
+        <td class="num">R$ 2.346 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 596 K</strong></td>
+        <td class="num"><strong>R$ 11,30 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Out/26</strong></td>
+        <td class="num">R$ 2,45</td>
+        <td class="num">940.000</td>
+        <td class="num">R$ 2.303 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 553 K</strong></td>
+        <td class="num"><strong>R$ 11,85 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Nov/26</strong></td>
+        <td class="num">R$ 2,40</td>
+        <td class="num">950.000</td>
+        <td class="num">R$ 2.280 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 530 K</strong></td>
+        <td class="num"><strong>R$ 12,38 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Dez/26</strong></td>
+        <td class="num">R$ 2,40</td>
+        <td class="num">940.000</td>
+        <td class="num">R$ 2.256 K</td>
+        <td class="num">R$ 2.372 K</td>
+        <td class="num bad"><strong>R$ -116 K</strong></td>
+        <td class="num"><strong>R$ 12,27 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Jan/27</strong></td>
+        <td class="num">R$ 2,45</td>
+        <td class="num">950.000</td>
+        <td class="num">R$ 2.328 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 578 K</strong></td>
+        <td class="num"><strong>R$ 12,84 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Fev/27</strong></td>
+        <td class="num">R$ 2,55</td>
+        <td class="num">940.000</td>
+        <td class="num">R$ 2.397 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 647 K</strong></td>
+        <td class="num"><strong>R$ 13,49 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Mar/27</strong></td>
+        <td class="num">R$ 2,75</td>
+        <td class="num">950.000</td>
+        <td class="num">R$ 2.612 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 862 K</strong></td>
+        <td class="num"><strong>R$ 14,35 M</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Abr/27</strong></td>
+        <td class="num">R$ 3,00</td>
+        <td class="num">940.000</td>
+        <td class="num">R$ 2.820 K</td>
+        <td class="num">R$ 1.750 K</td>
+        <td class="num good"><strong>R$ 1.070 K</strong></td>
+        <td class="num"><strong>R$ 15,42 M</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Marcos críticos do calendário</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card gold">
+      <div class="kpi-label">Pico da Janela (Mai-Jun/26)</div>
+      <div class="kpi-value">+R$ 2,7<span class="kpi-unit">M caixa</span></div>
+      <div class="kpi-foot">Aproveitar para amortização Patricia</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Transição (Jul-Set/26)</div>
+      <div class="kpi-value">+R$ 2,2<span class="kpi-unit">M caixa</span></div>
+      <div class="kpi-foot">Estabilização — reforçar reserva</div>
+    </div>
+    <div class="kpi-card crit">
+      <div class="kpi-label">Dezembro/26 — Crítico</div>
+      <div class="kpi-value">-R$ 116<span class="kpi-unit">K (mês)</span></div>
+      <div class="kpi-foot">Concentração de parcelas BB R$ 622K</div>
+    </div>
+    <div class="kpi-card info">
+      <div class="kpi-label">Saldo Final Projetado (Abr/27)</div>
+      <div class="kpi-value">R$ 15,42<span class="kpi-unit">M</span></div>
+      <div class="kpi-foot">Sem otimizações — apenas operacional</div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-title">📊 Premissas e cenários alternativos</div>
+    <ul>
+      <li><strong>Cenário base (este):</strong> reversão gradual de preço, volume estável, sem otimizações = saldo Abr/27 R$ 15,42M</li>
+      <li><strong>Cenário otimista:</strong> preço sustentado em R$ 2,80+ até Out + otimizações implementadas = saldo Abr/27 R$ 13-14M</li>
+      <li><strong>Cenário pessimista:</strong> reversão acelerada (preço cai p/ R$ 2,30 em Ago) + sem otimizações = saldo Abr/27 R$ 12,5M</li>
+      <li><strong>Cenário com amortização Patricia (Mai/26):</strong> saldo cai p/ R$ 3,64M imediatamente, mas economia de R$ 100K/ano + redução de risco = saldo Abr/27 R$ 12,5M (similar mas menos exposto)</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sec10" class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div>
+      <div class="section-title">Plano Mestre Integrado & Score-Card de Acompanhamento</div>
+      <div class="section-subtitle">Sequência ótima de ações considerando sinergia, urgência e disponibilidade de caixa.</div>
+    </div>
+  </div>
+
+  <h3>🔴 Frente 1 — Ações estruturais (próximos 30 dias)</h3>
+
+  <div class="action-card urgent">
+    <div class="action-header"><span class="tag crit">F1.1</span><strong>Diagnóstico ruminal completo dos Lotes 1, 2 e P1</strong></div>
+    <p><strong>Por que primeiro:</strong> SARA é a raiz de 4 problemas (gordura, produção, DA, descarte) — sem corrigir, qualquer otimização de ração tem efeito limitado.</p>
+    <p><strong>Ação concreta:</strong> (a) pH ruminal em 6-10 vacas (rumenocentese, antes e 4h pós-trato); (b) Penn State Particle Separator na dieta entregue; (c) análise bromatológica completa da silagem em uso (MS, FDN, FDA, lignina, amido, NDFD30).</p>
+    <p><strong>Custo:</strong> R$ 5-8K total &nbsp;|&nbsp; <strong>Habilita:</strong> R$ 588K/ano de ganho</p>
+  </div>
+
+  <div class="action-card urgent">
+    <div class="action-header"><span class="tag crit">F1.2</span><strong>Decisão clínica documentada das 71 vacas crônicas</strong></div>
+    <p><strong>Por que agora:</strong> protege a vitória sanitária 24%→9% conquistada. Cada vaca crônica é um risco de reversão da curva.</p>
+    <p><strong>Ação concreta:</strong> Reunião semanal (15-20 vacas/semana) com Vet, classificando cada uma em: descarte ao secar, tratamento dirigido por cultura, ou secagem seletiva. Documentar em planilha rastreável.</p>
+    <p><strong>Custo:</strong> Operacional (horas Vet) &nbsp;|&nbsp; <strong>Impacto:</strong> R$ 270-350K/ano direto + R$ 618K/ano indireto (rotação por novilhas)</p>
+  </div>
+
+  <div class="action-card urgent">
+    <div class="action-header"><span class="tag crit">F1.3</span><strong>Aproveitar pico de preço para amortizar Patricia Investimento</strong></div>
+    <p><strong>Por que agora:</strong> janela única de receita R$ 3,20-3,50/L até Jul/26. Spread negativo de 3,5pp custa R$ 97K/ano enquanto contrato não é amortizado.</p>
+    <p><strong>Ação concreta:</strong> Liquidar R$ 2,79M usando R$ 2,79M dos R$ 4M em SICREDINVEST. Resta R$ 3,64M em liquidez (2,1 meses despesas — adequado).</p>
+    <p><strong>Custo:</strong> Perda de liquidez 43% &nbsp;|&nbsp; <strong>Impacto:</strong> +R$ 97K/ano recorrente + redução de risco financeiro</p>
+  </div>
+
+  <h3>🟡 Frente 2 — Ações operacionais (30-90 dias)</h3>
+
+  <div class="action-card high">
+    <div class="action-header"><span class="tag high">F2.1</span><strong>Reformular dieta Lotes 1, 2, P1 + reduzir sobras de TMR para 5%</strong></div>
+    <p><strong>Depende de:</strong> F1.1 (diagnóstico ruminal) concluído.</p>
+    <p><strong>Ações:</strong> ↑FDN físico efetivo + bicarbonato 200g/vaca/dia + revisar partículas; empurramento de cocho 5x/dia; ajuste de quantidade ofertada por lote baseada em consumo real.</p>
+    <p><strong>Impacto:</strong> Recupera gordura tanque (+0,30pp) + reduz sobras de R$ 419K/4m para R$ 156K/4m = <strong>+R$ 940K/ano</strong></p>
+  </div>
+
+  <div class="action-card high">
+    <div class="action-header"><span class="tag high">F2.2</span><strong>Auditoria reprodutiva — reduzir descarte forçado 47% → 35%</strong></div>
+    <p><strong>Ação concreta:</strong> Mapear causas do descarte (complexo metrítico, mastite crônica, falha reprodutiva, BCS); implementar protocolo de monitoramento individual via colares Afimilk (já instalados); cultura microbiológica nos casos de metrite.</p>
+    <p><strong>Impacto:</strong> Reduzir descarte em 12pp × 737 vacas × R$ 5K reposição = <strong>R$ 350-500K/ano</strong></p>
+  </div>
+
+  <div class="action-card high">
+    <div class="action-header"><span class="tag high">F2.3</span><strong>Renegociar contrato de ração + cotar concorrentes</strong></div>
+    <p><strong>Ação concreta:</strong> Cotar 3-4 fornecedores com mesma formulação. Revisar contrato atual buscando 2-3pp de desconto por volume + condições de pagamento.</p>
+    <p><strong>Impacto:</strong> -2 a 3pp × R$ 9,4M ração anual = <strong>R$ 187-280K/ano</strong></p>
+  </div>
+
+  <h3>🟢 Frente 3 — Estratégicas (90-180 dias)</h3>
+
+  <div class="action-card med">
+    <div class="action-header"><span class="tag med">F3.1</span><strong>Score-card mensal integrado (BI)</strong></div>
+    <p>Painel automatizado consolidando os 10 indicadores sintéticos deste relatório, atualizado mensalmente. Acompanhamento em reunião gerencial de 60min/mês com Veterinário, Nutricionista, Gerente Operacional e Contador.</p>
+  </div>
+
+  <div class="action-card med">
+    <div class="action-header"><span class="tag med">F3.2</span><strong>Protocolo de redução de mortalidade 10,3% → 6%</strong></div>
+    <p>Auditoria das 75-80 mortes anuais por causa. Reforço do protocolo neonatal com o pasteurizador (já adquirido). Cultura microbiológica de todos os casos suspeitos.</p>
+  </div>
+
+  <div class="action-card med">
+    <div class="action-header"><span class="tag med">F3.3</span><strong>Migração de aplicações para CDI 100%</strong></div>
+    <p>Confirmar com gerente Sicredi as taxas dos 8 novos SICREDINVEST. Caso abaixo de 95% CDI, migrar para fundo DI ou Tesouro Selic.</p>
+  </div>
+
+  <h3>Score-Card de Acompanhamento — 12 KPIs Integrados</h3>
+  <table class="data-table">
+    <thead><tr>
+      <th>#</th>
+      <th>KPI</th>
+      <th class="num">Atual</th>
+      <th class="num">Meta 90d</th>
+      <th class="num">Meta 12m</th>
+      <th>Frequência</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Margem por L (R$/L)</td><td class="num">R$ 1,01</td><td class="num good">≥ R$ 0,90</td><td class="num good">≥ R$ 0,75</td><td>Mensal</td></tr>
+      <tr><td>2</td><td>Lucro por vaca/dia (R$)</td><td class="num">R$ 38</td><td class="num good">≥ R$ 35</td><td class="num good">≥ R$ 30</td><td>Semanal</td></tr>
+      <tr><td>3</td><td>Gordura tanque (%)</td><td class="num bad">3,03%</td><td class="num warn">≥ 3,15%</td><td class="num good">≥ 3,30%</td><td>Mensal</td></tr>
+      <tr><td>4</td><td>Razão G:P</td><td class="num bad">0,91</td><td class="num warn">≥ 1,00</td><td class="num good">≥ 1,12</td><td>Mensal</td></tr>
+      <tr><td>5</td><td>CCS tanque (mil/mL)</td><td class="num good">157</td><td class="num good">≤ 200</td><td class="num good">≤ 180</td><td>Mensal</td></tr>
+      <tr><td>6</td><td>% infecção mamária</td><td class="num good">9%</td><td class="num good">≤ 10%</td><td class="num good">≤ 8%</td><td>Mensal</td></tr>
+      <tr><td>7</td><td>Vacas crônicas pendentes</td><td class="num bad">71</td><td class="num warn">≤ 35</td><td class="num good">≤ 15</td><td>Mensal</td></tr>
+      <tr><td>8</td><td>Sobras TMR (%)</td><td class="num bad">13,4%</td><td class="num warn">≤ 8%</td><td class="num good">≤ 5%</td><td>Diário</td></tr>
+      <tr><td>9</td><td>Mortalidade rebanho (% a.a.)</td><td class="num bad">10,3%</td><td class="num warn">≤ 8%</td><td class="num good">≤ 6%</td><td>Mensal</td></tr>
+      <tr><td>10</td><td>Descarte forçado (% a.a.)</td><td class="num bad">47%</td><td class="num warn">≤ 40%</td><td class="num good">≤ 35%</td><td>Mensal</td></tr>
+      <tr><td>11</td><td>Dívida em aberto (R$ M)</td><td class="num">6,13</td><td class="num good">≤ 3,5</td><td class="num good">≤ 3,0</td><td>Mensal</td></tr>
+      <tr><td>12</td><td>Score 360° composto</td><td class="num warn">6,75/10</td><td class="num good">≥ 7,5/10</td><td class="num good">≥ 8,5/10</td><td>Trimestral</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="callout-title">🎯 Síntese final integrada — A Fazenda Brasilândia em 1 parágrafo</div>
+    <p>A Fazenda Brasilândia é uma <strong>operação premium em transformação</strong>: opera com margem operacional de 33,8%, CCS de tanque de 157 mil (excelente), reduziu mastite em 62% em 4 meses (vitória sanitária notável) e tem estrutura patrimonial sólida (alavancagem neutra). Porém, perde R$ 2,57-3,35 milhões/ano em <strong>quatro frentes silenciosas e interconectadas</strong>: SARA nos lotes de alta produção (R$ 588K/ano cruzando bonificação + produção + clínica), sobras de ração de 13,4% (R$ 1,25M/ano), descarte forçado 47% + mortalidade 10,3% (R$ 570-720K/ano) e spread negativo dívida × aplicação (R$ 97K/ano). <strong>O caminho é claro</strong>: aproveitar a janela única de preço alto (R$ 3,50/L) para amortizar dívida cara e investir em diagnóstico ruminal, implementar a decisão clínica das 71 crônicas em 60 dias, renegociar custo da ração, e construir um score-card mensal integrado para evitar que os silos voltem a se reformar. Com execução plena, o saldo patrimonial líquido pode crescer de R$ 6,4M (atual) para R$ 11-13M até Abr/27, mais que dobrando a posição financeira em 12 meses — sem qualquer aporte externo, apenas com a otimização cruzada das 4 dimensões já mapeadas neste relatório.</p>
+  </div>
+</section>
+
+<footer class="report-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-title">Metodologia Integrada</div>
+      <p>Cruzamento de 4 bases analíticas: (1) Nutricional — 4 TMR Excel Jan-Abr/26 + análise de sobras; (2) Sanitário-Reprodutiva — resumo mensal do rebanho + dados de mortalidade e descarte; (3) Qualidade do Leite — tanque 13 meses + 737 vacas individual + R406 + R409; (4) Financeira — 4 DREs mensais + endividamento + extratos bancários + reconciliação Afimilk × Coop. Indicadores sintéticos calculados pela junção de pelo menos 2 fontes.</p>
+    </div>
+    <div>
+      <div class="footer-title">Premissas e referências</div>
+      <p>Volume anualizado = volume 4m × 3 (extrapolação simples). Preço médio histórico Brasil Central: R$ 2,30-2,70/L. Selic/CDI assumidos em ~14% a.a. (Maio/2026). Bonificação típica por gordura: R$ 0,003/L por 0,1pp acima de 3,0%. Custo de reposição de vaca: R$ 5K. Margem operacional setor: 18-28% (típico), 30-40% (premium).</p>
+    </div>
+    <div>
+      <div class="footer-title">Assinatura técnica</div>
+      <p><strong>RuralIN — Consultoria Técnica Multidisciplinar</strong><br>
+      Médico Veterinário — Sanidade & Reprodução<br>
+      Zootecnista — Nutrição & Qualidade do Leite<br>
+      Analista Financeiro — Agronegócio<br>
+      Cientista de Dados Aplicado ao Agro<br>
+      <em>Diagnóstico Integrado gerado em 20 de Maio de 2026</em></p>
+    </div>
+  </div>
+  <div class="footer-disclaimer">
+    Este diagnóstico integrado usa exclusivamente os dados fornecidos nas 4 análises previamente realizadas. Os indicadores sintéticos são construções analíticas com finalidade gerencial — devem ser validados com a equipe técnica antes da implementação. Cenários e projeções incorporam premissas explícitas; alterações nas premissas (especialmente preço do leite) podem mover os resultados significativamente. O potencial total de R$ 2,57-3,35M/ano é a soma dos potenciais individuais — captura simultânea pode ter sobreposições parciais entre algumas ações.
+  </div>
+</footer>
+</div>
+<script>
+const LB_base = {
+  paper_bgcolor:'#1a2233', plot_bgcolor:'#1a2233',
+  font:{color:'#e5e7eb', family:'Inter, system-ui'},
+  margin:{l:60,r:30,t:40,b:60},
+  xaxis:{gridcolor:'#1f2937', zerolinecolor:'#1f2937'},
+  yaxis:{gridcolor:'#1f2937', zerolinecolor:'#1f2937'}
+};
+const CFG = {displayModeBar:false, responsive:true};
+
+// === CHART 1: Score 360° Radar ===
+Plotly.newPlot('chart_radar', [{
+  type:'scatterpolar',
+  r:[9, 4, 5, 7, 7, 9, 8, 5, 9],
+  theta:["Sanidade do \u00fabere", "Sanidade ruminal", "Reprodu\u00e7\u00e3o", "Efici\u00eancia produtiva", "Qualidade do leite", "Margem operacional", "Estrutura de capital", "Efici\u00eancia de custo", "Sanidade do \u00fabere"],
+  fill:'toself',
+  line:{color:'#d4af37', width:3},
+  marker:{size:10, color:'#d4af37'},
+  fillcolor:'rgba(212,175,55,0.20)'
+}], {
+  paper_bgcolor:'#1a2233', plot_bgcolor:'#1a2233',
+  font:{color:'#e5e7eb', family:'Inter, system-ui', size:11},
+  polar:{
+    radialaxis:{visible:true, range:[0,10], gridcolor:'#1f2937', tickfont:{size:9, color:'#94a3b8'}},
+    angularaxis:{tickfont:{size:11, color:'#e5e7eb'}, gridcolor:'#1f2937'},
+    bgcolor:'#1a2233'
+  },
+  showlegend:false,
+  height: 380
+}, CFG);
+
+// === CHART 2: Margem por Litro - multi-line ===
+Plotly.newPlot('chart_margem_L', [
+  {type:'scatter', mode:'lines+markers+text', name:'Preço (R$/L)',
+    x:["Jan/26", "Fev/26", "Mar/26", "Abr/26"], y:[2.253, 2.377, 3.177, 3.501],
+    line:{color:'#d4af37', width:3}, marker:{size:10},
+    text:["R$ 2,253", "R$ 2,377", "R$ 3,177", "R$ 3,501"], textposition:'top center', textfont:{size:10, color:'#d4af37'}},
+  {type:'scatter', mode:'lines+markers+text', name:'Custo op. (R$/L)',
+    x:["Jan/26", "Fev/26", "Mar/26", "Abr/26"], y:[1.691, 1.88, 1.845, 1.838],
+    line:{color:'#ef4444', width:3}, marker:{size:10},
+    text:["R$ 1,691", "R$ 1,880", "R$ 1,845", "R$ 1,838"], textposition:'bottom center', textfont:{size:10, color:'#ef4444'}},
+  {type:'bar', name:'Margem (R$/L)', x:["Jan/26", "Fev/26", "Mar/26", "Abr/26"], y:[0.562, 0.497, 1.332, 1.663],
+    marker:{color:'rgba(52,211,153,0.35)', line:{color:'#34d399', width:2}},
+    text:["R$ +0,562", "R$ +0,497", "R$ +1,332", "R$ +1,663"], textposition:'inside',
+    textfont:{size:13, color:'#e5e7eb', family:'Inter'}}
+], {
+  ...LB_base, height: 420,
+  yaxis:{title:'R$/L', gridcolor:'#1f2937', range:[0, 4.0]},
+  legend:{orientation:'h', y:1.13}
+}, CFG);
+
+// === CHART 3: Lucro por Vaca/Dia ===
+Plotly.newPlot('chart_lvd', [{
+  type:'bar', x:["Jan/26", "Fev/26", "Mar/26", "Abr/26"], y:[21.41, 18.14, 49.68, 62.7],
+  marker:{color:['#fbbf24','#ef4444','#34d399','#d4af37']},
+  text:["R$ 21,41", "R$ 18,14", "R$ 49,68", "R$ 62,70"], textposition:'outside',
+  textfont:{size:14, color:'#e5e7eb', family:'Inter'}
+}], {
+  ...LB_base, height: 380,
+  yaxis:{title:'R$/vaca/dia', gridcolor:'#1f2937'},
+  showlegend:false,
+  annotations:[
+    {x:'Fev/26', y:18, text:'Mínimo<br>R$ 18,14',
+      showarrow:true, arrowcolor:'#ef4444', ax:0, ay:-50,
+      font:{color:'#ef4444', size:11}, bgcolor:'rgba(239,68,68,0.10)', bordercolor:'#ef4444', borderwidth:1},
+    {x:'Abr/26', y:62.74, text:'Máximo<br>R$ 62,74',
+      showarrow:true, arrowcolor:'#d4af37', ax:0, ay:-50,
+      font:{color:'#d4af37', size:11}, bgcolor:'rgba(212,175,55,0.10)', bordercolor:'#d4af37', borderwidth:1}
+  ]
+}, CFG);
+
+// === CHART 4: SARA Breakdown ===
+Plotly.newPlot('chart_sara_breakdown', [{
+  type:'bar', orientation:'h',
+  y:["Perda Bonifica\u00e7\u00e3o\n(gordura -0,37pp)", "Perda Produ\u00e7\u00e3o\n(SARA -3L em 60% das 250 vacas)", "Risco Cl\u00ednico\n(DA + laminite)"], x:[125357, 463185, 50000],
+  marker:{color:['#fbbf24','#ef4444','#b91c1c']},
+  text:["R$ 125K/ano", "R$ 463K/ano", "R$ 50K/ano"],
+  textposition:'auto', textfont:{size:13, color:'#e5e7eb', family:'Inter'}
+}], {
+  ...LB_base, height: 320,
+  xaxis:{title:'R$/ano', gridcolor:'#1f2937'},
+  yaxis:{autorange:'reversed'},
+  margin:{l:200, r:30, t:40, b:60},
+  showlegend:false,
+  annotations:[{
+    x:638542, y:-0.5,
+    text:'<b>TOTAL: R$ 638K/ano</b>',
+    showarrow:false, font:{color:'#d4af37', size:13}
+  }]
+}, CFG);
+
+// === CHART 5: 71 Crônicas Breakdown ===
+Plotly.newPlot('chart_cronicas', [{
+  type:'bar', orientation:'h',
+  y:["Produ\u00e7\u00e3o perdida", "Custo tratamento", "Risco CCS tanque"], x:[219241, 56800, 50000],
+  marker:{color:['#b91c1c','#fbbf24','#fbbf24']},
+  text:["R$ 219K/ano", "R$ 57K/ano", "R$ 50K/ano"],
+  textposition:'auto', textfont:{size:13, color:'#e5e7eb'}
+}], {
+  ...LB_base, height: 280,
+  xaxis:{title:'R$/ano', gridcolor:'#1f2937'},
+  yaxis:{autorange:'reversed'},
+  margin:{l:180, r:30, t:40, b:60},
+  showlegend:false
+}, CFG);
+
+// === CHART 6: Tornado de Sensibilidade ===
+Plotly.newPlot('chart_tornado', [{
+  type:'bar', orientation:'h',
+  y:["Revers\u00e3o pre\u00e7o (-R$ 0,42/L)", "SARA corrigida (+ produ\u00e7\u00e3o + gord.)", "Sobras TMR reduzidas (13\u21925%)", "71 cr\u00f4nicas + rota\u00e7\u00e3o novilhas", "Custo ra\u00e7\u00e3o +5% (insumos)", "Custo ra\u00e7\u00e3o otimizado (-2,5pp)", "Mortalidade -4pp (10\u21926%)", "Patricia Investimento amortizado"], x:[-4620, 1150, 940, 870, -470, 230, 220, 98],
+  marker:{color:["#ef4444", "#34d399", "#34d399", "#34d399", "#ef4444", "#34d399", "#34d399", "#34d399"]},
+  text:["-4.62M", "+1.15M", "+R$ 940K", "+R$ 870K", "R$ -470K", "+R$ 230K", "+R$ 220K", "+R$ 98K"],
+  textposition:'auto', textfont:{size:11, color:'#e5e7eb'}
+}], {
+  ...LB_base, height: 420,
+  xaxis:{title:'Impacto na margem anual (R$ mil)', gridcolor:'#1f2937', zerolinecolor:'#94a3b8', zerolinewidth:2},
+  yaxis:{autorange:'reversed', tickfont:{size:11}},
+  margin:{l:280, r:30, t:40, b:60},
+  showlegend:false
+}, CFG);
+
+// === CHART 7: Pareto ===
+Plotly.newPlot('chart_pareto', [
+  {type:'bar', orientation:'h', name:'R$ Min/ano',
+    y:["Eliminar sobras de ra\u00e7\u00e3o (TMR 13,4% \u2192 5%)", "Recuperar gordura (SARA Lotes 1,2,P1)", "Reduzir descarte for\u00e7ado 47% \u2192 35%", "Decis\u00e3o das 71 vacas cr\u00f4nicas", "Renegociar custo ra\u00e7\u00e3o (-2 a 3pp)", "Reduzir mortalidade 10,3% \u2192 6%", "Migrar aplica\u00e7\u00f5es para CDI 100%", "Liquidar contrato Patricia Inv. (10,5%)", "Reduzir manuten\u00e7\u00e3o (-15%)", "Otimiza\u00e7\u00e3o contrato InvestAgro", "Recuperar 20 vacas cr\u00edticas top CCS", "Auditoria CCS Lote 5"], x:[752, 460, 350, 270, 187, 165, 120, 98, 95, 40, 18, 15],
+    marker:{color:'rgba(96,165,250,0.55)'}, hovertemplate:'Min: R$ %{x}K<extra></extra>'},
+  {type:'bar', orientation:'h', name:'R$ Max/ano (incremento)',
+    y:["Eliminar sobras de ra\u00e7\u00e3o (TMR 13,4% \u2192 5%)", "Recuperar gordura (SARA Lotes 1,2,P1)", "Reduzir descarte for\u00e7ado 47% \u2192 35%", "Decis\u00e3o das 71 vacas cr\u00f4nicas", "Renegociar custo ra\u00e7\u00e3o (-2 a 3pp)", "Reduzir mortalidade 10,3% \u2192 6%", "Migrar aplica\u00e7\u00f5es para CDI 100%", "Liquidar contrato Patricia Inv. (10,5%)", "Reduzir manuten\u00e7\u00e3o (-15%)", "Otimiza\u00e7\u00e3o contrato InvestAgro", "Recuperar 20 vacas cr\u00edticas top CCS", "Auditoria CCS Lote 5"], x:[188, 125, 150, 80, 93, 55, 40, 0, 0, 20, 18, 10],
+    marker:{color:["#b91c1c", "#b91c1c", "#b91c1c", "#b91c1c", "#ef4444", "#ef4444", "#ef4444", "#ef4444", "#fbbf24", "#fbbf24", "#fbbf24", "#fbbf24"]},
+    text:["R$ 752-940K", "R$ 460-585K", "R$ 350-500K", "R$ 270-350K", "R$ 187-280K", "R$ 165-220K", "R$ 120-160K", "R$ 98-98K", "R$ 95-95K", "R$ 40-60K", "R$ 18-36K", "R$ 15-25K"],
+    textposition:'outside', textfont:{size:10, color:'#e5e7eb'}}
+], {
+  ...LB_base, height: 520, barmode:'stack',
+  xaxis:{title:'R$ /ano (K)', gridcolor:'#1f2937'},
+  yaxis:{autorange:'reversed', tickfont:{size:11}},
+  margin:{l:300, r:80, t:40, b:60},
+  legend:{orientation:'h', y:1.05}
+}, CFG);
+
+// === CHART 8: Origem das oportunidades (pie) ===
+Plotly.newPlot('chart_origem', [{
+  type:'pie',
+  labels:["Nutricional", "Cruzado SARA + nutricional", "Reprodutivo", "Cruzado sanit\u00e1rio + financ.", "Financeiro", "Sanit\u00e1rio-reprodutivo", "Qualidade leite"],
+  values:[846.0, 522.5, 425.0, 310.0, 616.5, 192.5, 47.0],
+  marker:{colors:['#b91c1c','#ef4444','#fbbf24','#d4af37','#60a5fa','#34d399']},
+  hole:0.55, textinfo:'label+percent', textposition:'outside',
+  textfont:{size:11, color:'#e5e7eb'}
+}], {
+  ...LB_base, height: 380,
+  showlegend:false,
+  annotations:[{
+    text:'<b>R$ 2959K</b><br><span style="font-size:11px;color:#94a3b8">média anual</span>',
+    x:0.5, y:0.5, font:{size:18, color:'#d4af37'}, showarrow:false
+  }]
+}, CFG);
+
+// === CHART 9: Cash flow projection ===
+Plotly.newPlot('chart_cashflow', [
+  {type:'bar', name:'Caixa do mês', x:["Mai/26", "Jun/26", "Jul/26", "Ago/26", "Set/26", "Out/26", "Nov/26", "Dez/26", "Jan/27", "Fev/27", "Mar/27", "Abr/27"], y:[1505000.0, 1194000.0, 889000.0, 680000.0, 596000.0, 553000.0, 530000.0, -116000.0, 577500.0, 647000.0, 862500.0, 1070000.0],
+    marker:{color:["#34d399", "#34d399", "#34d399", "#34d399", "#34d399", "#34d399", "#34d399", "#ef4444", "#34d399", "#34d399", "#34d399", "#34d399"]},
+    text:["R$ +1505K", "R$ +1194K", "R$ +889K", "R$ +680K", "R$ +596K", "R$ +553K", "R$ +530K", "R$ -116K", "R$ +578K", "R$ +647K", "R$ +862K", "R$ +1070K"], textposition:'outside', textfont:{size:10, color:'#e5e7eb'}},
+  {type:'scatter', mode:'lines+markers+text', name:'Saldo acumulado (M)', x:["Mai/26", "Jun/26", "Jul/26", "Ago/26", "Set/26", "Out/26", "Nov/26", "Dez/26", "Jan/27", "Fev/27", "Mar/27", "Abr/27"], y:[7939073.0, 9133073.0, 10022073.0, 10702073.0, 11298073.0, 11851073.0, 12381073.0, 12265073.0, 12842573.0, 13489573.0, 14352073.0, 15422073.0],
+    yaxis:'y2', line:{color:'#d4af37', width:3}, marker:{size:10},
+    text:["7,9M", "9,1M", "10,0M", "10,7M", "11,3M", "11,9M", "12,4M", "12,3M", "12,8M", "13,5M", "14,4M", "15,4M"], textposition:'top center', textfont:{size:10, color:'#d4af37'}}
+], {
+  ...LB_base, height: 440,
+  yaxis:{title:'Caixa mensal (R$)', gridcolor:'#1f2937'},
+  yaxis2:{title:'Saldo acumulado (R$ M)', overlaying:'y', side:'right', gridcolor:'#1f2937'},
+  legend:{orientation:'h', y:1.13},
+  shapes:[{type:'line', x0:-0.5, x1:11.5, y0:0, y1:0, yref:'y', line:{color:'#94a3b8', dash:'dash', width:1}}],
+  annotations:[{x:'Dez/26', y:-116000, text:'Dez/26<br>parcelas BB',
+    showarrow:true, arrowcolor:'#ef4444', ax:30, ay:-40,
+    font:{color:'#ef4444', size:10}, bgcolor:'rgba(239,68,68,0.10)'}]
+}, CFG);
+</script>
+</body></html>
